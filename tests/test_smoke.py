@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from resume.loader import load_resume
-from resume.builder import ResumeBuilder
+from resumeforge.loader import load_resume
+from resumeforge.builder import ResumeBuilder
 
 def test_resume_loads():
     resume = load_resume()

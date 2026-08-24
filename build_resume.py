@@ -2,11 +2,11 @@ def main():
 
     from pathlib import Path
 
-    from resume.builder import ResumeBuilder
-    from resume.loader import load_resume
+    from resumeforge.builder import ResumeBuilder
+    from resumeforge.loader import load_resume
 
-    from resume.sections import header
-    from resume.sections import summary
+    from resumeforge.sections import header
+    from resumeforge.sections import summary
 
     resume = load_resume()
 
