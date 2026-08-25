@@ -4,6 +4,7 @@ from .summary import Summary
 from .experience import Experience
 from .education import Education
 from .skills import SkillGroup
+from .certification import Certification
 
 __all__ = [
     "Header",
@@ -12,4 +13,5 @@ __all__ = [
     "Experience",
     "Education",
     "SkillGroup",
+    "Certification",
 ]
