@@ -9,7 +9,7 @@ def test_resume_loads():
 
 def test_resume_has_name():
     resume = load_resume()
-    assert resume["name"] == "Jason Little"
+    assert resume.header.name == "Jason Little"
 
 def test_builder_creates_document():
     builder = ResumeBuilder()

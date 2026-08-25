@@ -1,16 +1,18 @@
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt
 
-def render(document, resume):
 
-    title = document.add_heading(resume["name"], 0)
+def render(document, resume):
+    header = resume.header
+
+    title = document.add_heading(header.name, 0)
     title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
     p = document.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    run = p.add_run(resume["headline"] + "\n")
+    run = p.add_run(header.headline + "\n")
     run.bold = True
     run.font.size = Pt(14)
 
-    p.add_run(resume["tagline"])
+    p.add_run(header.tagline)
