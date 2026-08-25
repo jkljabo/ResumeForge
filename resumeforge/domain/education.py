@@ -5,5 +5,5 @@ from dataclasses import dataclass
 class Education:
     school: str
     degree: str
-    field: str
-    graduation: str
+    field: str = ""
+    graduation_year: str = ""
