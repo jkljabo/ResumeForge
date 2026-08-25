@@ -5,6 +5,7 @@ from .experience import Experience
 from .education import Education
 from .skills import SkillGroup
 from .certification import Certification
+from .project import Project
 
 __all__ = [
     "Header",
@@ -14,4 +15,5 @@ __all__ = [
     "Education",
     "SkillGroup",
     "Certification",
+    "Project",
 ]
