@@ -3,6 +3,7 @@ from .resume import ResumeProfile
 from .summary import Summary
 from .experience import Experience
 from .education import Education
+from .skills import SkillGroup
 
 __all__ = [
     "Header",
@@ -10,4 +11,5 @@ __all__ = [
     "Summary",
     "Experience",
     "Education",
+    "SkillGroup",
 ]
