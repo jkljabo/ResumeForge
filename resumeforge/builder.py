@@ -4,12 +4,15 @@ from resumeforge.renderers.header import HeaderRenderer
 from resumeforge.renderers.summary import SummaryRenderer
 from resumeforge.renderers.experience import ExperienceRenderer
 from resumeforge.renderers.education import EducationRenderer
+from resumeforge.renderers.skills import SkillsRenderer
+
 
 DEFAULT_RENDERERS = [
     HeaderRenderer(),
     SummaryRenderer(),
     ExperienceRenderer(),
     EducationRenderer(),
+    SkillsRenderer(),
 ]
 
 class ResumeBuilder:
