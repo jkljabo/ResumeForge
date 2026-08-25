@@ -7,5 +7,26 @@
   "email": "jason.k.little@comcast.net",
   "linkedin": "https://linkedin.com/in/jason-little-4623a1198",
   "github": "https://github.com/jkljabo",
-  "portfolio": "https://jasonlittle-dev.netlify.app"
+  "portfolio": "https://jasonlittle-dev.netlify.app",
+
+  "education": [
+    {
+      "school": "Kennesaw State University",
+      "degree": "B.S. Computer Science",
+      "year": "2002"
+    }
+  ],
+
+  "experience": [
+    {
+      "company": "Regions Bank",
+      "title": "Senior Software Engineer",
+      "start": "2024",
+      "end": "Present",
+      "bullets": [
+        "Modernized enterprise applications",
+        "Migrated services to Azure"
+      ]
+    }
+  ]
 }

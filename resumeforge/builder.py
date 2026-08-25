@@ -3,13 +3,14 @@ from docx import Document
 from resumeforge.renderers.header import HeaderRenderer
 from resumeforge.renderers.summary import SummaryRenderer
 from resumeforge.renderers.experience import ExperienceRenderer
+from resumeforge.renderers.education import EducationRenderer
 
 DEFAULT_RENDERERS = [
     HeaderRenderer(),
     SummaryRenderer(),
     ExperienceRenderer(),
+    EducationRenderer(),
 ]
-
 
 class ResumeBuilder:
     def __init__(self, renderers=None):

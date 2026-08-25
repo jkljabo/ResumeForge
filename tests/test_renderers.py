@@ -6,6 +6,7 @@ from resumeforge.renderers.base import BaseRenderer
 from resumeforge.renderers.header import HeaderRenderer
 from resumeforge.renderers.summary import SummaryRenderer
 from resumeforge.renderers.experience import ExperienceRenderer
+from resumeforge.renderers.education import EducationRenderer
 
 
 def test_header_renderer_is_base_renderer():
@@ -29,3 +30,15 @@ def test_experience_renderer_runs():
     renderer.render(document, resume)
 
     assert document is not None
+
+def test_education_renderer_runs():
+
+    document = Document()
+
+    resume = load_resume()
+
+    renderer = EducationRenderer()
+
+    renderer.render(document, resume)
+
+    assert "Education" in "\n".join(p.text for p in document.paragraphs)

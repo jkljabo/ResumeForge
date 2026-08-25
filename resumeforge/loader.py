@@ -1,7 +1,12 @@
 import json
 from pathlib import Path
 
-from resumeforge.domain import Header, ResumeProfile
+from resumeforge.domain import (
+    Header,
+    ResumeProfile,
+    Education,
+    Experience,
+)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,4 +29,29 @@ def load_resume(profile: str = "resume") -> ResumeProfile:
         portfolio=data.get("portfolio", ""),
     )
 
-    return ResumeProfile(header=header)
+    education = [
+        Education(
+            school=item.get("school", ""),
+            degree=item.get("degree", ""),
+            field=item.get("field", ""),
+            graduation_year=item.get("year", ""),
+        )
+        for item in data.get("education", [])
+    ]
+
+    experience = [
+        Experience(
+            company=item["company"],
+            title=item["title"],
+            start=item.get("start", ""),
+            end=item.get("end", ""),
+            bullets=item.get("bullets", []),
+        )
+        for item in data.get("experience", [])
+    ]
+
+    return ResumeProfile(
+        header=header,
+        education=education,
+        experience=experience,
+    )
