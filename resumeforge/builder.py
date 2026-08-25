@@ -5,6 +5,7 @@ from resumeforge.renderers.summary import SummaryRenderer
 from resumeforge.renderers.experience import ExperienceRenderer
 from resumeforge.renderers.education import EducationRenderer
 from resumeforge.renderers.skills import SkillsRenderer
+from resumeforge.renderers.certification import CertificationRenderer
 
 
 DEFAULT_RENDERERS = [
@@ -13,6 +14,7 @@ DEFAULT_RENDERERS = [
     ExperienceRenderer(),
     EducationRenderer(),
     SkillsRenderer(),
+    CertificationRenderer(),
 ]
 
 class ResumeBuilder:
