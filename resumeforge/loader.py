@@ -41,11 +41,14 @@ def load_resume(profile: str = "resume") -> ResumeProfile:
 
     experience = [
         Experience(
-            company=item["company"],
-            title=item["title"],
-            start=item.get("start", ""),
-            end=item.get("end", ""),
-            bullets=item.get("bullets", []),
+            employer=item.get("company", ""),
+            title=item.get("title", ""),
+            location=item.get("location", ""),
+            start_date=item.get("start", ""),
+            end_date=item.get("end", ""),
+            summary=item.get("summary", ""),
+            accomplishments=item.get("bullets", []),
+            technologies=item.get("technologies", []),
         )
         for item in data.get("experience", [])
     ]
