@@ -6,6 +6,7 @@ from resumeforge.domain import (
     ResumeProfile,
     Education,
     Experience,
+    Summary,
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,8 @@ def load_resume(profile: str = "resume") -> ResumeProfile:
         github=data.get("github", ""),
         portfolio=data.get("portfolio", ""),
     )
+
+    summary = Summary(text=data.get("summary", ""))
 
     education = [
         Education(
@@ -55,6 +58,7 @@ def load_resume(profile: str = "resume") -> ResumeProfile:
 
     return ResumeProfile(
         header=header,
+        summary=summary,
         education=education,
         experience=experience,
     )
