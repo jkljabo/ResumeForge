@@ -11,10 +11,11 @@ from resumeforge.loader import load_resume
 def test_builder_accepts_custom_renderers():
     calls = []
 
-    def fake_renderer(document, resume):
-        calls.append("called")
+    class FakeRenderer:
+        def render(self, document, resume):
+            calls.append("called")
 
-    builder = ResumeBuilder(renderers=[fake_renderer])
+    builder = ResumeBuilder([FakeRenderer()])
 
     builder.render(load_resume())
 

@@ -1,11 +1,11 @@
 from docx import Document
 
-from resumeforge.renderers import header
-from resumeforge.renderers import summary
+from resumeforge.renderers.header import HeaderRenderer
+from resumeforge.renderers.summary import SummaryRenderer
 
 DEFAULT_RENDERERS = [
-    header.render,
-    summary.render,
+    HeaderRenderer(),
+    SummaryRenderer(),
 ]
 
 
@@ -16,7 +16,7 @@ class ResumeBuilder:
 
     def render(self, resume):
         for renderer in self.renderers:
-            renderer(self.document, resume)
+            renderer.render(self.document, resume)
 
     def add_renderer(self, renderer):
         self.renderers.append(renderer)
