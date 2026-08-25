@@ -2,7 +2,6 @@ from pathlib import Path
 
 from resumeforge.loader import load_resume
 from resumeforge.builder import ResumeBuilder
-from resumeforge.sections import header, summary
 
 
 def test_build_resume():
@@ -10,8 +9,7 @@ def test_build_resume():
 
     builder = ResumeBuilder()
 
-    header.render(builder.document, resume)
-    summary.render(builder.document, resume)
+    builder.render(resume)
 
     output = Path("output") / "test_resume.docx"
 
