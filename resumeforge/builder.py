@@ -1,7 +1,7 @@
 from docx import Document
 
 from resumeforge.renderers import header
-from resumeforge.sections import summary
+from resumeforge.renderers import summary
 
 DEFAULT_RENDERERS = [
     header.render,
