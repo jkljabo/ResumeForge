@@ -28,5 +28,12 @@
         "Migrated services to Azure"
       ]
     }
+  ],
+
+  "skills": [
+    {
+      "category": "Languages",
+      "skills": ["C#", ".NET", "SQL"]
+    }
   ]
 }

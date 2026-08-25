@@ -7,6 +7,7 @@ from resumeforge.domain import (
     Education,
     Experience,
     Summary,
+    SkillGroup,
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,9 +57,18 @@ def load_resume(profile: str = "resume") -> ResumeProfile:
         for item in data.get("experience", [])
     ]
 
+    skills = [
+        SkillGroup(
+            category=item.get("category", ""),
+            skills=item.get("skills", []),
+        )
+        for item in data.get("skills", [])
+    ]
+
     return ResumeProfile(
         header=header,
         summary=summary,
         education=education,
         experience=experience,
+        skills=skills,
     )
