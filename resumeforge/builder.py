@@ -1,16 +1,18 @@
 from docx import Document
 
-from resumeforge.sections import header
+from resumeforge.renderers import header
 from resumeforge.sections import summary
+
+DEFAULT_RENDERERS = [
+    header.render,
+    summary.render,
+]
 
 
 class ResumeBuilder:
-    def __init__(self):
+    def __init__(self, renderers=None):
         self.document = Document()
-        self.renderers = [
-            header.render,
-            summary.render,
-        ]
+        self.renderers = list(renderers) if renderers is not None else DEFAULT_RENDERERS.copy()
 
     def render(self, resume):
         for renderer in self.renderers:

@@ -1,3 +1,9 @@
+"""
+Integration tests for the build process.
+
+These tests verify that ResumeForge can generate a Word document.
+"""
+
 from pathlib import Path
 
 from resumeforge.loader import load_resume
