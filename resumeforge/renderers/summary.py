@@ -1,4 +1,8 @@
-class SummaryRenderer:
+from resumeforge.renderers.base import BaseRenderer
+
+
+class SummaryRenderer(BaseRenderer):
+
     def render(self, document, resume):
 
         document.add_heading("Executive Summary", 1)

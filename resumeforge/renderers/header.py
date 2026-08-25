@@ -1,8 +1,11 @@
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt
 
+from resumeforge.renderers.base import BaseRenderer
 
-class HeaderRenderer:
+
+class HeaderRenderer(BaseRenderer):
+
     def render(self, document, resume):
         header = resume.header
 
