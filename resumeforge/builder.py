@@ -2,10 +2,12 @@ from docx import Document
 
 from resumeforge.renderers.header import HeaderRenderer
 from resumeforge.renderers.summary import SummaryRenderer
+from resumeforge.renderers.experience import ExperienceRenderer
 
 DEFAULT_RENDERERS = [
     HeaderRenderer(),
     SummaryRenderer(),
+    ExperienceRenderer(),
 ]
 
 
