@@ -1,13 +1,15 @@
 import argparse
+from pathlib import Path
 
 from resumeforge.builder import ResumeBuilder
 from resumeforge.loader import load_resume
-from resumeforge.templates import DefaultTemplate, ModernTemplate
+from resumeforge.templates import DefaultTemplate, ModernTemplate, ExecutiveTemplate
 
 
 TEMPLATES = {
     "default": DefaultTemplate,
     "modern": ModernTemplate,
+    "executive": ExecutiveTemplate,
 }
 
 
@@ -37,9 +39,14 @@ def main():
 
     builder.render(resume)
 
-    builder.save(args.output)
+    output_dir = Path("output")
+    output_dir.mkdir(exist_ok=True)
 
-    print(f"Resume generated: {args.output}")
+    output = output_dir / args.output
+
+    builder.save(output)
+
+    print(f"Resume generated: {output}")
 
 
 if __name__ == "__main__":

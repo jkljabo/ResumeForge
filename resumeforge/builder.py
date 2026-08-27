@@ -1,4 +1,5 @@
 from docx import Document
+from pathlib import Path
 
 from resumeforge.renderers.header import HeaderRenderer
 from resumeforge.renderers.summary import SummaryRenderer
@@ -39,5 +40,5 @@ class ResumeBuilder:
     def add_renderer(self, renderer):
         self.renderers.append(renderer)
 
-    def save(self, filename):
+    def save(self, filename: str | Path) -> None:
         self.document.save(filename)

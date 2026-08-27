@@ -1,9 +1,7 @@
 from docx import Document
 from docx.shared import Inches, Pt
 
-from resumeforge.templates import BaseTemplate, DefaultTemplate
-from resumeforge.templates.default import DefaultTemplate
-from resumeforge.templates.modern import ModernTemplate
+from resumeforge.templates import BaseTemplate, DefaultTemplate, ModernTemplate, ExecutiveTemplate
 
 
 def test_default_template_is_base_template():
@@ -12,6 +10,8 @@ def test_default_template_is_base_template():
 def test_modern_template_is_base_template():
     assert issubclass(ModernTemplate, BaseTemplate)
 
+def test_executive_template_is_base_template():
+    assert issubclass(ExecutiveTemplate, BaseTemplate)
 
 def test_default_template_applies_document_styles():
     document = Document()

@@ -7,3 +7,6 @@ def test_default_template_exists():
 
 def test_modern_template_exists():
     assert "modern" in TEMPLATES
+
+def test_executive_template_exists():
+    assert "executive" in TEMPLATES
