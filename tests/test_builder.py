@@ -7,6 +7,7 @@ These tests verify renderer registration and pipeline behavior.
 from resumeforge.builder import ResumeBuilder
 from resumeforge.loader import load_resume
 from resumeforge.templates.base import BaseTemplate
+from resumeforge.layout import WordLayout
 
 
 def test_builder_accepts_custom_renderers():
@@ -37,3 +38,9 @@ def test_builder_accepts_template():
     ResumeBuilder(template=template)
 
     assert template.called
+
+def test_builder_creates_word_layout():
+    builder = ResumeBuilder()
+
+    assert isinstance(builder.layout, WordLayout)
+    assert builder.layout.document is builder.document

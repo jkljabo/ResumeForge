@@ -9,6 +9,7 @@ from resumeforge.renderers.skills import SkillsRenderer
 from resumeforge.renderers.certification import CertificationRenderer
 from resumeforge.renderers.project import ProjectRenderer
 from resumeforge.templates import DefaultTemplate
+from resumeforge.layout import WordLayout
 
 DEFAULT_RENDERERS = [
     HeaderRenderer(),
@@ -23,9 +24,9 @@ DEFAULT_RENDERERS = [
 class ResumeBuilder:
     def __init__(self, renderers=None, template=None):
         self.document = Document()
+        self.layout = WordLayout(self.document)
 
         self.template = template or DefaultTemplate()
-
         self.template.apply(self.document)
 
         self.renderers = (
