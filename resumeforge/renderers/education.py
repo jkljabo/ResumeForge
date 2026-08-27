@@ -14,8 +14,8 @@ class EducationRenderer(BaseRenderer):
 
             p = layout.paragraph()
 
-            p.add_run(school.degree).bold = True
-            p.add_run(f"\n{school.school}")
+            layout.text(p,school.degree).bold = True
+            layout.text(p, f"\n{school.school}")
 
             if school.graduation_year:
-                p.add_run(f" ({school.graduation_year})")
+                layout.text(p, f" ({school.graduation_year})")

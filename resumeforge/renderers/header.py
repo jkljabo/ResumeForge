@@ -15,8 +15,8 @@ class HeaderRenderer(BaseRenderer):
         p = layout.paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-        run = p.add_run(header.headline + "\n")
+        run = layout.text(p, header.headline + "\n")
         run.bold = True
         run.font.size = Pt(14)
 
-        p.add_run(header.tagline)
+        layout.text(p, header.tagline)

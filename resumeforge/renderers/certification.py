@@ -11,10 +11,10 @@ class CertificationRenderer(BaseRenderer):
         for cert in resume.certifications:
             p = layout.paragraph(style="List Bullet")
 
-            p.add_run(cert.name).bold = True
+            layout.text(p, cert.name).bold = True
 
             if cert.issuer:
-                p.add_run(f" — {cert.issuer}")
+                layout.text(p, f" — {cert.issuer}")
 
             if cert.year:
-                p.add_run(f" ({cert.year})")
+                layout.text(p, f" ({cert.year})")

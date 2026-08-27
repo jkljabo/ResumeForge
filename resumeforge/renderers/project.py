@@ -14,4 +14,4 @@ class ProjectRenderer(BaseRenderer):
             layout.bold(p, project.name)
 
             if project.description:
-                p.add_run(f" — {project.description}")
+                layout.text(p, f" — {project.description}")

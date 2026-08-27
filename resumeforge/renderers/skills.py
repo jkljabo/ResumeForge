@@ -14,5 +14,5 @@ class SkillsRenderer(BaseRenderer):
 
             p = layout.paragraph()
 
-            p.add_run(f"{group.category}: ").bold = True
-            p.add_run(", ".join(group.skills))
+            layout.text(p, f"{group.category}: ").bold = True
+            layout.text(p, ", ".join(group.skills))
