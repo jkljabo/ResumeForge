@@ -1,6 +1,8 @@
-from build_resume import TEMPLATES
+from build_resume import TEMPLATES, THEMES
 
-
+def test_corporate_theme_exists():
+    assert "corporate" in THEMES
+    
 def test_default_template_exists():
     assert "default" in TEMPLATES
 

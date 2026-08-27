@@ -5,6 +5,15 @@ from resumeforge.builder import ResumeBuilder
 from resumeforge.loader import load_resume
 from resumeforge.templates import DefaultTemplate, ModernTemplate, ExecutiveTemplate
 
+from resumeforge.themes import (
+    DefaultTheme,
+    CorporateTheme,
+)
+
+THEMES = {
+    "default": DefaultTheme,
+    "corporate": CorporateTheme,
+}
 
 TEMPLATES = {
     "default": DefaultTemplate,
@@ -16,6 +25,13 @@ TEMPLATES = {
 def main():
     parser = argparse.ArgumentParser()
 
+    parser.add_argument(
+        "--theme",
+        default="default",
+        choices=THEMES.keys(),
+        help="Resume theme",
+    )
+    
     parser.add_argument(
         "--template",
         default="default",
@@ -35,7 +51,12 @@ def main():
 
     template = TEMPLATES[args.template]()
 
-    builder = ResumeBuilder(template=template)
+    theme = THEMES[args.theme]()
+
+    builder = ResumeBuilder(
+        template=template,
+        theme=theme,
+    )
 
     builder.render(resume)
 
