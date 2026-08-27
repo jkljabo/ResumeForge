@@ -17,10 +17,16 @@ class DefaultTemplate(BaseTemplate):
         normal.paragraph_format.space_after = Pt(0)
         normal.paragraph_format.line_spacing = 1.0
 
-        for style_name, size in (("Heading 1", 13), ("Heading 2", 11)):
-            style = document.styles[style_name]
-            style.font.name = "Calibri"
-            style.font.bold = True
-            style.font.size = Pt(size)
-            style.paragraph_format.space_before = Pt(6)
-            style.paragraph_format.space_after = Pt(3)
+        heading1 = document.styles["Heading 1"]
+        heading1.font.name = "Calibri"
+        heading1.font.bold = True
+        heading1.font.size = Pt(13)
+        heading1.paragraph_format.space_before = Pt(6)
+        heading1.paragraph_format.space_after = Pt(3)
+
+        heading2 = document.styles["Heading 2"]
+        heading2.font.name = "Calibri"
+        heading2.font.bold = True
+        heading2.font.size = Pt(11)
+        heading2.paragraph_format.space_before = Pt(4)
+        heading2.paragraph_format.space_after = Pt(2)
