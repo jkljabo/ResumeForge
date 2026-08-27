@@ -8,6 +8,7 @@ from resumeforge.builder import ResumeBuilder
 from resumeforge.loader import load_resume
 from resumeforge.templates.base import BaseTemplate
 from resumeforge.layout import WordLayout
+from resumeforge.themes.base import BaseTheme
 
 
 def test_builder_accepts_custom_renderers():
@@ -44,3 +45,18 @@ def test_builder_creates_word_layout():
 
     assert isinstance(builder.layout, WordLayout)
     assert builder.layout.document is builder.document
+
+class FakeTheme(BaseTheme):
+    def __init__(self):
+        self.called = False
+
+    def apply(self, document):
+        self.called = True
+
+
+def test_builder_accepts_theme():
+    theme = FakeTheme()
+
+    ResumeBuilder(theme=theme)
+
+    assert theme.called
