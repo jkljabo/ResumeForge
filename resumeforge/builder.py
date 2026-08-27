@@ -7,7 +7,7 @@ from resumeforge.renderers.education import EducationRenderer
 from resumeforge.renderers.skills import SkillsRenderer
 from resumeforge.renderers.certification import CertificationRenderer
 from resumeforge.renderers.project import ProjectRenderer
-
+from resumeforge.templates import DefaultTemplate
 
 DEFAULT_RENDERERS = [
     HeaderRenderer(),
@@ -20,10 +20,18 @@ DEFAULT_RENDERERS = [
 ]
 
 class ResumeBuilder:
-    def __init__(self, renderers=None):
+    def __init__(self, renderers=None, template=None):
         self.document = Document()
-        self.renderers = list(renderers) if renderers is not None else DEFAULT_RENDERERS.copy()
 
+        self.template = template or DefaultTemplate()
+
+        self.template.apply(self.document)
+
+        self.renderers = (
+            list(renderers)
+            if renderers is not None
+            else DEFAULT_RENDERERS.copy()
+        )
     def render(self, resume):
         for renderer in self.renderers:
             renderer.render(self.document, resume)
