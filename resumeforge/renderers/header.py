@@ -6,13 +6,13 @@ from resumeforge.renderers.base import BaseRenderer
 
 class HeaderRenderer(BaseRenderer):
 
-    def render(self, document, resume):
+    def render(self, layout, resume):
         header = resume.header
 
-        title = document.add_heading(header.name, 0)
+        title = layout.heading(header.name, 0)
         title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-        p = document.add_paragraph()
+        p = layout.paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
         run = p.add_run(header.headline + "\n")

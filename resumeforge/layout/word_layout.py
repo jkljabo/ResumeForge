@@ -11,3 +11,11 @@ class WordLayout(BaseLayout):
 
     def paragraph(self, text="", style=None):
         return self.document.add_paragraph(text, style)
+
+    def bullet(self, text=""):
+        return self.document.add_paragraph(text, style="List Bullet")
+
+    def bold(self, paragraph, text):
+        run = paragraph.add_run(text)
+        run.bold = True
+        return run

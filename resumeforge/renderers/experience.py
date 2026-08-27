@@ -2,11 +2,11 @@ from resumeforge.renderers.base import BaseRenderer
 
 
 class ExperienceRenderer(BaseRenderer):
-    def render(self, document, resume):
+    def render(self, layout, resume):
         if not resume.experience:
             return
 
-        document.add_heading("Professional Experience", 1)
+        layout.heading("Professional Experience", 1)
 
         for job in resume.experience:
-            document.add_paragraph(f"{job.employer} — {job.title}")
+            layout.paragraph(f"{job.employer} — {job.title}")

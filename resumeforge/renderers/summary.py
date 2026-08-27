@@ -3,10 +3,10 @@ from resumeforge.renderers.base import BaseRenderer
 
 class SummaryRenderer(BaseRenderer):
 
-    def render(self, document, resume):
+    def render(self, layout, resume):
 
-        document.add_heading("Executive Summary", 1)
+        layout.heading("Executive Summary", 1)
 
-        document.add_paragraph(
+        layout.paragraph(
             "Senior Software Engineer with more than twenty years..."
         )

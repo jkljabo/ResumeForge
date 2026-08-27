@@ -17,6 +17,7 @@ from resumeforge.renderers.education import EducationRenderer
 from resumeforge.renderers.skills import SkillsRenderer
 from resumeforge.renderers.certification import CertificationRenderer
 from resumeforge.renderers.project import ProjectRenderer
+from resumeforge.layout import WordLayout
 
 
 def test_header_renderer_is_base_renderer():
@@ -42,12 +43,13 @@ def test_project_renderer_is_base_renderer():
 
 def test_header_renderer_runs():
     document = Document()
+    layout = WordLayout(document)
 
     resume = load_resume()
 
     renderer = HeaderRenderer()
 
-    renderer.render(document, resume)
+    renderer.render(layout, resume)
 
     text = "\n".join(p.text for p in document.paragraphs)
 
@@ -56,12 +58,13 @@ def test_header_renderer_runs():
 
 def test_summary_renderer_runs():
     document = Document()
+    layout = WordLayout(document)
 
     resume = load_resume()
 
     renderer = SummaryRenderer()
 
-    renderer.render(document, resume)
+    renderer.render(layout, resume)
 
     text = "\n".join(p.text for p in document.paragraphs)
 
@@ -69,12 +72,13 @@ def test_summary_renderer_runs():
 
 def test_experience_renderer_runs():
     document = Document()
+    layout = WordLayout(document)
 
     resume = load_resume()
 
     renderer = ExperienceRenderer()
 
-    renderer.render(document, resume)
+    renderer.render(layout, resume)
 
     text = "\n".join(p.text for p in document.paragraphs)
 
@@ -83,26 +87,26 @@ def test_experience_renderer_runs():
     assert "Senior Software Engineer" in text
 
 def test_education_renderer_runs():
-
     document = Document()
+    layout = WordLayout(document)
 
     resume = load_resume()
 
     renderer = EducationRenderer()
 
-    renderer.render(document, resume)
+    renderer.render(layout, resume)
 
     assert "Education" in "\n".join(p.text for p in document.paragraphs)
 
 def test_skills_renderer_runs():
-
     document = Document()
+    layout = WordLayout(document)
 
     resume = load_resume()
 
     renderer = SkillsRenderer()
 
-    renderer.render(document, resume)
+    renderer.render(layout, resume)
 
     text = "\n".join(p.text for p in document.paragraphs)
 
@@ -111,6 +115,7 @@ def test_skills_renderer_runs():
 
 def test_certification_renderer_runs():
     document = Document()
+    layout = WordLayout(document)
 
     resume = ResumeProfile(
         header=Header(
@@ -134,7 +139,7 @@ def test_certification_renderer_runs():
     )
 
     renderer = CertificationRenderer()
-    renderer.render(document, resume)
+    renderer.render(layout, resume)
 
     text = "\n".join(p.text for p in document.paragraphs)
     assert "Certifications" in text
@@ -142,6 +147,7 @@ def test_certification_renderer_runs():
 
 def test_project_renderer_runs():
     document = Document()
+    layout = WordLayout(document)
 
     resume = ResumeProfile(
         header=Header(
@@ -164,7 +170,7 @@ def test_project_renderer_runs():
     )
 
     renderer = ProjectRenderer()
-    renderer.render(document, resume)
+    renderer.render(layout, resume)
 
     text = "\n".join(p.text for p in document.paragraphs)
     assert "Projects" in text

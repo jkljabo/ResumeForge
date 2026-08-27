@@ -36,7 +36,7 @@ class ResumeBuilder:
         )
     def render(self, resume):
         for renderer in self.renderers:
-            renderer.render(self.document, resume)
+            renderer.render(self.layout, resume)
 
     def add_renderer(self, renderer):
         self.renderers.append(renderer)

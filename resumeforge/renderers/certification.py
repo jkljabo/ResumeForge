@@ -2,14 +2,14 @@ from resumeforge.renderers.base import BaseRenderer
 
 
 class CertificationRenderer(BaseRenderer):
-    def render(self, document, resume):
+    def render(self, layout, resume):
         if not resume.certifications:
             return
 
-        document.add_heading("Certifications", level=1)
+        layout.heading("Certifications", level=1)
 
         for cert in resume.certifications:
-            p = document.add_paragraph(style="List Bullet")
+            p = layout.paragraph(style="List Bullet")
 
             p.add_run(cert.name).bold = True
 
