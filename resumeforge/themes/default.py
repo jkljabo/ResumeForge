@@ -1,4 +1,4 @@
-from docx.shared import Inches, Pt
+from docx.shared import Inches, Pt, RGBColor
 
 from resumeforge.themes.base import BaseTheme
 
@@ -21,6 +21,7 @@ class DefaultTheme(BaseTheme):
         heading1.font.name = "Calibri"
         heading1.font.bold = True
         heading1.font.size = Pt(13)
+        heading1.font.color.rgb = RGBColor(0, 0, 0)
         heading1.paragraph_format.space_before = Pt(6)
         heading1.paragraph_format.space_after = Pt(3)
 
@@ -28,5 +29,6 @@ class DefaultTheme(BaseTheme):
         heading2.font.name = "Calibri"
         heading2.font.bold = True
         heading2.font.size = Pt(11)
+        heading2.font.color.rgb = RGBColor(60, 60, 60)
         heading2.paragraph_format.space_before = Pt(4)
         heading2.paragraph_format.space_after = Pt(2)

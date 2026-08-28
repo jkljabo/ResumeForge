@@ -1,4 +1,8 @@
-class BaseTheme:
+from abc import ABC, abstractmethod
 
+
+class BaseTheme(ABC):
+    @abstractmethod
     def apply(self, document):
-        raise NotImplementedError
+        """Apply theme styling to a document."""
+        pass

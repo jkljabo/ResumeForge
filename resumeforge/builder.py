@@ -31,11 +31,15 @@ class ResumeBuilder:
         theme=None,
     ):
         self.document = Document()
-        self.layout = WordLayout(self.document)
 
         self.theme = theme or DefaultTheme()
         self.template = template or DefaultTemplate()
-        
+
+        self.layout = WordLayout(
+            self.document,
+            self.theme,
+        )
+
         self.theme.apply(self.document)
         self.template.apply(self.document)
 
@@ -44,7 +48,7 @@ class ResumeBuilder:
             if renderers is not None
             else DEFAULT_RENDERERS.copy()
         )
-        
+
     def render(self, resume):
         for renderer in self.renderers:
             renderer.render(self.layout, resume)

@@ -3,8 +3,9 @@ from .base import BaseLayout
 
 class WordLayout(BaseLayout):
 
-    def __init__(self, document):
+    def __init__(self, document, theme = None):
         self.document = document
+        self.theme = theme
 
     def heading(self, text: str, level: int = 1):
         return self.document.add_heading(text, level)

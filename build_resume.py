@@ -8,11 +8,14 @@ from resumeforge.templates import DefaultTemplate, ModernTemplate, ExecutiveTemp
 from resumeforge.themes import (
     DefaultTheme,
     CorporateTheme,
+    DarkTheme,
 )
+
 
 THEMES = {
     "default": DefaultTheme,
     "corporate": CorporateTheme,
+    "dark": DarkTheme,
 }
 
 TEMPLATES = {
@@ -54,8 +57,8 @@ def main():
     theme = THEMES[args.theme]()
 
     builder = ResumeBuilder(
-        template=template,
         theme=theme,
+        template=template,
     )
 
     builder.render(resume)
