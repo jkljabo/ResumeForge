@@ -11,3 +11,4 @@ class Experience:
     summary: str = ""
     accomplishments: list[str] = field(default_factory=list)
     technologies: list[str] = field(default_factory=list)
+    tags: list[str] = field(default_factory=list)

@@ -5,3 +5,4 @@ from dataclasses import dataclass, field
 class SkillGroup:
     category: str
     skills: list[str] = field(default_factory=list)
+    tags: list[str] = field(default_factory=list)
