@@ -17,3 +17,10 @@ class DarkTheme(BaseTheme):
         heading.font.size = Pt(16)
         heading.font.bold = True
         heading.font.color.rgb = RGBColor(0, 200, 255)
+
+    def style_heading(self, paragraph, level):
+        paragraph.paragraph_format.space_before = Pt(8)
+        paragraph.paragraph_format.space_after = Pt(4)
+
+    def style_bullet(self, paragraph):
+        paragraph.paragraph_format.space_after = Pt(1)

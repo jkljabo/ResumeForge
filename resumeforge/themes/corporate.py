@@ -32,3 +32,14 @@ class CorporateTheme(BaseTheme):
         heading2.font.color.rgb = RGBColor(0, 76, 153)
         heading2.paragraph_format.space_before = Pt(6)
         heading2.paragraph_format.space_after = Pt(3)
+
+    def style_heading(self, paragraph, level):
+        if level == 1:
+            paragraph.paragraph_format.space_before = Pt(12)
+            paragraph.paragraph_format.space_after = Pt(6)
+
+    def style_bullet(self, paragraph):
+        paragraph.paragraph_format.space_after = Pt(2)
+
+    def style_paragraph(self, paragraph):
+        paragraph.paragraph_format.space_after = Pt(1)

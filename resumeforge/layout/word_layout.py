@@ -8,13 +8,31 @@ class WordLayout(BaseLayout):
         self.theme = theme
 
     def heading(self, text: str, level: int = 1):
-        return self.document.add_heading(text, level)
+        paragraph = self.document.add_heading(text, level)
+
+        if self.theme:
+            self.theme.style_heading(paragraph, level)
+
+        return paragraph
 
     def paragraph(self, text: str = "", style = None):
-        return self.document.add_paragraph(text, style)
+        paragraph = self.document.add_paragraph(text, style)
+
+        if self.theme:
+            self.theme.style_paragraph(paragraph)
+
+        return paragraph
 
     def bullet(self, text: str = ""):
-        return self.document.add_paragraph(text, style = "List Bullet")
+        paragraph = self.document.add_paragraph(
+            text,
+            style="List Bullet",
+        )
+
+        if self.theme:
+            self.theme.style_bullet(paragraph)
+
+        return paragraph
 
     def bold(self, paragraph, text: str):
         run = paragraph.add_run(text)
