@@ -4,6 +4,7 @@ from pathlib import Path
 from resumeforge.builder import ResumeBuilder
 from resumeforge.loader import load_resume
 from resumeforge.templates import DefaultTemplate, ModernTemplate, ExecutiveTemplate
+from resumeforge.filtering import ResumeFilter
 
 from resumeforge.themes import (
     DefaultTheme,
@@ -24,37 +25,53 @@ TEMPLATES = {
     "executive": ExecutiveTemplate,
 }
 
-
-def main():
+def build_parser():
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "--theme",
-        default="default",
-        choices=THEMES.keys(),
-        help="Resume theme",
-    )
-    
-    parser.add_argument(
         "--template",
+        choices=TEMPLATES,
         default="default",
-        choices=TEMPLATES.keys(),
-        help="Resume template",
+    )
+
+    parser.add_argument(
+        "--theme",
+        choices=THEMES,
+        default="default",
     )
 
     parser.add_argument(
         "--output",
         default="resume.docx",
-        help="Output filename",
     )
 
+    parser.add_argument(
+        "--job",
+        help="Path to a job description text file",
+    )
+
+    return parser
+
+def main():
+
+    parser = build_parser()
     args = parser.parse_args()
 
     resume = load_resume()
+    if args.job:
+        with open(args.job, encoding="utf-8") as f:
+            job_description = f.read()
 
-    template = TEMPLATES[args.template]()
+        resume = ResumeFilter().filter(
+            resume,
+            job_description,
+        )
 
-    theme = THEMES[args.theme]()
+    template_cls = TEMPLATES[args.template]
+    theme_cls = THEMES[args.theme]
+
+    template = template_cls()
+    theme = theme_cls()
 
     builder = ResumeBuilder(
         theme=theme,
@@ -63,10 +80,8 @@ def main():
 
     builder.render(resume)
 
-    output_dir = Path("output")
-    output_dir.mkdir(exist_ok=True)
-
-    output = output_dir / args.output
+    output = Path("output") / args.output
+    output.parent.mkdir(exist_ok=True)
 
     builder.save(output)
 
