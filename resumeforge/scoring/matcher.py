@@ -1,5 +1,6 @@
 from resumeforge.scoring.section_weights import SectionWeights
 from resumeforge.scoring.weights import WeightTable
+from resumeforge.scoring.synonyms import SynonymTable
 import re
 
 class Matcher:
@@ -7,11 +8,13 @@ class Matcher:
         self,
         weights=None,
         section_weights=None,
+        synonyms=None,
     ):
         self.weights = weights or WeightTable()
         self.section_weights = (
             section_weights or SectionWeights()
         )
+        self.synonyms = synonyms or SynonymTable()
     
     def _normalize(self, text: str) -> set[str]:
         words = re.findall(r"[a-z0-9\+\#\.]+", text.lower())
@@ -22,6 +25,8 @@ class Matcher:
             return 0
 
         job_terms = self._normalize(job_description)
+        job_terms = self.synonyms.expand(job_terms)
+        
         score = 0
 
         sections = (

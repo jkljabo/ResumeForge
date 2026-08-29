@@ -1,3 +1,4 @@
+from resumeforge.scoring.synonyms import SynonymTable
 from resumeforge.scoring import (
     Matcher,
     WeightTable,
@@ -133,3 +134,29 @@ def test_custom_section_weights():
     )
 
     assert matcher.score(resume, "Blazor") == 25
+
+def test_matcher_accepts_synonym_table():
+    table = SynonymTable()
+
+    matcher = Matcher(synonyms=table)
+
+    assert matcher.synonyms is table
+
+def test_synonyms_affect_matching():
+    matcher = Matcher()
+
+    resume = SimpleNamespace(
+        skills=[
+            SimpleNamespace(tags=["azure functions"])
+        ],
+        experience=[],
+        projects=[],
+        certifications=[],
+    )
+
+    score = matcher.score(
+        resume,
+        "Looking for Function Apps"
+    )
+
+    assert score > 0
