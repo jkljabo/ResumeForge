@@ -1,7 +1,18 @@
+from resumeforge.scoring.section_weights import SectionWeights
+from resumeforge.scoring.weights import WeightTable
 import re
 
-
 class Matcher:
+    def __init__(
+        self,
+        weights=None,
+        section_weights=None,
+    ):
+        self.weights = weights or WeightTable()
+        self.section_weights = (
+            section_weights or SectionWeights()
+        )
+    
     def _normalize(self, text: str) -> set[str]:
         words = re.findall(r"[a-z0-9\+\#\.]+", text.lower())
         return set(words)
@@ -13,20 +24,46 @@ class Matcher:
         job_terms = self._normalize(job_description)
         score = 0
 
-        for skill_group in getattr(resume, "skills", []):
-            group_tags = {tag.lower() for tag in getattr(skill_group, "tags", [])}
-            score += len(job_terms & group_tags)
+        sections = (
+            "skills",
+            "experience",
+            "projects",
+            "certifications",
+        )
 
-        for experience in getattr(resume, "experience", []):
-            exp_tags = {tag.lower() for tag in getattr(experience, "tags", [])}
-            score += len(job_terms & exp_tags)
+        for section in sections:
+            multiplier = self.section_weights.get(section)
 
-        for project in getattr(resume, "projects", []):
-            project_tags = {tag.lower() for tag in getattr(project, "tags", [])}
-            score += len(job_terms & project_tags)
+            for item in getattr(resume, section, []):
+                score += self._score_tags(
+                    getattr(item, "tags", []),
+                    job_terms,
+                    multiplier,
+                )
 
-        for cert in getattr(resume, "certifications", []):
-            cert_tags = {tag.lower() for tag in getattr(cert, "tags", [])}
-            score += len(job_terms & cert_tags)
+        return score
+
+    def _score_tags(
+        self,
+        tags,
+        job_terms,
+        multiplier,
+    ):
+        # Each matching keyword contributes:
+        #     keyword_weight × section_weight
+        # This allows experience matches to outrank skills-only matches.
+        
+        score = 0
+
+        matches = {
+            tag.lower()
+            for tag in tags
+        } & job_terms
+
+        for keyword in matches:
+            score += (
+                self.weights.get(keyword)
+                * multiplier
+            )
 
         return score
