@@ -1,6 +1,7 @@
 from resumeforge.scoring.section_weights import SectionWeights
 from resumeforge.scoring.weights import WeightTable
-from resumeforge.scoring.synonyms import SynonymTable
+from resumeforge.concepts import ConceptMatcher
+
 import re
 
 class Matcher:
@@ -8,25 +9,41 @@ class Matcher:
         self,
         weights=None,
         section_weights=None,
-        synonyms=None,
+        concepts=None,
     ):
         self.weights = weights or WeightTable()
         self.section_weights = (
             section_weights or SectionWeights()
         )
-        self.synonyms = synonyms or SynonymTable()
+        self.concepts = (
+            concepts or ConceptMatcher()
+        )
     
     def _normalize(self, text: str) -> set[str]:
         words = re.findall(r"[a-z0-9\+\#\.]+", text.lower())
         return set(words)
 
+    def _extract_job_phrases(self, text: str) -> set[str]:
+        words = re.findall(
+            r"[a-z0-9\+\#\.]+",
+            text.lower(),
+        )
+
+        phrases = set(words)
+
+        for i in range(len(words) - 1):
+            phrases.add(
+                f"{words[i]} {words[i+1]}"
+            )
+
+        return phrases
+
     def score(self, resume, job_description: str) -> int:
         if not job_description:
             return 0
 
-        job_terms = self._normalize(job_description)
-        job_terms = self.synonyms.expand(job_terms)
-        
+        job_phrases = self._extract_job_phrases(job_description)
+
         score = 0
 
         sections = (
@@ -42,16 +59,29 @@ class Matcher:
             for item in getattr(resume, section, []):
                 score += self._score_tags(
                     getattr(item, "tags", []),
-                    job_terms,
+                    job_phrases,
                     multiplier,
                 )
 
         return score
 
+    def _matches(self, tag, job_phrases):
+        tag_lower = tag.lower()
+
+        for phrase in job_phrases:
+
+            if tag_lower == phrase:
+                return True
+
+            if self.concepts.matches(tag_lower, phrase):
+                return True
+
+        return False
+
     def _score_tags(
         self,
         tags,
-        job_terms,
+        job_phrases,
         multiplier,
     ):
         # Each matching keyword contributes:
@@ -60,15 +90,13 @@ class Matcher:
         
         score = 0
 
-        matches = {
-            tag.lower()
-            for tag in tags
-        } & job_terms
+        for tag in tags:
 
-        for keyword in matches:
-            score += (
-                self.weights.get(keyword)
-                * multiplier
-            )
+            if self._matches(tag, job_phrases):
+
+                score += (
+                    self.weights.get(tag.lower())
+                    * multiplier
+                )
 
         return score

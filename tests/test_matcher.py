@@ -1,4 +1,5 @@
 from resumeforge.scoring.synonyms import SynonymTable
+from resumeforge.concepts import ConceptMatcher
 from resumeforge.scoring import (
     Matcher,
     WeightTable,
@@ -135,12 +136,12 @@ def test_custom_section_weights():
 
     assert matcher.score(resume, "Blazor") == 25
 
-def test_matcher_accepts_synonym_table():
-    table = SynonymTable()
+def test_matcher_accepts_concept_matcher():
+    concepts = ConceptMatcher()
 
-    matcher = Matcher(synonyms=table)
+    matcher = Matcher(concepts=concepts)
 
-    assert matcher.synonyms is table
+    assert matcher.concepts is concepts
 
 def test_synonyms_affect_matching():
     matcher = Matcher()
