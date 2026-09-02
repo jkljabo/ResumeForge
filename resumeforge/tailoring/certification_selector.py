@@ -7,7 +7,7 @@ class CertificationSelector:
     ):
 
         if match is None:
-            return profile.certifications
+            return getattr(profile, "certifications", [])
 
         matched = {
             keyword.lower()

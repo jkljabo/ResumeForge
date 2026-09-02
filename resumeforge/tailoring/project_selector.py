@@ -9,7 +9,7 @@ class ProjectSelector:
             return []
 
         if match_result is None:
-            return profile.projects
+            return getattr(profile, "projects", [])
 
         matched = {
             keyword.lower()

@@ -8,7 +8,7 @@ class SkillSelector:
         # If no match information exists yet,
         # return all profile skills.
         if match_result is None:
-            return list(profile.skills)
+            return getattr(profile, "skills", [])
 
         matched = {
             keyword.lower()
