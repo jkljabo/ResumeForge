@@ -1,5 +1,5 @@
 import json
-from pathlib import Path
+from importlib.resources import files
 
 from resumeforge.domain import (
     Header,
@@ -10,13 +10,17 @@ from resumeforge.domain import (
     SkillGroup,
 )
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 def load_resume(profile: str = "resume") -> ResumeProfile:
-    file = BASE_DIR / "data" / f"{profile}.json"
+    resource = (
+        files("resumeforge")
+        .joinpath("data")
+        .joinpath(f"{profile}.json")
+    )
 
-    with open(file, encoding="utf-8") as f:
+    with resource.open(
+        "r",
+        encoding="utf-8",
+    ) as f:
         data = json.load(f)
 
     header = Header(

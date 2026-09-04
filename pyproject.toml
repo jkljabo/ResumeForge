@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resumeforge"
+version = "0.1.0a0"
+description = "AI-assisted resume tailoring and generation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Jason Little" }
+]
+
+keywords = [
+    "resume",
+    "ats",
+    "career",
+    "markdown",
+    "python",
+    "ai",
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "python-docx>=1.1.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/jkljabo/ResumeForge"
+Repository = "https://github.com/jkljabo/ResumeForge"
+Issues = "https://github.com/jkljabo/ResumeForge/issues"
+
+[project.scripts]
+resumeforge = "resumeforge.cli:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["resumeforge*"]
+
+[tool.setuptools.package-data]
+resumeforge = [
+    "data/*.json"
+]
