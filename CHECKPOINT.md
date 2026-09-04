@@ -25,8 +25,8 @@ Phase F.6.3 — Distribution Readiness
 
 Phase F.6.3
 
-+ [x] Add LICENSE
-- [ ] Improve README
+- [x] Add LICENSE
+- [x] Improve README
 - [ ] Verify .gitignore
 - [ ] Verify build artifacts
 - [ ] Verify GitHub repository
@@ -50,3 +50,11 @@ Phase G — (to be defined)
 - Package builds successfully
 - Wheel installs successfully
 - CLI validated in clean virtual environment
+
+## Recent Changes
+
+### v0.1.2-alpha (In Progress)
+
+- Added MIT LICENSE
+- Modernized README
+- Preparing repository for public distribution
