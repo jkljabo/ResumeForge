@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+from tests.helpers import make_resume
 
 from resumeforge.tailoring.engine import TailoringEngine
 from resumeforge.tailoring.plan import TailoringPlan
@@ -7,7 +8,7 @@ from resumeforge.tailoring.plan import TailoringPlan
 def test_engine_returns_tailoring_plan():
     engine = TailoringEngine()
 
-    plan = engine.build_plan(
+    plan = engine.create_plan(
         resume=make_resume(),
         match_result=None,
     )
@@ -16,20 +17,6 @@ def test_engine_returns_tailoring_plan():
         plan,
         TailoringPlan,
     )
-
-def make_resume(**overrides):
-    data = {
-        "skills": [],
-        "experience": [],
-        "projects": [],
-        "certifications": [],
-        "summary": "",
-        "summary_keywords": [],
-    }
-
-    data.update(overrides)
-
-    return SimpleNamespace(**data)
 
 def test_engine_populates_experience():
 
@@ -41,7 +28,7 @@ def test_engine_populates_experience():
 
     engine = TailoringEngine()
 
-    plan = engine.build_plan(
+    plan = engine.create_plan(
         resume,
         None,
     )
@@ -60,7 +47,7 @@ def test_engine_populates_certifications():
 
     engine = TailoringEngine()
 
-    plan = engine.build_plan(
+    plan = engine.create_plan(
         resume,
         None,
     )
@@ -80,7 +67,7 @@ def test_engine_populates_summary_keywords():
 
     engine = TailoringEngine()
 
-    plan = engine.build_plan(
+    plan = engine.create_plan(
         resume,
         None,
     )
@@ -102,7 +89,7 @@ def test_engine_builds_complete_tailoring_plan():
 
     engine = TailoringEngine()
 
-    plan = engine.build_plan(
+    plan = engine.create_plan(
         resume,
         None,
     )
@@ -120,7 +107,7 @@ def test_engine_handles_empty_resume():
 
     engine = TailoringEngine()
 
-    plan = engine.build_plan(
+    plan = engine.create_plan(
         make_resume(),
         None,
     )
@@ -131,3 +118,4 @@ def test_engine_handles_empty_resume():
     assert plan.certifications == []
     assert plan.summary_keywords == []
 
+    

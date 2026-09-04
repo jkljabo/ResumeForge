@@ -1,56 +1,14 @@
-import argparse
 from pathlib import Path
 
 from resumeforge.builder import ResumeBuilder
-from resumeforge.loader import load_resume
-from resumeforge.templates import DefaultTemplate, ModernTemplate, ExecutiveTemplate
-from resumeforge.filtering import ResumeFilter
-
-from resumeforge.themes import (
-    DefaultTheme,
-    CorporateTheme,
-    DarkTheme,
+from resumeforge.cli import (
+    build_parser,
+    THEMES,
+    TEMPLATES,
 )
+from resumeforge.filtering import ResumeFilter
+from resumeforge.loader import load_resume
 
-
-THEMES = {
-    "default": DefaultTheme,
-    "corporate": CorporateTheme,
-    "dark": DarkTheme,
-}
-
-TEMPLATES = {
-    "default": DefaultTemplate,
-    "modern": ModernTemplate,
-    "executive": ExecutiveTemplate,
-}
-
-def build_parser():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--template",
-        choices=TEMPLATES,
-        default="default",
-    )
-
-    parser.add_argument(
-        "--theme",
-        choices=THEMES,
-        default="default",
-    )
-
-    parser.add_argument(
-        "--output",
-        default="resume.docx",
-    )
-
-    parser.add_argument(
-        "--job",
-        help="Path to a job description text file",
-    )
-
-    return parser
 
 def main():
 

@@ -21,7 +21,7 @@ class TailoringEngine:
         self.certification_selector = CertificationSelector()
         self.summary_selector = SummarySelector()
 
-    def build_plan(
+    def create_plan(
         self,
         resume,
         match_result,

@@ -1,5 +1,5 @@
 from resumeforge.resume.document import ResumeDocument
-from resumeforge.rendering.markdown_renderer import MarkdownRenderer
+from resumeforge.renderers.markdown_renderer import MarkdownRenderer
 
 
 def test_renderer_creates_markdown():
