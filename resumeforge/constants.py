@@ -1,0 +1,2 @@
+DEFAULT_PROFILE_NAME = "default"
+DEFAULT_PROFILE_FILE = "resume.json"

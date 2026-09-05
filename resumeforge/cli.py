@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 
+from resumeforge.profiles.repository import ProfileRepository
 from resumeforge.tailoring.tailored_resume_builder import (
     TailoredResumeBuilder,
 )
@@ -90,7 +91,9 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        profile = load_resume()
+        repository = ProfileRepository()
+        profile = repository.get_default()
+        resume = load_resume(profile.resume_path)
     except FileNotFoundError:
         print("Error: Resume profile not found.")
         return 1

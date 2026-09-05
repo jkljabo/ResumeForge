@@ -44,7 +44,7 @@ def test_main_builds_resume(monkeypatch, tmp_path):
     monkeypatch.setattr(
         build_resume,
         "load_resume",
-        lambda: make_resume_profile(),
+        lambda *_: make_resume_profile(),
     )
 
     build_resume.main()

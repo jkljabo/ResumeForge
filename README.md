@@ -101,7 +101,7 @@ Current status:
 Build source and wheel distributions:
 
 ```powershell
-python -m build
+python -m build --no-isolation
 ```
 
 ---

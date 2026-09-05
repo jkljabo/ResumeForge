@@ -106,7 +106,7 @@ def test_main_invokes_generator(monkeypatch,):
 
     monkeypatch.setattr(
         "resumeforge.cli.load_resume",
-        lambda: make_resume_profile(),
+        lambda *_: make_resume_profile(),
     )
 
     monkeypatch.setattr(
@@ -142,7 +142,7 @@ def test_main_reads_job_file(monkeypatch, tmp_path):
 
     monkeypatch.setattr(
         "resumeforge.cli.load_resume",
-        lambda: make_resume_profile(),
+        lambda *_: make_resume_profile(),
     )
 
     monkeypatch.setattr(
@@ -165,7 +165,7 @@ def test_main_reads_job_file(monkeypatch, tmp_path):
 def test_main_missing_job_file(monkeypatch, capsys):
     monkeypatch.setattr(
         "resumeforge.cli.load_resume",
-        lambda: make_resume_profile(),
+        lambda *_: make_resume_profile(),
     )
 
     monkeypatch.setattr(
@@ -185,7 +185,7 @@ def test_main_missing_job_file(monkeypatch, capsys):
     assert "Job description not found" in captured.out
 
 def test_main_missing_resume(monkeypatch, capsys):
-    def missing():
+    def missing(path):
         raise FileNotFoundError
 
     monkeypatch.setattr(
@@ -218,7 +218,7 @@ def test_main_generator_failure(
 
     monkeypatch.setattr(
         "resumeforge.cli.load_resume",
-        lambda: make_resume_profile(),
+        lambda *_: make_resume_profile(),
     )
 
     monkeypatch.setattr(

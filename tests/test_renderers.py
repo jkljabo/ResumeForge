@@ -9,6 +9,7 @@ from resumeforge.domain import (
     ResumeProfile,
 )
 
+from resumeforge.profiles.repository import ProfileRepository
 from resumeforge.renderers.base import BaseRenderer
 from resumeforge.renderers.header import HeaderRenderer
 from resumeforge.renderers.summary import SummaryRenderer
@@ -45,7 +46,9 @@ def test_header_renderer_runs():
     document = Document()
     layout = WordLayout(document)
 
-    resume = load_resume()
+    repository = ProfileRepository()
+    profile = repository.get_default()
+    resume = load_resume(profile.resume_path)
 
     renderer = HeaderRenderer()
 
@@ -60,7 +63,9 @@ def test_summary_renderer_runs():
     document = Document()
     layout = WordLayout(document)
 
-    resume = load_resume()
+    repository = ProfileRepository()
+    profile = repository.get_default()
+    resume = load_resume(profile.resume_path)
 
     renderer = SummaryRenderer()
 
@@ -74,7 +79,9 @@ def test_experience_renderer_runs():
     document = Document()
     layout = WordLayout(document)
 
-    resume = load_resume()
+    repository = ProfileRepository()
+    profile = repository.get_default()
+    resume = load_resume(profile.resume_path)
 
     renderer = ExperienceRenderer()
 
@@ -90,7 +97,9 @@ def test_education_renderer_runs():
     document = Document()
     layout = WordLayout(document)
 
-    resume = load_resume()
+    repository = ProfileRepository()
+    profile = repository.get_default()
+    resume = load_resume(profile.resume_path)
 
     renderer = EducationRenderer()
 
@@ -102,7 +111,9 @@ def test_skills_renderer_runs():
     document = Document()
     layout = WordLayout(document)
 
-    resume = load_resume()
+    repository = ProfileRepository()
+    profile = repository.get_default()
+    resume = load_resume(profile.resume_path)
 
     renderer = SkillsRenderer()
 

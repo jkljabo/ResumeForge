@@ -6,7 +6,7 @@ v0.1.2-alpha
 
 ## Current Phase
 
-Phase G.1 — Multiple Resume Profiles
+Preparing Phase G.1.5 — CLI Profile Selection
 
 ## Completed
 
@@ -25,6 +25,8 @@ Phase G.1 — Multiple Resume Profiles
 ✓ Phase F.6.3 — Distribution Readiness
 ✓ G.1.1 — Create Profiles Package
 ✓ G.1.2 — Implement Profile Model
+✓ G.1.3 — Profile Repository
+✓ G.1.4 — Load Resume From Profile
 
 ## Distribution Features
 
@@ -48,20 +50,19 @@ https://github.com/jkljabo/ResumeForge
 Current release tag:
 v0.1.2-alpha
 
-HEAD:
-2660b5c
-
 ## Current Work
 
-G.1.3 — Profile Repository
+Planning G.1.5 — CLI Profile Selection
 
 ## Next Immediate Task
 
-Begin Phase G planning.
+Implement --profile CLI option
+Allow selection of named resume profiles
+Add CLI tests
 
 ## Test Status
 
-185 passing tests
+198 passing tests
 0 failures
 
 ## Latest Release
@@ -91,13 +92,21 @@ Released
 • Distribution validation
 • First public GitHub pre-release
 
+### G.1.4
+
+• Added profile-based resume loading
+• Introduced ProfileRepository abstraction
+• Removed hard-coded resume path
+• Centralized profile constants
+• Expanded automated test coverage
+
 ## Build Verification
 
 ✓ python -m pytest
 
-185 passed
+198 passed
 
-✓ python -m build
+✓ python -m build --no-isolation
 
 Wheel generated
 
@@ -125,9 +134,7 @@ v0.1.2-alpha
 
 ## Project Metrics
 
-191 passing tests
-
-0 failures
+198 passing tests
 
 Python 3.13
 
@@ -144,16 +151,14 @@ Packaging:
 ## Architecture Status
 
 ✓ Modular pipeline
-
 ✓ Dependency injection
-
 ✓ Export abstraction
-
 ✓ Tailoring pipeline
-
+✓ Profile abstraction
+✓ Repository pattern
 ✓ CLI entry point
-
 ✓ Python packaging
+✓ Domain-driven organization
 
 ## Stable Milestones
 
@@ -162,18 +167,45 @@ Packaging:
 ✓ Installable Python package
 ✓ Semantic versioning established
 ✓ Automated test suite
+✓ Multiple resume profile infrastructure
 
 ## Upcoming Milestones
 
 Phase G
 
-□ Resume profile management
-□ PDF exporter
-□ HTML exporter
-□ LinkedIn exporter
+□ G.1.5 — CLI Profile Selection
+□ G.1.6 — Profile Creation Commands
+□ G.1.7 — Profile Import / Export
+□ G.2 — PDF Export Improvements
+□ G.3 — HTML Export
+□ G.4 — LinkedIn Export
 
-Phase H
+## Codebase Statistics
 
-□ AI integrations
-□ Plugin architecture
-□ PyPI publication
+Python version: 3.13
+
+Packages:
+• domain
+• export
+• profiles
+• renderers
+• tailoring
+• themes
+• templates
+• services
+• scoring
+
+Tests:
+198 passing
+
+Architecture:
+Repository Pattern
+Dependency Injection
+Strategy Pattern
+Pipeline Architecture
+
+Distribution:
+Wheel
+Source Distribution
+CLI
+GitHub Release

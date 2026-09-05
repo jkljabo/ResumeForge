@@ -2,23 +2,40 @@ from pathlib import Path
 
 from resumeforge.profiles import Profile
 
+from resumeforge.constants import (
+    DEFAULT_PROFILE_NAME,
+    DEFAULT_PROFILE_FILE,
+)
 
 def test_profile_creation():
     profile = Profile(
-        name="default",
-        path=Path("profiles/default"),
+        name=DEFAULT_PROFILE_NAME,
+        resume_path=Path("profiles")
+            / DEFAULT_PROFILE_NAME 
+            / DEFAULT_PROFILE_FILE,
+        is_default=True,
     )
 
-    assert profile.name == "default"
-    assert profile.path == Path("profiles/default")
-    assert profile.description == ""
-    assert profile.is_default is False
+    assert profile.name == DEFAULT_PROFILE_NAME
+    assert profile.resume_path == Path("profiles") / DEFAULT_PROFILE_NAME / DEFAULT_PROFILE_FILE
+
+    assert profile.is_default is True
 
 
-def test_resume_file_property():
+def test_resume_path_property():
     profile = Profile(
         name="default",
-        path=Path("profiles/default"),
+        resume_path=Path("profiles") / DEFAULT_PROFILE_NAME / DEFAULT_PROFILE_FILE,
+        is_default=True,
     )
 
-    assert profile.resume_file == Path("profiles/default/resume.json")
+    assert profile.resume_path == Path("profiles") / DEFAULT_PROFILE_NAME / DEFAULT_PROFILE_FILE
+
+def test_resume_path():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        resume_path=Path("profiles") / DEFAULT_PROFILE_NAME / DEFAULT_PROFILE_FILE,
+        is_default=True,
+    )
+
+    assert profile.resume_path == Path("profiles") / DEFAULT_PROFILE_NAME / DEFAULT_PROFILE_FILE

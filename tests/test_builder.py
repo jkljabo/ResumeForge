@@ -6,6 +6,7 @@ These tests verify renderer registration and pipeline behavior.
 
 from resumeforge.builder import ResumeBuilder
 from resumeforge.loader import load_resume
+from resumeforge.profiles import ProfileRepository
 from resumeforge.templates.base import BaseTemplate
 from resumeforge.layout import WordLayout
 from resumeforge.themes.base import BaseTheme
@@ -20,8 +21,13 @@ def test_builder_accepts_custom_renderers():
 
     builder = ResumeBuilder([FakeRenderer()])
 
-    builder.render(load_resume())
+    repo = ProfileRepository()
+    profile = repo.get_default()
 
+    resume = load_resume(profile.resume_path)
+
+    builder.render(resume)
+    
     assert calls == ["called"]
 
 

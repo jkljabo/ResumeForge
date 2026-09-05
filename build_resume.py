@@ -8,6 +8,7 @@ from resumeforge.cli import (
 )
 from resumeforge.filtering import ResumeFilter
 from resumeforge.loader import load_resume
+from resumeforge.profiles.repository import ProfileRepository
 
 
 def main():
@@ -15,7 +16,10 @@ def main():
     parser = build_parser()
     args = parser.parse_args()
 
-    resume = load_resume()
+    repository = ProfileRepository()
+    profile = repository.get_default()
+    resume = load_resume(profile.resume_path)
+
     if args.job:
         with open(args.job, encoding="utf-8") as f:
             job_description = f.read()
