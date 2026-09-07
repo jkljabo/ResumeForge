@@ -10,6 +10,11 @@ from resumeforge.filtering import ResumeFilter
 from resumeforge.loader import load_resume
 from resumeforge.profiles.repository import ProfileRepository
 
+def resolve_profile(repository, args):
+    if args.profile:
+        return repository.get(args.profile)
+
+    return repository.get_default()
 
 def main():
 
@@ -17,7 +22,9 @@ def main():
     args = parser.parse_args()
 
     repository = ProfileRepository()
-    profile = repository.get_default()
+
+    profile = resolve_profile(repository, args)
+    
     resume = load_resume(profile.resume_path)
 
     if args.job:

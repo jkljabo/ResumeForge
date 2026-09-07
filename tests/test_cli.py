@@ -1,19 +1,24 @@
-
-from email import generator
+from pathlib import Path
 
 from resumeforge.cli import (
     build_parser,
-    create_generator,
-    TEMPLATES,
+    main,
     THEMES,
+    TEMPLATES,
 )
+
+from resumeforge.bootstrap import create_generator
+from resumeforge.generator import ResumeGenerator
+from resumeforge.profiles import Profile
 from resumeforge.tailoring.tailored_resume_builder import (
     TailoredResumeBuilder,
 )
 
-from resumeforge.generator import ResumeGenerator
 from tests.helpers import make_resume_profile
-from resumeforge.cli import main
+
+# ---------------------------------------------------------------------
+# Test Doubles
+# ---------------------------------------------------------------------
 
 class FakeGenerator:
 
@@ -34,6 +39,7 @@ class FakeGenerator:
         self.job = job
         self.destination = destination
 
+
 class FailingGenerator:
 
     def generate(
@@ -44,24 +50,45 @@ class FailingGenerator:
     ):
         raise RuntimeError("Boom")
     
-def test_corporate_theme_exists():
-    assert "corporate" in THEMES
+
+# ---------------------------------------------------------------------
+# Helper functions
+# ---------------------------------------------------------------------
 
 
-def test_dark_theme_exists():
-    assert "dark" in THEMES
+def make_fake_profile(name="default", *, default=None):
+    if default is None:
+        default = name == "default"
+
+    return Profile(
+        name=name,
+        resume_path=Path(f"profiles/{name}/resume.json"),
+        is_default=default,
+    )
 
 
-def test_default_template_exists():
-    assert "default" in TEMPLATES
+def stub_workflow(
+    monkeypatch,
+    generator=None,
+):
+    generator = generator or FakeGenerator()
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.create_generator",
+        lambda: generator,
+    )
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.load_resume",
+        lambda *_: make_resume_profile(),
+    )
+
+    return generator
 
 
-def test_modern_template_exists():
-    assert "modern" in TEMPLATES
-
-
-def test_executive_template_exists():
-    assert "executive" in TEMPLATES
+# ---------------------------------------------------------------------
+# Parser tests
+# ---------------------------------------------------------------------
 
 
 def test_job_argument_exists():
@@ -72,6 +99,29 @@ def test_job_argument_exists():
     )
 
     assert args.job == "jobs/test.txt"
+
+
+def test_parser_accepts_profile_argument():
+    parser = build_parser()
+
+    args = parser.parse_args(
+        ["--profile", "government"]
+    )
+
+    assert args.profile == "government"
+
+
+def test_parser_profile_defaults_to_none():
+    parser = build_parser()
+
+    args = parser.parse_args([])
+
+    assert args.profile is None
+
+
+# ----------------------------------
+# Generator construction tests
+# ----------------------------------
 
 def test_create_generator_returns_resume_generator():
     generator = create_generator()
@@ -96,18 +146,37 @@ def test_create_generator_wires_pipeline():
     assert generator.exporter is not None
     assert generator.writer is not None
 
-def test_main_invokes_generator(monkeypatch,):
-    generator = FakeGenerator()
 
-    monkeypatch.setattr(
-        "resumeforge.cli.create_generator",
-        lambda: generator,
-    )
+# ---------------------------------------------------------------------
+# Theme / template Tests
+# ---------------------------------------------------------------------
 
-    monkeypatch.setattr(
-        "resumeforge.cli.load_resume",
-        lambda *_: make_resume_profile(),
-    )
+def test_default_template_exists():
+    assert "default" in TEMPLATES
+
+
+def test_modern_template_exists():
+    assert "modern" in TEMPLATES
+
+
+def test_executive_template_exists():
+    assert "executive" in TEMPLATES
+
+
+def test_corporate_theme_exists():
+    assert "corporate" in THEMES
+
+
+def test_dark_theme_exists():
+    assert "dark" in THEMES
+
+
+# ----------------------------------
+# CLI Success Tests
+# ----------------------------------
+
+def test_main_invokes_generator(monkeypatch):
+    workflow = stub_workflow(monkeypatch)
 
     monkeypatch.setattr(
         "sys.argv",
@@ -121,28 +190,19 @@ def test_main_invokes_generator(monkeypatch,):
     exit_code = main()
 
     assert exit_code == 0
-    assert generator.called
-    assert generator.destination == "resume.md"
-    assert generator.profile is not None
-    assert generator.job == ""
+    assert workflow.called
+    assert workflow.destination == "resume.md"
+    assert workflow.profile is not None
+    assert workflow.job == ""
+
 
 def test_main_reads_job_file(monkeypatch, tmp_path):
-    generator = FakeGenerator()
+    generator = stub_workflow(monkeypatch)
 
     job_file = tmp_path / "job.txt"
     job_file.write_text(
         "Python Azure Developer",
         encoding="utf-8",
-    )
-
-    monkeypatch.setattr(
-        "resumeforge.cli.create_generator",
-        lambda: generator,
-    )
-
-    monkeypatch.setattr(
-        "resumeforge.cli.load_resume",
-        lambda *_: make_resume_profile(),
     )
 
     monkeypatch.setattr(
@@ -162,9 +222,108 @@ def test_main_reads_job_file(monkeypatch, tmp_path):
     assert generator.job == "Python Azure Developer"
     assert generator.destination == "resume.md"
 
+
+def test_main_uses_selected_profile(monkeypatch):
+    calls = []
+
+    fake_profile = make_fake_profile("government")
+
+    class FakeRepository:
+        def get(self, name):
+            calls.append(name)
+            return fake_profile
+
+        def get_default(self):
+            raise AssertionError()
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.ProfileRepository",
+        lambda: FakeRepository(),
+    )
+
+    stub_workflow(monkeypatch)
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "resumeforge",
+            "--profile",
+            "government",
+        ],
+    )
+
+    assert main() == 0
+
+    assert calls == ["government"]
+
+
+def test_main_uses_default_profile(monkeypatch):
+
+    default_called = False
+
+    fake_profile = make_fake_profile()
+
+    class FakeRepository:
+        def get_default(self):
+            nonlocal default_called
+            default_called = True
+            return fake_profile
+
+        def get(self, name):
+            raise AssertionError(
+                "Named profile should not be requested."
+            )
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.ProfileRepository",
+        lambda: FakeRepository(),
+    )
+
+    stub_workflow(monkeypatch)
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "resumeforge",
+        ],
+    )
+
+    assert main() == 0
+
+    assert default_called
+
+
+# ---------------------------------------------------------------------
+# CLI Error Handling Tests
+# ---------------------------------------------------------------------
+
+def test_main_missing_resume(monkeypatch, capsys):
+    def missing(path):
+        raise FileNotFoundError("Resume profile not found")
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.load_resume",
+        missing,
+    )
+
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "resumeforge",
+        ],
+    )
+
+    exit_code = main()
+
+    captured = capsys.readouterr()
+
+    assert exit_code == 1
+    assert "Resume profile not found" in captured.out
+
+
 def test_main_missing_job_file(monkeypatch, capsys):
     monkeypatch.setattr(
-        "resumeforge.cli.load_resume",
+        "resumeforge.workflow.load_resume",
         lambda *_: make_resume_profile(),
     )
 
@@ -184,19 +343,28 @@ def test_main_missing_job_file(monkeypatch, capsys):
     assert exit_code == 1
     assert "Job description not found" in captured.out
 
-def test_main_missing_resume(monkeypatch, capsys):
-    def missing(path):
-        raise FileNotFoundError
+
+def test_main_unknown_profile(monkeypatch, capsys):
+    class FakeRepository:
+        def get(self, name):
+            raise FileNotFoundError(
+                f"Profile '{name}' not found."
+            )
+
+        def get_default(self):
+            raise AssertionError()
 
     monkeypatch.setattr(
-        "resumeforge.cli.load_resume",
-        missing,
+        "resumeforge.workflow.ProfileRepository",
+        lambda: FakeRepository(),
     )
 
     monkeypatch.setattr(
         "sys.argv",
         [
             "resumeforge",
+            "--profile",
+            "missing",
         ],
     )
 
@@ -205,19 +373,21 @@ def test_main_missing_resume(monkeypatch, capsys):
     captured = capsys.readouterr()
 
     assert exit_code == 1
-    assert "Resume profile not found" in captured.out
+
+    assert "Profile 'missing' not found." in captured.out
+
 
 def test_main_generator_failure(
     monkeypatch,
     capsys,
 ):
     monkeypatch.setattr(
-        "resumeforge.cli.create_generator",
+        "resumeforge.workflow.create_generator",
         lambda: FailingGenerator(),
     )
 
     monkeypatch.setattr(
-        "resumeforge.cli.load_resume",
+        "resumeforge.workflow.load_resume",
         lambda *_: make_resume_profile(),
     )
 

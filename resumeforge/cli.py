@@ -1,16 +1,4 @@
 import argparse
-from pathlib import Path
-
-from resumeforge.profiles.repository import ProfileRepository
-from resumeforge.tailoring.tailored_resume_builder import (
-    TailoredResumeBuilder,
-)
-from resumeforge.exporters import MarkdownExporter
-from resumeforge.generator import ResumeGenerator
-from resumeforge.scoring import Matcher
-from resumeforge.tailoring.engine import TailoringEngine
-from resumeforge.output.resume_writer import ResumeWriter
-from resumeforge.loader import load_resume
 
 from resumeforge.templates import (
     DefaultTemplate,
@@ -23,6 +11,8 @@ from resumeforge.themes import (
     CorporateTheme,
     DarkTheme,
 )
+
+from resumeforge.workflow import CLIWorkflow
 
 
 THEMES = {
@@ -63,70 +53,30 @@ def build_parser() -> argparse.ArgumentParser:
         help="Path to a job description text file",
     )
 
-    return parser
-
-def create_generator() -> ResumeGenerator:
-    """Construct the ResumeForge generation pipeline."""
-    matcher = Matcher()
-
-    tailoring_engine = TailoringEngine()
-
-    builder = TailoredResumeBuilder()
-
-    exporter = MarkdownExporter()
-
-    writer = ResumeWriter()
-
-    return ResumeGenerator(
-        matcher=matcher,
-        tailoring_engine=tailoring_engine,
-        builder=builder,
-        exporter=exporter,
-        writer=writer,
+    parser.add_argument(
+        "--profile",
+        metavar="NAME",
+        help="Resume profile to use",
     )
+
+    return parser
 
 def main() -> int:
     parser = build_parser()
-
     args = parser.parse_args()
 
-    try:
-        repository = ProfileRepository()
-        profile = repository.get_default()
-        resume = load_resume(profile.resume_path)
-    except FileNotFoundError:
-        print("Error: Resume profile not found.")
-        return 1
-
-    job = ""
-
-    if args.job:
-        try:
-            job = Path(args.job).read_text(encoding="utf-8")
-        except FileNotFoundError:
-            print(f"Error: Job description not found: {args.job}")
-            return 1
-
-    generator = create_generator()
+    workflow = CLIWorkflow()
 
     try:
-        generator.generate(
-            profile,
-            job,
-            args.output,
-        )
-    except Exception as ex:
+        return workflow.run(args)
+
+    except FileNotFoundError as ex:
         print(f"Error: {ex}")
         return 1
 
-    print(f"Resume written to {args.output}")
-
-    return 0
-
-    print(f"Resume written to {args.output}")
-
-    return 0
-
+    except Exception as ex:
+        print(f"Error: {ex}")
+        return 1
 
 if __name__ == "__main__":
     raise SystemExit(main())
