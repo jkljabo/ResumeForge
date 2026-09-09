@@ -6,7 +6,23 @@ v0.1.2-alpha
 
 ## Current Phase
 
-Preparing Phase G.1.5 — CLI Profile Selection
+Next Major Milestone
+Phase G.1.7
+Profile Listing Commands
+
+Phase G
+Profile Management
+
+Completed
+✓ G.1.1 Create Profiles Package
+✓ G.1.2 Profile Model
+✓ G.1.3 Repository
+✓ G.1.4 Resume Loading
+✓ G.1.5 Profile Selection
+✓ G.1.6 Profile Creation
+
+Current
+→ G.1.7 Profile Listing
 
 ## Completed
 
@@ -27,6 +43,8 @@ Preparing Phase G.1.5 — CLI Profile Selection
 ✓ G.1.2 — Implement Profile Model
 ✓ G.1.3 — Profile Repository
 ✓ G.1.4 — Load Resume From Profile
+✓ G.1.5 — CLI Profile Selection
+✓ G.1.6 — Profile Creation Commands
 
 ## Distribution Features
 
@@ -38,6 +56,11 @@ Preparing Phase G.1.5 — CLI Profile Selection
 ✓ Clean install validation
 ✓ README
 ✓ LICENSE
+
+Testing
+
+✓ 220 automated tests
+✓ 100% passing
 
 ## Repository
 
@@ -52,17 +75,24 @@ v0.1.2-alpha
 
 ## Current Work
 
-Planning G.1.5 — CLI Profile Selection
+Planning G.1.7 — Profile Listing Commands
+
+Upcoming
+
+• profile list
+• profile remove
+• profile rename
 
 ## Next Immediate Task
 
-Implement --profile CLI option
-Allow selection of named resume profiles
+Implement profile list command
+Display available profiles
+Indicate default profile
 Add CLI tests
 
 ## Test Status
 
-198 passing tests
+220 passing tests
 0 failures
 
 ## Latest Release
@@ -100,11 +130,30 @@ Released
 • Centralized profile constants
 • Expanded automated test coverage
 
+### G.1.5
+
+• Added --profile CLI option
+• Added CLI profile selection
+• Added CLIWorkflow orchestration layer
+• Added bootstrap composition root
+• Separated CLI, workflow, and dependency construction
+• Eliminated circular imports
+• Refactored CLI tests
+• Expanded automated test coverage
+
+### G.1.6
+
+• Added ProfileCreator service
+• Added profile create command
+• Added CLI support for profile creation
+• Added profile creation tests
+• Continued separation of CLI responsibilities
+
 ## Build Verification
 
 ✓ python -m pytest
 
-198 passed
+220 passed
 
 ✓ python -m build --no-isolation
 
@@ -134,9 +183,13 @@ v0.1.2-alpha
 
 ## Project Metrics
 
-198 passing tests
+220 passing tests
+
+100% green
 
 Python 3.13
+
+Modular CLI architecture
 
 MIT License
 
@@ -151,14 +204,29 @@ Packaging:
 ## Architecture Status
 
 ✓ Modular pipeline
-✓ Dependency injection
+✓ Dependency Injection
+✓ Repository Pattern
+✓ Strategy Pattern
+✓ Composition Root
+✓ CLI Workflow
 ✓ Export abstraction
 ✓ Tailoring pipeline
 ✓ Profile abstraction
-✓ Repository pattern
-✓ CLI entry point
-✓ Python packaging
 ✓ Domain-driven organization
+✓ Python packaging
+✓ Command-based CLI
+✓ Profile management
+✓ Profile creation service
+
+## Architecture Milestones
+
+✓ CLIWorkflow
+✓ Bootstrap composition root
+✓ ResumeGenerator pipeline
+✓ ProfileRepository
+✓ ProfileCreator
+✓ Command-based CLI
+✓ 220 automated tests
 
 ## Stable Milestones
 
@@ -168,6 +236,10 @@ Packaging:
 ✓ Semantic versioning established
 ✓ Automated test suite
 ✓ Multiple resume profile infrastructure
+✓ Layered CLI architecture
+✓ Circular dependency eliminated
+✓ Bootstrap composition root
+✓ Workflow orchestration
 
 ## Upcoming Milestones
 
@@ -196,7 +268,7 @@ Packages:
 • scoring
 
 Tests:
-198 passing
+203 passing
 
 Architecture:
 Repository Pattern
@@ -209,3 +281,53 @@ Wheel
 Source Distribution
 CLI
 GitHub Release
+
+## Near-term Roadmap
+
+✓ Phase G.1.1 Profiles
+✓ Phase G.1.2 Profile Model
+✓ Phase G.1.3 Repository
+✓ Phase G.1.4 Profile Loading
+✓ Phase G.1.5 CLI Selection
+
+Upcoming
+
+⬜ G.1.6
+- Implement profile create
+- Implement profile list
+- Implement profile delete
+- Introduce ProfileManager service
+
+⬜ G.1.7 Import / Export
+⬜ G.2 PDF Export
+⬜ G.3 HTML Export
+⬜ G.4 LinkedIn Export
+⬜ H Plugin Architecture
+⬜ H AI Services
+⬜ PyPI Publication
+
+## Roadmap
+
+Upcoming
+
+G.1.7 Profile Listing
+G.1.8 Profile Removal
+G.2 Configuration Commands
+H.1 Word Export
+H.2 PDF Export
+H.3 Theme Marketplace
+I.1 Plugin System
+I.2 AI Tailoring Improvements
+1.0 Production Release
+
+### Phase G.1.6 – Session 1 Complete
+
+- Added ProfileService.
+- Implemented profile create.
+- CLIWorkflow delegates profile creation to ProfileService.
+- Added unit tests for ProfileService.
+- Added CLI integration test for profile creation.
+- ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
+- Test status:
+  - Feature tests: 26 passed
+  - Overall suite: (update after next full run)

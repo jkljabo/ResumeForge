@@ -1,4 +1,7 @@
+from argparse import Namespace
 from pathlib import Path
+
+import pytest
 
 from resumeforge.cli import (
     build_parser,
@@ -14,6 +17,7 @@ from resumeforge.tailoring.tailored_resume_builder import (
     TailoredResumeBuilder,
 )
 
+from resumeforge.workflow import CLIWorkflow
 from tests.helpers import make_resume_profile
 
 # ---------------------------------------------------------------------
@@ -87,7 +91,7 @@ def stub_workflow(
 
 
 # ---------------------------------------------------------------------
-# Parser tests
+# Parser / Command Routing Tests
 # ---------------------------------------------------------------------
 
 
@@ -95,9 +99,14 @@ def test_job_argument_exists():
     parser = build_parser()
 
     args = parser.parse_args(
-        ["--job", "jobs/test.txt"]
+        [
+            "generate",
+            "--job",
+            "jobs/test.txt",
+        ]
     )
 
+    assert args.command == "generate"
     assert args.job == "jobs/test.txt"
 
 
@@ -105,19 +114,93 @@ def test_parser_accepts_profile_argument():
     parser = build_parser()
 
     args = parser.parse_args(
-        ["--profile", "government"]
-    )
+    [
+        "generate",
+        "--profile",
+        "government",
+    ]
+)
 
+    assert args.command == "generate"
     assert args.profile == "government"
 
 
 def test_parser_profile_defaults_to_none():
     parser = build_parser()
 
-    args = parser.parse_args([])
+    args = parser.parse_args(
+    [
+        "generate",
+    ]
+)
 
+    assert args.command == "generate"
     assert args.profile is None
 
+
+def test_parser_defaults_to_generate():
+    parser = build_parser()
+
+    args = parser.parse_args(
+    [
+        "generate",
+    ]
+)
+
+    assert args.command == "generate"
+    assert args.profile is None
+
+
+def test_parser_profile_create_command():
+    parser = build_parser()
+
+    args = parser.parse_args(
+        [
+            "profile",
+            "create",
+            "consulting",
+        ]
+    )
+
+    assert args.command == "profile"
+    assert args.profile_command == "create"
+    assert args.name == "consulting"
+
+
+def test_generate_command_exists():
+    parser = build_parser()
+
+    args = parser.parse_args(["generate"])
+
+    assert args.command == "generate"
+
+
+def test_profile_command_exists():
+    parser = build_parser()
+
+    args = parser.parse_args(
+        [
+            "profile",
+            "create",
+            "government",
+        ]
+    )
+
+    assert args.command == "profile"
+    assert args.profile_command == "create"
+    assert args.name == "government"
+
+
+def test_profile_list_command():
+
+    parser = build_parser()
+
+    args = parser.parse_args(
+        ["profile", "list"]
+    )
+
+    assert args.command == "profile"
+    assert args.profile_command == "list"
 
 # ----------------------------------
 # Generator construction tests
@@ -182,6 +265,7 @@ def test_main_invokes_generator(monkeypatch):
         "sys.argv",
         [
             "resumeforge",
+            "generate",
             "--output",
             "resume.md",
         ],
@@ -209,6 +293,7 @@ def test_main_reads_job_file(monkeypatch, tmp_path):
         "sys.argv",
         [
             "resumeforge",
+            "generate",
             "--job",
             str(job_file),
             "--output",
@@ -247,6 +332,7 @@ def test_main_uses_selected_profile(monkeypatch):
         "sys.argv",
         [
             "resumeforge",
+            "generate",
             "--profile",
             "government",
         ],
@@ -285,6 +371,7 @@ def test_main_uses_default_profile(monkeypatch):
         "sys.argv",
         [
             "resumeforge",
+            "generate",
         ],
     )
 
@@ -310,6 +397,7 @@ def test_main_missing_resume(monkeypatch, capsys):
         "sys.argv",
         [
             "resumeforge",
+            "generate",
         ],
     )
 
@@ -331,6 +419,7 @@ def test_main_missing_job_file(monkeypatch, capsys):
         "sys.argv",
         [
             "resumeforge",
+            "generate",
             "--job",
             "missing.txt",
         ],
@@ -363,6 +452,7 @@ def test_main_unknown_profile(monkeypatch, capsys):
         "sys.argv",
         [
             "resumeforge",
+            "generate",
             "--profile",
             "missing",
         ],
@@ -395,6 +485,7 @@ def test_main_generator_failure(
         "sys.argv",
         [
             "resumeforge",
+            "generate",
         ],
     )
 
@@ -406,3 +497,129 @@ def test_main_generator_failure(
     assert "Boom" in out
     assert "Resume written" not in out
 
+
+def test_profile_list_prints_profiles(
+    monkeypatch,
+    capsys,
+):
+    class StubProfileService:
+        def list(self):
+            return [
+                "default",
+                "government",
+            ]
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.ProfileService",
+        StubProfileService,
+    )
+
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="profile",
+        profile_command="list",
+    )
+
+    exit_code = workflow.run(args)
+
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert "default" in captured.out
+    assert "government" in captured.out
+
+
+def test_profile_list_when_empty(
+    monkeypatch,
+    capsys,
+):
+    class StubProfileService:
+        def list(self):
+            return []
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.ProfileService",
+        StubProfileService,
+    )
+
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="profile",
+        profile_command="list",
+    )
+
+    exit_code = workflow.run(args)
+
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert "No profiles found." in captured.out
+
+
+def test_profile_remove_command():
+
+    parser = build_parser()
+
+    args = parser.parse_args(
+        [
+            "profile",
+            "remove",
+            "government",
+        ]
+    )
+
+    assert args.command == "profile"
+    assert args.profile_command == "remove"
+    assert args.name == "government"
+
+
+def test_remove_profile_calls_service(monkeypatch):
+
+    called = {}
+
+    class FakeService:
+
+        def remove(self, name):
+            called["name"] = name
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.ProfileService",
+        FakeService,
+    )
+
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="profile",
+        profile_command="remove",
+        name="government",
+    )
+
+    assert workflow.run(args) == 0
+    assert called["name"] == "government"
+
+
+def test_remove_missing_profile(monkeypatch):
+
+    class FakeService:
+
+        def remove(self, name):
+            raise FileNotFoundError(name)
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.ProfileService",
+        FakeService,
+    )
+
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="profile",
+        profile_command="remove",
+        name="missing",
+    )
+
+    with pytest.raises(FileNotFoundError):
+        workflow.run(args)

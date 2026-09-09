@@ -13,7 +13,7 @@ from resumeforge.constants import (
 def test_repository_discovers_default_profile():
     repository = ProfileRepository()
 
-    profiles = repository.list_profiles()
+    profiles = repository.list()
 
     assert len(profiles) == 1
 
@@ -21,7 +21,7 @@ def test_repository_discovers_default_profile():
 def test_default_profile_name():
     repository = ProfileRepository()
 
-    profile = repository.list_profiles()[0]
+    profile = repository.list()[0]
 
     assert profile.is_default
 
@@ -29,7 +29,7 @@ def test_default_profile_name():
 def test_default_profile_exists():
     repository = ProfileRepository()
 
-    profile = repository.list_profiles()[0]
+    profile = repository.list()[0]
 
     assert profile.resume_path.exists()
 
@@ -37,7 +37,7 @@ def test_default_profile_exists():
 def test_profile_path_points_to_resume_json():
     repository = ProfileRepository()
 
-    profile = repository.list_profiles()[0]
+    profile = repository.list()[0]
 
     assert profile.resume_path.name == DEFAULT_PROFILE_FILE
 
@@ -49,15 +49,15 @@ def create_profile(root: Path, name: str):
 def test_empty_repository(tmp_path):
     repo = ProfileRepository(tmp_path)
 
-    assert repo.list_profiles() == []
+    assert repo.list() == []
 
-def test_list_profiles(tmp_path):
+def test_list(tmp_path):
     create_profile(tmp_path, DEFAULT_PROFILE_NAME)
     create_profile(tmp_path, "government")
 
     repo = ProfileRepository(tmp_path)
 
-    profiles = repo.list_profiles()
+    profiles = repo.list()
 
     assert len(profiles) == 2
     assert profiles[0].name == DEFAULT_PROFILE_NAME

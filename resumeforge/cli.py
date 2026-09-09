@@ -29,37 +29,89 @@ TEMPLATES = {
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        prog="resumeforge",
+    )
 
-    parser.add_argument(
+    subparsers = parser.add_subparsers(
+        dest="command",
+    )
+
+    #
+    # generate
+    #
+    generate = subparsers.add_parser(
+        "generate",
+        help="Generate a tailored resume",
+    )
+
+    generate.add_argument(
         "--template",
         choices=TEMPLATES,
         default="default",
     )
 
-    parser.add_argument(
+    generate.add_argument(
         "--theme",
         choices=THEMES,
         default="default",
     )
 
-    parser.add_argument(
+    generate.add_argument(
         "--output",
         default="resume.docx",
     )
 
-    parser.add_argument(
+    generate.add_argument(
         "--job",
         help="Path to a job description text file",
     )
 
-    parser.add_argument(
+    generate.add_argument(
         "--profile",
         metavar="NAME",
         help="Resume profile to use",
     )
 
+    #
+    # profile
+    #
+    profile = subparsers.add_parser(
+        "profile",
+        help="Manage resume profiles",
+    )
+
+    profile_commands = profile.add_subparsers(
+        dest="profile_command",
+    )
+
+    create = profile_commands.add_parser(
+        "create",
+        help="Create a new profile",
+    )
+
+    list = profile_commands.add_parser(
+        "list",
+        help="List available resume profiles",
+    )
+
+    remove = profile_commands.add_parser(
+        "remove",
+        help="Remove a profile",
+    )
+
+    remove.add_argument(
+        "name",
+        help="Profile name",
+    )
+
+    create.add_argument(
+        "name",
+        help="Profile name",
+    )
+
     return parser
+
 
 def main() -> int:
     parser = build_parser()

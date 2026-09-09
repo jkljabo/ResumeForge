@@ -32,6 +32,7 @@ def test_main_builds_resume(monkeypatch, tmp_path):
         "sys.argv",
         [
             "build_resume.py",
+            "generate",
             "--template",
             "modern",
             "--theme",

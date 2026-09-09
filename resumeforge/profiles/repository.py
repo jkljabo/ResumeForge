@@ -20,7 +20,7 @@ class ProfileRepository:
     def __init__(self, root: Path | None = None):
         self.root = root
 
-    def list_profiles(self) -> list[Profile]:
+    def list(self) -> list[Profile]:
         #
         # Default application profile
         #
@@ -67,17 +67,17 @@ class ProfileRepository:
         return profiles
 
     def exists(self, name: str) -> bool:
-        return any(profile.name == name for profile in self.list_profiles())
+        return any(profile.name == name for profile in self.list())
 
     def get(self, name: str) -> Profile:
-        for profile in self.list_profiles():
+        for profile in self.list():
             if profile.name == name:
                 return profile
 
         raise FileNotFoundError(f"Profile '{name}' not found.")
 
     def get_default(self) -> Profile:
-        for profile in self.list_profiles():
+        for profile in self.list():
             if profile.is_default:
                 return profile
 

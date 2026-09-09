@@ -7,11 +7,24 @@ from resumeforge.bootstrap import create_generator
 from resumeforge.loader import load_resume
 from resumeforge.profiles.profile import Profile
 from resumeforge.profiles.repository import ProfileRepository
-
+from resumeforge.services.profile_service import (
+    ProfileService,
+)
 
 class CLIWorkflow:
 
     def run(
+        self,
+        args: Namespace,
+    ) -> int:
+
+        if args.command == "profile":
+            return self.run_profile(args)
+
+        return self.run_generate(args)
+
+
+    def run_generate(
         self,
         args: Namespace,
     ) -> int:
@@ -30,7 +43,7 @@ class CLIWorkflow:
         generator = create_generator()
 
         generator.generate(
-            profile,
+            resume,
             job,
             args.output,
         )
@@ -38,6 +51,61 @@ class CLIWorkflow:
         print(f"Resume written to {args.output}")
 
         return 0
+
+
+    def run_profile(
+        self,
+        args: Namespace,
+    ) -> int:
+
+        service = ProfileService()
+
+        if args.profile_command == "create":
+
+            service.create(args.name)
+
+            print(
+                f"Profile '{args.name}' created."
+            )
+
+            return 0
+
+        if args.profile_command == "list":
+            return self.list()
+
+        if args.profile_command == "remove":
+            return self.remove_profile(args.name)
+
+        print("Unknown profile command.")
+        return 1
+
+
+    def list(self) -> int:
+        service = ProfileService()
+
+        profiles = service.list()
+
+        if not profiles:
+            print("No profiles found.")
+            return 0
+
+        for profile in profiles:
+            print(profile)
+
+        return 0
+
+    def remove_profile(
+        self,
+        name: str,
+    ) -> int:
+        service = ProfileService()
+
+        service.remove(name)
+
+        print(f"Profile '{name}' removed.")
+
+        return 0
+
 
 def resolve_profile(
     repository: ProfileRepository,
@@ -50,6 +118,7 @@ def resolve_profile(
         return repository.get(args.profile)
 
     return repository.get_default()
+
 
 def load_job_description(path: str | None) -> str:
     """
