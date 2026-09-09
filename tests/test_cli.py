@@ -231,7 +231,7 @@ def test_create_generator_wires_pipeline():
 
 
 # ---------------------------------------------------------------------
-# Theme / template Tests
+# Theme / Template Tests
 # ---------------------------------------------------------------------
 
 def test_default_template_exists():
@@ -623,3 +623,144 @@ def test_remove_missing_profile(monkeypatch):
 
     with pytest.raises(FileNotFoundError):
         workflow.run(args)
+
+
+def test_profile_edit_command():
+
+    parser = build_parser()
+
+    args = parser.parse_args(
+        [
+            "profile",
+            "edit",
+            "government",
+            "--headline",
+            "Senior Software Engineer",
+        ]
+    )
+
+    assert args.command == "profile"
+    assert args.profile_command == "edit"
+    assert args.name == "government"
+    assert args.headline == "Senior Software Engineer"
+
+
+def test_edit_profile_calls_service(monkeypatch):
+
+    called = {}
+
+    class FakeService:
+
+        def edit(
+            self,
+            name,
+            updates,
+        ):
+            called["name"] = name
+            called["updates"] = updates
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.ProfileService",
+        FakeService,
+    )
+
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="profile",
+        profile_command="edit",
+        name="government",
+        headline="Senior Software Engineer",
+        full_name=None,
+    )
+
+    assert workflow.run(args) == 0
+
+    assert called["name"] == "government"
+
+    assert called["updates"] == {
+        "headline": "Senior Software Engineer",
+    }
+
+
+def test_edit_profile_updates_multiple_fields(monkeypatch):
+
+    called = {}
+
+    class FakeService:
+
+        def edit(
+            self,
+            name,
+            updates,
+        ):
+            called["updates"] = updates
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.ProfileService",
+        FakeService,
+    )
+
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="profile",
+        profile_command="edit",
+        name="government",
+        headline="Lead Engineer",
+        full_name="Jason K. Little",
+    )
+
+    assert workflow.run(args) == 0
+
+    assert called["updates"] == {
+        "headline": "Lead Engineer",
+        "name": "Jason K. Little",
+    }
+
+
+def test_edit_missing_profile(monkeypatch):
+
+    class FakeService:
+
+        def edit(
+            self,
+            name,
+            updates,
+        ):
+            raise FileNotFoundError(name)
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.ProfileService",
+        FakeService,
+    )
+
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="profile",
+        profile_command="edit",
+        name="missing",
+        headline="Engineer",
+        full_name=None,
+    )
+
+    with pytest.raises(FileNotFoundError):
+        workflow.run(args)
+
+
+def test_profile_help_contains_edit(capsys):
+
+    parser = build_parser()
+
+    with pytest.raises(SystemExit):
+        parser.parse_args(
+            [
+                "profile",
+                "--help",
+            ]
+        )
+
+    out = capsys.readouterr().out
+
+    assert "edit" in out

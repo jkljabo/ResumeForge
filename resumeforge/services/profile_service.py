@@ -1,5 +1,7 @@
 from pathlib import Path
 import shutil
+from unicodedata import name
+import json
 
 
 class ProfileService:
@@ -62,3 +64,33 @@ class ProfileService:
             )
 
         shutil.rmtree(profile_path)
+
+    def edit(
+        self,
+        name: str,
+        updates: dict,
+    ) -> None:
+        profile_dir = self.root / name
+
+        if not profile_dir.exists():
+            raise FileNotFoundError(name)
+
+        resume_file = profile_dir / "resume.json"
+
+        with resume_file.open(
+            "r",
+            encoding="utf-8",
+        ) as file:
+            resume = json.load(file)
+
+        resume.update(updates)
+
+        with resume_file.open(
+            "w",
+            encoding="utf-8",
+        ) as file:
+            json.dump(
+                resume,
+                file,
+                indent=4,
+            )

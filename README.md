@@ -3,7 +3,7 @@
 > 🚧 ResumeForge is currently in active alpha development. Core functionality is stable and protected by a comprehensive automated test suite while new features are added incrementally.
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-220%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
+[![Tests](https://img.shields.io/badge/tests-229%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)](docs/ROADMAP.md)
 
@@ -231,7 +231,7 @@ python -m build --no-isolation
 - Modular workflow
 - Dependency injection
 - Installable CLI
-- 220+ automated tests
+- 229+ automated tests
 
 ---
 
@@ -363,16 +363,17 @@ Common use cases include:
 resumeforge profile create government
 ```
 
-### Edit a profile
-
-```powershell
-resumeforge profile edit government
-```
-
 ### List profiles
 
 ```powershell
 resumeforge profile list
+```
+
+### Edit a profile
+
+```powershell
+resumeforge profile edit government \
+    --headline "Senior Software Engineer"
 ```
 
 ### Remove a profile
@@ -420,7 +421,7 @@ python -m pytest tests/test_cli.py
 
 Current Quality Metrics
 
-- ✅ 220 automated unit and integration tests
+- ✅ 229 automated unit and integration tests
 - ✅ 100% passing
 - ✅ CLI workflow tests
 - ✅ Profile management tests
@@ -502,7 +503,7 @@ ResumeForge currently supports:
 - Markdown export
 - DOCX export
 - Modular CLI command architecture
-- Test-first architecture with 220 automated tests
+- Test-first architecture with 229 automated tests
 - Installable command-line interface
 
 ---
@@ -512,9 +513,9 @@ ResumeForge currently supports:
 | Item         | Status                             |
 | ------------ | ---------------------------------- |
 | Version      | v0.1.2-alpha                       |
-| Phase        | G.1.9 — Profile Editing            |
-| Tests        | 220 Passing                        |
-| Test Coverage| 220 automated tests                |
+| Phase        | G.1.9 — Profile Editing (Completed)|
+| Tests        | 229 Passing                        |
+| Test Coverage| 229 automated tests                |
 | Python       | 3.13                               |
 | Architecture | Modular CLI / Workflow / Generator |
 | Packaging    | Complete                           |
@@ -537,18 +538,19 @@ ResumeForge is currently in active alpha development. New features are added inc
 - ✅ Installable CLI
 - ✅ Multiple resume profiles
 - ✅ Profile creation
-- ✅ Profile Listing
+- ✅ Profile listing
 - ✅ Profile removal
+- ✅ Profile editing
 - ✅ Modern Python packaging
-- ✅ 220+ automated tests
+- ✅ 229+ automated tests
 
 ### Current Phase (G.1.9)
 
-- 🚧 Profile editing
+- ✅ Profile editing
 
 ### Planned
 
-- ☐ Profile editing
+- ✅ Profile editing
 
 ### Long-Term Vision
 

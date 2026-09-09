@@ -59,7 +59,7 @@ Current
 
 Testing
 
-✓ 220 automated tests
+✓ 229 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -92,7 +92,7 @@ Add CLI tests
 
 ## Test Status
 
-220 passing tests
+229 passing tests
 0 failures
 
 ## Latest Release
@@ -153,7 +153,7 @@ Released
 
 ✓ python -m pytest
 
-220 passed
+229 passed
 
 ✓ python -m build --no-isolation
 
@@ -183,7 +183,7 @@ v0.1.2-alpha
 
 ## Project Metrics
 
-220 passing tests
+229 passing tests
 
 100% green
 
@@ -226,7 +226,7 @@ Packaging:
 ✓ ProfileRepository
 ✓ ProfileCreator
 ✓ Command-based CLI
-✓ 220 automated tests
+✓ 229 automated tests
 
 ## Stable Milestones
 

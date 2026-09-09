@@ -76,6 +76,9 @@ class CLIWorkflow:
         if args.profile_command == "remove":
             return self.remove_profile(args.name)
 
+        if args.profile_command == "edit":
+            return self.edit_profile(args)
+
         print("Unknown profile command.")
         return 1
 
@@ -103,6 +106,30 @@ class CLIWorkflow:
         service.remove(name)
 
         print(f"Profile '{name}' removed.")
+
+        return 0
+
+    def edit_profile(
+        self,
+        args: Namespace,
+    ) -> int:
+
+        updates = {}
+
+        if args.headline is not None:
+            updates["headline"] = args.headline
+
+        if args.full_name is not None:
+            updates["name"] = args.full_name
+
+        service = ProfileService()
+
+        service.edit(
+            args.name,
+            updates,
+        )
+
+        print(f"Profile '{args.name}' updated.")
 
         return 0
 

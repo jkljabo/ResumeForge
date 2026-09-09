@@ -100,6 +100,24 @@ def build_parser() -> argparse.ArgumentParser:
         help="Remove a profile",
     )
 
+    edit_parser = profile_commands.add_parser(
+        "edit",
+        help="Edit an existing profile",
+    )
+
+    edit_parser.add_argument(
+        "name",
+    )
+
+    edit_parser.add_argument(
+        "--headline",
+    )
+
+    edit_parser.add_argument(
+        "--full-name",
+        dest="full_name",
+    )
+
     remove.add_argument(
         "name",
         help="Profile name",
