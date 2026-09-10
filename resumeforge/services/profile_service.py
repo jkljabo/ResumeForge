@@ -1,8 +1,4 @@
-import json
-import shutil
-from pathlib import Path
 
-from resumeforge.constants import DEFAULT_PROFILE_FILE
 from resumeforge.profiles.repository import (
     ProfileRepository,
 )
@@ -11,18 +7,8 @@ class ProfileService:
 
     def __init__(
         self,
-        root: Path | None = None,
-        repository: ProfileRepository | None = None,
+        repository: ProfileRepository,
     ):
-        self.root = (
-            Path("profiles")
-            if root is None
-            else Path(root)
-        )
-
-        if repository is None:
-            repository = ProfileRepository(self.root)
-
         self.repository = repository
 
     def create(

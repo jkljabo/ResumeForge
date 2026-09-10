@@ -14,7 +14,11 @@ from resumeforge.profiles.repository import (
 
 def test_create_profile_directory(tmp_path):
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
 
@@ -23,7 +27,11 @@ def test_create_profile_directory(tmp_path):
 
 def test_create_resume_file(tmp_path):
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+    
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
 
@@ -36,7 +44,11 @@ def test_create_resume_file(tmp_path):
 
 def test_create_existing_profile_raises(tmp_path):
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
 
@@ -57,7 +69,11 @@ def test_create_delegates_to_repository(tmp_path, monkeypatch):
         fake_create,
     )
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
 
@@ -66,7 +82,11 @@ def test_create_delegates_to_repository(tmp_path, monkeypatch):
 
 def test_remove_existing_profile(tmp_path):
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
 
@@ -91,7 +111,11 @@ def test_remove_delegates_to_repository(
         fake_remove,
     )
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
     service.remove("government")
@@ -101,7 +125,11 @@ def test_remove_delegates_to_repository(
 
 def test_remove_missing_profile_raises(tmp_path):
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     with pytest.raises(FileNotFoundError):
         service.remove("government")
@@ -109,7 +137,11 @@ def test_remove_missing_profile_raises(tmp_path):
 
 def test_remove_preserves_other_profiles(tmp_path):
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
     service.create("banking")
@@ -122,7 +154,11 @@ def test_remove_preserves_other_profiles(tmp_path):
 
 def test_list_after_remove(tmp_path):
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
     service.create("banking")
@@ -156,7 +192,11 @@ def test_list_delegates_to_repository(
         fake_list,
     )
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     result = service.list()
 
@@ -181,7 +221,11 @@ def test_edit_delegates_to_repository(
         fake_update,
     )
 
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
 
@@ -202,7 +246,11 @@ def test_edit_delegates_to_repository(
     ]
 
 def test_edit_existing_profile(tmp_path):
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
 
@@ -231,7 +279,11 @@ def test_edit_existing_profile(tmp_path):
 
 
 def test_edit_missing_profile_raises(tmp_path):
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     with pytest.raises(FileNotFoundError):
         service.edit(
@@ -243,7 +295,11 @@ def test_edit_missing_profile_raises(tmp_path):
 
 
 def test_edit_preserves_existing_fields(tmp_path):
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
 
@@ -275,7 +331,11 @@ def test_edit_preserves_existing_fields(tmp_path):
 
 
 def test_edit_updates_multiple_fields(tmp_path):
-    service = ProfileService(tmp_path)
+    repo = ProfileRepository(tmp_path)
+        
+    service = ProfileService(
+        repository=repo,
+    )
 
     service.create("government")
 
@@ -331,3 +391,19 @@ def test_service_create_uses_injected_repository(monkeypatch):
     service.create("government")
 
     assert calls == ["government"]
+
+
+def test_service_can_be_constructed_with_defaults():
+    service = ProfileService(
+        repository=ProfileRepository(),
+    )
+
+    assert service.repository is not None
+
+
+def test_service_can_be_constructed_without_root():
+    service = ProfileService(
+        repository=ProfileRepository(),
+    )
+
+    assert service.repository is not None

@@ -12,7 +12,7 @@ from resumeforge.cli import (
 
 from resumeforge.bootstrap import create_generator
 from resumeforge.generator import ResumeGenerator
-from resumeforge.profiles import Profile
+from resumeforge.profiles import Profile, repository
 from resumeforge.tailoring.tailored_resume_builder import (
     TailoredResumeBuilder,
 )
@@ -503,6 +503,9 @@ def test_profile_list_prints_profiles(
     capsys,
 ):
     class StubProfileService:
+        def __init__(self, repository):
+            self.repository = repository
+        
         def list(self):
             return [
                 "default",
@@ -535,6 +538,9 @@ def test_profile_list_when_empty(
     capsys,
 ):
     class StubProfileService:
+        def __init__(self, repository):
+            self.repository = repository
+
         def list(self):
             return []
 
@@ -580,6 +586,8 @@ def test_remove_profile_calls_service(monkeypatch):
     called = {}
 
     class FakeService:
+        def __init__(self, repository):
+            self.repository = repository
 
         def remove(self, name):
             called["name"] = name
@@ -604,6 +612,8 @@ def test_remove_profile_calls_service(monkeypatch):
 def test_remove_missing_profile(monkeypatch):
 
     class FakeService:
+        def __init__(self, repository):
+            self.repository = repository
 
         def remove(self, name):
             raise FileNotFoundError(name)
@@ -650,6 +660,8 @@ def test_edit_profile_calls_service(monkeypatch):
     called = {}
 
     class FakeService:
+        def __init__(self, repository):
+            self.repository = repository
 
         def edit(
             self,
@@ -688,6 +700,8 @@ def test_edit_profile_updates_multiple_fields(monkeypatch):
     called = {}
 
     class FakeService:
+        def __init__(self, repository):
+            self.repository = repository
 
         def edit(
             self,
@@ -722,6 +736,8 @@ def test_edit_profile_updates_multiple_fields(monkeypatch):
 def test_edit_missing_profile(monkeypatch):
 
     class FakeService:
+        def __init__(self, repository):
+            self.repository = repository
 
         def edit(
             self,

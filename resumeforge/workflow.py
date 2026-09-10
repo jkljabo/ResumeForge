@@ -58,7 +58,11 @@ class CLIWorkflow:
         args: Namespace,
     ) -> int:
 
-        service = ProfileService()
+        repository = ProfileRepository()
+
+        service = ProfileService(
+            repository=repository,
+        )
 
         if args.profile_command == "create":
 
@@ -84,7 +88,9 @@ class CLIWorkflow:
 
 
     def list(self) -> int:
-        service = ProfileService()
+        service = ProfileService(
+            repository=ProfileRepository(),
+        )
 
         profiles = service.list()
 
@@ -97,17 +103,21 @@ class CLIWorkflow:
 
         return 0
 
+
     def remove_profile(
         self,
         name: str,
     ) -> int:
-        service = ProfileService()
+        service = ProfileService(
+            repository=ProfileRepository(),
+        )
 
         service.remove(name)
 
         print(f"Profile '{name}' removed.")
 
         return 0
+
 
     def edit_profile(
         self,
@@ -122,7 +132,9 @@ class CLIWorkflow:
         if args.full_name is not None:
             updates["name"] = args.full_name
 
-        service = ProfileService()
+        service = ProfileService(
+            repository=ProfileRepository(),
+        )
 
         service.edit(
             args.name,
