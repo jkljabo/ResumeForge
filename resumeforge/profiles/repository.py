@@ -1,3 +1,5 @@
+import json
+import shutil
 from pathlib import Path
 
 from .profile import Profile
@@ -20,6 +22,78 @@ class ProfileRepository:
     def __init__(self, root: Path | None = None):
         self.root = root
 
+    def create(self, name: str) -> Profile:
+        if self.root is None:
+            raise ValueError(
+                "Cannot create profiles using the default repository."
+            )
+
+        profile_dir = self.root / name
+
+        if profile_dir.exists():
+            raise FileExistsError(
+                f"Profile '{name}' already exists."
+            )
+
+        profile_dir.mkdir(
+            parents=True,
+        )
+
+        resume_file = profile_dir / DEFAULT_PROFILE_FILE
+
+        resume_file.write_text(
+            "{}",
+            encoding="utf-8",
+        )
+
+        return Profile(
+            name=name,
+            directory=profile_dir,
+            is_default=(name == DEFAULT_PROFILE_NAME),
+        )
+
+    def remove(self, name: str) -> None:
+        if self.root is None:
+            raise ValueError(
+                "Cannot remove profiles using the default repository."
+            )
+
+        profile = self.get(name)
+
+        shutil.rmtree(profile.directory)
+
+    def update(
+        self,
+        name: str,
+        updates: dict,
+    ) -> None:
+        if self.root is None:
+            raise ValueError(
+                "Cannot update profiles using the default repository."
+            )
+
+        profile = self.get(name)
+
+        resume_file = profile.resume_path
+
+        with resume_file.open(
+            "r",
+            encoding="utf-8",
+        ) as file:
+            resume = json.load(file)
+
+        resume.update(updates)
+
+        with resume_file.open(
+            "w",
+            encoding="utf-8",
+        ) as file:
+            json.dump(
+                resume,
+                file,
+                indent=4,
+            )
+
     def list(self) -> list[Profile]:
         #
         # Default application profile
@@ -34,7 +108,7 @@ class ProfileRepository:
             return [
                 Profile(
                     name=DEFAULT_PROFILE_NAME,
-                    resume_path=resume_file,
+                    directory=resume_file.parent,
                     is_default=True,
                 )
             ]
@@ -59,7 +133,7 @@ class ProfileRepository:
             profiles.append(
                 Profile(
                     name=directory.name,
-                    resume_path=directory / DEFAULT_PROFILE_FILE,
+                    directory=directory,
                     is_default=(directory.name == DEFAULT_PROFILE_NAME),
                 )
             )

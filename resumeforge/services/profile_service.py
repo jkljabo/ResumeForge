@@ -1,8 +1,11 @@
-from pathlib import Path
-import shutil
-from unicodedata import name
 import json
+import shutil
+from pathlib import Path
 
+from resumeforge.constants import DEFAULT_PROFILE_FILE
+from resumeforge.profiles.repository import (
+    ProfileRepository,
+)
 
 class ProfileService:
 
@@ -16,81 +19,36 @@ class ProfileService:
             else Path(root)
         )
 
+        self.repository = ProfileRepository(root)
+
     def create(
         self,
         name: str,
     ):
 
-        profile_dir = self.root / name
-
-        if profile_dir.exists():
-            raise FileExistsError(
-                f"Profile '{name}' already exists."
-            )
-
-        profile_dir.mkdir(
-            parents=True,
-        )
-
-        (
-            profile_dir
-            / "resume.json"
-        ).write_text(
-            "{}",
-            encoding="utf-8",
-        )
+        return self.repository.create(name)
 
     def list(self) -> list[str]:
 
-        if not self.root.exists():
-            return []
+        profiles = self.repository.list()
 
-        return sorted(
-            p.name
-            for p in self.root.iterdir()
-            if p.is_dir()
-        )
+        return [
+            profile.name
+            for profile in profiles
+        ]
 
     def remove(
         self,
         name: str,
     ) -> None:
-
-        profile_path = self.root / name
-
-        if not profile_path.exists():
-            raise FileNotFoundError(
-                f"Profile '{name}' does not exist."
-            )
-
-        shutil.rmtree(profile_path)
+        self.repository.remove(name)
 
     def edit(
         self,
         name: str,
         updates: dict,
     ) -> None:
-        profile_dir = self.root / name
-
-        if not profile_dir.exists():
-            raise FileNotFoundError(name)
-
-        resume_file = profile_dir / "resume.json"
-
-        with resume_file.open(
-            "r",
-            encoding="utf-8",
-        ) as file:
-            resume = json.load(file)
-
-        resume.update(updates)
-
-        with resume_file.open(
-            "w",
-            encoding="utf-8",
-        ) as file:
-            json.dump(
-                resume,
-                file,
-                indent=4,
-            )
+        self.repository.update(
+            name,
+            updates,
+        )

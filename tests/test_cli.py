@@ -66,7 +66,7 @@ def make_fake_profile(name="default", *, default=None):
 
     return Profile(
         name=name,
-        resume_path=Path(f"profiles/{name}/resume.json"),
+        directory=Path("profiles") / name,
         is_default=default,
     )
 

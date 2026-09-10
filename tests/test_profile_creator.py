@@ -7,6 +7,9 @@ from resumeforge.cli import build_parser
 from resumeforge.services.profile_service import (
     ProfileService,
 )
+from resumeforge.profiles.repository import (
+    ProfileRepository,
+)
 
 
 def test_create_profile_directory(tmp_path):
@@ -41,6 +44,26 @@ def test_create_existing_profile_raises(tmp_path):
         service.create("government")
 
 
+def test_create_delegates_to_repository(tmp_path, monkeypatch):
+
+    calls = []
+
+    def fake_create(self, name):
+        calls.append(name)
+
+    monkeypatch.setattr(
+        ProfileRepository,
+        "create",
+        fake_create,
+    )
+
+    service = ProfileService(tmp_path)
+
+    service.create("government")
+
+    assert calls == ["government"]
+
+
 def test_remove_existing_profile(tmp_path):
 
     service = ProfileService(tmp_path)
@@ -50,6 +73,30 @@ def test_remove_existing_profile(tmp_path):
     service.remove("government")
 
     assert not (tmp_path / "government").exists()
+
+
+def test_remove_delegates_to_repository(
+    tmp_path,
+    monkeypatch,
+):
+
+    calls = []
+
+    def fake_remove(self, name):
+        calls.append(name)
+
+    monkeypatch.setattr(
+        ProfileRepository,
+        "remove",
+        fake_remove,
+    )
+
+    service = ProfileService(tmp_path)
+
+    service.create("government")
+    service.remove("government")
+
+    assert calls == ["government"]
 
 
 def test_remove_missing_profile_raises(tmp_path):
@@ -85,6 +132,75 @@ def test_list_after_remove(tmp_path):
     assert service.list() == ["banking"]
 
 
+def test_list_delegates_to_repository(
+    tmp_path,
+    monkeypatch,
+):
+
+    calls = []
+
+    def fake_list(self):
+        calls.append(True)
+
+        return [
+            type(
+                "FakeProfile",
+                (),
+                {"name": "government"},
+            )(),
+        ]
+
+    monkeypatch.setattr(
+        ProfileRepository,
+        "list",
+        fake_list,
+    )
+
+    service = ProfileService(tmp_path)
+
+    result = service.list()
+
+    assert calls == [True]
+    assert result == ["government"]
+
+def test_edit_delegates_to_repository(
+    tmp_path,
+    monkeypatch,
+):
+
+    calls = []
+
+    def fake_update(self, name, updates):
+        calls.append(
+            (name, updates)
+        )
+
+    monkeypatch.setattr(
+        ProfileRepository,
+        "update",
+        fake_update,
+    )
+
+    service = ProfileService(tmp_path)
+
+    service.create("government")
+
+    updates = {
+        "headline": "Senior Software Engineer",
+    }
+
+    service.edit(
+        "government",
+        updates,
+    )
+
+    assert calls == [
+        (
+            "government",
+            updates,
+        )
+    ]
+    
 def test_edit_existing_profile(tmp_path):
     service = ProfileService(tmp_path)
 
