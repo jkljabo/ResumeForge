@@ -12,6 +12,7 @@ class ProfileService:
     def __init__(
         self,
         root: Path | None = None,
+        repository: ProfileRepository | None = None,
     ):
         self.root = (
             Path("profiles")
@@ -19,7 +20,10 @@ class ProfileService:
             else Path(root)
         )
 
-        self.repository = ProfileRepository(root)
+        if repository is None:
+            repository = ProfileRepository(self.root)
+
+        self.repository = repository
 
     def create(
         self,

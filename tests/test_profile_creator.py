@@ -200,7 +200,7 @@ def test_edit_delegates_to_repository(
             updates,
         )
     ]
-    
+
 def test_edit_existing_profile(tmp_path):
     service = ProfileService(tmp_path)
 
@@ -305,3 +305,29 @@ def test_edit_updates_multiple_fields(tmp_path):
     assert updated["name"] == "Jason K. Little"
 
 
+def test_service_uses_injected_repository(monkeypatch):
+    repository = ProfileRepository()
+
+    service = ProfileService(
+        repository=repository,
+    )
+
+    assert service.repository is repository
+
+
+def test_service_create_uses_injected_repository(monkeypatch):
+    calls = []
+
+    class FakeRepository:
+        def create(self, name):
+            calls.append(name)
+
+    repository = FakeRepository()
+
+    service = ProfileService(
+        repository=repository,
+    )
+
+    service.create("government")
+
+    assert calls == ["government"]
