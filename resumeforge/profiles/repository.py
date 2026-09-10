@@ -1,15 +1,22 @@
-import json
+
 import shutil
 from pathlib import Path
+from typing import Any
+
+from resumeforge.profiles.repository_protocol import ProfileRepositoryProtocol
 
 from .profile import Profile
+from resumeforge.profiles.factory import ProfileFactory
+from resumeforge.profiles.persistence import (
+    ProfilePersistence,
+)
 
 from resumeforge.constants import (
     DEFAULT_PROFILE_NAME,
     DEFAULT_PROFILE_FILE,
 )
 
-class ProfileRepository:
+class ProfileRepository(ProfileRepositoryProtocol):
     """
     Discovers and retrieves resume profiles.
 
@@ -19,8 +26,25 @@ class ProfileRepository:
     contain a resume.json file.
     """
 
-    def __init__(self, root: Path | None = None):
+    def __init__(
+        self,
+        root: Path | None = None,
+        factory: ProfileFactory | None = None,
+        persistence: ProfilePersistence | None = None,
+    ):
         self.root = root
+
+        self.factory = (
+            factory
+            if factory is not None
+            else ProfileFactory()
+        )
+
+        self.persistence = (
+            persistence
+            if persistence is not None
+            else ProfilePersistence()
+        )
 
     def create(self, name: str) -> Profile:
         if self.root is None:
@@ -46,7 +70,7 @@ class ProfileRepository:
             encoding="utf-8",
         )
 
-        return Profile(
+        return self.factory.create(
             name=name,
             directory=profile_dir,
             is_default=(name == DEFAULT_PROFILE_NAME),
@@ -65,7 +89,7 @@ class ProfileRepository:
     def update(
         self,
         name: str,
-        updates: dict,
+        updates: dict[str, Any],
     ) -> None:
         if self.root is None:
             raise ValueError(
@@ -76,23 +100,16 @@ class ProfileRepository:
 
         resume_file = profile.resume_path
 
-        with resume_file.open(
-            "r",
-            encoding="utf-8",
-        ) as file:
-            resume = json.load(file)
+        resume = self.persistence.load(
+            resume_file,
+        )
 
         resume.update(updates)
 
-        with resume_file.open(
-            "w",
-            encoding="utf-8",
-        ) as file:
-            json.dump(
-                resume,
-                file,
-                indent=4,
-            )
+        self.persistence.save(
+            resume_file,
+            resume,
+        )
 
     def list(self) -> list[Profile]:
         #
@@ -106,7 +123,7 @@ class ProfileRepository:
                 return []
 
             return [
-                Profile(
+                self.factory.create(
                     name=DEFAULT_PROFILE_NAME,
                     directory=resume_file.parent,
                     is_default=True,
@@ -131,10 +148,12 @@ class ProfileRepository:
                 continue
 
             profiles.append(
-                Profile(
+                self.factory.create(
                     name=directory.name,
                     directory=directory,
-                    is_default=(directory.name == DEFAULT_PROFILE_NAME),
+                    is_default=(
+                        directory.name == DEFAULT_PROFILE_NAME
+                    ),
                 )
             )
 

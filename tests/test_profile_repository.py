@@ -4,6 +4,11 @@ from pathlib import Path
 import pytest
 
 from resumeforge.profiles import ProfileRepository
+from resumeforge.profiles.profile import Profile
+from resumeforge.profiles.factory import ProfileFactory
+from resumeforge.profiles.persistence import (
+    ProfilePersistence,
+)
 
 from resumeforge.constants import (
     DEFAULT_PROFILE_NAME,
@@ -301,3 +306,95 @@ def test_update_multiple_fields(tmp_path):
 
     assert data["headline"] == "Lead Engineer"
     assert data["name"] == "Jason K. Little"
+
+
+def test_create_uses_factory(tmp_path):
+    calls = []
+
+    class FakeFactory:
+        def create(self, *, name, directory, is_default=False):
+            calls.append((name, directory, is_default))
+            return Profile(
+                name=name,
+                directory=directory,
+                is_default=is_default,
+            )
+
+    repo = ProfileRepository(
+        tmp_path,
+        factory=FakeFactory(),
+    )
+
+    repo.create("government")
+
+    assert calls == [
+        (
+            "government",
+            tmp_path / "government",
+            False,
+        )
+    ]
+
+
+def test_update_uses_persistence_load(tmp_path):
+    calls = []
+
+    class FakePersistence(ProfilePersistence):
+        def load(self, path):
+            calls.append("load")
+            return {
+                "name": "Jason",
+            }
+
+        def save(self, path, data):
+            pass
+
+    repo = ProfileRepository(
+        tmp_path,
+        persistence=FakePersistence(),
+    )
+
+    repo.create("government")
+
+    repo.update(
+        "government",
+        {
+            "headline": "Engineer",
+        },
+    )
+
+    assert calls == ["load"]
+
+
+def test_update_uses_persistence_save(tmp_path):
+    calls = []
+
+    class FakePersistence(ProfilePersistence):
+        def load(self, path):
+            return {
+                "name": "Jason",
+            }
+
+        def save(self, path, data):
+            calls.append(data)
+
+    repo = ProfileRepository(
+        tmp_path,
+        persistence=FakePersistence(),
+    )
+
+    repo.create("government")
+
+    repo.update(
+        "government",
+        {
+            "headline": "Engineer",
+        },
+    )
+
+    assert calls == [
+        {
+            "name": "Jason",
+            "headline": "Engineer",
+        }
+    ]

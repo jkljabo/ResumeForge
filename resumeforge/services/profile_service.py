@@ -2,12 +2,13 @@
 from resumeforge.profiles.repository import (
     ProfileRepository,
 )
+from resumeforge.profiles.repository_protocol import ProfileRepositoryProtocol
 
 class ProfileService:
 
     def __init__(
         self,
-        repository: ProfileRepository,
+        repository: ProfileRepositoryProtocol | None = None,
     ):
         self.repository = repository
 
