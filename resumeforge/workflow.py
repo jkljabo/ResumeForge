@@ -7,9 +7,11 @@ from resumeforge.bootstrap import create_generator
 from resumeforge.loader import load_resume
 from resumeforge.profiles.profile import Profile
 from resumeforge.profiles.repository import ProfileRepository
+from resumeforge.resume.repository import ResumeRepository
 from resumeforge.services.profile_service import (
     ProfileService,
 )
+from resumeforge.services.resume_service import ResumeService
 
 class CLIWorkflow:
 
@@ -36,7 +38,13 @@ class CLIWorkflow:
             args,
         )
 
-        resume = load_resume(profile.resume_path)
+        resume_service = ResumeService(
+            repository=ResumeRepository(),
+        )
+
+        resume = resume_service.load(
+            profile.resume_path,
+        )
 
         job = load_job_description(args.job)
 
