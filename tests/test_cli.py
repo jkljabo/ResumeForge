@@ -83,15 +83,12 @@ def stub_workflow(
     )
 
     class FakeResumeService:
-        def __init__(self, repository):
-            self.repository = repository
-
         def load(self, path):
             return make_resume_profile()
 
     monkeypatch.setattr(
-        "resumeforge.workflow.ResumeService",
-        FakeResumeService,
+        "resumeforge.workflow.create_resume_service",
+        lambda: FakeResumeService(),
     )
 
     return generator
@@ -394,17 +391,14 @@ def test_main_uses_default_profile(monkeypatch):
 def test_main_missing_resume(monkeypatch, capsys):
 
     class FakeResumeService:
-        def __init__(self, *_, **__):
-            pass
-
         def load(self, path):
             raise FileNotFoundError(
                 "Resume profile not found"
             )
 
     monkeypatch.setattr(
-        "resumeforge.workflow.ResumeService",
-        FakeResumeService,
+        "resumeforge.workflow.create_resume_service",
+        lambda: FakeResumeService(),
     )
 
     monkeypatch.setattr(

@@ -12,6 +12,9 @@ from resumeforge.services.profile_service import (
     ProfileService,
 )
 from resumeforge.services.resume_service import ResumeService
+from resumeforge.resume.factory import (
+    create_resume_service,
+)
 
 class CLIWorkflow:
 
@@ -38,9 +41,7 @@ class CLIWorkflow:
             args,
         )
 
-        resume_service = ResumeService(
-            repository=ResumeRepository(),
-        )
+        resume_service = create_resume_service()
 
         resume = resume_service.load(
             profile.resume_path,
