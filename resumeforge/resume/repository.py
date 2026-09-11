@@ -1,0 +1,79 @@
+import json
+from pathlib import Path
+
+from resumeforge.domain.education import Education
+from resumeforge.domain.experience import Experience
+from resumeforge.domain.header import Header
+from resumeforge.domain.resume import ResumeProfile
+from resumeforge.domain.skills import SkillGroup
+from resumeforge.domain.summary import Summary
+from resumeforge.resume.repository_protocol import ResumeRepositoryProtocol
+
+
+class ResumeRepository(
+    ResumeRepositoryProtocol,
+):
+
+    def load(
+        self,
+        path: Path,
+    ) -> ResumeProfile:
+        with path.open(
+            "r",
+            encoding="utf-8",
+        ) as f:
+            data = json.load(f)
+        
+        header = Header(
+            name=data.get("name", ""),
+            headline=data.get("headline", ""),
+            tagline=data.get("tagline", ""),
+            location=data.get("location", ""),
+            phone=data.get("phone", ""),
+            email=data.get("email", ""),
+            linkedin=data.get("linkedin", ""),
+            github=data.get("github", ""),
+            portfolio=data.get("portfolio", ""),
+        )
+        
+        summary = Summary(text=data.get("summary", ""))
+        
+        education = [
+            Education(
+                school=item.get("school", ""),
+                degree=item.get("degree", ""),
+                field=item.get("field", ""),
+                graduation_year=item.get("year", ""),
+            )
+            for item in data.get("education", [])
+        ]
+        
+        experience = [
+            Experience(
+                employer=item.get("company", ""),
+                title=item.get("title", ""),
+                location=item.get("location", ""),
+                start_date=item.get("start", ""),
+                end_date=item.get("end", ""),
+                summary=item.get("summary", ""),
+                accomplishments=item.get("bullets", []),
+                technologies=item.get("technologies", []),
+            )
+            for item in data.get("experience", [])
+        ]
+        
+        skills = [
+            SkillGroup(
+                category=item.get("category", ""),
+                skills=item.get("skills", []),
+            )
+            for item in data.get("skills", [])
+        ]
+        
+        return ResumeProfile(
+            header=header,
+            summary=summary,
+            education=education,
+            experience=experience,
+            skills=skills,
+        )
