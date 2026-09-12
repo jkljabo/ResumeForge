@@ -5,8 +5,6 @@ from resumeforge.loader import load_resume
 from resumeforge.domain import (
     Certification,
     Project,
-    Header,
-    ResumeProfile,
 )
 
 from resumeforge.profiles.repository import ProfileRepository
@@ -19,6 +17,7 @@ from resumeforge.renderers.skills import SkillsRenderer
 from resumeforge.renderers.certification import CertificationRenderer
 from resumeforge.renderers.project import ProjectRenderer
 from resumeforge.layout import WordLayout
+from tests.helpers import make_resume_profile
 
 
 def test_header_renderer_is_base_renderer():
@@ -128,25 +127,14 @@ def test_certification_renderer_runs():
     document = Document()
     layout = WordLayout(document)
 
-    resume = ResumeProfile(
-        header=Header(
-            name="Test",
-            headline="Test",
-            tagline="Test",
-            location="",
-            phone="",
-            email="",
-            linkedin="",
-            github="",
-            portfolio="",
-        ),
+    resume = make_resume_profile(
         certifications=[
             Certification(
                 name="Microsoft Certified: Azure Fundamentals",
                 issuer="Microsoft",
                 year="2024",
             )
-        ],
+        ]
     )
 
     renderer = CertificationRenderer()
@@ -160,24 +148,13 @@ def test_project_renderer_runs():
     document = Document()
     layout = WordLayout(document)
 
-    resume = ResumeProfile(
-        header=Header(
-            name="Test",
-            headline="Test",
-            tagline="Test",
-            location="",
-            phone="",
-            email="",
-            linkedin="",
-            github="",
-            portfolio="",
-        ),
+    resume = make_resume_profile(
         projects=[
             Project(
                 name="Test Project",
                 description="A simple test project",
             )
-        ],
+        ]
     )
 
     renderer = ProjectRenderer()

@@ -3,7 +3,7 @@
 > 🚧 ResumeForge is currently in active alpha development. Core functionality is stable and protected by a comprehensive automated test suite while new features are added incrementally.
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-229%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
+[![Tests](https://img.shields.io/badge/tests-273%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)](docs/ROADMAP.md)
 
@@ -231,7 +231,7 @@ python -m build --no-isolation
 - Modular workflow
 - Dependency injection
 - Installable CLI
-- 229+ automated tests
+- 273+ automated tests
 
 ---
 
@@ -421,7 +421,7 @@ python -m pytest tests/test_cli.py
 
 Current Quality Metrics
 
-- ✅ 229 automated unit and integration tests
+- ✅ 273 automated unit and integration tests
 - ✅ 100% passing
 - ✅ CLI workflow tests
 - ✅ Profile management tests
@@ -503,7 +503,7 @@ ResumeForge currently supports:
 - Markdown export
 - DOCX export
 - Modular CLI command architecture
-- Test-first architecture with 229 automated tests
+- Test-first architecture with 273 automated tests
 - Installable command-line interface
 
 ---
@@ -514,8 +514,8 @@ ResumeForge currently supports:
 | ------------ | ---------------------------------- |
 | Version      | v0.1.2-alpha                       |
 | Phase        | G.1.9 — Profile Editing (Completed)|
-| Tests        | 229 Passing                        |
-| Test Coverage| 229 automated tests                |
+| Tests        | 273 Passing                        |
+| Test Coverage| 273 automated tests                |
 | Python       | 3.13                               |
 | Architecture | Modular CLI / Workflow / Generator |
 | Packaging    | Complete                           |
@@ -542,7 +542,7 @@ ResumeForge is currently in active alpha development. New features are added inc
 - ✅ Profile removal
 - ✅ Profile editing
 - ✅ Modern Python packaging
-- ✅ 229+ automated tests
+- ✅ 273+ automated tests
 
 ### Current Phase (G.1.9)
 

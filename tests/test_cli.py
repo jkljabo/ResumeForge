@@ -418,11 +418,16 @@ def test_main_missing_resume(monkeypatch, capsys):
 
 
 def test_main_missing_job_file(monkeypatch, capsys):
-    monkeypatch.setattr(
-        "resumeforge.workflow.load_resume",
-        lambda *_: make_resume_profile(),
-    )
+    class FakeResumeService:
 
+        def load(self, path):
+            return make_resume_profile()
+
+    monkeypatch.setattr(
+        "resumeforge.workflow.create_resume_service",
+        lambda: FakeResumeService(),
+    )
+    
     monkeypatch.setattr(
         "sys.argv",
         [
@@ -479,14 +484,22 @@ def test_main_generator_failure(
     monkeypatch,
     capsys,
 ):
+    class FakeResumeService:
+        def load(self, path):
+            return make_resume_profile()
+
+    class FailingGenerator:
+        def generate(self, *_, **__):
+            raise RuntimeError("Boom")
+
     monkeypatch.setattr(
-        "resumeforge.workflow.create_generator",
-        lambda: FailingGenerator(),
+        "resumeforge.workflow.create_resume_service",
+        lambda: FakeResumeService(),
     )
 
     monkeypatch.setattr(
-        "resumeforge.workflow.load_resume",
-        lambda *_: make_resume_profile(),
+        "resumeforge.workflow.create_generator",
+        lambda: FailingGenerator(),
     )
 
     monkeypatch.setattr(

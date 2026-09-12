@@ -45,23 +45,34 @@ def make_document(
 
     return SimpleNamespace(**defaults)
 
-def make_resume_profile():
+def make_resume_profile(
+    *,
+    header=None,
+    summary=None,
+    education=None,
+    experience=None,
+    skills=None,
+    certifications=None,
+    projects=None,
+):
     return ResumeProfile(
-        header=Header(
-        name="Test User",
-        headline="Software Engineer",
-        tagline="Testing ResumeForge",
-        location="Anywhere",
-        phone="555-555-5555",
-        email="test@example.com",
-        linkedin="",
-        github="",
-        portfolio="",
-    ),
-        summary=Summary(
+        header=header or Header(
+            name="Test User",
+            headline="Software Engineer",
+            tagline="Testing ResumeForge",
+            location="Anywhere",
+            phone="555-555-5555",
+            email="test@example.com",
+            linkedin="",
+            github="",
+            portfolio="",
+        ),
+        summary=summary or Summary(
             text="Test Summary",
         ),
-        education=[],
-        experience=[],
-        skills=[],
+        education=education or [],
+        experience=experience or [],
+        skills=skills or [],
+        certifications=certifications or [],
+        projects=projects or [],
     )

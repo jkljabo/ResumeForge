@@ -7,7 +7,7 @@ from resumeforge.cli import (
     TEMPLATES,
 )
 from resumeforge.filtering import ResumeFilter
-from resumeforge.loader import load_resume
+from resumeforge.resume.factory import create_resume_service
 from resumeforge.profiles.repository import ProfileRepository
 
 def resolve_profile(repository, args):
@@ -25,7 +25,11 @@ def main():
 
     profile = resolve_profile(repository, args)
     
-    resume = load_resume(profile.resume_path)
+    resume_service = create_resume_service()
+
+    resume = resume_service.load(
+        profile.resume_path,
+    )
 
     if args.job:
         with open(args.job, encoding="utf-8") as f:

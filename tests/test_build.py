@@ -28,6 +28,16 @@ def test_main_builds_resume(monkeypatch, tmp_path):
 
     output = tmp_path / "resume.docx"
 
+    class FakeResumeService:
+        def load(self, path):
+            return make_resume_profile()
+
+    monkeypatch.setattr(
+        build_resume,
+        "create_resume_service",
+        lambda: FakeResumeService(),
+    )
+
     monkeypatch.setattr(
         "sys.argv",
         [
@@ -40,12 +50,6 @@ def test_main_builds_resume(monkeypatch, tmp_path):
             "--output",
             str(output),
         ],
-    )
-
-    monkeypatch.setattr(
-        build_resume,
-        "load_resume",
-        lambda *_: make_resume_profile(),
     )
 
     build_resume.main()

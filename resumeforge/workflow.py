@@ -4,7 +4,6 @@ from pathlib import Path
 from argparse import Namespace
 
 from resumeforge.bootstrap import create_generator
-from resumeforge.loader import load_resume
 from resumeforge.profiles.profile import Profile
 from resumeforge.profiles.repository import ProfileRepository
 from resumeforge.resume.repository import ResumeRepository
