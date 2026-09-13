@@ -14,12 +14,29 @@ from resumeforge.tailoring.summary_selector import SummarySelector
 
 class TailoringEngine:
 
-    def __init__(self):
-        self.skill_selector = SkillSelector()
-        self.experience_selector = ExperienceSelector()
-        self.project_selector = ProjectSelector()
-        self.certification_selector = CertificationSelector()
-        self.summary_selector = SummarySelector()
+    def __init__(
+        self,
+        skill_selector=None,
+        experience_selector=None,
+        project_selector=None,
+        certification_selector=None,
+        summary_selector=None,
+    ):
+        self.skill_selector = (
+            skill_selector or SkillSelector()
+        )
+        self.experience_selector = (
+            experience_selector or ExperienceSelector()
+        )
+        self.project_selector = (
+            project_selector or ProjectSelector()
+        )
+        self.certification_selector = (
+            certification_selector or CertificationSelector()
+        )
+        self.summary_selector = (
+            summary_selector or SummarySelector()
+        )
 
     def create_plan(
         self,

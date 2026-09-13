@@ -5,6 +5,16 @@ from resumeforge.tailoring.engine import TailoringEngine
 from resumeforge.tailoring.plan import TailoringPlan
 
 
+class FakeSkillSelector:
+
+    def select(
+        self,
+        resume,
+        match_result,
+    ):
+        return ["Injected Skill"]
+    
+
 def test_engine_returns_tailoring_plan():
     engine = TailoringEngine()
 
@@ -118,4 +128,19 @@ def test_engine_handles_empty_resume():
     assert plan.certifications == []
     assert plan.summary_keywords == []
 
-    
+def test_engine_uses_injected_skill_selector():
+
+    engine = TailoringEngine(
+        skill_selector=FakeSkillSelector(),
+    )
+
+    plan = engine.create_plan(
+        resume=make_resume(),
+        match_result=None,
+    )
+
+    assert plan.skills == [
+        "Injected Skill",
+    ]
+
+

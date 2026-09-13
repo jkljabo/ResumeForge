@@ -1,6 +1,6 @@
 from docx import Document
 
-from resumeforge.loader import load_resume
+from resumeforge.resume.factory import create_resume_service
 
 from resumeforge.domain import (
     Certification,
@@ -44,10 +44,11 @@ def test_project_renderer_is_base_renderer():
 def test_header_renderer_runs():
     document = Document()
     layout = WordLayout(document)
+    service = create_resume_service()
 
     repository = ProfileRepository()
     profile = repository.get_default()
-    resume = load_resume(profile.resume_path)
+    resume = service.load(profile.resume_path)
 
     renderer = HeaderRenderer()
 
@@ -61,10 +62,11 @@ def test_header_renderer_runs():
 def test_summary_renderer_runs():
     document = Document()
     layout = WordLayout(document)
-
+    service = create_resume_service()
     repository = ProfileRepository()
     profile = repository.get_default()
-    resume = load_resume(profile.resume_path)
+    
+    resume = service.load(profile.resume_path)
 
     renderer = SummaryRenderer()
 
@@ -80,7 +82,9 @@ def test_experience_renderer_runs():
 
     repository = ProfileRepository()
     profile = repository.get_default()
-    resume = load_resume(profile.resume_path)
+    service = create_resume_service()
+    
+    resume = service.load(profile.resume_path)
 
     renderer = ExperienceRenderer()
 
@@ -98,7 +102,9 @@ def test_education_renderer_runs():
 
     repository = ProfileRepository()
     profile = repository.get_default()
-    resume = load_resume(profile.resume_path)
+    service = create_resume_service()
+    
+    resume = service.load(profile.resume_path)
 
     renderer = EducationRenderer()
 
@@ -112,7 +118,9 @@ def test_skills_renderer_runs():
 
     repository = ProfileRepository()
     profile = repository.get_default()
-    resume = load_resume(profile.resume_path)
+    service = create_resume_service()
+    
+    resume = service.load(profile.resume_path)
 
     renderer = SkillsRenderer()
 

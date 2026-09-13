@@ -6,12 +6,15 @@ from resumeforge.tailoring.engine import TailoringEngine
 from resumeforge.tailoring.tailored_resume_builder import (
     TailoredResumeBuilder,
 )
+from resumeforge.tailoring.factory import (
+    create_tailoring_engine,
+)
 
 def create_generator() -> ResumeGenerator:
     """Construct the ResumeForge generation pipeline."""
     matcher = Matcher()
 
-    tailoring_engine = TailoringEngine()
+    tailoring_engine = create_tailoring_engine()
 
     builder = TailoredResumeBuilder()
 

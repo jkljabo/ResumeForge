@@ -5,6 +5,9 @@ from resumeforge.tailoring.engine import TailoringEngine
 from resumeforge.tailoring.tailored_resume_builder import (
     TailoredResumeBuilder,
 )
+from resumeforge.tailoring.factory import (
+    create_tailoring_engine,
+)
 from resumeforge.tailoring.plan import TailoringPlan
 
 def test_complete_tailoring_pipeline():
@@ -17,7 +20,7 @@ def test_complete_tailoring_pipeline():
         summary_keywords=["Cloud", "Azure"],
     )
 
-    engine = TailoringEngine()
+    engine = create_tailoring_engine()
 
     plan = engine.create_plan(
         profile,

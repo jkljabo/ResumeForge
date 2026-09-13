@@ -7,7 +7,7 @@ These tests verify that ResumeForge can generate a Word document.
 from tests.helpers import make_resume_profile
 
 from resumeforge.builder import ResumeBuilder
-from resumeforge.loader import load_resume
+from resumeforge.resume.factory import create_resume_service
 
 
 def test_build_resume(tmp_path):
