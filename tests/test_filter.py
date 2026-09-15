@@ -3,6 +3,13 @@ from types import SimpleNamespace
 from resumeforge.filtering import ResumeFilter
 
 
+class FakeMatcher:
+    ...
+
+class FakeExtractor:
+    ...
+
+
 def test_filter_can_be_created():
     resume_filter = ResumeFilter()
     assert resume_filter is not None
@@ -24,7 +31,6 @@ def test_filter_returns_same_resume_when_job_description_empty():
 
     assert filtered is resume
 
-
 def test_filter_keeps_matching_skill_groups():
     resume = SimpleNamespace(
         skills=[
@@ -42,3 +48,15 @@ def test_filter_keeps_matching_skill_groups():
 
     assert len(filtered.skills) == 1
     assert filtered.skills[0].category == "Cloud"
+
+def test_filter_accepts_injected_dependencies():
+    matcher = FakeMatcher()
+    extractor = FakeExtractor()
+
+    filter = ResumeFilter(
+        matcher=matcher,
+        extractor=extractor,
+    )
+
+    assert filter.matcher is matcher
+    assert filter.extractor is extractor

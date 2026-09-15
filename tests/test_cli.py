@@ -1,5 +1,6 @@
 from argparse import Namespace
 from pathlib import Path
+from unicodedata import name
 
 import pytest
 
@@ -326,7 +327,7 @@ def test_main_uses_selected_profile(monkeypatch):
             raise AssertionError()
 
     monkeypatch.setattr(
-        "resumeforge.workflow.ProfileRepository",
+        "resumeforge.workflow.create_profile_repository",
         lambda: FakeRepository(),
     )
 
@@ -365,7 +366,7 @@ def test_main_uses_default_profile(monkeypatch):
             )
 
     monkeypatch.setattr(
-        "resumeforge.workflow.ProfileRepository",
+        "resumeforge.workflow.create_profile_repository",
         lambda: FakeRepository(),
     )
 
@@ -457,7 +458,7 @@ def test_main_unknown_profile(monkeypatch, capsys):
             raise AssertionError()
 
     monkeypatch.setattr(
-        "resumeforge.workflow.ProfileRepository",
+        "resumeforge.workflow.create_profile_repository",
         lambda: FakeRepository(),
     )
 
@@ -533,9 +534,11 @@ def test_profile_list_prints_profiles(
                 "government",
             ]
 
+    service = StubProfileService(repository=None)
+
     monkeypatch.setattr(
-        "resumeforge.workflow.ProfileService",
-        StubProfileService,
+        "resumeforge.workflow.create_profile_service",
+        lambda: service,
     )
 
     workflow = CLIWorkflow()
@@ -565,9 +568,11 @@ def test_profile_list_when_empty(
         def list(self):
             return []
 
+    service = StubProfileService(repository=None)
+
     monkeypatch.setattr(
-        "resumeforge.workflow.ProfileService",
-        StubProfileService,
+        "resumeforge.workflow.create_profile_service",
+        lambda: service,
     )
 
     workflow = CLIWorkflow()
@@ -607,15 +612,14 @@ def test_remove_profile_calls_service(monkeypatch):
     called = {}
 
     class FakeService:
-        def __init__(self, repository):
-            self.repository = repository
-
         def remove(self, name):
             called["name"] = name
 
+    service = FakeService()
+
     monkeypatch.setattr(
-        "resumeforge.workflow.ProfileService",
-        FakeService,
+        "resumeforge.workflow.create_profile_service",
+        lambda: service,
     )
 
     workflow = CLIWorkflow()
@@ -633,15 +637,14 @@ def test_remove_profile_calls_service(monkeypatch):
 def test_remove_missing_profile(monkeypatch):
 
     class FakeService:
-        def __init__(self, repository):
-            self.repository = repository
-
         def remove(self, name):
             raise FileNotFoundError(name)
 
+    service = FakeService()
+
     monkeypatch.setattr(
-        "resumeforge.workflow.ProfileService",
-        FakeService,
+        "resumeforge.workflow.create_profile_service",
+        lambda: service,
     )
 
     workflow = CLIWorkflow()
@@ -681,22 +684,16 @@ def test_edit_profile_calls_service(monkeypatch):
     called = {}
 
     class FakeService:
-        def __init__(self, repository):
-            self.repository = repository
-
-        def edit(
-            self,
-            name,
-            updates,
-        ):
+        def edit(self, name, updates):
             called["name"] = name
             called["updates"] = updates
 
-    monkeypatch.setattr(
-        "resumeforge.workflow.ProfileService",
-        FakeService,
-    )
+    service = FakeService()
 
+    monkeypatch.setattr(
+        "resumeforge.workflow.create_profile_service",
+        lambda: service,
+    )
     workflow = CLIWorkflow()
 
     args = Namespace(
@@ -721,19 +718,15 @@ def test_edit_profile_updates_multiple_fields(monkeypatch):
     called = {}
 
     class FakeService:
-        def __init__(self, repository):
-            self.repository = repository
-
-        def edit(
-            self,
-            name,
-            updates,
-        ):
+        def edit(self, name, updates):
+            called["name"] = name
             called["updates"] = updates
 
+    service = FakeService()
+
     monkeypatch.setattr(
-        "resumeforge.workflow.ProfileService",
-        FakeService,
+        "resumeforge.workflow.create_profile_service",
+        lambda: service,
     )
 
     workflow = CLIWorkflow()
@@ -757,19 +750,14 @@ def test_edit_profile_updates_multiple_fields(monkeypatch):
 def test_edit_missing_profile(monkeypatch):
 
     class FakeService:
-        def __init__(self, repository):
-            self.repository = repository
-
-        def edit(
-            self,
-            name,
-            updates,
-        ):
+        def edit(self, name, updates):
             raise FileNotFoundError(name)
 
+    service = FakeService()
+
     monkeypatch.setattr(
-        "resumeforge.workflow.ProfileService",
-        FakeService,
+        "resumeforge.workflow.create_profile_service",
+        lambda: service,
     )
 
     workflow = CLIWorkflow()

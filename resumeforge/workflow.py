@@ -6,7 +6,6 @@ from argparse import Namespace
 from resumeforge.bootstrap import create_generator
 from resumeforge.profiles.profile import Profile
 from resumeforge.profiles.repository import ProfileRepository
-from resumeforge.resume.repository import ResumeRepository
 from resumeforge.services.profile_service import (
     ProfileService,
 )
@@ -14,8 +13,36 @@ from resumeforge.services.resume_service import ResumeService
 from resumeforge.resume.factory import (
     create_resume_service,
 )
+from resumeforge.factory import create_profile_repository, create_profile_service
 
 class CLIWorkflow:
+    def __init__(
+        self,
+        repository: ProfileRepository | None = None,
+        resume_service: ResumeService | None = None,
+        generator=None,
+        profile_service: ProfileService | None = None,
+    ):
+        self.repository = (
+            repository
+            if repository is not None
+            else create_profile_repository()
+        )
+
+        self.resume_service = (
+            resume_service
+            or create_resume_service()
+        )
+
+        self.generator = (
+            generator
+            or create_generator()
+        )
+
+        self.profile_service = (
+            profile_service
+            or create_profile_service()
+        )
 
     def run(
         self,
@@ -33,24 +60,20 @@ class CLIWorkflow:
         args: Namespace,
     ) -> int:
 
-        repository = ProfileRepository()
-
         profile = resolve_profile(
-            repository,
+            self.repository,
             args,
         )
 
-        resume_service = create_resume_service()
+        job = load_job_description(
+            args.job,
+        )
 
-        resume = resume_service.load(
+        resume = self.resume_service.load(
             profile.resume_path,
         )
 
-        job = load_job_description(args.job)
-
-        generator = create_generator()
-
-        generator.generate(
+        self.generator.generate(
             resume,
             job,
             args.output,
@@ -66,11 +89,7 @@ class CLIWorkflow:
         args: Namespace,
     ) -> int:
 
-        repository = ProfileRepository()
-
-        service = ProfileService(
-            repository=repository,
-        )
+        service = self.profile_service
 
         if args.profile_command == "create":
 
@@ -96,11 +115,7 @@ class CLIWorkflow:
 
 
     def list(self) -> int:
-        service = ProfileService(
-            repository=ProfileRepository(),
-        )
-
-        profiles = service.list()
+        profiles = self.profile_service.list()
 
         if not profiles:
             print("No profiles found.")
@@ -116,11 +131,7 @@ class CLIWorkflow:
         self,
         name: str,
     ) -> int:
-        service = ProfileService(
-            repository=ProfileRepository(),
-        )
-
-        service.remove(name)
+        self.profile_service.remove(name)
 
         print(f"Profile '{name}' removed.")
 
@@ -140,11 +151,7 @@ class CLIWorkflow:
         if args.full_name is not None:
             updates["name"] = args.full_name
 
-        service = ProfileService(
-            repository=ProfileRepository(),
-        )
-
-        service.edit(
+        self.profile_service.edit(
             args.name,
             updates,
         )

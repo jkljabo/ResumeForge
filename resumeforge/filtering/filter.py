@@ -1,13 +1,26 @@
 from copy import deepcopy
 
-from resumeforge.scoring import Matcher
+from resumeforge.scoring.factory import create_matcher
 from resumeforge.keywords import KeywordExtractor
 
 
 class ResumeFilter:
-    def __init__(self):
-        self.matcher = Matcher()
-        self.extractor = KeywordExtractor()
+    def __init__(
+        self,
+        matcher=None,
+        extractor=None,
+    ):
+        self.matcher = (
+            matcher
+            if matcher is not None
+            else create_matcher()
+        )
+
+        self.extractor = (
+            extractor
+            if extractor is not None
+            else KeywordExtractor()
+        )
 
     def filter(self, resume, job_description):
         if not job_description.strip():

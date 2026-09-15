@@ -2,6 +2,8 @@ from pathlib import Path
 
 from resumeforge.constants import DEFAULT_PROFILE_FILE
 from resumeforge.profiles.factory import ProfileFactory
+from resumeforge.factory import create_profile_service
+from resumeforge.services.profile_service import ProfileService
 
 
 def test_create_profile():
@@ -19,7 +21,6 @@ def test_create_profile():
     )
     assert profile.is_default is False
 
-
 def test_create_default_profile():
     factory = ProfileFactory()
 
@@ -30,3 +31,8 @@ def test_create_default_profile():
     )
 
     assert profile.is_default is True
+
+def test_create_profile_service():
+    service = create_profile_service()
+
+    assert isinstance(service, ProfileService)
