@@ -14,13 +14,14 @@ from resumeforge.resume.factory import (
     create_resume_service,
 )
 from resumeforge.factory import create_profile_repository, create_profile_service
+from resumeforge.generator_protocol import ResumeGeneratorProtocol
 
 class CLIWorkflow:
     def __init__(
         self,
         repository: ProfileRepository | None = None,
         resume_service: ResumeService | None = None,
-        generator=None,
+        generator: ResumeGeneratorProtocol | None = None,
         profile_service: ProfileService | None = None,
     ):
         self.repository = (

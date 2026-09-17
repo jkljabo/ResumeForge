@@ -8,6 +8,7 @@ def test_plan_defaults_are_empty():
     assert plan.experience == []
     assert plan.projects == []
     assert plan.certifications == []
+    assert plan.education == []
     assert plan.summary_keywords == []
     assert plan.excluded == []
 
@@ -18,6 +19,7 @@ def test_plan_stores_values():
         experience=["Microsoft"],
         projects=["ResumeForge"],
         certifications=["AZ-204"],
+        education=["B.S. Computer Science"],
         summary_keywords=["Cloud"],
         excluded=["React"],
     )
@@ -26,5 +28,26 @@ def test_plan_stores_values():
     assert plan.experience == ["Microsoft"]
     assert plan.projects == ["ResumeForge"]
     assert plan.certifications == ["AZ-204"]
+    assert plan.education == ["B.S. Computer Science"]
     assert plan.summary_keywords == ["Cloud"]
     assert plan.excluded == ["React"]
+
+
+def test_tailoring_plan_defaults():
+
+    plan = TailoringPlan()
+
+    assert plan.skills == []
+    assert plan.experience == []
+    assert plan.projects == []
+    assert plan.certifications == []
+    assert plan.education == []
+    assert plan.summary_keywords == []
+    assert plan.excluded == []
+
+    assert plan.recommendations == []
+    assert plan.promoted == []
+    assert plan.demoted == []
+    assert plan.rationale == []
+
+

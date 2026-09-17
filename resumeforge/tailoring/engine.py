@@ -2,6 +2,7 @@ from resumeforge.tailoring.plan import TailoringPlan
 from resumeforge.tailoring.experience_selector import (
     ExperienceSelector,
 )
+from resumeforge.tailoring.prioritizer import TailoringPrioritizer
 from resumeforge.tailoring.project_selector import ProjectSelector
 from resumeforge.tailoring.skill_selector import (
     SkillSelector,
@@ -21,6 +22,7 @@ class TailoringEngine:
         project_selector=None,
         certification_selector=None,
         summary_selector=None,
+        prioritizer=None,
     ):
         self.skill_selector = (
             skill_selector or SkillSelector()
@@ -37,13 +39,17 @@ class TailoringEngine:
         self.summary_selector = (
             summary_selector or SummarySelector()
         )
+        self.prioritizer = (
+            prioritizer
+            or TailoringPrioritizer()
+        )
 
     def create_plan(
         self,
         resume,
         match_result,
     ):
-        return TailoringPlan(
+        plan = TailoringPlan(
             skills=self.skill_selector.select(
                 resume,
                 match_result,
@@ -64,6 +70,15 @@ class TailoringEngine:
                 resume,
                 match_result,
             ),
+            recommendations=getattr(
+                match_result,
+                "recommendations",
+                [],
+            ),
+        )
+        return self.prioritizer.prioritize(
+            plan,
+            match_result,
         )
 
     def select_skills(

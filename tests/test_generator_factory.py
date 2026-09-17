@@ -8,12 +8,17 @@ from resumeforge.tailoring.engine import TailoringEngine
 from resumeforge.tailoring.tailored_resume_builder import (
     TailoredResumeBuilder,
 )
+from resumeforge.recommendations.engine import RecommendationEngine
 
 
 def test_create_resume_generator_builds_complete_object_graph():
     generator = create_resume_generator()
 
     assert isinstance(generator.matcher, Matcher)
+    assert isinstance(
+        generator.recommendation_engine,
+        RecommendationEngine,
+    )
     assert isinstance(generator.tailoring_engine, TailoringEngine)
     assert isinstance(generator.builder, TailoredResumeBuilder)
     assert isinstance(generator.exporter, MarkdownExporter)

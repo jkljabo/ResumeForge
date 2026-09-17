@@ -60,16 +60,43 @@ class RecommendationEngine:
         recommendations = []
 
         for keyword in result.missing:
+            keyword_score = self._get_keyword_score(
+                result,
+                keyword,
+            )
+
+            impact = (
+                keyword_score.score
+                if keyword_score is not None
+                else self.weights.get(keyword)
+            )
+
             recommendations.append(
                 Recommendation(
                     keyword=keyword,
                     section=self._recommend_section(keyword),
-                    impact=self.weights.get(keyword),
+                    impact=impact,
                     reason=self._recommend_reason(keyword),
                 )
             )
 
+        recommendations.sort(
+            key=lambda recommendation: recommendation.impact,
+            reverse=True,
+        )
+
         return recommendations
+
+    def _get_keyword_score(self, result, keyword):
+        keyword_scores = getattr(
+            result,
+            "keyword_scores",
+            {},
+        )
+
+        return keyword_scores.get(
+            keyword.lower()
+        )
 
     def _recommend_section(self, keyword):
         return self.SECTION_MAP.get(

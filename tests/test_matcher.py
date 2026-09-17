@@ -1,3 +1,5 @@
+import pytest
+
 from resumeforge.scoring.synonyms import SynonymTable
 from resumeforge.concepts import ConceptMatcher
 from resumeforge.scoring import (
@@ -13,7 +15,6 @@ def test_matcher_can_be_created():
 
     assert matcher is not None
 
-
 def test_score_returns_integer():
     matcher = Matcher()
 
@@ -26,7 +27,6 @@ def test_score_returns_zero_for_empty_job_description():
     resume = SimpleNamespace(skills=[], experience=[], projects=[], certifications=[])
 
     assert matcher.score(resume, "") == 0
-
 
 def test_score_counts_matching_skill_tags():
     matcher = Matcher()
@@ -76,7 +76,6 @@ def test_matcher_accepts_keyword_weights():
     matcher = Matcher(weights=weights)
 
     assert matcher.weights is weights
-
 
 def test_matcher_accepts_section_weights():
     section_weights = SectionWeights()
@@ -161,3 +160,167 @@ def test_synonyms_affect_matching():
     )
 
     assert score > 0
+
+def test_match_creates_keyword_scores_for_matched_keywords():
+    matcher = Matcher()
+
+    resume = SimpleNamespace(
+        skills=[
+            SimpleNamespace(tags=["azure"]),
+        ],
+        experience=[],
+        projects=[],
+        certifications=[],
+    )
+
+    result = matcher.match(
+        resume,
+        "Azure Engineer",
+    )
+
+    assert "azure" in result.keyword_scores
+
+    keyword = result.keyword_scores["azure"]
+
+    assert keyword.keyword == "azure"
+    assert keyword.matched is True
+
+def test_match_creates_keyword_scores_for_missing_keywords():
+    matcher = Matcher()
+
+    resume = SimpleNamespace(
+        skills=[],
+        experience=[],
+        projects=[],
+        certifications=[],
+    )
+
+    result = matcher.match(
+        resume,
+        "Azure Docker",
+    )
+
+    assert "azure" in result.keyword_scores
+    assert "docker" in result.keyword_scores
+
+    assert result.keyword_scores["azure"].matched is False
+    assert result.keyword_scores["docker"].matched is False
+
+def test_match_sets_total_keyword_count():
+    matcher = Matcher()
+
+    resume = SimpleNamespace(
+        skills=[
+            SimpleNamespace(tags=["azure"]),
+        ],
+        experience=[],
+        projects=[],
+        certifications=[],
+    )
+
+    result = matcher.match(
+        resume,
+        "Azure Docker",
+    )
+
+    assert result.total_keywords == len(result.keyword_scores)
+    assert result.total_keywords == 2
+
+def test_keyword_scores_include_weights():
+    matcher = Matcher()
+
+    resume = SimpleNamespace(
+        skills=[
+            SimpleNamespace(tags=["azure"]),
+        ],
+        experience=[],
+        projects=[],
+        certifications=[],
+    )
+
+    result = matcher.match(
+        resume,
+        "Azure Docker",
+    )
+
+    azure = result.keyword_scores["azure"]
+    docker = result.keyword_scores["docker"]
+
+    assert azure.score == matcher.weights.get("azure")
+    assert docker.score == matcher.weights.get("docker")
+
+def test_missing_keyword_retains_weight():
+    matcher = Matcher()
+
+    resume = SimpleNamespace(
+        skills=[],
+        experience=[],
+        projects=[],
+        certifications=[],
+    )
+
+    result = matcher.match(
+        resume,
+        "Azure",
+    )
+
+    keyword = result.keyword_scores["azure"]
+
+    assert keyword.matched is False
+    assert keyword.score == matcher.weights.get("azure")
+
+def test_match_returns_weighted_ats_percentage():
+    matcher = Matcher()
+
+    resume = SimpleNamespace(
+        skills=[
+            SimpleNamespace(tags=["azure"]),
+        ],
+        experience=[],
+        projects=[],
+        certifications=[],
+    )
+
+    result = matcher.match(
+        resume,
+        "Azure Docker",
+    )
+
+    azure = matcher.weights.get("azure")
+    docker = matcher.weights.get("docker")
+
+    expected = (
+        azure
+        / (azure + docker)
+    ) * 100
+
+    assert result.score == pytest.approx(
+        expected,
+        abs=0.1,
+    )
+
+def test_match_returns_100_percent_when_everything_matches():
+    matcher = Matcher()
+
+    resume = SimpleNamespace(
+        skills=[
+            SimpleNamespace(
+                tags=[
+                    "azure",
+                    "docker",
+                ]
+            ),
+        ],
+        experience=[],
+        projects=[],
+        certifications=[],
+    )
+
+    result = matcher.match(
+        resume,
+        "Azure Docker",
+    )
+
+    assert result.score == pytest.approx(
+        100.0,
+    )

@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+from resumeforge.recommendations.recommendation import Recommendation
 from tests.helpers import make_resume
 
 from resumeforge.tailoring.engine import TailoringEngine
@@ -13,8 +14,22 @@ class FakeSkillSelector:
         match_result,
     ):
         return ["Injected Skill"]
-    
 
+
+class FakePrioritizer:
+
+    def __init__(self):
+        self.called = False
+
+    def prioritize(
+        self,
+        plan,
+        match_result,
+    ):
+        self.called = True
+        return plan
+
+    
 def test_engine_returns_tailoring_plan():
     engine = TailoringEngine()
 
@@ -28,6 +43,47 @@ def test_engine_returns_tailoring_plan():
         TailoringPlan,
     )
 
+def test_create_plan_returns_prioritized_recommendations():
+
+    class FakeSelector:
+        def select(self, resume, match_result):
+            return []
+
+    engine = TailoringEngine(
+        skill_selector=FakeSelector(),
+        experience_selector=FakeSelector(),
+        project_selector=FakeSelector(),
+        certification_selector=FakeSelector(),
+        summary_selector=FakeSelector(),
+    )
+
+    match_result = SimpleNamespace(
+        recommendations=[
+            Recommendation(
+                keyword="Recommendation A",
+                section="Skills",
+                impact=1,
+                reason="",
+            ),
+            Recommendation(
+                keyword="Recommendation B",
+                section="Skills",
+                impact=2,
+                reason="",
+            ),
+        ]
+    )
+
+    plan = engine.create_plan(
+        resume=object(),
+        match_result=match_result,
+    )
+
+    assert len(plan.recommendations) == 2
+
+    assert plan.recommendations[0].keyword == "Recommendation B"
+    assert plan.recommendations[1].keyword == "Recommendation A"
+    
 def test_engine_populates_experience():
 
     resume = make_resume(
@@ -143,4 +199,17 @@ def test_engine_uses_injected_skill_selector():
         "Injected Skill",
     ]
 
+def test_engine_uses_prioritizer():
 
+    prioritizer = FakePrioritizer()
+
+    engine = TailoringEngine(
+        prioritizer=prioritizer,
+    )
+
+    engine.create_plan(
+        resume=make_resume(),
+        match_result=None,
+    )
+
+    assert prioritizer.called

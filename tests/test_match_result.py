@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+import pytest
 
 from resumeforge.scoring import MatchResult
 from resumeforge.scoring.matcher import Matcher
@@ -182,3 +183,21 @@ def test_match_result_missing_by_section_defaults():
     result = MatchResult()
 
     assert result.missing_by_section == {}
+
+def test_match_result_defaults_new_fields():
+    result = MatchResult()
+
+    assert result.recommendations == []
+    assert result.keyword_scores == {}
+    assert result.total_keywords == 0
+
+def test_match_result_statistics():
+    result = MatchResult(
+        matched=["azure", ".net"],
+        missing=["terraform"],
+    )
+
+    assert result.matched_count == 2
+    assert result.missing_count == 1
+    assert result.total_matches == 3
+    assert result.percent_matched == pytest.approx(66.67, rel=1e-2)

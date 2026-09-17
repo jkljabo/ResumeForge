@@ -1,4 +1,4 @@
-
+from types import SimpleNamespace
 from tests.helpers import make_resume
 
 from resumeforge.generator import ResumeGenerator
@@ -15,12 +15,24 @@ class FakeMatcher:
         job,
     ):
         self.called = True
-        return "match"
+        return SimpleNamespace()
 
+class FakeRecommendationEngine:
+
+    def __init__(self):
+        self.called = False
+        self.result = None
+
+    def recommend(self, result):
+        self.called = True
+        self.result = result
+        return ["recommendation"]
+    
 class FakeTailoringEngine:
 
     def __init__(self):
         self.called = False
+        self.match = None
 
     def create_plan(
         self,
@@ -28,6 +40,7 @@ class FakeTailoringEngine:
         match,
     ):
         self.called = True
+        self.match = match
         return "plan"
 
 class FakeBuilder:
@@ -69,6 +82,7 @@ class FakeWriter:
 def make_generator():
 
     matcher = FakeMatcher()
+    recommendation_engine = FakeRecommendationEngine()
     tailoring = FakeTailoringEngine()
     builder = FakeBuilder()
     exporter = FakeExporter()
@@ -76,6 +90,7 @@ def make_generator():
 
     generator = ResumeGenerator(
         matcher=matcher,
+        recommendation_engine=recommendation_engine,
         tailoring_engine=tailoring,
         builder=builder,
         exporter=exporter,
@@ -85,6 +100,7 @@ def make_generator():
     return (
         generator,
         matcher,
+        recommendation_engine,
         tailoring,
         builder,
         exporter,
@@ -99,7 +115,15 @@ def test_can_create_resume_generator():
 
 def test_generate_orchestrates_resume_pipeline():
 
-    generator, matcher, tailoring, builder, exporter, writer = make_generator()
+    (
+        generator,
+        matcher,
+        recommendation_engine,
+        tailoring,
+        builder,
+        exporter,
+        writer,
+    ) = make_generator()
 
     generator.generate(
         make_resume(),
@@ -108,6 +132,7 @@ def test_generate_orchestrates_resume_pipeline():
     )
 
     assert matcher.called
+    assert recommendation_engine.called
     assert tailoring.called
     assert builder.called
     assert exporter.called
@@ -116,6 +141,11 @@ def test_generate_orchestrates_resume_pipeline():
     assert writer.markdown == "# Resume"
     assert writer.destination == "resume.md"
     assert exporter.document == "document"
+    assert recommendation_engine.result is not None
+    assert tailoring.match is recommendation_engine.result
+    assert tailoring.match.recommendations == [
+        "recommendation"
+    ]
 
 def test_generate_returns_document():
 

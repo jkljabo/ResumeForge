@@ -2,6 +2,7 @@ from resumeforge.scoring.section_weights import SectionWeights
 from resumeforge.scoring.weights import WeightTable
 from resumeforge.concepts import ConceptMatcher
 from resumeforge.scoring.match_result import MatchResult
+from resumeforge.scoring.keyword_score import KeywordScore
 
 import re
 
@@ -118,8 +119,53 @@ class Matcher:
 
         return score
 
+    def _collect_keyword_scores(
+        self,
+        matched,
+        missing,
+    ):
+        scores = {}
+
+        for keyword in matched:
+            scores[keyword] = KeywordScore(
+                keyword=keyword,
+                matched=True,
+                score=self.weights.get(keyword),
+            )
+
+        for keyword in missing:
+            scores[keyword] = KeywordScore(
+                keyword=keyword,
+                matched=False,
+                score=self.weights.get(keyword),
+            )
+
+        return scores
+
+    def _matched_weight(
+        self,
+        keyword_scores,
+    ):
+        return sum(
+            keyword.score
+            for keyword in keyword_scores.values()
+            if keyword.matched
+        )
+
+    def _total_weight(
+        self,
+        keyword_scores,
+    ):
+        return sum(
+            keyword.score
+            for keyword in keyword_scores.values()
+        )
+
     def match(self, resume, job_description):
-        score = self.score(resume, job_description)
+        raw_score = self.score(
+            resume,
+            job_description,
+        )
 
         # Keywords used for reporting (coverage, matched, missing)
         job_terms = self._normalize(job_description)
@@ -142,6 +188,27 @@ class Matcher:
             job_terms,
         )
 
+        keyword_scores = self._collect_keyword_scores(
+            matched,
+            missing,
+        )
+
+        matched_weight = self._matched_weight(
+            keyword_scores,
+        )
+
+        total_weight = self._total_weight(
+            keyword_scores,
+        )
+
+        if total_weight:
+            ats_score = (
+                matched_weight
+                / total_weight
+            ) * 100
+        else:
+            ats_score = 0.0
+
         section_scores = self._collect_section_scores(
             resume,
             job_phrases,
@@ -153,12 +220,14 @@ class Matcher:
         )
 
         return MatchResult(
-            score=score,
+            score=round(ats_score, 1),
             matched=matched,
             missing=missing,
             section_scores=section_scores,
             coverage=coverage,
             matched_by_section=matched_by_section,
+            keyword_scores=keyword_scores,
+            total_keywords=len(keyword_scores),
         )
 
     def _collect_matches(self, resume, job_terms):
