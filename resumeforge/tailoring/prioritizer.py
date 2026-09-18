@@ -29,6 +29,11 @@ class TailoringPrioritizer:
                     "promoted_experience",
                 ),
             )
+            self._record_rationale(
+                plan,
+                "experience",
+                plan.promoted,
+            )
 
         # Promote matched skills
         if hasattr(plan, "skills"):
@@ -43,7 +48,12 @@ class TailoringPrioritizer:
                     "promoted_skills",
                 ),
             )
-
+            self._record_rationale(
+                plan,
+                "skill",
+                plan.promoted_skills,
+            )
+            
         # Promote matched projects
         if hasattr(plan, "projects"):
 
@@ -56,6 +66,11 @@ class TailoringPrioritizer:
                     match_result,
                     "promoted_projects",
                 ),
+            )
+            self._record_rationale(
+                plan,
+                "project",
+                plan.promoted_projects,
             )
 
         # Promote matched certifications
@@ -71,6 +86,11 @@ class TailoringPrioritizer:
                     "promoted_certifications",
                 ),
             )
+            self._record_rationale(
+                plan,
+                "certification",
+                plan.promoted_certifications,
+            )
 
         # Promote matched education
         if hasattr(plan, "education"):
@@ -84,6 +104,11 @@ class TailoringPrioritizer:
                     match_result,
                     "promoted_education",
                 ),
+            )
+            self._record_rationale(
+                plan,
+                "education",
+                plan.promoted_education,
             )
 
         return plan
@@ -132,3 +157,14 @@ class TailoringPrioritizer:
             attribute,
             [],
         )
+
+    def _record_rationale(
+        self,
+        plan,
+        section: str,
+        items: list[str],
+    ):
+        for item in items:
+            plan.rationale.append(
+                f"Promoted {section}: {item}"
+            )
