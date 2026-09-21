@@ -27,7 +27,7 @@ def test_records_skill_promotion_rationale():
     assert len(result.rationale) == 1
 
     assert result.rationale[0] == (
-        "Promoted skill: Azure"
+        "Promoted skill: Azure (matched requested skills)"
     )
 
 def test_records_multiple_skill_rationale():
@@ -53,8 +53,8 @@ def test_records_multiple_skill_rationale():
     )
 
     assert result.rationale == [
-        "Promoted skill: Azure",
-        "Promoted skill: C#",
+        "Promoted skill: Azure (matched requested skills)",
+        "Promoted skill: C# (matched requested skills)",
     ]
 
 def test_records_no_rationale_when_nothing_promoted():
@@ -93,7 +93,7 @@ def test_records_project_rationale():
     )
 
     assert result.rationale == [
-        "Promoted project: ResumeForge",
+        "Promoted project: ResumeForge (matched requested projects)",
     ]
 
 def test_records_certification_rationale():
@@ -117,7 +117,7 @@ def test_records_certification_rationale():
     )
 
     assert result.rationale == [
-        "Promoted certification: AZ-204",
+        "Promoted certification: AZ-204 (matched requested certifications)",
     ]
 
 def test_records_education_rationale():
@@ -141,7 +141,7 @@ def test_records_education_rationale():
     )
 
     assert result.rationale == [
-        "Promoted education: Azure Learning Path",
+        "Promoted education: Azure Learning Path (matched requested education)",
     ]
 
 def test_records_experience_rationale():
@@ -165,6 +165,30 @@ def test_records_experience_rationale():
     )
 
     assert result.rationale == [
-        "Promoted experience: Azure Migration",
+        "Promoted experience: Azure Migration (matched relevant experience)",
+    ]
+
+def test_records_skill_rationale_with_reason():
+
+    plan = TailoringPlan(
+        skills=[
+            "Azure",
+            "SQL Server",
+        ]
+    )
+
+    match = SimpleNamespace(
+        promoted_skills=[
+            "Azure",
+        ]
+    )
+
+    result = TailoringPrioritizer().prioritize(
+        plan,
+        match,
+    )
+
+    assert result.rationale == [
+        "Promoted skill: Azure (matched requested skills)"
     ]
 

@@ -1,5 +1,12 @@
 from typing import Sequence
 
+RATIONALE_REASONS = {
+    "skill": "matched requested skills",
+    "project": "matched requested projects",
+    "certification": "matched requested certifications",
+    "education": "matched requested education",
+    "experience": "matched relevant experience",
+}
 
 class TailoringPrioritizer:
 
@@ -33,6 +40,7 @@ class TailoringPrioritizer:
                 plan,
                 "experience",
                 plan.promoted,
+                RATIONALE_REASONS["experience"],
             )
 
         # Promote matched skills
@@ -52,6 +60,7 @@ class TailoringPrioritizer:
                 plan,
                 "skill",
                 plan.promoted_skills,
+                RATIONALE_REASONS["skill"],
             )
             
         # Promote matched projects
@@ -71,6 +80,7 @@ class TailoringPrioritizer:
                 plan,
                 "project",
                 plan.promoted_projects,
+                RATIONALE_REASONS["project"],
             )
 
         # Promote matched certifications
@@ -90,6 +100,7 @@ class TailoringPrioritizer:
                 plan,
                 "certification",
                 plan.promoted_certifications,
+                RATIONALE_REASONS["certification"],
             )
 
         # Promote matched education
@@ -109,6 +120,7 @@ class TailoringPrioritizer:
                 plan,
                 "education",
                 plan.promoted_education,
+                RATIONALE_REASONS["education"],
             )
 
         return plan
@@ -163,8 +175,26 @@ class TailoringPrioritizer:
         plan,
         section: str,
         items: list[str],
+        reason: str | None = None,
     ):
         for item in items:
             plan.rationale.append(
-                f"Promoted {section}: {item}"
+                self._build_rationale(
+                    section,
+                    item,
+                    reason,
+                )
             )
+
+    def _build_rationale(
+        self,
+        section: str,
+        item: str,
+        reason: str | None = None,
+    ) -> str:
+        message = f"Promoted {section}: {item}"
+
+        if reason:
+            message += f" ({reason})"
+
+        return message
