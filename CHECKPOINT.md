@@ -1,28 +1,27 @@
 # ResumeForge Checkpoint
 
-## Current Version
+## Current State
 
-v0.1.2-alpha
+Project Milestone: v0.5.0
+Current Phase: G.2.4 – Configuration Workflow
+Current Story: G.2.4.1 – Bootstrap Configuration Workflow
+Tests: 363 passing
+Build Status: Passing
 
 ## Current Phase
 
-Next Major Milestone
-Phase G.1.7
-Profile Listing Commands
+Current Major Milestone
 
-Phase G
-Profile Management
+Phase G.2 – Configuration Commands
+Profile import/export, default profile configuration, and configuration management.
 
 Completed
-✓ G.1.1 Create Profiles Package
-✓ G.1.2 Profile Model
-✓ G.1.3 Repository
-✓ G.1.4 Resume Loading
-✓ G.1.5 Profile Selection
-✓ G.1.6 Profile Creation
+✓ G.2.1 – Configuration Model
+✓ G.2.2 – Configuration Repository
+✓ G.2.3 – Configuration Service
 
 Current
-→ G.1.7 Profile Listing
+→ G.2.4 – Configuration Workflow
 
 ## Completed
 
@@ -45,6 +44,7 @@ Current
 ✓ G.1.4 — Load Resume From Profile
 ✓ G.1.5 — CLI Profile Selection
 ✓ G.1.6 — Profile Creation Commands
+✓ G.1.9 — Profile Editing Commands
 
 ## Distribution Features
 
@@ -59,7 +59,7 @@ Current
 
 Testing
 
-✓ 273 automated tests
+✓ 363 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -70,38 +70,48 @@ https://github.com/jkljabo/ResumeForge
 
 ✓ Main branch clean
 
-Current release tag:
-v0.1.2-alpha
+Current Release
+
+Version: v0.1.2-alpha
+Git Tag: v0.1.2-alpha
+Branch: main
 
 ## Current Work
 
-Planning G.1.7 — Profile Listing Commands
+Implementing Phase G.2 — Configuration Commands
 
-Upcoming
+Completed
+✓ Configuration Model
+✓ JSON Configuration Repository
+✓ Configuration Service
 
-• profile list
-• profile remove
-• profile rename
+Current
+→ Configuration Workflow
+
+Remaining Work
+
+• Default profile configuration
+• Profile import/export
+• Configuration management
 
 ## Next Immediate Task
 
-Implement profile list command
-Display available profiles
-Indicate default profile
-Add CLI tests
+Implement Configuration Workflow
+Integrate ConfigurationService into CLI workflow
+Continue TDD implementation
 
 ## Test Status
 
-273 passing tests
+363 passing tests
+
 0 failures
 
-## Latest Release
-
-v0.1.2-alpha
+Verification Command:
+python -m pytest
 
 ## Next Phase
 
-Phase G — TBD
+G.2.5 — Profile Import / Export
 
 ## Notes
 
@@ -109,7 +119,7 @@ Phase G — TBD
 - Wheel installs successfully
 - CLI validated in clean virtual environment
 
-## Recent Changes
+## Milestone History
 
 ### v0.1.2-alpha
 
@@ -141,7 +151,7 @@ Released
 • Refactored CLI tests
 • Expanded automated test coverage
 
-### G.1.6
+### G.1.6 – Profile Creation
 
 • Added ProfileCreator service
 • Added profile create command
@@ -149,19 +159,37 @@ Released
 • Added profile creation tests
 • Continued separation of CLI responsibilities
 
+### G.1.9 – Profile Editing
+
+• Added ProfileEditor service
+• Added profile edit command
+• Added CLI support for profile editing
+• Added profile editing tests
+• Continued separation of CLI responsibilities
+
+### G.2.3 – Configuration Service
+
+• Added ApplicationConfiguration model
+• Added ConfigurationRepository abstraction
+• Added JsonConfigurationRepository
+• Added ConfigurationService
+• Established immutable configuration updates using dataclasses.replace().
+• Added reset configuration workflow
+• Expanded automated test coverage
+
 ## Build Verification
 
 ✓ python -m pytest
-
-273 passed
+  363 passed
 
 ✓ python -m build --no-isolation
-
-Wheel generated
+  Wheel generated
 
 ✓ pip install resumeforge-0.1.2a0-py3-none-any.whl
+  Installation verified
 
 ✓ resumeforge --help
+  CLI verified
 
 ## Release History
 
@@ -174,59 +202,73 @@ v0.1.1-alpha
 • Distribution support
 
 v0.1.2-alpha
-
 • First public GitHub release
-• Repository cleanup
+• Profile management foundation
 • Documentation improvements
 • Packaging validation
 • Distribution readiness
 
 ## Project Metrics
 
-273 passing tests
+Tests
+363 passing
 
-100% green
+Quality
+100% passing
 
+Runtime
 Python 3.13
 
 Modular CLI architecture
 
 MIT License
 
-Packaging:
-✓ sdist
-✓ wheel
+Packaging
+✓ Source Distribution (sdist)
+✓ Wheel
 
 ## Package Version
 
-0.1.2a0
+0.1.2a0 (PEP 440)
+
+Release Tag
+
+v0.1.2-alpha
 
 ## Architecture Status
 
-✓ Modular pipeline
+✓ CLI workflow
+✓ Command-based CLI
+✓ Composition root
+✓ Configuration abstraction
+✓ Configuration services
 ✓ Dependency Injection
+✓ Domain-driven organization
+✓ Export abstraction
+✓ Immutable configuration model
+✓ Modular pipeline
+✓ Profile abstraction
+✓ Profile management
+✓ Profile management services
+✓ Python packaging
 ✓ Repository Pattern
 ✓ Strategy Pattern
-✓ Composition Root
-✓ CLI Workflow
-✓ Export abstraction
 ✓ Tailoring pipeline
-✓ Profile abstraction
-✓ Domain-driven organization
-✓ Python packaging
-✓ Command-based CLI
-✓ Profile management
-✓ Profile creation service
+✓ Immutable Value Objects
 
 ## Architecture Milestones
 
-✓ CLIWorkflow
+✓ CLIWorkflow orchestration
 ✓ Bootstrap composition root
 ✓ ResumeGenerator pipeline
 ✓ ProfileRepository
 ✓ ProfileCreator
+✓ ProfileEditor
 ✓ Command-based CLI
-✓ 273 automated tests
+✓ ConfigurationRepository
+✓ ConfigurationService
+✓ Immutable configuration workflow
+✓ 363 automated tests
 
 ## Stable Milestones
 
@@ -235,7 +277,8 @@ Packaging:
 ✓ Installable Python package
 ✓ Semantic versioning established
 ✓ Automated test suite
-✓ Multiple resume profile infrastructure
+✓ Multiple Career Profile infrastructure
+✓ Configuration infrastructure
 ✓ Layered CLI architecture
 ✓ Circular dependency eliminated
 ✓ Bootstrap composition root
@@ -243,32 +286,33 @@ Packaging:
 
 ## Upcoming Milestones
 
-Phase G
+Current Development
 
-□ G.1.5 — CLI Profile Selection
-□ G.1.6 — Profile Creation Commands
-□ G.1.7 — Profile Import / Export
-□ G.2 — PDF Export Improvements
-□ G.3 — HTML Export
-□ G.4 — LinkedIn Export
+□ G.2.4 — Configuration Workflow
+□ G.2.5 — Profile Import / Export
+□ H.1 — Word Export
+□ H.2 — PDF Export
+□ H.3 — HTML Export
+□ H.4 — LinkedIn Export
 
 ## Codebase Statistics
 
 Python version: 3.13
 
 Packages:
+• configuration
 • domain
 • export
 • profiles
 • renderers
-• tailoring
-• themes
-• templates
-• services
 • scoring
+• services
+• tailoring
+• templates
+• themes
 
 Tests:
-203 passing
+363 passing
 
 Architecture:
 Repository Pattern
@@ -276,11 +320,12 @@ Dependency Injection
 Strategy Pattern
 Pipeline Architecture
 
-Distribution:
-Wheel
-Source Distribution
-CLI
-GitHub Release
+Distribution
+
+✓ Wheel
+✓ Source Distribution
+✓ Console CLI
+✓ GitHub Release
 
 ## Near-term Roadmap
 
@@ -290,29 +335,25 @@ GitHub Release
 ✓ Phase G.1.4 Profile Loading
 ✓ Phase G.1.5 CLI Selection
 
-Upcoming
+Next Stories
 
-⬜ G.1.6
-- Implement profile create
-- Implement profile list
-- Implement profile delete
-- Introduce ProfileManager service
+✓ G.2.1 Configuration Model
+✓ G.2.2 Configuration Repository
+✓ G.2.3 Configuration Service
+⬜ G.2.4 Configuration Workflow
+⬜ G.2.5 Profile Import / Export
+- Default profile configuration
+- Configuration management
 
-⬜ G.1.7 Import / Export
-⬜ G.2 PDF Export
-⬜ G.3 HTML Export
-⬜ G.4 LinkedIn Export
-⬜ H Plugin Architecture
-⬜ H AI Services
-⬜ PyPI Publication
+⬜ G.3 Export Improvements
+- PDF export
+- HTML export
+- LinkedIn export
 
-## Roadmap
+## Long-term Roadmap
 
-Upcoming
+Future Milestones
 
-G.1.7 Profile Listing
-G.1.8 Profile Removal
-G.2 Configuration Commands
 H.1 Word Export
 H.2 PDF Export
 H.3 Theme Marketplace
@@ -320,7 +361,13 @@ I.1 Plugin System
 I.2 AI Tailoring Improvements
 1.0 Production Release
 
-### Phase G.1.6 – Session 1 Complete
+### Historical Session Notes
+
+Architectural Decision
+
+Introduced ProfileService to separate CLI orchestration from profile management.
+
+Implementation
 
 - Added ProfileService.
 - Implemented profile create.
@@ -330,4 +377,24 @@ I.2 AI Tailoring Improvements
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: (update after next full run)
+  - Overall suite: 363 passed
+
+### Session Summary
+
+Completed
+• G.2.1 Configuration Model
+• G.2.2 Configuration Repository
+• G.2.3 Configuration Service
+
+Test Status
+
+363 passing
+
+## Story Completion Checklist
+
+✓ Tests written
+✓ Tests passing
+✓ Code reviewed
+✓ Documentation updated
+✓ CHECKPOINT updated
+✓ Ready for Commit

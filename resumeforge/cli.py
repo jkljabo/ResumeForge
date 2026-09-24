@@ -73,6 +73,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Resume profile to use",
     )
 
+    generate.add_argument(
+        "--explain",
+        action="store_true",
+        help="Display explainability report after tailoring",
+    )
+    
     #
     # profile
     #

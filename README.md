@@ -1,58 +1,95 @@
 # ResumeForge
 
-> 🚧 ResumeForge is currently in active alpha development. Core functionality is stable and protected by a comprehensive automated test suite while new features are added incrementally.
+> **ResumeForge is a deterministic career document platform that transforms a reusable career profile into tailored, explainable application materials through modular workflows and extensible generators.**
+
+> 🚧 ResumeForge is under active development and is protected by a comprehensive automated test suite. New capabilities are introduced through incremental, test-first development while maintaining a stable architecture.
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-273%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
+[![Tests](https://img.shields.io/badge/tests-363%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)](docs/ROADMAP.md)
 
-ResumeForge is a modular, AI-assisted resume tailoring and generation platform written in Python.
+ResumeForge helps professionals maintain a single reusable career profile and generate tailored application materials for specific opportunities.
 
-It analyzes job descriptions, matches them against reusable resume profiles, tailors resume content for Applicant Tracking Systems (ATS), and generates polished resumes using configurable templates, themes, and export pipelines.
+**Build once. Tailor everywhere.**
 
-## Why ResumeForge?
+By separating career data from presentation, ResumeForge provides a single source of truth for generating consistent, explainable application materials across multiple opportunities.
 
-ResumeForge helps software engineers efficiently tailor resumes for specific job descriptions while maintaining reusable resume profiles, improving ATS alignment, and generating professional output from a single source of truth. Its modular architecture separates resume analysis, tailoring, rendering, and exporting into independent components, making it easy to extend with new templates, exporters, and AI-assisted features.
+Its deterministic matching engine identifies the most relevant skills, experience, certifications, education, and projects for a target position. An explainability engine documents why tailoring decisions were made, providing transparency and confidence in every tailoring decision.
+
+The platform is built around modular workflows and extensible generators, allowing document generation, rendering, exporting, and future AI-assisted capabilities to evolve independently while sharing a common domain model.
+
+## Key Capabilities
+
+ResumeForge is built around a reusable **Career Profile**, the single source of truth for generating tailored career documents. Its modular architecture emphasizes deterministic behavior, transparency, and extensibility.
+
+### 👤 Career Profiles
+
+Maintain a single reusable Career Profile containing your professional experience, skills, education, certifications, and projects. Generate multiple career documents from the same trusted source.
+
+### 🎯 Deterministic Tailoring
+
+Tailor documents for specific opportunities using repeatable matching and prioritization workflows. ResumeForge produces consistent results from the same inputs, making behavior predictable and testable.
+
+### 💡 Explainable Decisions
+
+Every tailoring decision can be explained. ResumeForge records why skills, experience, certifications, and projects were promoted, retained, or deprioritized, providing transparency throughout the tailoring process.
+
+### 📄 Modular Document Generation
+
+Generate tailored career documents through extensible generation workflows that separate matching, tailoring, formatting, rendering, and exporting into independent components.
+
+### 🧩 Extensible Architecture
+
+Protocols, dependency injection, and modular services make it easy to add new document generators, exporters, workflows, or rendering strategies without affecting the core domain model.
+
+### 🧪 Test-First Development
+
+ResumeForge evolves through comprehensive automated testing, ensuring new features are introduced with confidence while preserving deterministic behavior.
 
 ---
 
 ## Core Workflow
 
-ResumeForge processes resumes through a predictable pipeline:
+ResumeForge processes **career documents** through a predictable pipeline:
 
-Job Description
+Career Profile      (Domain)
         │
         ▼
-Keyword Analysis
+Job Description     (Input)
         │
         ▼
-Resume Matching
+Matching            (Analysis)
         │
         ▼
-Tailoring Engine
+Tailoring           (Selection)
         │
         ▼
-Resume Builder
+Explainability      (Reasoning)
         │
         ▼
-Renderer
+Generation          (Construction)
         │
         ▼
-Markdown / DOCX Output
+Export              (Output)
+        │
+        ▼
+Career Document     (Result)
+
+Each stage has a single responsibility, allowing matching, tailoring, explainability, document generation, and exporting to evolve independently while sharing a common domain model.
 
 ---
 
 ## Table of Contents
 
-- [Why ResumeForge?](#why-resumeforge)
-- [Architecture](#high-level-architecture)
+- [Key Capabilities](#key-capabilities)
+- [Core Workflow](#core-workflow)
+- [Technology Stack](technology-stack)
 - [Project Structure](#project-structure)
-- [Design Goals](#design-goals)
 - [Features](#features)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
-- [Command Line](#command-line)
+- [Profile Management](profile-management)
 - [Testing](#testing)
 - [Project Status](#project-status)
 - [Roadmap](#roadmap)
@@ -81,37 +118,41 @@ Markdown / DOCX Output
 ### Documentation
 - Mermaid
 
-### CI/CD (Planned)
+### CI/CD
 - GitHub Actions
 
-### Architecture
+### Architectural Patterns
 - Dependency Injection
-- Repository Pattern (in progress)
-- Command Pattern (in progress)
+- Repository Pattern
+- Command Pattern
 
 ---
 
 ## High-Level Architecture
 
+The following diagram illustrates the conceptual processing pipeline. It intentionally emphasizes the domain workflow rather than implementation classes.
+
 ```mermaid
 flowchart TD
 
-CLI --> CLIWorkflow
-CLIWorkflow --> Bootstrap
-Bootstrap --> ResumeGenerator
+CareerProfile["Career Profile"]
+Job["Job Description"]
 
-ResumeGenerator --> Matcher
-ResumeGenerator --> TailoringEngine
-ResumeGenerator --> TailoredResumeBuilder
-ResumeGenerator --> MarkdownExporter
-ResumeGenerator --> ResumeWriter
+CareerProfile --> Matching
+Job --> Matching
+
+Matching --> Tailoring
+Tailoring --> Explainability
+Explainability --> Generation
+Generation --> Export
+Export --> CareerDocument["Career Document"]
 ```
 
 ---
 
 ## Project Structure
 
-The project structure above is simplified to highlight the major packages. Additional supporting modules, tests, and documentation are omitted for clarity.
+The project structure below is intentionally simplified to highlight the primary packages and architectural boundaries. Supporting modules, tests, and implementation details are omitted for clarity.
 
 ```
 resumeforge/
@@ -134,11 +175,15 @@ resumeforge/
     
 tests/
 docs/
+    ARCHITECTURE.md
+    ROADMAP.md
 ```
 
 ---
 
-## Current Design
+## Architectural Evolution
+
+The architecture continues to evolve through incremental, test-first refactoring toward increasingly modular services while preserving deterministic behavior and backward compatibility.
 
 ```mermaid
 flowchart TD
@@ -167,13 +212,14 @@ end
 
 ResumeForge is built around:
 
+• Reusable Career Profiles
 • Separation of Concerns
-• Single Responsibility Principle
+• Single Responsibility
 • Dependency Injection
-• Test-Driven Development
 • Extensible Architecture
-• Reusable Resume Profiles
+• Test-Driven Development
 • Minimal External Dependencies
+
 
 ---
 
@@ -201,18 +247,45 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 python -m pytest
 python -m build --no-isolation
+resumeforge --help
 ```
+
+Every feature in ResumeForge follows a consistent engineering workflow:
+
+1. Define the story.
+2. Write failing tests.
+3. Implement the minimum code to satisfy the tests.
+4. Refactor while maintaining a passing test suite.
+5. Update project documentation.
+6. Review code and documentation.
+7. Sign off.
+8. Commit.
+
+### Story Completion & Review Process
+
+Every implementation story follows the same review cadence before code is committed.
+
+1. Complete the implementation.
+2. Verify the automated test suite passes.
+3. Update all affected documentation (for example, `README.md` and `CHECKPOINT.md`).
+4. Create a WIP checkpoint archive containing the current project state.
+5. Review the implementation using the WIP checkpoint as the authoritative source.
+6. Address any review feedback.
+7. Perform final signoff.
+8. Commit the completed story.
+
+Using the WIP checkpoint as the review artifact ensures that code, documentation, architecture, and project status remain synchronized before every commit.
 
 ---
 
 ## Features
 
-### Resume Tailoring
+### Document Tailoring
 
 - ATS keyword analysis
-- Resume scoring
+- Match scoring
 - AI-assisted tailoring
-- Tailored resume generation
+- Tailored document generation
 
 ### Output
 
@@ -222,8 +295,11 @@ python -m build --no-isolation
 
 ### Profile Management
 
-- Multiple resume profiles
+- Multiple Career Profiles
 - Profile creation
+- Profile editing
+- Profile listing
+- Profile removal
 - Profile selection
 
 ### Architecture
@@ -231,7 +307,7 @@ python -m build --no-isolation
 - Modular workflow
 - Dependency injection
 - Installable CLI
-- 273+ automated tests
+- 363+ automated tests
 
 ---
 
@@ -285,7 +361,7 @@ python -m pytest
 
 ## Quick Start
 
-The command creates a tailored resume using the specified resume profile and job description.
+The command generates a tailored career document using the specified **Career Profile** and job description.
 
 ```powershell
 python -m pip install -e .
@@ -316,12 +392,12 @@ The legacy build_resume.py script remains available for compatibility with earli
 
 ### Available Commands
 
-| Command        | Description                |
-| -------------- | -------------------------- |
-| generate       | Generate a tailored resume |
-| profile create | Create a profile           |
-| profile list   | List profiles              |
-| profile remove | Delete a profile           |
+| Command        | Description                         |
+| -------------- | ----------------------------------- |
+| generate       | Generate a tailored career document |
+| profile create | Create a profile                    |
+| profile list   | List profiles                       |
+| profile remove | Delete a profile                    |
 
 
 Display available options:
@@ -347,7 +423,7 @@ This remains available for backward compatibility.
 
 ## Profile Management
 
-ResumeForge supports multiple resume profiles, allowing you to maintain separate versions of your resume for different industries, clients, or career paths while keeping a single, reusable source of truth.
+ResumeForge supports multiple Career Profiles, allowing you to maintain separate versions of your resume for different industries, clients, or career paths while keeping a single, reusable source of truth.
 
 Common use cases include:
 
@@ -356,6 +432,8 @@ Common use cases include:
 - Healthcare
 - Consulting
 - General software engineering
+
+A Career Profile represents a reusable professional identity from which multiple tailored documents can be generated.
 
 ### Create a profile
 
@@ -382,7 +460,7 @@ resumeforge profile edit government \
 resumeforge profile remove government
 ```
 
-### Generate a tailored resume
+### Generate a tailored document
 
 ```powershell
 resumeforge generate \
@@ -421,7 +499,7 @@ python -m pytest tests/test_cli.py
 
 Current Quality Metrics
 
-- ✅ 273 automated unit and integration tests
+- ✅ 363 automated unit and integration tests
 - ✅ 100% passing
 - ✅ CLI workflow tests
 - ✅ Profile management tests
@@ -480,6 +558,12 @@ ResumeForge follows semantic versioning while in active development.
 Current release:
 v0.1.2-alpha
 
+Development Branch:
+main
+
+Latest Tag:
+v0.1.2-alpha
+
 Breaking changes may occur until the first stable release.
 
 ---
@@ -494,32 +578,37 @@ ResumeForge follows an incremental, test-first development process. Each complet
 
 ResumeForge currently supports:
 
-- Resume generation from reusable profiles
+Generation
+- Career document generation
 - ATS-aware tailoring
-- Multiple resume profiles
-- Profile creation
-- Profile listing
-- Profile removal
 - Markdown export
 - DOCX export
-- Modular CLI command architecture
-- Test-first architecture with 273 automated tests
+
+Profile Management
+- Create
+- List
+- Remove
+- Multiple Career Profiles
+
+Architecture
+- Modular CLI
+- Test-first architecture
 - Installable command-line interface
 
 ---
 
 ## Project Status
 
-| Item         | Status                             |
-| ------------ | ---------------------------------- |
-| Version      | v0.1.2-alpha                       |
-| Phase        | G.1.9 — Profile Editing (Completed)|
-| Tests        | 273 Passing                        |
-| Test Coverage| 273 automated tests                |
-| Python       | 3.13                               |
-| Architecture | Modular CLI / Workflow / Generator |
-| Packaging    | Complete                           |
-| Profiles     | Create • List • Remove             |
+| Item         | Status                                                     |
+| ------------ | ---------------------------------------------------------- |
+| Version      | v0.1.2-alpha                                               |
+| Phase        | See CHECKPOINT.md for the current active development phase.|
+| Tests        | 363 Passing                                                |
+| Test Coverage| 363 automated tests                                        |
+| Python       | 3.13                                                       |
+| Architecture | Modular CLI / Workflow / Generator                         |
+| Packaging    | Complete                                                   |
+| Profiles     | Create • Edit • List • Remove                              |
 
 ResumeForge is currently in active alpha development. New features are added incrementally while maintaining a fully passing automated test suite.
 
@@ -542,15 +631,15 @@ ResumeForge is currently in active alpha development. New features are added inc
 - ✅ Profile removal
 - ✅ Profile editing
 - ✅ Modern Python packaging
-- ✅ 273+ automated tests
+- ✅ 363+ automated tests
 
-### Current Phase (G.1.9)
+### Active Development
 
-- ✅ Profile editing
+See CHECKPOINT.md for the current implementation status and active stories.
 
-### Planned
+### Future Milestones
 
-- ✅ Profile editing
+See CHECKPOINT.md for upcoming planned work.
 
 ### Long-Term Vision
 
@@ -562,6 +651,8 @@ ResumeForge is currently in active alpha development. New features are added inc
 - ☐ AI-generated summaries
 - ☐ Skill recommendation engine
 
+ResumeForge is being developed incrementally with a strong emphasis on deterministic behavior, testability, and maintainable architecture. Each milestone expands the platform while preserving backward compatibility and code quality.
+
 ---
 
 ## Acknowledgements
@@ -569,6 +660,20 @@ ResumeForge is currently in active alpha development. New features are added inc
 ResumeForge is developed as an open-source learning and productivity project focused on modern Python architecture, clean code principles, and automated testing.
 
 ---
+
+## Engineering Principles
+
+ResumeForge is developed using a disciplined, test-first engineering process.
+
+- Story-driven development
+- Test-driven implementation
+- Small, incremental changes
+- Documentation updated with every completed story
+- Code and documentation reviewed before every commit
+- Passing automated test suite required for signoff
+- Architecture evolves through small, verified milestones
+
+The goal is for every commit to represent a stable, documented, and production-quality checkpoint.
 
 ## Contributing
 

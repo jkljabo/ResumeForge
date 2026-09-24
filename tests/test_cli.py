@@ -207,6 +207,37 @@ def test_profile_list_command():
     assert args.command == "profile"
     assert args.profile_command == "list"
 
+
+def test_generate_parser_accepts_explain_flag():
+
+    parser = build_parser()
+
+    args = parser.parse_args(
+        [
+            "generate",
+            "--job",
+            "job.txt",
+            "--explain",
+        ]
+    )
+
+    assert args.explain is True
+
+def test_generate_parser_defaults_explain_to_false():
+
+    parser = build_parser()
+
+    args = parser.parse_args(
+        [
+            "generate",
+            "--job",
+            "job.txt",
+        ]
+    )
+
+    assert args.explain is False
+
+
 # ----------------------------------
 # Generator construction tests
 # ----------------------------------
