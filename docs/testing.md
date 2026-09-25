@@ -13,7 +13,7 @@ python -m pytest
 
 ## Current Coverage
 
-363 tests
+367 tests
 
 ## Expected Result
 

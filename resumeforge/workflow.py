@@ -53,6 +53,9 @@ class CLIWorkflow:
         if args.command == "profile":
             return self.run_profile(args)
 
+        if args.command == "config":
+            return self.run_config(args)
+        
         return self.run_generate(args)
 
 
@@ -160,6 +163,13 @@ class CLIWorkflow:
         print(f"Profile '{args.name}' updated.")
 
         return 0
+
+    def run_config(self, args: Namespace) -> int:
+        if args.config_command == "show":
+            return 0
+
+        print(f"Unknown config command: {args.config_command}")
+        return 1
 
 
 def resolve_profile(

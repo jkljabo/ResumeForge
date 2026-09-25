@@ -3,9 +3,9 @@
 ## Current State
 
 Project Milestone: v0.5.0
-Current Phase: G.2.4 – Configuration Workflow
-Current Story: G.2.4.1 – Bootstrap Configuration Workflow
-Tests: 363 passing
+Current Phase: G.2 – Configuration Commands
+Current Story: G.2.5 – Display Configuration
+Tests: 367 passing
 Build Status: Passing
 
 ## Current Phase
@@ -19,9 +19,11 @@ Completed
 ✓ G.2.1 – Configuration Model
 ✓ G.2.2 – Configuration Repository
 ✓ G.2.3 – Configuration Service
+✓ G.2.4 – Configuration Workflow
+✓ G.2.5.2 – Workflow Routing
 
 Current
-→ G.2.4 – Configuration Workflow
+→ G.2.5 – Display Configuration
 
 ## Completed
 
@@ -59,7 +61,7 @@ Current
 
 Testing
 
-✓ 363 automated tests
+✓ 367 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -84,9 +86,10 @@ Completed
 ✓ Configuration Model
 ✓ JSON Configuration Repository
 ✓ Configuration Service
+✓ Configuration Workflow
 
 Current
-→ Configuration Workflow
+→ Display Configuration
 
 Remaining Work
 
@@ -96,13 +99,13 @@ Remaining Work
 
 ## Next Immediate Task
 
-Implement Configuration Workflow
-Integrate ConfigurationService into CLI workflow
+Implement Display Configuration
+Add configuration display command to the CLI
 Continue TDD implementation
 
 ## Test Status
 
-363 passing tests
+367 passing tests
 
 0 failures
 
@@ -111,7 +114,7 @@ python -m pytest
 
 ## Next Phase
 
-G.2.5 — Profile Import / Export
+G.2.6 — TBA
 
 ## Notes
 
@@ -177,10 +180,17 @@ Released
 • Added reset configuration workflow
 • Expanded automated test coverage
 
+### G.2.4 – Configuration Workflow
+
+• Integrated the configuration subsystem into the application workflow.
+• Added configuration workflow orchestration.
+• Expanded automated test coverage.
+• Updated README and CHECKPOINT documentation.
+
 ## Build Verification
 
 ✓ python -m pytest
-  363 passed
+  367 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -211,7 +221,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-363 passing
+367 passing
 
 Quality
 100% passing
@@ -268,7 +278,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 363 automated tests
+✓ 367 automated tests
 
 ## Stable Milestones
 
@@ -312,7 +322,7 @@ Packages:
 • themes
 
 Tests:
-363 passing
+367 passing
 
 Architecture:
 Repository Pattern
@@ -377,7 +387,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 363 passed
+  - Overall suite: 367 passed
 
 ### Session Summary
 
@@ -388,7 +398,7 @@ Completed
 
 Test Status
 
-363 passing
+367 passing
 
 ## Story Completion Checklist
 

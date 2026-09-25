@@ -134,6 +134,23 @@ def build_parser() -> argparse.ArgumentParser:
         help="Profile name",
     )
 
+    #
+    # config
+    #
+    config_parser = subparsers.add_parser(
+        "config",
+        help="Manage ResumeForge configuration.",
+    )
+
+    config_subparsers = config_parser.add_subparsers(
+        dest="config_command",
+    )
+
+    config_subparsers.add_parser(
+        "show",
+        help="Display the current configuration.",
+    )
+
     return parser
 
 

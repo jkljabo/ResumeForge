@@ -8,4 +8,4 @@ Eliminated circular imports
 
 Implemented profile creation
 
-363 tests passing
+367 tests passing

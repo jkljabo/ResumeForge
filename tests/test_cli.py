@@ -1,6 +1,8 @@
 from argparse import Namespace
 from pathlib import Path
 from unicodedata import name
+from argparse import Namespace
+from unittest.mock import patch
 
 import pytest
 
@@ -223,6 +225,7 @@ def test_generate_parser_accepts_explain_flag():
 
     assert args.explain is True
 
+
 def test_generate_parser_defaults_explain_to_false():
 
     parser = build_parser()
@@ -236,6 +239,20 @@ def test_generate_parser_defaults_explain_to_false():
     )
 
     assert args.explain is False
+
+
+def test_parser_parses_config_show_command():
+    parser = build_parser()
+
+    args = parser.parse_args(
+        [
+            "config",
+            "show",
+        ]
+    )
+
+    assert args.command == "config"
+    assert args.config_command == "show"
 
 
 # ----------------------------------
@@ -820,3 +837,55 @@ def test_profile_help_contains_edit(capsys):
     out = capsys.readouterr().out
 
     assert "edit" in out
+
+
+def test_run_routes_config_command():
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="config",
+        config_command="show",
+    )
+
+    with patch.object(
+        workflow,
+        "run_config",
+        return_value=0,
+    ) as run_config:
+        result = workflow.run(args)
+
+    run_config.assert_called_once_with(args)
+    assert result == 0
+
+
+def test_run_config_show_returns_success():
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="config",
+        config_command="show",
+    )
+
+    result = workflow.run_config(args)
+
+    assert result == 0
+
+
+def test_run_config_unknown_command_returns_failure(
+    capsys,
+):
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="config",
+        config_command="unknown",
+    )
+
+    result = workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert result == 1
+    assert "Unknown config command" in captured.out
+
+
