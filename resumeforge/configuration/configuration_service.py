@@ -48,6 +48,8 @@ class ConfigurationService:
     ) -> ApplicationConfiguration:
         configuration = self.get_configuration()
 
+        self._validate_updates(updates)
+
         updated = replace(
             configuration,
             **updates,
@@ -57,3 +59,37 @@ class ConfigurationService:
 
         return updated
 
+    def _validate_updates(
+        self,
+        updates: dict[str, object],
+    ) -> None:
+        if "default_theme" in updates:
+            valid_themes = {
+                "executive",
+                "modern",
+            }
+
+            if updates["default_theme"] not in valid_themes:
+                raise ValueError(
+                    f"Invalid theme: {updates['default_theme']}"
+                )
+
+        if "page_size" in updates:
+            valid_page_sizes = {
+                "LETTER",
+                "LEGAL",
+                "A4",
+            }
+
+            if updates["page_size"] not in valid_page_sizes:
+                raise ValueError(
+                    f"Invalid page size: {updates['page_size']}"
+                )
+
+        if "default_profile" in updates:
+            profile = str(updates["default_profile"]).strip()
+
+            if not profile:
+                raise ValueError(
+                    "Default profile cannot be empty."
+                )

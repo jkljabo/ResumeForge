@@ -3,16 +3,16 @@
 ## Current State
 
 Project Milestone: v0.5.0
-Current Phase: G.2 – Configuration Commands
-Current Story: G.2.5.5 – <phase name>
-Tests: 374 passing
+Current Phase: G.2 – Configuration Management
+Current Story: G.2.5.6 – <new name>
+Tests: 379 passing
 Build Status: Passing
 
 ## Current Phase
 
 Current Major Milestone
 
-Phase G.2 – Configuration Commands
+Phase G.2 – Configuration Management
 Profile import/export, default profile configuration, and configuration management.
 
 Completed
@@ -23,24 +23,25 @@ Completed
 ✓ G.2.5.2 – Workflow Routing
 ✓ G.2.5.3 – Display Configuration
 ✓ G.2.5.4 – Update Configuration
+✓ G.2.5.5 – Validate Configuration
 
 Current
-→ G.2.5.5 – <phase name>
+→ G.2.5.6 – <new name>
 
 Story Objective
 
-Implement CLI support for updating application configuration
-through ConfigurationService and persist changes to
-configuration.json.
+Validate configuration values before they are persisted to
+configuration.json, ensuring invalid configuration changes
+are rejected while preserving existing settings.
 
 Acceptance Criteria
 
-□ CLI supports updating configuration values.
-□ Changes are validated before persistence.
-□ Updates flow through ConfigurationService.
-□ configuration.json is updated.
+□ Configuration values are validated before persistence.
+□ Invalid values are rejected with clear error messages.
+□ Existing configuration remains unchanged after validation failures.
+□ Validation occurs through ConfigurationService.
 □ Existing tests remain green.
-□ New tests cover successful and invalid updates.
+□ New tests cover valid and invalid configuration values.
 
 ## Completed
 
@@ -78,7 +79,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 374 automated tests
+✓ 379 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -106,25 +107,26 @@ Completed
 ✓ Configuration Workflow
 ✓ Display Configuration
 ✓ Update Configuration
+✓ Validate Configuration
 
 Current
-→ <phase name>
+→ <new name>
 
 Remaining Work
 
-• Default profile configuration
+• Configuration validation
+• Default profile enhancements
 • Profile import/export
-• Configuration management
 
 ## Next Immediate Task
 
-Implement Display Configuration output
-Call ConfigurationService.get_configuration() from the config workflow
-Add tests for displaying the current configuration
+Implement configuration validation.
+Reject invalid configuration values before persistence.
+Add automated tests for valid and invalid updates.
 
 ## Test Status
 
-374 passing tests
+379 passing tests
 
 0 failures
 
@@ -209,7 +211,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  374 passed
+  379 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -240,7 +242,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-374 passing
+379 passing
 
 Quality
 100% passing
@@ -297,7 +299,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 374 automated tests
+✓ 379 automated tests
 
 ## Stable Milestones
 
@@ -341,7 +343,7 @@ Packages:
 • themes
 
 Tests:
-374 passing
+379 passing
 
 Architecture:
 Repository Pattern
@@ -406,7 +408,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 374 passed
+  - Overall suite: 379 passed
 
 ### Session Summary
 
@@ -417,7 +419,7 @@ Completed
 
 Test Status
 
-374 passing
+379 passing
 
 ## Story Completion Checklist
 

@@ -1,5 +1,7 @@
 from unittest.mock import Mock
 
+import pytest
+
 from resumeforge.configuration.configuration import (
     ApplicationConfiguration,
 )
@@ -173,6 +175,94 @@ def test_update_configuration_persists_updated_configuration():
     updated = service.update_configuration(
         default_profile="developer",
     )
+
+    repository.save.assert_called_once_with(updated)
+
+
+def test_update_configuration_rejects_invalid_theme():
+    repository = Mock(spec=ConfigurationRepository)
+
+    repository.load.return_value = (
+        ApplicationConfiguration.default()
+    )
+
+    service = ConfigurationService(repository)
+
+    with pytest.raises(ValueError):
+        service.update_configuration(
+            default_theme="banana",
+        )
+
+    repository.save.assert_not_called()
+
+
+def test_update_configuration_rejects_invalid_page_size():
+    repository = Mock(spec=ConfigurationRepository)
+
+    repository.load.return_value = (
+        ApplicationConfiguration.default()
+    )
+
+    service = ConfigurationService(repository)
+
+    with pytest.raises(ValueError):
+        service.update_configuration(
+            page_size="A0",
+        )
+
+    repository.save.assert_not_called()
+
+
+def test_update_configuration_rejects_empty_default_profile():
+    repository = Mock(spec=ConfigurationRepository)
+
+    repository.load.return_value = (
+        ApplicationConfiguration.default()
+    )
+
+    service = ConfigurationService(repository)
+
+    with pytest.raises(ValueError):
+        service.update_configuration(
+            default_profile="",
+        )
+
+    repository.save.assert_not_called()
+
+
+def test_update_configuration_does_not_persist_invalid_changes():
+    repository = Mock(spec=ConfigurationRepository)
+
+    original = ApplicationConfiguration.default()
+
+    repository.load.return_value = original
+
+    service = ConfigurationService(repository)
+
+    with pytest.raises(ValueError):
+        service.update_configuration(
+            default_theme="banana",
+        )
+
+    repository.save.assert_not_called()
+
+    assert repository.load.return_value is original
+
+
+def test_update_configuration_accepts_valid_theme():
+    repository = Mock(spec=ConfigurationRepository)
+
+    repository.load.return_value = (
+        ApplicationConfiguration.default()
+    )
+
+    service = ConfigurationService(repository)
+
+    updated = service.update_configuration(
+        default_theme="modern",
+    )
+
+    assert updated.default_theme == "modern"
 
     repository.save.assert_called_once_with(updated)
 
