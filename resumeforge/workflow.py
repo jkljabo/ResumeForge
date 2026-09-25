@@ -197,11 +197,28 @@ class CLIWorkflow:
             print(f"Font Name               : {configuration.font_name}")
 
             return 0
+        
+        elif args.config_command == "set":
+            try:
+                self.configuration_service.update_configuration(
+                    **{
+                        args.key.replace("-", "_"): args.value,
+                    }
+                )
 
+                print("Configuration updated.")
+
+                return 0
+
+            except ValueError as ex:
+                print(ex)
+
+                return 1
+        
         print(
             f"Unknown config command: {args.config_command}"
         )
-
+        
         return 1
 
 

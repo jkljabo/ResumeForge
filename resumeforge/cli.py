@@ -151,6 +151,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Display the current configuration.",
     )
 
+    config_set_parser = config_subparsers.add_parser("set")
+
+    config_set_parser.add_argument("key")
+
+    config_set_parser.add_argument("value")
+
     return parser
 
 

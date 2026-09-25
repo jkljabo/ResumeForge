@@ -44,13 +44,13 @@ class ConfigurationService:
 
     def update_configuration(
         self,
-        **changes,
+        **updates,
     ) -> ApplicationConfiguration:
-        configuration = self._repository.load()
+        configuration = self.get_configuration()
 
         updated = replace(
             configuration,
-            **changes,
+            **updates,
         )
 
         self._repository.save(updated)

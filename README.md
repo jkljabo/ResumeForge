@@ -5,7 +5,7 @@
 > 🚧 ResumeForge is under active development and is protected by a comprehensive automated test suite. New capabilities are introduced through incremental, test-first development while maintaining a stable architecture.
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-369%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
+[![Tests](https://img.shields.io/badge/tests-374%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)](docs/ROADMAP.md)
 
@@ -307,7 +307,7 @@ Using the WIP checkpoint as the review artifact ensures that code, documentation
 - Modular workflow
 - Dependency injection
 - Installable CLI
-- 369+ automated tests
+- 374+ automated tests
 
 ---
 
@@ -521,7 +521,7 @@ python -m pytest tests/test_cli.py
 
 Current Quality Metrics
 
-- ✅ 369 automated unit and integration tests
+- ✅ 374 automated unit and integration tests
 - ✅ 100% passing
 - ✅ CLI workflow tests
 - ✅ Profile management tests
@@ -625,8 +625,8 @@ Architecture
 | ------------ | ---------------------------------------------------------- |
 | Version      | v0.1.2-alpha                                               |
 | Phase        | See CHECKPOINT.md for the current active development phase.|
-| Tests        | 369 Passing                                                |
-| Test Coverage| 369 automated tests                                        |
+| Tests        | 374 Passing                                                |
+| Test Coverage| 374 automated tests                                        |
 | Python       | 3.13                                                       |
 | Architecture | Modular CLI / Workflow / Generator                         |
 | Packaging    | Complete                                                   |
@@ -653,7 +653,7 @@ ResumeForge is currently in active alpha development. New features are added inc
 - ✅ Profile removal
 - ✅ Profile editing
 - ✅ Modern Python packaging
-- ✅ 369+ automated tests
+- ✅ 374+ automated tests
 
 ### Active Development
 

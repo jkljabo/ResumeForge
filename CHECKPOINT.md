@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Commands
-Current Story: G.2.5.4 – <Next Story>
-Tests: 369 passing
+Current Story: G.2.5.5 – <phase name>
+Tests: 374 passing
 Build Status: Passing
 
 ## Current Phase
@@ -22,9 +22,25 @@ Completed
 ✓ G.2.4 – Configuration Workflow
 ✓ G.2.5.2 – Workflow Routing
 ✓ G.2.5.3 – Display Configuration
+✓ G.2.5.4 – Update Configuration
 
 Current
-→ G.2.5.3 – Display Configuration
+→ G.2.5.5 – <phase name>
+
+Story Objective
+
+Implement CLI support for updating application configuration
+through ConfigurationService and persist changes to
+configuration.json.
+
+Acceptance Criteria
+
+□ CLI supports updating configuration values.
+□ Changes are validated before persistence.
+□ Updates flow through ConfigurationService.
+□ configuration.json is updated.
+□ Existing tests remain green.
+□ New tests cover successful and invalid updates.
 
 ## Completed
 
@@ -62,7 +78,7 @@ Current
 
 Testing
 
-✓ 369 automated tests
+✓ 374 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -88,9 +104,11 @@ Completed
 ✓ JSON Configuration Repository
 ✓ Configuration Service
 ✓ Configuration Workflow
+✓ Display Configuration
+✓ Update Configuration
 
 Current
-→ Display Configuration
+→ <phase name>
 
 Remaining Work
 
@@ -106,7 +124,7 @@ Add tests for displaying the current configuration
 
 ## Test Status
 
-369 passing tests
+374 passing tests
 
 0 failures
 
@@ -191,7 +209,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  369 passed
+  374 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -222,7 +240,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-369 passing
+374 passing
 
 Quality
 100% passing
@@ -279,7 +297,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 369 automated tests
+✓ 374 automated tests
 
 ## Stable Milestones
 
@@ -323,7 +341,7 @@ Packages:
 • themes
 
 Tests:
-369 passing
+374 passing
 
 Architecture:
 Repository Pattern
@@ -388,7 +406,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 369 passed
+  - Overall suite: 374 passed
 
 ### Session Summary
 
@@ -399,7 +417,7 @@ Completed
 
 Test Status
 
-369 passing
+374 passing
 
 ## Story Completion Checklist
 

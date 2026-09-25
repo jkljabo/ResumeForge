@@ -957,6 +957,106 @@ def test_run_config_unknown_command_returns_failure(capsys):
     configuration_service.get_configuration.assert_not_called()
 
 
+def test_parser_parses_config_set_command():
+    parser = build_parser()
 
+    args = parser.parse_args(
+        [
+            "config",
+            "set",
+            "default-profile",
+            "developer",
+        ]
+    )
+
+    assert args.command == "config"
+    assert args.config_command == "set"
+    assert args.key == "default-profile"
+    assert args.value == "developer"
+
+
+def test_run_routes_config_set():
+    workflow = CLIWorkflow()
+
+    workflow.run_config = Mock(return_value=0)
+
+    parser = build_parser()
+
+    args = parser.parse_args(
+        [
+            "config",
+            "set",
+            "default-profile",
+            "developer",
+        ]
+    )
+
+    result = workflow.run(args)
+
+    workflow.run_config.assert_called_once()
+    assert result == 0
+
+
+def test_run_config_set_returns_success():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="set",
+        key="default-profile",
+        value="developer",
+    )
+
+    result = workflow.run_config(args)
+
+    assert result == 0
+
+
+def test_run_config_set_updates_configuration():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="set",
+        key="default-profile",
+        value="developer",
+    )
+
+    workflow.run_config(args)
+
+    configuration_service.update_configuration.assert_called_once_with(
+        default_profile="developer",
+    )
+
+
+def test_run_config_set_invalid_key():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    configuration_service.update_configuration.side_effect = ValueError(
+        "Unknown configuration key."
+    )
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="set",
+        key="bad-key",
+        value="value",
+    )
+
+    result = workflow.run_config(args)
+
+    assert result == 1
 
 
