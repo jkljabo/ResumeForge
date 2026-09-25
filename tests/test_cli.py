@@ -1060,3 +1060,45 @@ def test_run_config_set_invalid_key():
     assert result == 1
 
 
+def test_run_config_reset_routes_to_configuration_service():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="reset",
+    )
+
+    result = workflow.run_config(args)
+
+    configuration_service.reset_configuration.assert_called_once()
+
+    assert result == 0
+
+
+def test_run_config_reset_displays_confirmation(capsys):
+    configuration_service = Mock(spec=ConfigurationService)
+
+    configuration_service.reset_configuration.return_value = (
+        ApplicationConfiguration.default()
+    )
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="reset",
+    )
+
+    workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "Configuration reset." in captured.out
+
+

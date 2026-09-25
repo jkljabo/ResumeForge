@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.6 – <new name>
-Tests: 379 passing
+Current Story: G.2.5.6 – Configuration Reset
+Tests: 383 passing
 Build Status: Passing
 
 ## Current Phase
@@ -24,24 +24,25 @@ Completed
 ✓ G.2.5.3 – Display Configuration
 ✓ G.2.5.4 – Update Configuration
 ✓ G.2.5.5 – Validate Configuration
+✓ G.2.5.6 – Configuration Reset
 
 Current
-→ G.2.5.6 – <new name>
+→ G.2.5.7 – <new name>
 
 Story Objective
 
-Validate configuration values before they are persisted to
-configuration.json, ensuring invalid configuration changes
-are rejected while preserving existing settings.
+Implement CLI support for resetting ResumeForge
+configuration to the default values and persist the
+default configuration to configuration.json.
 
 Acceptance Criteria
 
-□ Configuration values are validated before persistence.
-□ Invalid values are rejected with clear error messages.
-□ Existing configuration remains unchanged after validation failures.
-□ Validation occurs through ConfigurationService.
+□ CLI supports config reset.
+□ Default configuration is restored.
+□ configuration.json is updated with default values.
+□ Reset flows through ConfigurationService.
 □ Existing tests remain green.
-□ New tests cover valid and invalid configuration values.
+□ New tests cover successful configuration reset.
 
 ## Completed
 
@@ -79,7 +80,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 379 automated tests
+✓ 383 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -108,25 +109,27 @@ Completed
 ✓ Display Configuration
 ✓ Update Configuration
 ✓ Validate Configuration
+✓ Configuration Reset
 
 Current
 → <new name>
 
 Remaining Work
 
-• Configuration validation
+• Configuration reset
 • Default profile enhancements
 • Profile import/export
 
 ## Next Immediate Task
 
-Implement configuration validation.
-Reject invalid configuration values before persistence.
-Add automated tests for valid and invalid updates.
+Implement configuration reset.
+Restore ApplicationConfiguration.default().
+Persist default configuration through
+ConfigurationService.
 
 ## Test Status
 
-379 passing tests
+383 passing tests
 
 0 failures
 
@@ -211,7 +214,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  379 passed
+  383 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -242,7 +245,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-379 passing
+383 passing
 
 Quality
 100% passing
@@ -299,7 +302,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 379 automated tests
+✓ 383 automated tests
 
 ## Stable Milestones
 
@@ -343,7 +346,7 @@ Packages:
 • themes
 
 Tests:
-379 passing
+383 passing
 
 Architecture:
 Repository Pattern
@@ -408,7 +411,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 379 passed
+  - Overall suite: 383 passed
 
 ### Session Summary
 
@@ -419,7 +422,7 @@ Completed
 
 Test Status
 
-379 passing
+383 passing
 
 ## Story Completion Checklist
 

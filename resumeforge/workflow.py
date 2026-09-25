@@ -214,7 +214,14 @@ class CLIWorkflow:
                 print(ex)
 
                 return 1
-        
+
+        elif args.config_command == "reset":
+            self.configuration_service.reset_configuration()
+
+            print("Configuration reset.")
+
+            return 0
+
         print(
             f"Unknown config command: {args.config_command}"
         )

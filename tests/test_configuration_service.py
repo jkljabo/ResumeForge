@@ -1,3 +1,4 @@
+from pathlib import Path
 from unittest.mock import Mock
 
 import pytest
@@ -265,5 +266,57 @@ def test_update_configuration_accepts_valid_theme():
     assert updated.default_theme == "modern"
 
     repository.save.assert_called_once_with(updated)
+
+
+def test_reset_configuration_returns_default_configuration():
+    repository = Mock(spec=ConfigurationRepository)
+
+    repository.load.return_value = ApplicationConfiguration(
+        default_profile="developer",
+        default_theme="modern",
+        output_directory=Path("custom"),
+        default_output_filename="resume.docx",
+        page_size="A4",
+        font_name="Arial",
+    )
+
+    service = ConfigurationService(repository)
+
+    configuration = service.reset_configuration()
+
+    assert configuration == ApplicationConfiguration.default()
+
+
+def test_reset_configuration_persists_default_configuration():
+    repository = Mock(spec=ConfigurationRepository)
+
+    repository.load.return_value = ApplicationConfiguration.default()
+
+    service = ConfigurationService(repository)
+
+    configuration = service.reset_configuration()
+
+    repository.save.assert_called_once_with(configuration)
+
+
+def test_reset_configuration_returns_new_instance():
+    repository = Mock(spec=ConfigurationRepository)
+
+    original = ApplicationConfiguration(
+        default_profile="developer",
+        default_theme="modern",
+        output_directory=Path("custom"),
+        default_output_filename="resume.docx",
+        page_size="A4",
+        font_name="Arial",
+    )
+
+    repository.load.return_value = original
+
+    service = ConfigurationService(repository)
+
+    reset = service.reset_configuration()
+
+    assert reset is not original
 
 
