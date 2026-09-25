@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Commands
-Current Story: G.2.5 – Display Configuration
-Tests: 367 passing
+Current Story: G.2.5.4 – <Next Story>
+Tests: 369 passing
 Build Status: Passing
 
 ## Current Phase
@@ -21,9 +21,10 @@ Completed
 ✓ G.2.3 – Configuration Service
 ✓ G.2.4 – Configuration Workflow
 ✓ G.2.5.2 – Workflow Routing
+✓ G.2.5.3 – Display Configuration
 
 Current
-→ G.2.5 – Display Configuration
+→ G.2.5.3 – Display Configuration
 
 ## Completed
 
@@ -61,7 +62,7 @@ Current
 
 Testing
 
-✓ 367 automated tests
+✓ 369 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -99,13 +100,13 @@ Remaining Work
 
 ## Next Immediate Task
 
-Implement Display Configuration
-Add configuration display command to the CLI
-Continue TDD implementation
+Implement Display Configuration output
+Call ConfigurationService.get_configuration() from the config workflow
+Add tests for displaying the current configuration
 
 ## Test Status
 
-367 passing tests
+369 passing tests
 
 0 failures
 
@@ -190,7 +191,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  367 passed
+  369 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -221,7 +222,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-367 passing
+369 passing
 
 Quality
 100% passing
@@ -278,7 +279,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 367 automated tests
+✓ 369 automated tests
 
 ## Stable Milestones
 
@@ -322,7 +323,7 @@ Packages:
 • themes
 
 Tests:
-367 passing
+369 passing
 
 Architecture:
 Repository Pattern
@@ -387,7 +388,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 367 passed
+  - Overall suite: 369 passed
 
 ### Session Summary
 
@@ -398,7 +399,7 @@ Completed
 
 Test Status
 
-367 passing
+369 passing
 
 ## Story Completion Checklist
 

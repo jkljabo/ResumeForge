@@ -1,9 +1,13 @@
 
 import argparse
-from pathlib import Path
 from argparse import Namespace
+from pathlib import Path
 
-from resumeforge.bootstrap import create_generator
+from resumeforge.bootstrap import (
+    create_generator,
+    create_configuration_service,
+)
+from resumeforge.configuration.configuration_service import ConfigurationService
 from resumeforge.profiles.profile import Profile
 from resumeforge.profiles.repository import ProfileRepository
 from resumeforge.services.profile_service import (
@@ -16,14 +20,23 @@ from resumeforge.resume.factory import (
 from resumeforge.factory import create_profile_repository, create_profile_service
 from resumeforge.generator_protocol import ResumeGeneratorProtocol
 
+
 class CLIWorkflow:
     def __init__(
         self,
+        configuration_service: ConfigurationService | None = None,
         repository: ProfileRepository | None = None,
         resume_service: ResumeService | None = None,
         generator: ResumeGeneratorProtocol | None = None,
         profile_service: ProfileService | None = None,
-    ):
+    )-> None:
+        if configuration_service is None:
+            configuration_service = (
+                create_configuration_service()
+            )
+
+        self.configuration_service = configuration_service
+
         self.repository = (
             repository
             if repository is not None
@@ -164,11 +177,31 @@ class CLIWorkflow:
 
         return 0
 
+
     def run_config(self, args: Namespace) -> int:
         if args.config_command == "show":
+            configuration = (
+                self.configuration_service.get_configuration()
+            )
+
+            print("ResumeForge Configuration")
+            print("=" * 40)
+            print(f"Default Profile         : {configuration.default_profile}")
+            print(f"Default Theme           : {configuration.default_theme}")
+            print(f"Output Directory        : {configuration.output_directory}")
+            print(
+                f"Default Output Filename : "
+                f"{configuration.default_output_filename}"
+            )
+            print(f"Page Size               : {configuration.page_size}")
+            print(f"Font Name               : {configuration.font_name}")
+
             return 0
 
-        print(f"Unknown config command: {args.config_command}")
+        print(
+            f"Unknown config command: {args.config_command}"
+        )
+
         return 1
 
 

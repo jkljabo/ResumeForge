@@ -2,7 +2,7 @@ from argparse import Namespace
 from pathlib import Path
 from unicodedata import name
 from argparse import Namespace
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import pytest
 
@@ -14,6 +14,8 @@ from resumeforge.cli import (
 )
 
 from resumeforge.bootstrap import create_generator
+from resumeforge.configuration.configuration import ApplicationConfiguration
+from resumeforge.configuration.configuration_service import ConfigurationService
 from resumeforge.generator import ResumeGenerator
 from resumeforge.profiles import Profile, repository
 from resumeforge.tailoring.tailored_resume_builder import (
@@ -887,5 +889,74 @@ def test_run_config_unknown_command_returns_failure(
 
     assert result == 1
     assert "Unknown config command" in captured.out
+
+
+def test_run_config_show_requests_configuration():
+    configuration = ApplicationConfiguration.default()
+
+    configuration_service = Mock(spec=ConfigurationService)
+    configuration_service.get_configuration.return_value = configuration
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="show",
+    )
+
+    workflow.run_config(args)
+
+    configuration_service.get_configuration.assert_called_once_with()
+
+
+def test_run_config_show_displays_configuration(capsys):
+    configuration = ApplicationConfiguration.default()
+
+    configuration_service = Mock(spec=ConfigurationService)
+    configuration_service.get_configuration.return_value = configuration
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="show",
+    )
+
+    result = workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "ResumeForge Configuration" in captured.out
+    assert configuration.default_profile in captured.out
+    assert result == 0
+
+
+def test_run_config_unknown_command_returns_failure(capsys):
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="unknown",
+    )
+
+    result = workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert result == 1
+    assert "Unknown config command" in captured.out
+
+    configuration_service.get_configuration.assert_not_called()
+
+
+
 
 

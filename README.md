@@ -5,7 +5,7 @@
 > 🚧 ResumeForge is under active development and is protected by a comprehensive automated test suite. New capabilities are introduced through incremental, test-first development while maintaining a stable architecture.
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-367%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
+[![Tests](https://img.shields.io/badge/tests-369%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)](docs/ROADMAP.md)
 
@@ -307,7 +307,7 @@ Using the WIP checkpoint as the review artifact ensures that code, documentation
 - Modular workflow
 - Dependency injection
 - Installable CLI
-- 367+ automated tests
+- 369+ automated tests
 
 ---
 
@@ -398,6 +398,7 @@ The legacy build_resume.py script remains available for compatibility with earli
 | profile create | Create a profile                    |
 | profile list   | List profiles                       |
 | profile remove | Delete a profile                    |
+| config show    | Displays configuration              |
 
 
 Display available options:
@@ -481,6 +482,27 @@ resumeforge profile import government.json
 resumeforge profile export government
 ```
 
+### Configuration Commands
+
+Display the current ResumeForge application configuration.
+
+```powershell
+resumeforge config show
+```
+
+Example output:
+
+```text
+ResumeForge Configuration
+-------------------------
+Default Profile         : resume
+Default Theme           : default
+Output Directory        : ...
+Default Output Filename : ...
+Page Size               : ...
+Font Name               : ...
+```
+
 ---
 
 ## Testing
@@ -499,7 +521,7 @@ python -m pytest tests/test_cli.py
 
 Current Quality Metrics
 
-- ✅ 367 automated unit and integration tests
+- ✅ 369 automated unit and integration tests
 - ✅ 100% passing
 - ✅ CLI workflow tests
 - ✅ Profile management tests
@@ -603,8 +625,8 @@ Architecture
 | ------------ | ---------------------------------------------------------- |
 | Version      | v0.1.2-alpha                                               |
 | Phase        | See CHECKPOINT.md for the current active development phase.|
-| Tests        | 367 Passing                                                |
-| Test Coverage| 367 automated tests                                        |
+| Tests        | 369 Passing                                                |
+| Test Coverage| 369 automated tests                                        |
 | Python       | 3.13                                                       |
 | Architecture | Modular CLI / Workflow / Generator                         |
 | Packaging    | Complete                                                   |
@@ -631,7 +653,7 @@ ResumeForge is currently in active alpha development. New features are added inc
 - ✅ Profile removal
 - ✅ Profile editing
 - ✅ Modern Python packaging
-- ✅ 367+ automated tests
+- ✅ 369+ automated tests
 
 ### Active Development
 
