@@ -197,7 +197,36 @@ class CLIWorkflow:
             print(f"Font Name               : {configuration.font_name}")
 
             return 0
-        
+
+        elif args.config_command == "list":
+            configuration = (
+                self.configuration_service.get_configuration()
+            )
+
+            print("ResumeForge Configuration")
+            print("-------------------------")
+            print(
+                f"default-profile      {configuration.default_profile}"
+            )
+            print(
+                f"default-theme        {configuration.default_theme}"
+            )
+            print(
+                f"output-directory     {configuration.output_directory}"
+            )
+            print(
+                f"default-output-file  "
+                f"{configuration.default_output_filename}"
+            )
+            print(
+                f"page-size           {configuration.page_size}"
+            )
+            print(
+                f"font-name           {configuration.font_name}"
+            )
+
+            return 0
+
         elif args.config_command == "set":
             try:
                 self.configuration_service.update_configuration(

@@ -1166,3 +1166,92 @@ def test_run_config_help_displays_supported_values(capsys):
     assert "A4" in captured.out
 
 
+def test_run_config_list_returns_success():
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="config",
+        config_command="list",
+    )
+
+    result = workflow.run_config(args)
+
+    assert result == 0
+
+
+def test_run_config_list_requests_configuration():
+    configuration = ApplicationConfiguration.default()
+
+    configuration_service = Mock(spec=ConfigurationService)
+    configuration_service.get_configuration.return_value = configuration
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="list",
+    )
+
+    workflow.run_config(args)
+
+    configuration_service.get_configuration.assert_called_once()
+
+
+def test_run_config_list_displays_configuration(capsys):
+    configuration = ApplicationConfiguration.default()
+
+    configuration_service = Mock(spec=ConfigurationService)
+    configuration_service.get_configuration.return_value = configuration
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="list",
+    )
+
+    result = workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert result == 0
+    assert "ResumeForge Configuration" in captured.out
+    assert "default-profile" in captured.out
+    assert "resume" in captured.out
+    assert "default-theme" in captured.out
+    assert "executive" in captured.out
+    assert "output-directory" in captured.out
+    assert "output" in captured.out
+    assert "page-size" in captured.out
+    assert "LETTER" in captured.out
+    assert "font-name" in captured.out
+    assert "Calibri" in captured.out
+
+
+def test_run_config_list_displays_output_filename(capsys):
+    configuration = ApplicationConfiguration.default()
+
+    configuration_service = Mock(spec=ConfigurationService)
+    configuration_service.get_configuration.return_value = configuration
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="list",
+    )
+
+    workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "default-output-file" in captured.out
+    assert "Executive_Master_Resume.docx" in captured.out
+
+

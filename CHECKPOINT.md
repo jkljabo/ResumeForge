@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.8 – <new name>
-Tests: 387 passing
+Current Story G.2.5.9 – <new name>
+Tests: 391 passing
 Build Status: Passing
 
 ## Current Phase
@@ -26,26 +26,26 @@ Completed
 ✓ G.2.5.5 – Validate Configuration
 ✓ G.2.5.6 – Configuration Reset
 ✓ Story G.2.5.7 – Configuration Help
+✓ Story G.2.5.8 – Configuration List
 
 Current
-→ Story G.2.5.8 – <new name>
+→ Story G.2.5.9 – <new name>
 
 Story Objective
 
-Implement CLI support for displaying help for the
-configuration subsystem.
-Allow users to discover configurable settings,
-supported values, and configuration commands.
+Implement CLI support for listing the current application configuration in a concise, machine-readable format.
+
+Allow users to quickly inspect all current configuration values without the descriptive text provided by config help.
 
 Acceptance Criteria
 
-□ CLI supports config help.
-□ Displays configurable settings.
-□ Displays valid values where applicable.
-□ Displays brief descriptions.
-□ Returns success.
+□ CLI supports config list.
+□ Displays all configuration keys.
+□ Displays current values for every key.
+□ Uses ConfigurationService.get_configuration().
+□ Returns success (0).
 □ Existing tests remain green.
-□ New tests cover configuration help output.
+□ New CLI tests cover the command.
 
 ## Completed
 
@@ -83,7 +83,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 387 automated tests
+✓ 391 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -114,6 +114,7 @@ Completed
 ✓ Validate Configuration
 ✓ Configuration Reset
 ✓ Configuration Help
+✓ Configuration List
 
 Current
 → <new name>
@@ -134,7 +135,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-387 passing tests
+391 passing tests
 
 0 failures
 
@@ -219,7 +220,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  387 passed
+  391 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -250,7 +251,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-387 passing
+391 passing
 
 Quality
 100% passing
@@ -307,7 +308,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 387 automated tests
+✓ 391 automated tests
 
 ## Stable Milestones
 
@@ -351,7 +352,7 @@ Packages:
 • themes
 
 Tests:
-387 passing
+391 passing
 
 Architecture:
 Repository Pattern
@@ -416,7 +417,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 387 passed
+  - Overall suite: 391 passed
 
 ### Session Summary
 
@@ -427,7 +428,7 @@ Completed
 
 Test Status
 
-387 passing
+391 passing
 
 ## Story Completion Checklist
 
