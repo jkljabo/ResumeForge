@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.6 – Configuration Reset
-Tests: 383 passing
+Current Story: G.2.5.8 – <new name>
+Tests: 387 passing
 Build Status: Passing
 
 ## Current Phase
@@ -25,24 +25,27 @@ Completed
 ✓ G.2.5.4 – Update Configuration
 ✓ G.2.5.5 – Validate Configuration
 ✓ G.2.5.6 – Configuration Reset
+✓ Story G.2.5.7 – Configuration Help
 
 Current
-→ G.2.5.7 – <new name>
+→ Story G.2.5.8 – <new name>
 
 Story Objective
 
-Implement CLI support for resetting ResumeForge
-configuration to the default values and persist the
-default configuration to configuration.json.
+Implement CLI support for displaying help for the
+configuration subsystem.
+Allow users to discover configurable settings,
+supported values, and configuration commands.
 
 Acceptance Criteria
 
-□ CLI supports config reset.
-□ Default configuration is restored.
-□ configuration.json is updated with default values.
-□ Reset flows through ConfigurationService.
+□ CLI supports config help.
+□ Displays configurable settings.
+□ Displays valid values where applicable.
+□ Displays brief descriptions.
+□ Returns success.
 □ Existing tests remain green.
-□ New tests cover successful configuration reset.
+□ New tests cover configuration help output.
 
 ## Completed
 
@@ -80,7 +83,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 383 automated tests
+✓ 387 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -110,26 +113,28 @@ Completed
 ✓ Update Configuration
 ✓ Validate Configuration
 ✓ Configuration Reset
+✓ Configuration Help
 
 Current
 → <new name>
 
 Remaining Work
 
-• Configuration reset
+• Configuration help
 • Default profile enhancements
 • Profile import/export
 
 ## Next Immediate Task
 
-Implement configuration reset.
-Restore ApplicationConfiguration.default().
-Persist default configuration through
-ConfigurationService.
+Implement config help.
+Display supported configuration keys,
+valid values, and descriptions.
+Route through CLIWorkflow.
+Add automated CLI tests.
 
 ## Test Status
 
-383 passing tests
+387 passing tests
 
 0 failures
 
@@ -214,7 +219,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  383 passed
+  387 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -245,7 +250,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-383 passing
+387 passing
 
 Quality
 100% passing
@@ -302,7 +307,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 383 automated tests
+✓ 387 automated tests
 
 ## Stable Milestones
 
@@ -346,7 +351,7 @@ Packages:
 • themes
 
 Tests:
-383 passing
+387 passing
 
 Architecture:
 Repository Pattern
@@ -411,7 +416,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 383 passed
+  - Overall suite: 387 passed
 
 ### Session Summary
 
@@ -422,7 +427,7 @@ Completed
 
 Test Status
 
-383 passing
+387 passing
 
 ## Story Completion Checklist
 

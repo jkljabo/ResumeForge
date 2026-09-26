@@ -222,6 +222,27 @@ class CLIWorkflow:
 
             return 0
 
+        elif args.config_command == "help":
+            print("ResumeForge Configuration Help")
+            print("------------------------------")
+            print()
+            print("default-profile")
+            print("    Default profile used for resume generation.")
+            print()
+            print("default-theme")
+            print("    executive")
+            print("    modern")
+            print()
+            print("page-size")
+            print("    LETTER")
+            print("    A4")
+            print()
+            print("font-name")
+            print("    Font used when rendering documents.")
+            print()
+
+            return 0
+
         print(
             f"Unknown config command: {args.config_command}"
         )

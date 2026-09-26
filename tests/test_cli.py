@@ -1102,3 +1102,67 @@ def test_run_config_reset_displays_confirmation(capsys):
     assert "Configuration reset." in captured.out
 
 
+def test_run_config_help_returns_success():
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="config",
+        config_command="help",
+    )
+
+    result = workflow.run_config(args)
+
+    assert result == 0
+
+
+def test_run_config_help_displays_heading(capsys):
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="config",
+        config_command="help",
+    )
+
+    workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "ResumeForge Configuration Help" in captured.out
+
+
+def test_run_config_help_displays_configuration_keys(capsys):
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="config",
+        config_command="help",
+    )
+
+    workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "default-profile" in captured.out
+    assert "default-theme" in captured.out
+    assert "page-size" in captured.out
+    assert "font-name" in captured.out
+
+
+def test_run_config_help_displays_supported_values(capsys):
+    workflow = CLIWorkflow()
+
+    args = Namespace(
+        command="config",
+        config_command="help",
+    )
+
+    workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "executive" in captured.out
+    assert "modern" in captured.out
+    assert "LETTER" in captured.out
+    assert "A4" in captured.out
+
+
