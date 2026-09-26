@@ -157,6 +157,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     config_set_parser.add_argument("value")
 
+    default_profile_parser = config_subparsers.add_parser(
+        "default-profile",
+    )
+
+    default_profile_parser.add_argument(
+        "profile",
+    )
+
     return parser
 
 

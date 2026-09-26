@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.9 – <new name>
-Tests: 391 passing
+Current Story G.2.5.9 – Default Profile Enhancements
+Tests: 395 passing
 Build Status: Passing
 
 ## Current Phase
@@ -29,23 +29,24 @@ Completed
 ✓ Story G.2.5.8 – Configuration List
 
 Current
-→ Story G.2.5.9 – <new name>
+→ Story G.2.5.9 – Default Profile Enhancements
 
 Story Objective
 
-Implement CLI support for listing the current application configuration in a concise, machine-readable format.
+Implement enhancements for managing the application's default profile.
 
-Allow users to quickly inspect all current configuration values without the descriptive text provided by config help.
+Provide a focused CLI workflow for inspecting and updating the default profile while continuing to use the existing configuration infrastructure.
 
 Acceptance Criteria
 
-□ CLI supports config list.
-□ Displays all configuration keys.
-□ Displays current values for every key.
-□ Uses ConfigurationService.get_configuration().
+□ CLI supports default-profile commands.
+□ Displays the current default profile.
+□ Allows updating the default profile.
+□ Uses ConfigurationService.
+□ Validation is enforced.
 □ Returns success (0).
 □ Existing tests remain green.
-□ New CLI tests cover the command.
+□ New CLI tests cover the feature.
 
 ## Completed
 
@@ -83,7 +84,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 391 automated tests
+✓ 395 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -117,7 +118,7 @@ Completed
 ✓ Configuration List
 
 Current
-→ <new name>
+→ Default Profile Enhancements
 
 Remaining Work
 
@@ -135,7 +136,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-391 passing tests
+395 passing tests
 
 0 failures
 
@@ -220,7 +221,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  391 passed
+  395 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -251,7 +252,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-391 passing
+395 passing
 
 Quality
 100% passing
@@ -308,7 +309,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 391 automated tests
+✓ 395 automated tests
 
 ## Stable Milestones
 
@@ -352,7 +353,7 @@ Packages:
 • themes
 
 Tests:
-391 passing
+395 passing
 
 Architecture:
 Repository Pattern
@@ -417,7 +418,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 391 passed
+  - Overall suite: 395 passed
 
 ### Session Summary
 
@@ -428,7 +429,7 @@ Completed
 
 Test Status
 
-391 passing
+395 passing
 
 ## Story Completion Checklist
 

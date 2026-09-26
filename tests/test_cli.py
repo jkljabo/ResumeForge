@@ -1255,3 +1255,82 @@ def test_run_config_list_displays_output_filename(capsys):
     assert "Executive_Master_Resume.docx" in captured.out
 
 
+def test_run_config_default_profile_returns_success():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="default-profile",
+        profile="developer",
+    )
+
+    result = workflow.run_config(args)
+
+    assert result == 0
+
+
+def test_run_config_default_profile_updates_configuration():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="default-profile",
+        profile="developer",
+    )
+
+    workflow.run_config(args)
+
+    configuration_service.update_default_profile.assert_called_once_with(
+        "developer",
+    )
+
+
+def test_run_config_default_profile_displays_confirmation(capsys):
+    configuration_service = Mock(spec=ConfigurationService)
+
+    configuration_service.update_default_profile.return_value = (
+        ApplicationConfiguration.default()
+    )
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="default-profile",
+        profile="developer",
+    )
+
+    workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "Default profile updated." in captured.out
+
+
+def test_run_routes_config_default_profile():
+    workflow = CLIWorkflow()
+
+    workflow.run_config = Mock(return_value=0)
+
+    args = Namespace(
+        command="config",
+        config_command="default-profile",
+        profile="developer",
+    )
+
+    result = workflow.run(args)
+
+    workflow.run_config.assert_called_once_with(args)
+    assert result == 0
+
+

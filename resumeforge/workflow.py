@@ -272,6 +272,15 @@ class CLIWorkflow:
 
             return 0
 
+        elif args.config_command == "default-profile":
+            self.configuration_service.update_default_profile(
+                args.profile,
+            )
+
+            print("Default profile updated.")
+
+            return 0
+
         print(
             f"Unknown config command: {args.config_command}"
         )
