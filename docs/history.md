@@ -8,7 +8,7 @@ Eliminated circular imports
 
 Implemented profile creation
 
-395 tests passing
+407 tests passing
 
 2026-09-25
 
@@ -24,7 +24,7 @@ Added config show CLI command
 
 Improved dependency injection for CLIWorkflow
 
-395 tests passing
+407 tests passing
 
 Configuration infrastructure is now complete.
 
@@ -50,7 +50,7 @@ Persisted configuration changes through configuration.json
 
 Expanded CLI and configuration service coverage
 
-395 tests passing
+407 tests passing
 
 2026-09-25
 
@@ -66,7 +66,7 @@ Rejected empty default profiles
 
 Ensured invalid updates are never persisted
 
-395 tests passing
+407 tests passing
 
 2026-09-25
 
@@ -78,7 +78,7 @@ Restored ApplicationConfiguration.default()
 
 Persisted default configuration
 
-395 tests passing
+407 tests passing
 
 2026-09-25
 
@@ -90,7 +90,7 @@ Displays configurable settings
 
 Displays supported values
 
-395 tests passing
+407 tests passing
 
 2026-09-26
 
@@ -100,5 +100,19 @@ Added config list command
 
 Displays current configuration values
 
-395 tests passing
+407 tests passing
+
+2026-09-26
+
+Implemented Configuration Aliases
+
+Added config theme command
+
+Added config output-dir command
+
+Added config output-file command
+
+Introduced convenience aliases for common configuration updates
+
+407 tests passing
 

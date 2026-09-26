@@ -1334,3 +1334,249 @@ def test_run_routes_config_default_profile():
     assert result == 0
 
 
+def test_run_config_theme_returns_success():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="theme",
+        theme="modern",
+    )
+
+    result = workflow.run_config(args)
+
+    assert result == 0
+
+
+def test_run_config_theme_updates_configuration():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="theme",
+        theme="modern",
+    )
+
+    workflow.run_config(args)
+
+    configuration_service.update_configuration.assert_called_once_with(
+        default_theme="modern",
+    )
+
+
+def test_run_config_theme_displays_confirmation(capsys):
+    configuration_service = Mock(spec=ConfigurationService)
+
+    configuration_service.update_configuration.return_value = (
+        ApplicationConfiguration.default()
+    )
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="theme",
+        theme="modern",
+    )
+
+    workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "Theme updated." in captured.out
+
+
+def test_run_routes_config_theme():
+    workflow = CLIWorkflow()
+
+    workflow.run_config = Mock(return_value=0)
+
+    parser = build_parser()
+
+    result = workflow.run(
+        parser.parse_args(
+            [
+                "config",
+                "theme",
+                "modern",
+            ]
+        )
+    )
+
+    assert result == 0
+
+
+def test_run_config_output_dir_returns_success():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="output-dir",
+        directory="output",
+    )
+
+    result = workflow.run_config(args)
+
+    assert result == 0
+
+
+def test_run_config_output_dir_updates_configuration():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="output-dir",
+        directory="output",
+    )
+
+    workflow.run_config(args)
+
+    configuration_service.update_configuration.assert_called_once_with(
+        output_directory=Path("output"),
+    )
+
+
+def test_run_config_output_dir_displays_confirmation(capsys):
+    configuration_service = Mock(spec=ConfigurationService)
+
+    configuration_service.update_configuration.return_value = (
+        ApplicationConfiguration.default()
+    )
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="output-dir",
+        directory="output",
+    )
+
+    workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "Output directory updated." in captured.out
+
+
+def test_run_routes_config_output_dir():
+    workflow = CLIWorkflow()
+
+    workflow.run_config = Mock(return_value=0)
+
+    parser = build_parser()
+
+    result = workflow.run(
+        parser.parse_args(
+            [
+                "config",
+                "output-dir",
+                "output",
+            ]
+        )
+    )
+
+    assert result == 0
+
+
+def test_run_config_output_file_returns_success():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="output-file",
+        filename="Resume.docx",
+    )
+
+    result = workflow.run_config(args)
+
+    assert result == 0
+
+
+def test_run_config_output_file_updates_configuration():
+    configuration_service = Mock(spec=ConfigurationService)
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="output-file",
+        filename="Resume.docx",
+    )
+
+    workflow.run_config(args)
+
+    configuration_service.update_configuration.assert_called_once_with(
+        default_output_filename="Resume.docx",
+    )
+
+
+def test_run_config_output_file_displays_confirmation(capsys):
+    configuration_service = Mock(spec=ConfigurationService)
+
+    configuration_service.update_configuration.return_value = (
+        ApplicationConfiguration.default()
+    )
+
+    workflow = CLIWorkflow(
+        configuration_service=configuration_service,
+    )
+
+    args = Namespace(
+        command="config",
+        config_command="output-file",
+        filename="Resume.docx",
+    )
+
+    workflow.run_config(args)
+
+    captured = capsys.readouterr()
+
+    assert "Output filename updated." in captured.out
+
+
+def test_run_routes_config_output_file():
+    workflow = CLIWorkflow()
+
+    workflow.run_config = Mock(return_value=0)
+
+    parser = build_parser()
+
+    result = workflow.run(
+        parser.parse_args(
+            [
+                "config",
+                "output-file",
+                "Resume.docx",
+            ]
+        )
+    )
+
+    assert result == 0
+
+

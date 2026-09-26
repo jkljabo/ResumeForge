@@ -281,6 +281,33 @@ class CLIWorkflow:
 
             return 0
 
+        elif args.config_command == "theme":
+            self.configuration_service.update_configuration(
+                default_theme=args.theme,
+            )
+
+            print("Theme updated.")
+
+            return 0
+
+        elif args.config_command == "output-dir":
+            self.configuration_service.update_configuration(
+                output_directory=Path(args.directory),
+            )
+
+            print("Output directory updated.")
+
+            return 0
+
+        elif args.config_command == "output-file":
+            self.configuration_service.update_configuration(
+                default_output_filename=args.filename,
+            )
+
+            print("Output filename updated.")
+
+            return 0
+
         print(
             f"Unknown config command: {args.config_command}"
         )

@@ -5,7 +5,7 @@
 > 🚧 ResumeForge is under active development and is protected by a comprehensive automated test suite. New capabilities are introduced through incremental, test-first development while maintaining a stable architecture.
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-395%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
+[![Tests](https://img.shields.io/badge/tests-407%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)](docs/ROADMAP.md)
 
@@ -307,7 +307,7 @@ Using the WIP checkpoint as the review artifact ensures that code, documentation
 - Modular workflow
 - Dependency injection
 - Installable CLI
-- 395+ automated tests
+- 407+ automated tests
 
 ---
 
@@ -491,35 +491,49 @@ Display the current ResumeForge application configuration.
 resumeforge config show
 ```
 
-Example output:
-
-```text
-ResumeForge Configuration
--------------------------
-Default Profile         : resume
-Default Theme           : default
-Output Directory        : ...
-Default Output Filename : ...
-Page Size               : ...
-Font Name               : ...
-```
-
-Set the current ResumeForge application configuration.
+List the current configuration.
 
 ```powershell
-resumeforge config set default-profile developer
+resumeforge config list
 ```
 
-```text
-Configuration updated.
+Display help for configuration commands.
 
-resumeforge config show
-
-ResumeForge Configuration
--------------------------
-Default Profile         : developer
-...
+```powershell
+resumeforge config help
 ```
+
+Reset all configuration values to their defaults.
+
+```powershell
+resumeforge config reset
+```
+
+Update a configuration value.
+
+```powershell
+resumeforge config set <key> <value>
+```
+
+Convenience aliases are also available.
+
+The following convenience aliases are equivalent to using
+`config set` for common configuration values.
+
+```powershell
+resumeforge config default-profile developer
+resumeforge config theme executive
+resumeforge config output-dir output
+resumeforge config output-file Executive_Master_Resume.docx
+```
+
+Example default configuration:
+
+Default Theme           : executive
+Output Directory        : output
+Default Output Filename : Executive_Master_Resume.docx
+Page Size               : LETTER
+Font Name               : Calibri
 
 ---
 
@@ -539,7 +553,7 @@ python -m pytest tests/test_cli.py
 
 Current Quality Metrics
 
-- ✅ 395 automated unit and integration tests
+- ✅ 407 automated unit and integration tests
 - ✅ 100% passing
 - ✅ CLI workflow tests
 - ✅ Profile management tests
@@ -643,8 +657,8 @@ Architecture
 | ------------ | ---------------------------------------------------------- |
 | Version      | v0.1.2-alpha                                               |
 | Phase        | See CHECKPOINT.md for the current active development phase.|
-| Tests        | 395 Passing                                                |
-| Test Coverage| 395 automated tests                                        |
+| Tests        | 407 Passing                                                |
+| Test Coverage| 407 automated tests                                        |
 | Python       | 3.13                                                       |
 | Architecture | Modular CLI / Workflow / Generator                         |
 | Packaging    | Complete                                                   |
@@ -671,7 +685,7 @@ ResumeForge is currently in active alpha development. New features are added inc
 - ✅ Profile removal
 - ✅ Profile editing
 - ✅ Modern Python packaging
-- ✅ 395+ automated tests
+- ✅ 407+ automated tests
 
 ### Active Development
 

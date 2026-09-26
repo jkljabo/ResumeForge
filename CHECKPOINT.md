@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.9 – Default Profile Enhancements
-Tests: 395 passing
+Current Story G.2.5.11 – <new name>
+Tests: 407 passing
 Build Status: Passing
 
 ## Current Phase
@@ -27,26 +27,26 @@ Completed
 ✓ G.2.5.6 – Configuration Reset
 ✓ Story G.2.5.7 – Configuration Help
 ✓ Story G.2.5.8 – Configuration List
+✓ Story G.2.5.9 – Default Profile Enhancements
+✓ Story G.2.5.10 – Configuration Aliases
 
 Current
-→ Story G.2.5.9 – Default Profile Enhancements
+→ Story G.2.5.11 – <new name>
 
 Story Objective
 
-Implement enhancements for managing the application's default profile.
-
-Provide a focused CLI workflow for inspecting and updating the default profile while continuing to use the existing configuration infrastructure.
+Introduce friendly aliases for common configuration commands while preserving the existing config set workflow.
 
 Acceptance Criteria
 
-□ CLI supports default-profile commands.
-□ Displays the current default profile.
-□ Allows updating the default profile.
-□ Uses ConfigurationService.
-□ Validation is enforced.
-□ Returns success (0).
+□ Add CLI aliases for common configuration updates.
+□ Aliases route through CLIWorkflow.
+□ Aliases call existing ConfigurationService methods.
+□ No duplicate update logic.
+□ Existing config set remains supported.
+□ Help output documents aliases.
 □ Existing tests remain green.
-□ New CLI tests cover the feature.
+□ New CLI tests verify alias behavior.
 
 ## Completed
 
@@ -84,7 +84,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 395 automated tests
+✓ 407 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -116,19 +116,19 @@ Completed
 ✓ Configuration Reset
 ✓ Configuration Help
 ✓ Configuration List
+✓ Default Profile Enhancements
+✓ Configuration Aliases
 
 Current
-→ Default Profile Enhancements
+→ <new name>
 
 Remaining Work
 
-• Configuration help
-• Default profile enhancements
 • Profile import/export
 
 ## Next Immediate Task
 
-Implement config help.
+Implement configuration aliases for common configuration commands.
 Display supported configuration keys,
 valid values, and descriptions.
 Route through CLIWorkflow.
@@ -136,7 +136,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-395 passing tests
+407 passing tests
 
 0 failures
 
@@ -221,7 +221,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  395 passed
+  407 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -252,7 +252,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-395 passing
+407 passing
 
 Quality
 100% passing
@@ -309,7 +309,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 395 automated tests
+✓ 407 automated tests
 
 ## Stable Milestones
 
@@ -353,7 +353,7 @@ Packages:
 • themes
 
 Tests:
-395 passing
+407 passing
 
 Architecture:
 Repository Pattern
@@ -418,18 +418,26 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 395 passed
+  - Overall suite: 407 passed
 
 ### Session Summary
 
 Completed
+
 • G.2.1 Configuration Model
 • G.2.2 Configuration Repository
 • G.2.3 Configuration Service
+• G.2.5.4 Update Configuration
+• G.2.5.5 Validate Configuration
+• G.2.5.6 Configuration Reset
+• G.2.5.7 Configuration Help
+• G.2.5.8 Configuration List
+• G.2.5.9 Default Profile Enhancements
+• G.2.5.10 Configuration Aliases
 
 Test Status
 
-395 passing
+407 passing
 
 ## Story Completion Checklist
 

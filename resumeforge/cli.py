@@ -165,6 +165,24 @@ def build_parser() -> argparse.ArgumentParser:
         "profile",
     )
 
+    theme_parser = config_subparsers.add_parser(
+        "theme",
+        help="Set the default theme",
+    )
+    theme_parser.add_argument("theme")
+
+    output_dir_parser = config_subparsers.add_parser(
+        "output-dir",
+        help="Set the default output directory",
+    )
+    output_dir_parser.add_argument("directory")
+
+    output_file_parser = config_subparsers.add_parser(
+        "output-file",
+        help="Set the default output filename",
+    )
+    output_file_parser.add_argument("filename")
+
     return parser
 
 
