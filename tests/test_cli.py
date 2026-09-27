@@ -18,6 +18,7 @@ from resumeforge.configuration.configuration import ApplicationConfiguration
 from resumeforge.configuration.configuration_service import ConfigurationService
 from resumeforge.generator import ResumeGenerator
 from resumeforge.profiles import Profile, repository
+from resumeforge.services.profile_service import ProfileService
 from resumeforge.tailoring.tailored_resume_builder import (
     TailoredResumeBuilder,
 )
@@ -1573,6 +1574,91 @@ def test_run_routes_config_output_file():
                 "config",
                 "output-file",
                 "Resume.docx",
+            ]
+        )
+    )
+
+    assert result == 0
+
+
+def test_run_profile_import_returns_success():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="import",
+        name="developer",
+        source=Path("DeveloperProfile"),
+    )
+
+    result = workflow.run_profile(args)
+
+    assert result == 0
+
+
+def test_run_profile_import_routes_to_profile_service():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="import",
+        name="developer",
+        source=Path("DeveloperProfile"),
+    )
+
+    workflow.run_profile(args)
+
+    profile_service.import_profile.assert_called_once_with(
+        "developer",
+        Path("DeveloperProfile"),
+    )
+
+
+def test_run_profile_import_displays_confirmation(capsys):
+    profile_service = Mock(spec=ProfileService)
+
+    profile_service.import_profile.return_value = Mock()
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="import",
+        name="developer",
+        source=Path("DeveloperProfile"),
+    )
+
+    workflow.run_profile(args)
+
+    captured = capsys.readouterr()
+
+    assert "Profile imported." in captured.out
+
+
+def test_run_routes_profile_import():
+    workflow = CLIWorkflow()
+
+    workflow.run_profile = Mock(return_value=0)
+
+    parser = build_parser()
+
+    result = workflow.run(
+        parser.parse_args(
+            [
+                "profile",
+                "import",
+                "developer",
+                "DeveloperProfile",
             ]
         )
     )

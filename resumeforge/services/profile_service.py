@@ -1,4 +1,6 @@
 
+from pathlib import Path
+
 from resumeforge.profiles.repository import (
     ProfileRepository,
 )
@@ -42,4 +44,14 @@ class ProfileService:
         self.repository.update(
             name,
             updates,
+        )
+
+    def import_profile(
+        self,
+        name: str,
+        source: Path,
+    ):
+        return self.repository.import_profile(
+            name,
+            source,
         )

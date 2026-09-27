@@ -1,4 +1,5 @@
 import argparse
+from pathlib import Path
 
 from resumeforge.templates import (
     DefaultTemplate,
@@ -132,6 +133,20 @@ def build_parser() -> argparse.ArgumentParser:
     create.add_argument(
         "name",
         help="Profile name",
+    )
+
+    import_parser = profile_commands.add_parser(
+        "import",
+        help="Import an existing profile",
+    )
+
+    import_parser.add_argument(
+        "name",
+    )
+
+    import_parser.add_argument(
+        "source",
+        type=Path,
     )
 
     #

@@ -127,6 +127,17 @@ class CLIWorkflow:
         if args.profile_command == "edit":
             return self.edit_profile(args)
 
+        if args.profile_command == "import":
+
+            self.profile_service.import_profile(
+                args.name,
+                args.source,
+            )
+
+            print("Profile imported.")
+
+            return 0
+
         print("Unknown profile command.")
         return 1
 

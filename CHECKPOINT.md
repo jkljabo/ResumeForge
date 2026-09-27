@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.11 – <new name>
-Tests: 407 passing
+Current Story Story G.2.5.12 – <new name>
+Tests: 411 passing
 Build Status: Passing
 
 ## Current Phase
@@ -29,24 +29,27 @@ Completed
 ✓ Story G.2.5.8 – Configuration List
 ✓ Story G.2.5.9 – Default Profile Enhancements
 ✓ Story G.2.5.10 – Configuration Aliases
+✓ Story G.2.5.11 – Profile Import
 
 Current
-→ Story G.2.5.11 – <new name>
+→ Story G.2.5.12 – <new name>
 
 Story Objective
 
-Introduce friendly aliases for common configuration commands while preserving the existing config set workflow.
+Allow users to import an existing resume profile into ResumeForge so it can be managed alongside other profiles using the existing ProfileService infrastructure.
 
 Acceptance Criteria
 
-□ Add CLI aliases for common configuration updates.
-□ Aliases route through CLIWorkflow.
-□ Aliases call existing ConfigurationService methods.
-□ No duplicate update logic.
-□ Existing config set remains supported.
-□ Help output documents aliases.
-□ Existing tests remain green.
-□ New CLI tests verify alias behavior.
+□ CLI supports profile import
+□ Imports an existing profile directory
+□ Uses ProfileService
+□ Rejects invalid source paths
+□ Rejects duplicate profile names
+□ Does not modify the source directory
+□ Returns imported Profile
+□ Success returns 0
+□ Existing tests remain green
+□ New CLI and service tests added
 
 ## Completed
 
@@ -84,7 +87,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 407 automated tests
+✓ 411 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -136,7 +139,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-407 passing tests
+411 passing tests
 
 0 failures
 
@@ -221,7 +224,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  407 passed
+  411 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -252,7 +255,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-407 passing
+411 passing
 
 Quality
 100% passing
@@ -309,7 +312,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 407 automated tests
+✓ 411 automated tests
 
 ## Stable Milestones
 
@@ -353,7 +356,7 @@ Packages:
 • themes
 
 Tests:
-407 passing
+411 passing
 
 Architecture:
 Repository Pattern
@@ -418,7 +421,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 407 passed
+  - Overall suite: 411 passed
 
 ### Session Summary
 
@@ -437,7 +440,7 @@ Completed
 
 Test Status
 
-407 passing
+411 passing
 
 ## Story Completion Checklist
 
