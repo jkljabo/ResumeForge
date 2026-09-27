@@ -55,3 +55,13 @@ class ProfileService:
             name,
             source,
         )
+
+    def export_profile(
+        self,
+        name: str,
+        destination: Path,
+    ):
+        return self.repository.export_profile(
+            name,
+            destination,
+        )

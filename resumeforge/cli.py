@@ -149,6 +149,20 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
     )
 
+    export_parser = profile_commands.add_parser(
+        "export",
+        help="Export an existing profile",
+    )
+
+    export_parser.add_argument(
+        "name",
+    )
+
+    export_parser.add_argument(
+        "destination",
+        type=Path,
+    )
+
     #
     # config
     #

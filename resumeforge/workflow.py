@@ -138,6 +138,17 @@ class CLIWorkflow:
 
             return 0
 
+        if args.profile_command == "export":
+
+            self.profile_service.export_profile(
+                args.name,
+                args.destination,
+            )
+
+            print("Profile exported.")
+
+            return 0
+
         print("Unknown profile command.")
         return 1
 

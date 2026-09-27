@@ -1666,3 +1666,88 @@ def test_run_routes_profile_import():
     assert result == 0
 
 
+def test_run_profile_export_returns_success():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="export",
+        name="developer",
+        destination=Path("Exports"),
+    )
+
+    result = workflow.run_profile(args)
+
+    assert result == 0
+
+
+def test_run_profile_export_routes_to_profile_service():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="export",
+        name="developer",
+        destination=Path("Exports"),
+    )
+
+    workflow.run_profile(args)
+
+    profile_service.export_profile.assert_called_once_with(
+        "developer",
+        Path("Exports"),
+    )
+
+
+def test_run_profile_export_displays_confirmation(capsys):
+    profile_service = Mock(spec=ProfileService)
+
+    profile_service.export_profile.return_value = Mock()
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="export",
+        name="developer",
+        destination=Path("Exports"),
+    )
+
+    workflow.run_profile(args)
+
+    captured = capsys.readouterr()
+
+    assert "Profile exported." in captured.out
+
+
+def test_run_routes_profile_export():
+    workflow = CLIWorkflow()
+
+    workflow.run_profile = Mock(return_value=0)
+
+    parser = build_parser()
+
+    result = workflow.run(
+        parser.parse_args(
+            [
+                "profile",
+                "export",
+                "developer",
+                "Exports",
+            ]
+        )
+    )
+
+    assert result == 0
+    
+

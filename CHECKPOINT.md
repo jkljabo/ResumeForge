@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story Story G.2.5.12 – <new name>
-Tests: 411 passing
+Current Story G.2.5.12 – Profile Export
+Tests: 415 passing
 Build Status: Passing
 
 ## Current Phase
@@ -32,21 +32,21 @@ Completed
 ✓ Story G.2.5.11 – Profile Import
 
 Current
-→ Story G.2.5.12 – <new name>
+→ Story G.2.5.12 – Profile Export
 
 Story Objective
 
-Allow users to import an existing resume profile into ResumeForge so it can be managed alongside other profiles using the existing ProfileService infrastructure.
+Allow users to export an existing ResumeForge profile to a user-specified directory.
 
 Acceptance Criteria
 
-□ CLI supports profile import
-□ Imports an existing profile directory
+□ CLI supports profile export
+□ Exports an existing profile directory
 □ Uses ProfileService
-□ Rejects invalid source paths
-□ Rejects duplicate profile names
-□ Does not modify the source directory
-□ Returns imported Profile
+□ Rejects missing profiles
+□ Rejects invalid destination paths
+□ Does not modify the source profile
+□ Returns exported Profile
 □ Success returns 0
 □ Existing tests remain green
 □ New CLI and service tests added
@@ -87,7 +87,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 411 automated tests
+✓ 415 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -121,9 +121,10 @@ Completed
 ✓ Configuration List
 ✓ Default Profile Enhancements
 ✓ Configuration Aliases
+✓ Profile Import
 
 Current
-→ <new name>
+→ Profile Export
 
 Remaining Work
 
@@ -139,7 +140,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-411 passing tests
+415 passing tests
 
 0 failures
 
@@ -224,7 +225,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  411 passed
+  415 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -255,7 +256,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-411 passing
+415 passing
 
 Quality
 100% passing
@@ -312,7 +313,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 411 automated tests
+✓ 415 automated tests
 
 ## Stable Milestones
 
@@ -356,7 +357,7 @@ Packages:
 • themes
 
 Tests:
-411 passing
+415 passing
 
 Architecture:
 Repository Pattern
@@ -421,7 +422,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 411 passed
+  - Overall suite: 415 passed
 
 ### Session Summary
 
@@ -440,7 +441,7 @@ Completed
 
 Test Status
 
-411 passing
+415 passing
 
 ## Story Completion Checklist
 
