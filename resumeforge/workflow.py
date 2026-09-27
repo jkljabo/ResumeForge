@@ -149,6 +149,16 @@ class CLIWorkflow:
 
             return 0
 
+        if args.profile_command == "clone":
+            self.profile_service.clone_profile(
+                args.source_name,
+                args.destination_name,
+            )
+
+            print("Profile cloned.")
+
+            return 0
+
         print("Unknown profile command.")
         return 1
 

@@ -164,6 +164,26 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     #
+    # Profile Clone
+    # 
+
+    clone_parser = profile_commands.add_parser(
+        "clone",
+        help="Clone an existing profile",
+    )
+
+    clone_parser.add_argument(
+        "source_name",
+        help="Name of the source profile.",
+    )
+
+    clone_parser.add_argument(
+        "destination_name",
+        help="Name of the cloned profile.",
+    )
+
+
+    #
     # config
     #
     config_parser = subparsers.add_parser(

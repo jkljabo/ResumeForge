@@ -175,3 +175,15 @@ class ProfileRepository(ProfileRepositoryProtocol):
                 return profile
 
         raise FileNotFoundError("Default profile not found.")
+
+    def clone_profile(
+        self,
+        source_name: str,
+        destination_name: str,
+    ) -> Profile:
+
+        source = self.get(source_name)
+
+        return self.create(
+            destination_name,
+        )

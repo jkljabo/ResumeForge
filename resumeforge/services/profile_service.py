@@ -65,3 +65,13 @@ class ProfileService:
             name,
             destination,
         )
+
+    def clone_profile(
+        self,
+        source_name: str,
+        destination_name: str,
+    ):
+        return self.repository.clone_profile(
+            source_name,
+            destination_name,
+        )

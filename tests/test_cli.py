@@ -1751,3 +1751,94 @@ def test_run_routes_profile_export():
     assert result == 0
     
 
+# ============================================================
+# Profile Clone
+# ============================================================
+
+def test_run_profile_clone_returns_success():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="clone",
+        source_name="developer",
+        destination_name="developer-copy",
+    )
+
+    result = workflow.run_profile(args)
+
+    assert result == 0
+
+
+def test_run_profile_clone_routes_to_profile_service():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="clone",
+        source_name="developer",
+        destination_name="developer-copy",
+    )
+
+    workflow.run_profile(args)
+
+    profile_service.clone_profile.assert_called_once_with(
+        "developer",
+        "developer-copy",
+    )
+
+
+def test_run_profile_clone_displays_confirmation(capsys):
+    profile_service = Mock(spec=ProfileService)
+
+    profile_service.clone_profile.return_value = Mock()
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="clone",
+        source_name="developer",
+        destination_name="developer-copy",
+    )
+
+    workflow.run_profile(args)
+
+    captured = capsys.readouterr()
+
+    assert "Profile cloned." in captured.out
+
+
+def test_run_routes_profile_clone():
+    workflow = CLIWorkflow()
+
+    workflow.run_profile = Mock(return_value=0)
+
+    parser = build_parser()
+
+    result = workflow.run(
+        parser.parse_args(
+            [
+                "profile",
+                "clone",
+                "developer",
+                "developer-copy",
+            ]
+        )
+    )
+
+    assert result == 0
+
+    workflow.run_profile.assert_called_once()
+
+
