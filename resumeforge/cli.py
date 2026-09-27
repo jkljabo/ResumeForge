@@ -182,6 +182,24 @@ def build_parser() -> argparse.ArgumentParser:
         help="Name of the cloned profile.",
     )
 
+    #
+    # Profile Rename
+    #
+
+    rename_parser = profile_commands.add_parser(
+        "rename",
+        help="Rename an existing profile.",
+    )
+
+    rename_parser.add_argument(
+        "old_name",
+        help="Current profile name.",
+    )
+
+    rename_parser.add_argument(
+        "new_name",
+        help="New profile name.",
+    )
 
     #
     # config

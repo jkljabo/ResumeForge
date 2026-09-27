@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.13 – Profile Clone
-Tests: 419 passing
+Current Story G.2.5.15 – <new name>
+Tests: 423 passing
 Build Status: Passing
 
 ## Current Phase
@@ -31,26 +31,28 @@ Completed
 ✓ Story G.2.5.10 – Configuration Aliases
 ✓ Story G.2.5.11 – Profile Import
 ✓ Story G.2.5.12 – Profile Export
+✓ Story G.2.5.13 – Profile Clone
+✓ Story G.2.5.14 – Profile Rename
 
 Current
-→ Story G.2.5.13 – Profile Clone
+→ Story G.2.5.15 – <new name>
 
 Story Objective
 
-Allow users to create a new profile by cloning an existing ResumeForge profile.
+Allow users to rename an existing ResumeForge profile while preserving its contents.
 
 Acceptance Criteria
 
-□ CLI supports profile clone
-□ Clones an existing profile
-□ Uses ProfileService
-□ Rejects missing source profile
-□ Rejects duplicate destination profile
-□ Preserves source profile
-□ Returns cloned Profile
-□ Success returns 0
-□ Existing tests remain green
-□ New CLI and service tests added
+✓ CLI supports profile rename
+✓ Renames an existing profile
+✓ Uses ProfileService
+✓ Rejects missing source profile
+✓ Rejects duplicate destination profile
+✓ Preserves profile contents
+✓ Returns renamed Profile
+✓ Success returns 0
+✓ Existing tests remain green
+✓ New CLI tests added
 
 ## Completed
 
@@ -88,7 +90,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 419 automated tests
+✓ 423 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -123,9 +125,10 @@ Completed
 ✓ Default Profile Enhancements
 ✓ Configuration Aliases
 ✓ Profile Import
+✓ Profile Clone
 
 Current
-→ Profile Clone
+→ <new name>
 
 Remaining Work
 
@@ -141,7 +144,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-419 passing tests
+423 passing tests
 
 0 failures
 
@@ -226,7 +229,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  419 passed
+  423 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -257,7 +260,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-419 passing
+423 passing
 
 Quality
 100% passing
@@ -314,7 +317,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 419 automated tests
+✓ 423 automated tests
 
 ## Stable Milestones
 
@@ -358,7 +361,7 @@ Packages:
 • themes
 
 Tests:
-419 passing
+423 passing
 
 Architecture:
 Repository Pattern
@@ -423,7 +426,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 419 passed
+  - Overall suite: 423 passed
 
 ### Session Summary
 
@@ -442,7 +445,7 @@ Completed
 
 Test Status
 
-419 passing
+423 passing
 
 ## Story Completion Checklist
 

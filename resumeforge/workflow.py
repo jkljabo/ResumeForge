@@ -159,6 +159,16 @@ class CLIWorkflow:
 
             return 0
 
+        if args.profile_command == "rename":
+            self.profile_service.rename_profile(
+                args.old_name,
+                args.new_name,
+            )
+
+            print("Profile renamed.")
+
+            return 0
+
         print("Unknown profile command.")
         return 1
 

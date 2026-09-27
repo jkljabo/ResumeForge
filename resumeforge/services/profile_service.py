@@ -75,3 +75,13 @@ class ProfileService:
             source_name,
             destination_name,
         )
+
+    def rename_profile(
+        self,
+        old_name: str,
+        new_name: str,
+    ):
+        return self.repository.rename_profile(
+            old_name,
+            new_name,
+        )

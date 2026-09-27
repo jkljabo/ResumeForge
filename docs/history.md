@@ -8,7 +8,7 @@ Eliminated circular imports
 
 Implemented profile creation
 
-419 tests passing
+423 tests passing
 
 2026-09-25
 
@@ -24,7 +24,7 @@ Added config show CLI command
 
 Improved dependency injection for CLIWorkflow
 
-419 tests passing
+423 tests passing
 
 Configuration infrastructure is now complete.
 
@@ -50,7 +50,7 @@ Persisted configuration changes through configuration.json
 
 Expanded CLI and configuration service coverage
 
-419 tests passing
+423 tests passing
 
 2026-09-25
 
@@ -66,7 +66,7 @@ Rejected empty default profiles
 
 Ensured invalid updates are never persisted
 
-419 tests passing
+423 tests passing
 
 2026-09-25
 
@@ -78,7 +78,7 @@ Restored ApplicationConfiguration.default()
 
 Persisted default configuration
 
-419 tests passing
+423 tests passing
 
 2026-09-25
 
@@ -90,7 +90,7 @@ Displays configurable settings
 
 Displays supported values
 
-419 tests passing
+423 tests passing
 
 2026-09-26
 
@@ -100,7 +100,7 @@ Added config list command
 
 Displays current configuration values
 
-419 tests passing
+423 tests passing
 
 2026-09-26
 
@@ -114,7 +114,7 @@ Added config output-file command
 
 Introduced convenience aliases for common configuration updates
 
-419 tests passing
+423 tests passing
 
 2026-09-27
 
@@ -128,7 +128,7 @@ Added CLI routing for profile import
 
 Expanded CLI test coverage
 
-419 tests passing
+423 tests passing
 
 2026-09-27
 
@@ -142,4 +142,19 @@ Added repository clone support
 
 Expanded CLI test coverage
 
-419 tests passing
+423 tests passing
+
+2026-09-27
+
+Implemented Profile Rename
+
+Added profile rename CLI command
+
+Added ProfileService.rename_profile()
+
+Added repository rename support
+
+Expanded CLI test coverage
+
+423 tests passing
+

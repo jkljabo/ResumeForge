@@ -1842,3 +1842,92 @@ def test_run_routes_profile_clone():
     workflow.run_profile.assert_called_once()
 
 
+# ============================================================
+# Profile Rename
+# ============================================================
+
+def test_run_profile_rename_returns_success():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="rename",
+        old_name="developer",
+        new_name="senior-dotnet",
+    )
+
+    result = workflow.run_profile(args)
+
+    assert result == 0
+
+
+def test_run_profile_rename_routes_to_profile_service():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="rename",
+        old_name="developer",
+        new_name="senior-dotnet",
+    )
+
+    workflow.run_profile(args)
+
+    profile_service.rename_profile.assert_called_once_with(
+        "developer",
+        "senior-dotnet",
+    )
+
+
+def test_run_profile_rename_displays_confirmation(capsys):
+    profile_service = Mock(spec=ProfileService)
+
+    profile_service.rename_profile.return_value = Mock()
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="rename",
+        old_name="developer",
+        new_name="senior-dotnet",
+    )
+
+    workflow.run_profile(args)
+
+    captured = capsys.readouterr()
+
+    assert "Profile renamed." in captured.out
+
+
+def test_run_routes_profile_rename():
+    workflow = CLIWorkflow()
+
+    workflow.run_profile = Mock(return_value=0)
+
+    result = workflow.run(
+        build_parser().parse_args(
+            [
+                "profile",
+                "rename",
+                "developer",
+                "senior-dotnet",
+            ]
+        )
+    )
+
+    assert result == 0
+
+    workflow.run_profile.assert_called_once()
+
+

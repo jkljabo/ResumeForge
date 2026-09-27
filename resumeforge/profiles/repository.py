@@ -187,3 +187,21 @@ class ProfileRepository(ProfileRepositoryProtocol):
         return self.create(
             destination_name,
         )
+
+    def rename_profile(
+        self,
+        old_name: str,
+        new_name: str,
+    ):
+        profile = self.load(old_name)
+
+        renamed_profile = Profile(
+            name=new_name,
+            path=self.root / new_name / profile.path.name,
+            is_default=profile.is_default,
+        )
+
+        self.save(renamed_profile)
+        self.remove(old_name)
+
+        return renamed_profile
