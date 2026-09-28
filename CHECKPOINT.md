@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.15 – Profile Set Default
-Tests: 427 passing
+Current Story G.2.5.16 – Profile List Details
+Tests: 431 passing
 Build Status: Passing
 
 ## Current Phase
@@ -13,7 +13,7 @@ Build Status: Passing
 Current Major Milestone
 
 Phase G.2 – Configuration Management
-Profile import/export, default profile configuration, and configuration management.
+Profile management, configuration management, and default profile workflows.
 
 Completed
 ✓ G.2.1 – Configuration Model
@@ -33,22 +33,23 @@ Completed
 ✓ Story G.2.5.12 – Profile Export
 ✓ Story G.2.5.13 – Profile Clone
 ✓ Story G.2.5.14 – Profile Rename
+✓ Story G.2.5.15 – Profile Set Default
 
 Current
-→ Story G.2.5.15 – Profile Set Default
+→ Story G.2.5.16 – Profile List Details
 
 Story Objective
 
-Allow users to designate an existing ResumeForge profile as the default profile directly from the profile command, providing a consistent and intuitive profile management experience.
+Enhance profile listing to clearly identify the current default profile, improving discoverability and the overall profile management experience.
 
 Acceptance Criteria
 
-□ CLI supports Profile Set Default
-□ Existing profile can be designated as the default
-□ ProfileService delegates to configuration persistence
-□ Existing configuration mechanism is reused
-□ Confirmation message displayed
-□ Returns exit code 0 on success
+□ profile list identifies the default profile
+□ Default profile is clearly distinguished in command output
+□ Existing list ordering is preserved
+□ Output remains deterministic
+□ Existing configuration service is reused
+□ CLI returns exit code 0 on success
 □ Existing regression tests remain green
 □ Four new CLI tests added
 
@@ -97,7 +98,7 @@ Definition of Ready
 
 Testing
 
-✓ 427 automated tests
+✓ 431 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -135,9 +136,10 @@ Completed
 ✓ Profile Clone
 ✓ Profile Export
 ✓ Profile Rename
+✓ Profile Set Default
 
 Current
-→ Story G.2.5.15 – Profile Set Default
+→ Story G.2.5.16 – Profile List Details
 
 Remaining Work
 
@@ -153,7 +155,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-427 automated tests passing
+431 automated tests passing
 0 failures
 
 Latest verification:
@@ -237,7 +239,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  427 passed
+  431 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -268,7 +270,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-427 passing
+431 passing
 
 Quality
 100% passing
@@ -325,7 +327,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 427 automated tests
+✓ 431 automated tests
 
 ## Stable Milestones
 
@@ -369,7 +371,7 @@ Packages:
 • themes
 
 Tests:
-427 passing
+431 passing
 
 Architecture:
 Repository Pattern
@@ -434,7 +436,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 427 passed
+  - Overall suite: 431 passed
 
 ### Session Summary
 
@@ -453,7 +455,7 @@ Completed
 
 Test Status
 
-427 passing
+431 passing
 
 ## Story Completion Checklist
 

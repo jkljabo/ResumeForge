@@ -93,3 +93,6 @@ class ProfileService:
         return self.configuration_service.set_default_profile(
             profile_name,
         )
+
+    def get_default_profile(self):
+        return self.configuration_service.get_default_profile()

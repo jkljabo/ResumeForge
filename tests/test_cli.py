@@ -585,6 +585,9 @@ def test_profile_list_prints_profiles(
                 "government",
             ]
 
+        def get_default_profile(self):
+            return "default"
+
     service = StubProfileService(repository=None)
 
     monkeypatch.setattr(
@@ -2015,3 +2018,86 @@ def test_run_routes_profile_default():
     workflow.run_profile.assert_called_once()
 
 
+# ============================================================
+# Profile List Details
+# ============================================================
+
+def test_run_profile_list_marks_default_profile(capsys):
+    profile_service = Mock(spec=ProfileService)
+
+    profile_service.list.return_value = [
+        "developer",
+        "manager",
+    ]
+
+    profile_service.get_default_profile.return_value = "developer"
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    result = workflow.list()
+
+    captured = capsys.readouterr()
+
+    assert result == 0
+    assert "* developer" in captured.out
+
+
+def test_run_profile_list_non_default_profile_not_marked(capsys):
+    profile_service = Mock(spec=ProfileService)
+
+    profile_service.list.return_value = [
+        "developer",
+        "manager",
+    ]
+
+    profile_service.get_default_profile.return_value = "developer"
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    workflow.list()
+
+    captured = capsys.readouterr()
+
+    assert "manager" in captured.out
+    assert "* manager" not in captured.out
+
+
+def test_run_profile_list_queries_default_profile():
+    profile_service = Mock(spec=ProfileService)
+
+    profile_service.list.return_value = [
+        "developer",
+    ]
+
+    profile_service.get_default_profile.return_value = "developer"
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    workflow.list()
+
+    profile_service.get_default_profile.assert_called_once()
+
+
+def test_run_routes_profile_list_details():
+    workflow = CLIWorkflow()
+
+    workflow.run_profile = Mock(return_value=0)
+
+    result = workflow.run(
+        build_parser().parse_args(
+            [
+                "profile",
+                "list",
+            ]
+        )
+    )
+
+    assert result == 0
+
+    workflow.run_profile.assert_called_once()

@@ -189,8 +189,13 @@ class CLIWorkflow:
             print("No profiles found.")
             return 0
 
+        default_profile = self.profile_service.get_default_profile()
+
         for profile in profiles:
-            print(profile)
+            if profile == default_profile:
+                print(f"* {profile}")
+            else:
+                print(profile)
 
         return 0
 
