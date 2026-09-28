@@ -85,3 +85,11 @@ class ProfileService:
             old_name,
             new_name,
         )
+
+    def set_default_profile(
+        self,
+        profile_name: str,
+    ):
+        return self.configuration_service.set_default_profile(
+            profile_name,
+        )

@@ -1931,3 +1931,87 @@ def test_run_routes_profile_rename():
     workflow.run_profile.assert_called_once()
 
 
+# ============================================================
+# Profile Set Default
+# ============================================================
+
+def test_run_profile_default_returns_success():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="default",
+        profile_name="developer",
+    )
+
+    result = workflow.run_profile(args)
+
+    assert result == 0
+
+
+def test_run_profile_default_routes_to_profile_service():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="default",
+        profile_name="developer",
+    )
+
+    workflow.run_profile(args)
+
+    profile_service.set_default_profile.assert_called_once_with(
+        "developer",
+    )
+
+
+def test_run_profile_default_displays_confirmation(capsys):
+    profile_service = Mock(spec=ProfileService)
+
+    profile_service.set_default_profile.return_value = Mock()
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="default",
+        profile_name="developer",
+    )
+
+    workflow.run_profile(args)
+
+    captured = capsys.readouterr()
+
+    assert "Default profile updated." in captured.out
+
+
+def test_run_routes_profile_default():
+    workflow = CLIWorkflow()
+
+    workflow.run_profile = Mock(return_value=0)
+
+    result = workflow.run(
+        build_parser().parse_args(
+            [
+                "profile",
+                "default",
+                "developer",
+            ]
+        )
+    )
+
+    assert result == 0
+
+    workflow.run_profile.assert_called_once()
+
+

@@ -202,6 +202,20 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     #
+    # Profile Set Default
+    #
+    default_parser = profile_commands.add_parser(
+        "default",
+        help="Set the default profile.",
+    )
+
+    default_parser.add_argument(
+        "profile_name",
+        help="Profile to make the default.",
+    )
+
+
+    #
     # config
     #
     config_parser = subparsers.add_parser(

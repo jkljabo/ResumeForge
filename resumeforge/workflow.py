@@ -169,6 +169,15 @@ class CLIWorkflow:
 
             return 0
 
+        if args.profile_command == "default":
+            self.profile_service.set_default_profile(
+                args.profile_name,
+            )
+
+            print("Default profile updated.")
+
+            return 0
+
         print("Unknown profile command.")
         return 1
 

@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.15 – <new name>
-Tests: 423 passing
+Current Story G.2.5.15 – Profile Set Default
+Tests: 427 passing
 Build Status: Passing
 
 ## Current Phase
@@ -35,24 +35,31 @@ Completed
 ✓ Story G.2.5.14 – Profile Rename
 
 Current
-→ Story G.2.5.15 – <new name>
+→ Story G.2.5.15 – Profile Set Default
 
 Story Objective
 
-Allow users to rename an existing ResumeForge profile while preserving its contents.
+Allow users to designate an existing ResumeForge profile as the default profile directly from the profile command, providing a consistent and intuitive profile management experience.
 
 Acceptance Criteria
 
-✓ CLI supports profile rename
-✓ Renames an existing profile
-✓ Uses ProfileService
-✓ Rejects missing source profile
-✓ Rejects duplicate destination profile
-✓ Preserves profile contents
-✓ Returns renamed Profile
-✓ Success returns 0
-✓ Existing tests remain green
-✓ New CLI tests added
+□ CLI supports Profile Set Default
+□ Existing profile can be designated as the default
+□ ProfileService delegates to configuration persistence
+□ Existing configuration mechanism is reused
+□ Confirmation message displayed
+□ Returns exit code 0 on success
+□ Existing regression tests remain green
+□ Four new CLI tests added
+
+Definition of Ready
+
+□ Story objective finalized
+□ Acceptance criteria reviewed
+□ Expected files identified
+□ Documentation updates identified
+□ RED tests planned
+□ Expected test count recorded
 
 ## Completed
 
@@ -90,7 +97,7 @@ Acceptance Criteria
 
 Testing
 
-✓ 423 automated tests
+✓ 427 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -126,29 +133,30 @@ Completed
 ✓ Configuration Aliases
 ✓ Profile Import
 ✓ Profile Clone
+✓ Profile Export
+✓ Profile Rename
 
 Current
-→ <new name>
+→ Story G.2.5.15 – Profile Set Default
 
 Remaining Work
 
-• Profile import/export
+• Profile default command
+• Remaining Configuration Management enhancements
 
 ## Next Immediate Task
 
-Implement configuration aliases for common configuration commands.
-Display supported configuration keys,
-valid values, and descriptions.
+Implement the profile default command.
 Route through CLIWorkflow.
+Reuse existing configuration services.
 Add automated CLI tests.
 
 ## Test Status
 
-423 passing tests
-
+427 automated tests passing
 0 failures
 
-Verification Command:
+Latest verification:
 python -m pytest
 
 ## Next Phase
@@ -229,7 +237,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  423 passed
+  427 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -260,7 +268,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-423 passing
+427 passing
 
 Quality
 100% passing
@@ -317,7 +325,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 423 automated tests
+✓ 427 automated tests
 
 ## Stable Milestones
 
@@ -361,7 +369,7 @@ Packages:
 • themes
 
 Tests:
-423 passing
+427 passing
 
 Architecture:
 Repository Pattern
@@ -426,7 +434,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 423 passed
+  - Overall suite: 427 passed
 
 ### Session Summary
 
@@ -445,7 +453,7 @@ Completed
 
 Test Status
 
-423 passing
+427 passing
 
 ## Story Completion Checklist
 
