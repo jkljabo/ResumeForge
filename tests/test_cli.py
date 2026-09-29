@@ -2101,3 +2101,35 @@ def test_run_routes_profile_list_details():
     assert result == 0
 
     workflow.run_profile.assert_called_once()
+
+
+def test_profile_edit_updates_color_theme():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="edit",
+        name="government",
+
+        # Existing arguments expected by workflow.py
+        headline=None,
+        full_name=None,
+
+        # New story argument
+        color_theme="blue",
+    )
+
+    workflow.run(args)
+
+    profile_service.edit.assert_called_once_with(
+        "government",
+        {
+            "color_theme": "blue",
+        },
+    )
+
+

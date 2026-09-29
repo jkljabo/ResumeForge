@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.16 – Profile List Details
-Tests: 431 passing
+Current Story G.2.5.18 – <new name>
+Tests: 435 passing
 Build Status: Passing
 
 ## Current Phase
@@ -34,24 +34,27 @@ Completed
 ✓ Story G.2.5.13 – Profile Clone
 ✓ Story G.2.5.14 – Profile Rename
 ✓ Story G.2.5.15 – Profile Set Default
+✓ Story G.2.5.16 – Profile List Details
+✓ Story G.2.5.17 – Profile Color Theme
 
 Current
-→ Story G.2.5.16 – Profile List Details
+→ Story G.2.5.18 – <new name>
 
 Story Objective
 
-Enhance profile listing to clearly identify the current default profile, improving discoverability and the overall profile management experience.
+Add support for optional visual profile preferences by introducing a configurable color theme that is stored with each profile while maintaining complete backward compatibility with existing profiles.
 
 Acceptance Criteria
 
-□ profile list identifies the default profile
-□ Default profile is clearly distinguished in command output
-□ Existing list ordering is preserved
-□ Output remains deterministic
-□ Existing configuration service is reused
-□ CLI returns exit code 0 on success
-□ Existing regression tests remain green
-□ Four new CLI tests added
+□ Profile stores an optional color_theme
+□ Existing profiles load correctly when no theme is present
+□ Theme is persisted with profile data
+□ Theme survives clone/import/export operations
+□ Theme can be viewed and modified through the profile workflow
+□ Invalid theme values are rejected
+□ All existing regression tests remain green
+□ Four new automated tests added
+□ Existing profiles automatically receive the default behavior when color_theme is absent.
 
 Definition of Ready
 
@@ -98,7 +101,7 @@ Definition of Ready
 
 Testing
 
-✓ 431 automated tests
+✓ 435 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -137,25 +140,25 @@ Completed
 ✓ Profile Export
 ✓ Profile Rename
 ✓ Profile Set Default
+✓ Profile List Details
 
 Current
-→ Story G.2.5.16 – Profile List Details
+→ Story G.2.5.17 – Profile Color Theme
 
 Remaining Work
 
-• Profile default command
+• Profile metadata enhancements
 • Remaining Configuration Management enhancements
 
 ## Next Immediate Task
 
-Implement the profile default command.
-Route through CLIWorkflow.
-Reuse existing configuration services.
+Implement profile color theme support.
+Update profile workflow.
 Add automated CLI tests.
 
 ## Test Status
 
-431 automated tests passing
+435 automated tests passing
 0 failures
 
 Latest verification:
@@ -239,7 +242,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  431 passed
+  435 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -270,7 +273,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-431 passing
+435 passing
 
 Quality
 100% passing
@@ -327,7 +330,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 431 automated tests
+✓ 435 automated tests
 
 ## Stable Milestones
 
@@ -371,7 +374,7 @@ Packages:
 • themes
 
 Tests:
-431 passing
+435 passing
 
 Architecture:
 Repository Pattern
@@ -436,7 +439,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 431 passed
+  - Overall suite: 435 passed
 
 ### Session Summary
 
@@ -455,7 +458,7 @@ Completed
 
 Test Status
 
-431 passing
+435 passing
 
 ## Story Completion Checklist
 

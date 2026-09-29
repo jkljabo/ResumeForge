@@ -55,3 +55,22 @@ def test_non_default_profile():
     assert profile.is_default is False
 
 
+def test_profile_defaults_to_no_color_theme():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.color_theme is None
+
+
+def test_profile_stores_color_theme():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        color_theme="blue",
+    )
+
+    assert profile.color_theme == "blue"
+
+
