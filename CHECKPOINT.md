@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.18 – <new name>
-Tests: 435 passing
+Current Story G.2.5.18 – Profile Description
+Tests: 439 passing
 Build Status: Passing
 
 ## Current Phase
@@ -38,23 +38,21 @@ Completed
 ✓ Story G.2.5.17 – Profile Color Theme
 
 Current
-→ Story G.2.5.18 – <new name>
+→ Story G.2.5.18 – Profile Description
 
 Story Objective
 
-Add support for optional visual profile preferences by introducing a configurable color theme that is stored with each profile while maintaining complete backward compatibility with existing profiles.
+Add support for an optional profile description that allows users to document the purpose of a profile. The description should be editable through the existing profile workflow, persisted with the profile, displayed when listing profiles, and remain fully backward compatible with existing profiles.
 
 Acceptance Criteria
 
-□ Profile stores an optional color_theme
-□ Existing profiles load correctly when no theme is present
-□ Theme is persisted with profile data
-□ Theme survives clone/import/export operations
-□ Theme can be viewed and modified through the profile workflow
-□ Invalid theme values are rejected
-□ All existing regression tests remain green
-□ Four new automated tests added
-□ Existing profiles automatically receive the default behavior when color_theme is absent.
+□ Profile supports an optional description field.
+□ Existing profiles load correctly when no description is present.
+□ profile edit updates the description.
+□ Profile persistence saves and restores the description.
+□ profile list displays the description when one exists.
+□ Existing profile commands remain backward compatible.
+□ Full regression suite passes.
 
 Definition of Ready
 
@@ -63,7 +61,31 @@ Definition of Ready
 □ Expected files identified
 □ Documentation updates identified
 □ RED tests planned
-□ Expected test count recorded
+□ Expected test count 439
+
+## Expected Files
+
+resumeforge/profiles/profile.py
+resumeforge/workflow.py
+tests/test_profile.py
+tests/test_profile_persistence.py
+tests/test_cli.py
+
+## RED Test Plan
+
+• Verify Profile defaults description to None.
+• Verify Profile stores description.
+• Verify description persists.
+• Verify profile edit forwards description updates.
+• Verify profile list displays description.
+
+## Out of Scope
+
+• Description validation
+• Maximum description length
+• Markdown or rich-text formatting
+• Multi-line editing
+• Searching/filtering by description
 
 ## Completed
 
@@ -101,7 +123,7 @@ Definition of Ready
 
 Testing
 
-✓ 435 automated tests
+✓ 439 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -141,9 +163,10 @@ Completed
 ✓ Profile Rename
 ✓ Profile Set Default
 ✓ Profile List Details
+✓ Profile Color Theme
 
 Current
-→ Story G.2.5.17 – Profile Color Theme
+→ Story G.2.5.18 – Profile Description
 
 Remaining Work
 
@@ -158,7 +181,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-435 automated tests passing
+439 automated tests passing
 0 failures
 
 Latest verification:
@@ -242,7 +265,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  435 passed
+  439 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -273,7 +296,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-435 passing
+439 passing
 
 Quality
 100% passing
@@ -330,7 +353,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 435 automated tests
+✓ 439 automated tests
 
 ## Stable Milestones
 
@@ -374,7 +397,7 @@ Packages:
 • themes
 
 Tests:
-435 passing
+439 passing
 
 Architecture:
 Repository Pattern
@@ -439,7 +462,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 435 passed
+  - Overall suite: 439 passed
 
 ### Session Summary
 
@@ -458,7 +481,7 @@ Completed
 
 Test Status
 
-435 passing
+439 passing
 
 ## Story Completion Checklist
 

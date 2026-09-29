@@ -227,6 +227,9 @@ class CLIWorkflow:
         if getattr(args, "color_theme", None) is not None:
             updates["color_theme"] = args.color_theme
 
+        if getattr(args, "description", None) is not None:
+            updates["description"] = args.description
+
         self.profile_service.edit(
             args.name,
             updates,

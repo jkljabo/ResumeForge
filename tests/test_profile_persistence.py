@@ -119,3 +119,24 @@ def test_round_trip_preserves_color_theme(tmp_path):
     assert loaded["color_theme"] == "blue"
 
 
+def test_round_trip_preserves_description(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "description": "CDC Resume",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["description"] == "CDC Resume"
+
+

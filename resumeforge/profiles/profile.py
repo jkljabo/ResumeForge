@@ -11,6 +11,7 @@ class Profile:
     directory: Path
     is_default: bool = False
     color_theme: str | None = None
+    description: str | None = None
 
     @property
     def resume_path(self) -> Path:

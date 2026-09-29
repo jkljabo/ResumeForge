@@ -74,3 +74,22 @@ def test_profile_stores_color_theme():
     assert profile.color_theme == "blue"
 
 
+def test_profile_defaults_to_no_description():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.description is None
+
+
+def test_profile_stores_description():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        description="CDC Resume",
+    )
+
+    assert profile.description == "CDC Resume"
+
+
