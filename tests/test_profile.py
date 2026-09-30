@@ -112,3 +112,22 @@ def test_profile_stores_tags():
     assert profile.tags == "cdc,federal"
 
 
+def test_profile_defaults_to_no_notes():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.notes is None
+
+
+def test_profile_stores_notes():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        notes="Primary resume for CDC applications.",
+    )
+
+    assert profile.notes == "Primary resume for CDC applications."
+
+

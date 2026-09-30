@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.20 – <new name>
-Tests: 443 passing
+Current Story G.2.5.20 – Profile Notes
+Tests: 447 passing
 Build Status: Passing
 
 ## Current Phase
@@ -40,29 +40,30 @@ Completed
 ✓ Story G.2.5.19 – Profile Tags
 
 Current
-→ Story G.2.5.20 – <new name>
+→ Story G.2.5.20 – Profile Notes
 
-Story Objective
+## Story Objective
 
-Add support for optional profile tags that allow users to classify and organize profiles by purpose or target audience. Tags should be editable through the existing profile workflow, persisted with the profile, displayed when listing profiles, and remain fully backward compatible with existing profiles.
+Add support for optional profile notes that allow users to maintain private
+documentation about a profile. Notes are editable through the existing profile
+workflow, persisted with the profile, and remain fully backward compatible.
 
-Acceptance Criteria
+## Acceptance Criteria
 
-□ Profile supports an optional `tags` field.
-□ Existing profiles load correctly when no tags are present.
-□ `profile edit` updates the profile tags.
-□ Profile persistence saves and restores the tags.
-□ `profile list` displays profile tags when present.
+□ Profile supports an optional `notes` field.
+□ Existing profiles load correctly when no notes exist.
+□ `profile edit` updates profile notes.
+□ Profile persistence saves and restores notes.
 □ Existing profile commands remain backward compatible.
 
-Definition of Ready
+## Definition of Ready
 
 □ Story objective finalized.
 □ Acceptance criteria reviewed.
 □ Expected files identified.
 □ Documentation updates identified.
 □ RED tests planned.
-□ Expected regression count documented (Current: 443, Expected: 443).
+□ Expected regression count documented (Current: 447, Expected: 447).
 
 ## Expected Files
 
@@ -74,19 +75,26 @@ tests/test_cli.py
 
 ## RED Test Plan
 
-• Verify `Profile` defaults `tags` to `None`.
-• Verify `Profile` stores `tags`.
-• Verify profile persistence saves and restores `tags`.
-• Verify `profile edit` forwards tag updates.
-• Verify `profile list` displays profile tags.
+• Verify `Profile` defaults `notes` to `None`.
+• Verify `Profile` stores `notes`.
+• Verify persistence saves/restores notes.
+• Verify `profile edit` updates notes.
+• Verify backward compatibility.
+
+## Documentation Updates
+
+□ CHECKPOINT.md
+□ docs/history.md
+□ docs/testing.md
 
 ## Out of Scope
 
-• Tag validation
-• Multiple tags per profile
-• Tag searching/filtering
-• Tag auto-complete
-• Tag management commands
+• Note formatting
+• Markdown support
+• Multi-line editing
+• Search by notes
+• Exporting notes
+• Notes included in generated resumes
 
 ## Completed
 
@@ -124,7 +132,7 @@ tests/test_cli.py
 
 Testing
 
-✓ 443 automated tests
+✓ 447 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -169,7 +177,7 @@ Completed
 ✓ Profile Tags
 
 Current
-→ Story G.2.5.20 – <new name>
+→ Story G.2.5.20 – Profile Notes
 
 Remaining Work
 
@@ -184,7 +192,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-443 automated tests passing
+447 automated tests passing
 0 failures
 
 Latest verification:
@@ -268,7 +276,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  443 passed
+  447 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -299,7 +307,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-443 passing
+447 passing
 
 Quality
 100% passing
@@ -356,7 +364,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 443 automated tests
+✓ 447 automated tests
 
 ## Stable Milestones
 
@@ -400,7 +408,7 @@ Packages:
 • themes
 
 Tests:
-443 passing
+447 passing
 
 Architecture:
 Repository Pattern
@@ -465,7 +473,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 443 passed
+  - Overall suite: 447 passed
 
 ### Session Summary
 
@@ -484,7 +492,7 @@ Completed
 
 Test Status
 
-443 passing
+447 passing
 
 ## Story Completion Checklist
 

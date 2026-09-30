@@ -68,6 +68,25 @@ Then:
 - Estimate the expected regression test count.
 - Recommend documentation updates.
 
+### Response Format
+
+When providing story planning feedback, ChatGPT should mirror the formatting used by
+the current project documentation (primarily CHECKPOINT.md).
+
+Responses should:
+
+- Preserve existing section names whenever possible.
+- Produce content that can be copied directly into the documentation with minimal editing.
+- Use the same heading hierarchy.
+- Use the same checklist style (`□`, `✓`).
+- Use the same bullet style.
+- Use fenced code blocks only where the documentation currently uses them.
+- Avoid introducing alternate markdown styles unless specifically requested.
+- Minimize prose outside of implementation notes.
+
+The objective is to reduce documentation editing and keep every story planning cycle
+consistent with the repository's established format.
+
 Planning should produce a nearly complete story package requiring only minor edits before approval.
 
 ### Developer (Jason's) Responsibilities
@@ -342,7 +361,13 @@ To minimize development cycle time:
 - GREEN produces only the minimum implementation required.
 - Signoff verifies implementation and documentation only.
 - Recommendations should follow existing project patterns unless the story explicitly changes them.
-
+- Planning, RED, GREEN, and Signoff responses should mirror the formatting
+  used by CHECKPOINT.md whenever practical so content can be copied into
+  project documentation with minimal editing.
+- Review the current WIP ZIP before proposing implementation changes.
+- Prefer extending existing implementation patterns over introducing new abstractions.
+- Verify that new tests follow the conventions already established in the surrounding test file.
+  
 ## Continuous Improvement
 
 This workflow is a living document.

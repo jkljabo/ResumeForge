@@ -232,7 +232,10 @@ class CLIWorkflow:
 
         if getattr(args, "tags", None) is not None:
             updates["tags"] = args.tags
-            
+
+        if getattr(args, "notes", None) is not None:
+            updates["notes"] = args.notes
+
         self.profile_service.edit(
             args.name,
             updates,

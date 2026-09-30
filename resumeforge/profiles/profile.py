@@ -17,6 +17,7 @@ class Profile:
     color_theme: str | None = None
     description: str | None = None
     tags: str | None = None
+    notes: str | None = None
 
     @property
     def resume_path(self) -> Path:

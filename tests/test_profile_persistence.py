@@ -3,6 +3,7 @@ import json
 from resumeforge.profiles.persistence import (
     ProfilePersistence,
 )
+from resumeforge.profiles.profile import Profile
 
 
 def test_load_returns_dictionary(tmp_path):
@@ -159,5 +160,26 @@ def test_round_trip_preserves_tags(tmp_path):
     loaded = persistence.load(resume)
 
     assert loaded["tags"] == "cdc,federal"
+
+
+def test_profile_persistence_preserves_notes(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "notes": "Primary resume for CDC applications.",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["notes"] == "Primary resume for CDC applications."
 
 
