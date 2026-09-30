@@ -131,3 +131,22 @@ def test_profile_stores_notes():
     assert profile.notes == "Primary resume for CDC applications."
 
 
+def test_profile_defaults_to_no_category():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.category is None
+
+
+def test_profile_stores_category():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        category="Government",
+    )
+
+    assert profile.category == "Government"
+
+

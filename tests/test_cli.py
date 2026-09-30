@@ -2219,3 +2219,35 @@ def test_profile_edit_updates_notes():
             "notes": "Primary resume for CDC applications.",
         },
     )
+
+
+def test_profile_edit_updates_category():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="edit",
+        name="government",
+
+        headline=None,
+        full_name=None,
+        color_theme=None,
+        description=None,
+        tags=None,
+        notes=None,
+
+        category="Government",
+    )
+
+    workflow.run(args)
+
+    profile_service.edit.assert_called_once_with(
+        "government",
+        {
+            "category": "Government",
+        },
+    )

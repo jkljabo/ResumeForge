@@ -236,6 +236,9 @@ class CLIWorkflow:
         if getattr(args, "notes", None) is not None:
             updates["notes"] = args.notes
 
+        if getattr(args, "category", None) is not None:
+            updates["category"] = args.category
+
         self.profile_service.edit(
             args.name,
             updates,

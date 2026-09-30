@@ -56,6 +56,7 @@ Before making recommendations:
 - Review the uploaded ResumeForge-WIP.zip project.
 - Establish the current architecture.
 - Verify the project's current implementation patterns.
+- Base all recommendations on the uploaded ResumeForge-WIP.zip rather than prior implementation assumptions.
 
 Then:
 
@@ -76,7 +77,7 @@ the current project documentation (primarily CHECKPOINT.md).
 Responses should:
 
 - Preserve existing section names whenever possible.
-- Produce content that can be copied directly into the documentation with minimal editing.
+- Produce content that can be copied directly into CHECKPOINT.md with minimal or no editing.
 - Use the same heading hierarchy.
 - Use the same checklist style (`□`, `✓`).
 - Use the same bullet style.
@@ -123,6 +124,8 @@ ResumeForge-WIP.zip
 - Write only the tests necessary to drive the new behavior.
 - Follow existing project testing patterns.
 - Avoid implementation guidance until RED is complete.
+- Focus review feedback on the failing tests presented by the developer. Do not speculate about unrelated implementation details.
+- Base all recommendations on the uploaded ResumeForge-WIP.zip rather than prior implementation assumptions.
 
 ### Developer (Jason's) Responsibilities
 
@@ -155,6 +158,7 @@ ResumeForge-WIP.zip
 - Recommend only the minimum implementation required.
 - Preserve the existing architecture.
 - Avoid introducing unnecessary abstractions or refactoring.
+- Base all recommendations on the uploaded ResumeForge-WIP.zip rather than prior implementation assumptions.
 
 ### Developer (Jason's) Responsibilities
 
@@ -367,6 +371,7 @@ To minimize development cycle time:
 - Review the current WIP ZIP before proposing implementation changes.
 - Prefer extending existing implementation patterns over introducing new abstractions.
 - Verify that new tests follow the conventions already established in the surrounding test file.
+- Planning responses shall mirror the current CHECKPOINT.md structure and markdown conventions   exactly. New headings, checklist styles, or formatting conventions should not be introduced unless the repository documentation has first adopted them.
   
 ## Continuous Improvement
 

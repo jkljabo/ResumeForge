@@ -183,3 +183,24 @@ def test_profile_persistence_preserves_notes(tmp_path):
     assert loaded["notes"] == "Primary resume for CDC applications."
 
 
+def test_profile_persistence_preserves_category(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "category": "Government",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["category"] == "Government"
+
+

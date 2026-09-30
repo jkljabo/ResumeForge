@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.20 – Profile Notes
-Tests: 447 passing
+Current Story: G.2.5.21 – Profile Category
+Tests: 451 passing
 Build Status: Passing
 
 ## Current Phase
@@ -38,63 +38,81 @@ Completed
 ✓ Story G.2.5.17 – Profile Color Theme
 ✓ Story G.2.5.18 – Profile Description
 ✓ Story G.2.5.19 – Profile Tags
+✓ Story G.2.5.20 – Profile Notes
 
 Current
-→ Story G.2.5.20 – Profile Notes
+→ Story: G.2.5.21 – Profile Category
 
 ## Story Objective
 
-Add support for optional profile notes that allow users to maintain private
-documentation about a profile. Notes are editable through the existing profile
-workflow, persisted with the profile, and remain fully backward compatible.
+Add support for an optional profile category that allows users to organize
+profiles by purpose. Categories are editable through the existing profile
+workflow, persisted with the profile, and remain fully backward compatible
+with existing profile files.
 
 ## Acceptance Criteria
 
-□ Profile supports an optional `notes` field.
-□ Existing profiles load correctly when no notes exist.
-□ `profile edit` updates profile notes.
-□ Profile persistence saves and restores notes.
-□ Existing profile commands remain backward compatible.
+□ Profile supports an optional `category` property.
+□ Existing profiles continue to load correctly when no category is present.
+□ Category can be updated through `profile edit`.
+□ Category is persisted with the profile.
+□ Existing profile functionality remains unchanged.
 
 ## Definition of Ready
 
-□ Story objective finalized.
-□ Acceptance criteria reviewed.
-□ Expected files identified.
+□ Story objective reviewed.
+□ Acceptance criteria defined.
+□ Expected implementation files identified.
+□ RED test plan defined.
 □ Documentation updates identified.
-□ RED tests planned.
-□ Expected regression count documented (Current: 447, Expected: 447).
+□ Regression estimate documented.
+□ Expected regression count documented (Current: 451, Expected: 451).
 
 ## Expected Files
 
+### Application
+
 resumeforge/profiles/profile.py
 resumeforge/workflow.py
+
+### Tests
+
 tests/test_profile.py
 tests/test_profile_persistence.py
 tests/test_cli.py
 
+### Documentation
+
+CHECKPOINT.md
+docs/history.md
+docs/testing.md
+
 ## RED Test Plan
 
-• Verify `Profile` defaults `notes` to `None`.
-• Verify `Profile` stores `notes`.
-• Verify persistence saves/restores notes.
-• Verify `profile edit` updates notes.
-• Verify backward compatibility.
+• tests/test_profile.py
+  • Add test_profile_defaults_to_no_category()
+  • Add test_profile_stores_category()
+
+• tests/test_profile_persistence.py
+  • Add test_profile_persists_category()
+
+• tests/test_cli.py
+  • Add test_profile_edit_updates_category()
 
 ## Documentation Updates
 
-□ CHECKPOINT.md
-□ docs/history.md
-□ docs/testing.md
+□ Update CHECKPOINT.md
+□ Update docs/history.md
+□ Update docs/testing.md
 
 ## Out of Scope
 
-• Note formatting
-• Markdown support
-• Multi-line editing
-• Search by notes
-• Exporting notes
-• Notes included in generated resumes
+• Category validation
+• Multiple categories
+• Category filtering
+• Category hierarchy
+• Category aliases
+• Category reporting
 
 ## Completed
 
@@ -132,7 +150,7 @@ tests/test_cli.py
 
 Testing
 
-✓ 447 automated tests
+✓ 451 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -175,24 +193,25 @@ Completed
 ✓ Profile Color Theme
 ✓ Profile Description
 ✓ Profile Tags
+✓ Profile Notes
 
 Current
-→ Story G.2.5.20 – Profile Notes
+→ Story: G.2.5.21 – Profile Category
 
 Remaining Work
 
-• Profile metadata enhancements
-• Remaining Configuration Management enhancements
+• Remaining profile metadata enhancements
+• Remaining Configuration Management stories
 
 ## Next Immediate Task
 
-Implement profile color theme support.
+Implement profile category support.
 Update profile workflow.
 Add automated CLI tests.
 
 ## Test Status
 
-447 automated tests passing
+451 automated tests passing
 0 failures
 
 Latest verification:
@@ -276,7 +295,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  447 passed
+  451 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -307,7 +326,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-447 passing
+451 passing
 
 Quality
 100% passing
@@ -364,7 +383,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 447 automated tests
+✓ 451 automated tests
 
 ## Stable Milestones
 
@@ -408,7 +427,7 @@ Packages:
 • themes
 
 Tests:
-447 passing
+451 passing
 
 Architecture:
 Repository Pattern
@@ -473,7 +492,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 447 passed
+  - Overall suite: 451 passed
 
 ### Session Summary
 
@@ -492,7 +511,7 @@ Completed
 
 Test Status
 
-447 passing
+451 passing
 
 ## Story Completion Checklist
 
