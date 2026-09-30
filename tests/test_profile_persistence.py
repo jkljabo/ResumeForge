@@ -140,3 +140,24 @@ def test_round_trip_preserves_description(tmp_path):
     assert loaded["description"] == "CDC Resume"
 
 
+def test_round_trip_preserves_tags(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "tags": "cdc,federal",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["tags"] == "cdc,federal"
+
+

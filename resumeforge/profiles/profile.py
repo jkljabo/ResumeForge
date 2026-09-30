@@ -5,13 +5,18 @@ from resumeforge.constants import (
     DEFAULT_PROFILE_FILE,
 )
 
-@dataclass(frozen=True)
+@dataclass
 class Profile:
     name: str
     directory: Path
+
     is_default: bool = False
+
+    headline: str | None = None
+    full_name: str | None = None
     color_theme: str | None = None
     description: str | None = None
+    tags: str | None = None
 
     @property
     def resume_path(self) -> Path:

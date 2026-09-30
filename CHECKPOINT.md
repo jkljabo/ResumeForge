@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story G.2.5.18 – Profile Description
-Tests: 439 passing
+Current Story G.2.5.20 – <new name>
+Tests: 443 passing
 Build Status: Passing
 
 ## Current Phase
@@ -36,32 +36,33 @@ Completed
 ✓ Story G.2.5.15 – Profile Set Default
 ✓ Story G.2.5.16 – Profile List Details
 ✓ Story G.2.5.17 – Profile Color Theme
+✓ Story G.2.5.18 – Profile Description
+✓ Story G.2.5.19 – Profile Tags
 
 Current
-→ Story G.2.5.18 – Profile Description
+→ Story G.2.5.20 – <new name>
 
 Story Objective
 
-Add support for an optional profile description that allows users to document the purpose of a profile. The description should be editable through the existing profile workflow, persisted with the profile, displayed when listing profiles, and remain fully backward compatible with existing profiles.
+Add support for optional profile tags that allow users to classify and organize profiles by purpose or target audience. Tags should be editable through the existing profile workflow, persisted with the profile, displayed when listing profiles, and remain fully backward compatible with existing profiles.
 
 Acceptance Criteria
 
-□ Profile supports an optional description field.
-□ Existing profiles load correctly when no description is present.
-□ profile edit updates the description.
-□ Profile persistence saves and restores the description.
-□ profile list displays the description when one exists.
+□ Profile supports an optional `tags` field.
+□ Existing profiles load correctly when no tags are present.
+□ `profile edit` updates the profile tags.
+□ Profile persistence saves and restores the tags.
+□ `profile list` displays profile tags when present.
 □ Existing profile commands remain backward compatible.
-□ Full regression suite passes.
 
 Definition of Ready
 
-□ Story objective finalized
-□ Acceptance criteria reviewed
-□ Expected files identified
-□ Documentation updates identified
-□ RED tests planned
-□ Expected test count 439
+□ Story objective finalized.
+□ Acceptance criteria reviewed.
+□ Expected files identified.
+□ Documentation updates identified.
+□ RED tests planned.
+□ Expected regression count documented (Current: 443, Expected: 443).
 
 ## Expected Files
 
@@ -73,19 +74,19 @@ tests/test_cli.py
 
 ## RED Test Plan
 
-• Verify Profile defaults description to None.
-• Verify Profile stores description.
-• Verify description persists.
-• Verify profile edit forwards description updates.
-• Verify profile list displays description.
+• Verify `Profile` defaults `tags` to `None`.
+• Verify `Profile` stores `tags`.
+• Verify profile persistence saves and restores `tags`.
+• Verify `profile edit` forwards tag updates.
+• Verify `profile list` displays profile tags.
 
 ## Out of Scope
 
-• Description validation
-• Maximum description length
-• Markdown or rich-text formatting
-• Multi-line editing
-• Searching/filtering by description
+• Tag validation
+• Multiple tags per profile
+• Tag searching/filtering
+• Tag auto-complete
+• Tag management commands
 
 ## Completed
 
@@ -123,7 +124,7 @@ tests/test_cli.py
 
 Testing
 
-✓ 439 automated tests
+✓ 443 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -164,9 +165,11 @@ Completed
 ✓ Profile Set Default
 ✓ Profile List Details
 ✓ Profile Color Theme
+✓ Profile Description
+✓ Profile Tags
 
 Current
-→ Story G.2.5.18 – Profile Description
+→ Story G.2.5.20 – <new name>
 
 Remaining Work
 
@@ -181,7 +184,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-439 automated tests passing
+443 automated tests passing
 0 failures
 
 Latest verification:
@@ -265,7 +268,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  439 passed
+  443 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -296,7 +299,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-439 passing
+443 passing
 
 Quality
 100% passing
@@ -353,7 +356,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 439 automated tests
+✓ 443 automated tests
 
 ## Stable Milestones
 
@@ -397,7 +400,7 @@ Packages:
 • themes
 
 Tests:
-439 passing
+443 passing
 
 Architecture:
 Repository Pattern
@@ -462,7 +465,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 439 passed
+  - Overall suite: 443 passed
 
 ### Session Summary
 
@@ -481,7 +484,7 @@ Completed
 
 Test Status
 
-439 passing
+443 passing
 
 ## Story Completion Checklist
 

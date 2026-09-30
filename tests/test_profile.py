@@ -93,3 +93,22 @@ def test_profile_stores_description():
     assert profile.description == "CDC Resume"
 
 
+def test_profile_defaults_to_no_tags():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.tags is None
+
+
+def test_profile_stores_tags():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        tags="cdc,federal",
+    )
+
+    assert profile.tags == "cdc,federal"
+
+
