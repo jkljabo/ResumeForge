@@ -4,7 +4,7 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.21 – Profile Category
+Current Story: G.2.5.22 – Profile Visibility
 Tests: 451 passing
 Build Status: Passing
 
@@ -39,34 +39,35 @@ Completed
 ✓ Story G.2.5.18 – Profile Description
 ✓ Story G.2.5.19 – Profile Tags
 ✓ Story G.2.5.20 – Profile Notes
+✓ Story: G.2.5.21 – Profile Category
 
 Current
-→ Story: G.2.5.21 – Profile Category
+→ Story: G.2.5.22 – Profile Visibility
 
 ## Story Objective
 
-Add support for an optional profile category that allows users to organize
-profiles by purpose. Categories are editable through the existing profile
-workflow, persisted with the profile, and remain fully backward compatible
-with existing profile files.
+Add support for an optional profile visibility that allows users to classify
+profiles by intended visibility. Visibility is editable through the existing
+profile workflow, persisted with the profile, and remains fully backward
+compatible with existing profile files.
 
 ## Acceptance Criteria
 
-□ Profile supports an optional `category` property.
-□ Existing profiles continue to load correctly when no category is present.
-□ Category can be updated through `profile edit`.
-□ Category is persisted with the profile.
+□ Profile supports an optional `visibility` property.
+□ Existing profiles continue to load correctly when no visibility is present.
+□ Visibility can be updated through `profile edit`.
+□ Visibility is persisted with the profile.
 □ Existing profile functionality remains unchanged.
 
 ## Definition of Ready
 
-□ Story objective reviewed.
-□ Acceptance criteria defined.
-□ Expected implementation files identified.
-□ RED test plan defined.
-□ Documentation updates identified.
-□ Regression estimate documented.
-□ Expected regression count documented (Current: 451, Expected: 451).
+✓ Story objective reviewed.
+✓ Acceptance criteria defined.
+✓ Expected implementation files identified.
+✓ RED test plan defined.
+✓ Documentation updates identified.
+✓ Regression estimate documented.
+✓ Expected regression count documented (Current: 451, Expected: 451).
 
 ## Expected Files
 
@@ -90,14 +91,14 @@ docs/testing.md
 ## RED Test Plan
 
 • tests/test_profile.py
-  • Add test_profile_defaults_to_no_category()
-  • Add test_profile_stores_category()
+  • Add test_profile_defaults_to_no_visibility()
+  • Add test_profile_stores_visibility()
 
 • tests/test_profile_persistence.py
-  • Add test_profile_persists_category()
+  • Add test_profile_persists_visibility()
 
 • tests/test_cli.py
-  • Add test_profile_edit_updates_category()
+  • Add test_profile_edit_updates_visibility()
 
 ## Documentation Updates
 
@@ -107,12 +108,12 @@ docs/testing.md
 
 ## Out of Scope
 
-• Category validation
-• Multiple categories
-• Category filtering
-• Category hierarchy
-• Category aliases
-• Category reporting
+• Visibility validation
+• Predefined visibility values
+• Visibility filtering
+• Visibility permissions
+• Visibility reporting
+• Visibility inheritance
 
 ## Completed
 
@@ -194,9 +195,10 @@ Completed
 ✓ Profile Description
 ✓ Profile Tags
 ✓ Profile Notes
+✓ Profile Category
 
 Current
-→ Story: G.2.5.21 – Profile Category
+→ Story: G.2.5.22 – Profile Visibility
 
 Remaining Work
 

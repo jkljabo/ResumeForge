@@ -19,6 +19,7 @@ class Profile:
     tags: str | None = None
     notes: str | None = None
     category: str | None = None
+    visibility: str | None = None
 
     @property
     def resume_path(self) -> Path:

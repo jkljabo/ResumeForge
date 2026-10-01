@@ -125,6 +125,10 @@ def build_parser() -> argparse.ArgumentParser:
         dest="full_name",
     )
 
+    edit_parser.add_argument(
+        "--visibility",
+    )
+    
     remove.add_argument(
         "name",
         help="Profile name",

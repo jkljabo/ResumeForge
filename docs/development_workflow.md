@@ -372,6 +372,7 @@ To minimize development cycle time:
 - Prefer extending existing implementation patterns over introducing new abstractions.
 - Verify that new tests follow the conventions already established in the surrounding test file.
 - Planning responses shall mirror the current CHECKPOINT.md structure and markdown conventions   exactly. New headings, checklist styles, or formatting conventions should not be introduced unless the repository documentation has first adopted them.
+- Implementation (RED/GREEN) reviews must never introduce new classes, services, repositories, or abstractions that are not present in the current WIP unless the story explicitly calls for them. All recommendations must be derived from the uploaded codebase.
   
 ## Continuous Improvement
 

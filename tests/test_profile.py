@@ -150,3 +150,22 @@ def test_profile_stores_category():
     assert profile.category == "Government"
 
 
+def test_profile_defaults_to_no_visibility():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.visibility is None
+
+
+def test_profile_stores_visibility():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        visibility="Private",
+    )
+
+    assert profile.visibility == "Private"
+
+

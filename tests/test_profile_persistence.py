@@ -204,3 +204,24 @@ def test_profile_persistence_preserves_category(tmp_path):
     assert loaded["category"] == "Government"
 
 
+def test_profile_persistence_preserves_visibility(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "visibility": "Private",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["visibility"] == "Private"
+
+
