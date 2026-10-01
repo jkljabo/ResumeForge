@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.22 – Profile Visibility
-Tests: 451 passing
+Current Story: G.2.5.23 – Profile Owner
+Tests: 459 passing
 Build Status: Passing
 
 ## Current Phase
@@ -16,48 +16,52 @@ Phase G.2 – Configuration Management
 Profile management, configuration management, and default profile workflows.
 
 Completed
-✓ G.2.1 – Configuration Model
-✓ G.2.2 – Configuration Repository
-✓ G.2.3 – Configuration Service
-✓ G.2.4 – Configuration Workflow
-✓ G.2.5.2 – Workflow Routing
-✓ G.2.5.3 – Display Configuration
-✓ G.2.5.4 – Update Configuration
-✓ G.2.5.5 – Validate Configuration
-✓ G.2.5.6 – Configuration Reset
-✓ Story G.2.5.7 – Configuration Help
-✓ Story G.2.5.8 – Configuration List
-✓ Story G.2.5.9 – Default Profile Enhancements
-✓ Story G.2.5.10 – Configuration Aliases
-✓ Story G.2.5.11 – Profile Import
-✓ Story G.2.5.12 – Profile Export
-✓ Story G.2.5.13 – Profile Clone
-✓ Story G.2.5.14 – Profile Rename
-✓ Story G.2.5.15 – Profile Set Default
-✓ Story G.2.5.16 – Profile List Details
-✓ Story G.2.5.17 – Profile Color Theme
-✓ Story G.2.5.18 – Profile Description
-✓ Story G.2.5.19 – Profile Tags
-✓ Story G.2.5.20 – Profile Notes
+✓ Story: G.2.1 – Configuration Model
+✓ Story: G.2.2 – Configuration Repository
+✓ Story: G.2.3 – Configuration Service
+✓ Story: G.2.4 – Configuration Workflow
+✓ Story: G.2.5.2 – Workflow Routing
+✓ Story: G.2.5.3 – Display Configuration
+✓ Story: G.2.5.4 – Update Configuration
+✓ Story: G.2.5.5 – Validate Configuration
+✓ Story: G.2.5.6 – Configuration Reset
+✓ Story: G.2.5.7 – Configuration Help
+✓ Story: G.2.5.8 – Configuration List
+✓ Story: G.2.5.9 – Default Profile Enhancements
+✓ Story: G.2.5.10 – Configuration Aliases
+✓ Story: G.2.5.11 – Profile Import
+✓ Story: G.2.5.12 – Profile Export
+✓ Story: G.2.5.13 – Profile Clone
+✓ Story: G.2.5.14 – Profile Rename
+✓ Story: G.2.5.15 – Profile Set Default
+✓ Story: G.2.5.16 – Profile List Details
+✓ Story: G.2.5.17 – Profile Color Theme
+✓ Story: G.2.5.18 – Profile Description
+✓ Story: G.2.5.19 – Profile Tags
+✓ Story: G.2.5.20 – Profile Notes
 ✓ Story: G.2.5.21 – Profile Category
+✓ Story: G.2.5.22 – Profile Visibility
 
 Current
-→ Story: G.2.5.22 – Profile Visibility
+→ Story: G.2.5.23 – Profile Owner
 
 ## Story Objective
 
-Add support for an optional profile visibility that allows users to classify
-profiles by intended visibility. Visibility is editable through the existing
-profile workflow, persisted with the profile, and remains fully backward
-compatible with existing profile files.
+Add support for an optional profile owner that identifies the owner or
+maintainer of a profile.
+
+Owner is editable through the existing profile workflow, persisted with the
+profile, and remains fully backward compatible with existing profile files.
 
 ## Acceptance Criteria
 
-□ Profile supports an optional `visibility` property.
-□ Existing profiles continue to load correctly when no visibility is present.
-□ Visibility can be updated through `profile edit`.
-□ Visibility is persisted with the profile.
-□ Existing profile functionality remains unchanged.
+□ Profile supports an optional `owner` property.
+□ `owner` defaults to None.
+□ Existing profiles continue loading correctly.
+□ `owner` is persisted.
+□ `owner` can be edited through `profile edit`.
+□ Serialization includes `owner` when present.
+□ Existing regression suite remains green.
 
 ## Definition of Ready
 
@@ -67,13 +71,14 @@ compatible with existing profile files.
 ✓ RED test plan defined.
 ✓ Documentation updates identified.
 ✓ Regression estimate documented.
-✓ Expected regression count documented (Current: 451, Expected: 451).
+✓ Expected regression count documented (Current: 459, Expected: 459).
 
 ## Expected Files
 
 ### Application
 
 resumeforge/profiles/profile.py
+resumeforge/profile_service.py
 resumeforge/workflow.py
 
 ### Tests
@@ -86,34 +91,32 @@ tests/test_cli.py
 
 CHECKPOINT.md
 docs/history.md
-docs/testing.md
+Version history / release notes
 
 ## RED Test Plan
 
 • tests/test_profile.py
-  • Add test_profile_defaults_to_no_visibility()
-  • Add test_profile_stores_visibility()
+  • Add test_profile_defaults_to_no_owner()
+  • Add test_profile_stores_owner()
 
 • tests/test_profile_persistence.py
-  • Add test_profile_persists_visibility()
+  • Add test_profile_persists_owner()
 
 • tests/test_cli.py
-  • Add test_profile_edit_updates_visibility()
+  • Add test_profile_edit_updates_owner()
 
 ## Documentation Updates
 
 □ Update CHECKPOINT.md
 □ Update docs/history.md
-□ Update docs/testing.md
 
 ## Out of Scope
 
-• Visibility validation
-• Predefined visibility values
-• Visibility filtering
-• Visibility permissions
-• Visibility reporting
-• Visibility inheritance
+• Owner validation
+• Multiple owners
+• Owner lookup
+• Owner-based filtering
+• Ownership permissions
 
 ## Completed
 
@@ -151,7 +154,7 @@ docs/testing.md
 
 Testing
 
-✓ 451 automated tests
+✓ 459 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -196,9 +199,10 @@ Completed
 ✓ Profile Tags
 ✓ Profile Notes
 ✓ Profile Category
+✓ Profile Visibility
 
 Current
-→ Story: G.2.5.22 – Profile Visibility
+→ Story: G.2.5.23 – Profile Owner
 
 Remaining Work
 
@@ -213,7 +217,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-451 automated tests passing
+459 automated tests passing
 0 failures
 
 Latest verification:
@@ -297,7 +301,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  451 passed
+  459 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -328,7 +332,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-451 passing
+459 passing
 
 Quality
 100% passing
@@ -385,7 +389,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 451 automated tests
+✓ 459 automated tests
 
 ## Stable Milestones
 
@@ -429,7 +433,7 @@ Packages:
 • themes
 
 Tests:
-451 passing
+459 passing
 
 Architecture:
 Repository Pattern
@@ -494,7 +498,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 451 passed
+  - Overall suite: 459 passed
 
 ### Session Summary
 
@@ -513,7 +517,7 @@ Completed
 
 Test Status
 
-451 passing
+459 passing
 
 ## Story Completion Checklist
 

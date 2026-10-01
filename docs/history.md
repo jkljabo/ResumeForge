@@ -1,3 +1,14 @@
+Project History
+
+Each completed story records:
+
+• Story implemented
+• Major architectural additions
+• Significant behavioral changes
+• Regression test count
+
+History entries should describe what changed rather than implementation details.
+
 2026-09-07
 
 Separated CLIWorkflow
@@ -8,7 +19,7 @@ Eliminated circular imports
 
 Implemented profile creation
 
-451 tests passing
+459 tests passing
 
 2026-09-25
 
@@ -24,7 +35,7 @@ Added config show CLI command
 
 Improved dependency injection for CLIWorkflow
 
-451 tests passing
+459 tests passing
 
 Configuration infrastructure is now complete.
 
@@ -50,7 +61,7 @@ Persisted configuration changes through configuration.json
 
 Expanded CLI and configuration service coverage
 
-451 tests passing
+459 tests passing
 
 2026-09-25
 
@@ -66,7 +77,7 @@ Rejected empty default profiles
 
 Ensured invalid updates are never persisted
 
-451 tests passing
+459 tests passing
 
 2026-09-25
 
@@ -78,7 +89,7 @@ Restored ApplicationConfiguration.default()
 
 Persisted default configuration
 
-451 tests passing
+459 tests passing
 
 2026-09-25
 
@@ -90,7 +101,7 @@ Displays configurable settings
 
 Displays supported values
 
-451 tests passing
+459 tests passing
 
 2026-09-26
 
@@ -100,7 +111,7 @@ Added config list command
 
 Displays current configuration values
 
-451 tests passing
+459 tests passing
 
 2026-09-26
 
@@ -114,7 +125,7 @@ Added config output-file command
 
 Introduced convenience aliases for common configuration updates
 
-451 tests passing
+459 tests passing
 
 2026-09-27
 
@@ -128,7 +139,7 @@ Added CLI routing for profile import
 
 Expanded CLI test coverage
 
-451 tests passing
+459 tests passing
 
 2026-09-27
 
@@ -142,7 +153,7 @@ Added repository clone support
 
 Expanded CLI test coverage
 
-451 tests passing
+459 tests passing
 
 2026-09-27
 
@@ -156,7 +167,7 @@ Added repository rename support
 
 Expanded CLI test coverage
 
-451 tests passing
+459 tests passing
 
 2026-09-28
 
@@ -170,7 +181,7 @@ Reused existing configuration persistence
 
 Expanded CLI coverage
 
-451 tests passing
+459 tests passing
 
 2026-09-28
 
@@ -182,7 +193,7 @@ Added ProfileService.get_default_profile()
 
 Enhanced CLI profile list formatting
 
-451 tests passing
+459 tests passing
 
 2026-09-29
 
@@ -190,11 +201,11 @@ Implemented Profile Color Theme
 
 Added optional color_theme metadata to Profile
 
-Extended profile edit workflow to update color_theme
+Extended CLI profile edit workflow to update color_theme
 
 Maintained backward compatibility for existing profile editing
 
-451 tests passing
+459 tests passing
 
 
 2026-09-30
@@ -203,9 +214,9 @@ Implemented Profile Description
 
 Added optional description metadata to Profile
 
-Extended profile edit workflow to update description
+Extended CLI profile edit workflow to update description
 
-451 tests passing
+459 tests passing
 
 
 2026-09-30
@@ -214,9 +225,9 @@ Implemented Profile Tags
 
 Added optional tags metadata to Profile
 
-Extended profile edit workflow to update tags
+Extended CLI profile edit workflow to update tags
 
-451 tests passing
+459 tests passing
 
 
 2026-09-30
@@ -229,7 +240,7 @@ Extended CLI profile edit workflow
 
 Expanded profile persistence
 
-451 tests passing
+459 tests passing
 
 
 2026-09-30
@@ -242,6 +253,37 @@ Extended CLI profile edit workflow
 
 Expanded profile persistence
 
-451 tests passing
+459 tests passing
+
+
+2026-09-30
+
+Implemented Profile Visibility
+
+Added visible metadata to Profile
+
+Extended CLI profile edit workflow to update visibility
+
+Integrated visibility into profile persistence
+
+Maintained backward compatibility for existing profiles
+
+459 tests passing
+
+
+2026-10-01
+
+Implemented Profile Owner
+
+Added optional owner metadata to Profile
+
+Extended CLI profile edit workflow
+
+Expanded profile persistence
+
+Maintained backward compatibility for existing profiles
+
+459 tests passing
+
 
 

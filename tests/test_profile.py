@@ -169,3 +169,22 @@ def test_profile_stores_visibility():
     assert profile.visibility == "Private"
 
 
+def test_profile_defaults_to_no_owner():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.owner is None
+
+
+def test_profile_stores_owner():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        owner="Jason Little",
+    )
+
+    assert profile.owner == "Jason Little"
+
+

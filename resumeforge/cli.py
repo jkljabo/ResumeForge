@@ -128,6 +128,10 @@ def build_parser() -> argparse.ArgumentParser:
     edit_parser.add_argument(
         "--visibility",
     )
+
+    edit_parser.add_argument(
+        "--owner",
+    )
     
     remove.add_argument(
         "name",

@@ -242,6 +242,9 @@ class CLIWorkflow:
         if getattr(args, "visibility", None) is not None:
             updates["visibility"] = args.visibility
 
+        if getattr(args, "owner", None) is not None:
+            updates["owner"] = args.owner
+
         self.profile_service.edit(
             args.name,
             updates,

@@ -1,5 +1,24 @@
 
+## Testing Philosophy
+
+ResumeForge follows strict TDD.
+
+Every story must include:
+
+Planning
+RED
+GREEN
+Regression
+Signoff
+
 ## Testing Strategy
+
+Testing is organized into:
+
+• Unit Tests
+• Integration Tests
+• CLI Tests
+• Full Regression Tests
 
 python -m pytest
 
@@ -11,9 +30,19 @@ python -m pytest
 
 ## Regression Tests
 
-## Current Coverage
+Standard regression command
 
-451 tests
+python -m pytest
+
+Expected result
+
+All tests pass before Story Signoff.
+
+## Current Regression Count
+
+459 tests
+
+Update this value whenever new regression tests are merged.
 
 ## Expected Result
 

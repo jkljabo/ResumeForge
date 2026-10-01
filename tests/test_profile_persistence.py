@@ -225,3 +225,24 @@ def test_profile_persistence_preserves_visibility(tmp_path):
     assert loaded["visibility"] == "Private"
 
 
+def test_profile_persistence_preserves_owner(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "owner": "Jason Little",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["owner"] == "Jason Little"
+
+
