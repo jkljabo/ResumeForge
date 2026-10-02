@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.24 – Profile Organization
-Tests: 463 passing
+Current Story: G.2.5.25 – Profile Purpose
+Tests: 467 passing
 Build Status: Passing
 
 ## Current Phase
@@ -42,29 +42,29 @@ Completed
 ✓ Story: G.2.5.21 – Profile Category
 ✓ Story: G.2.5.22 – Profile Visibility
 ✓ Story: G.2.5.23 – Profile Owner
+✓ Story: G.2.5.24 – Profile Organization
 
-Current
-→ Story: G.2.5.24 – Profile Organization
+Completed
+→ Story: G.2.5.25 – Profile Purpose
 
 ## Story Objective
 
-Add support for an optional profile organization that identifies the
-organization, company, client, or target environment associated with a
-profile.
+Add support for an optional profile purpose that describes the intended
+use of a profile.
 
-Organization is editable through the existing profile workflow, persisted
-with the profile, and remains fully backward compatible with existing
-profile files.
+Purpose is editable through the existing profile workflow, persisted with
+the profile, and remains fully backward compatible with existing profile
+files.
 
 ## Acceptance Criteria
 
-□ Profile supports an optional `organization` property.
-□ `organization` defaults to None.
-□ Existing profiles continue loading correctly.
-□ `organization` is persisted.
-□ `organization` can be edited through `profile edit`.
-□ Serialization includes `organization` when present.
-□ Existing regression suite remains green.
+✓ Profile supports an optional `purpose` property.
+✓ `purpose` defaults to None.
+✓ Existing profiles continue loading correctly.
+✓ `purpose` is persisted.
+✓ `purpose` can be edited through `profile edit`.
+✓ Serialization includes `purpose` when present.
+✓ Existing regression suite remains green.
 
 ## Definition of Ready
 
@@ -74,7 +74,7 @@ profile files.
 ✓ RED test plan defined.
 ✓ Documentation updates identified.
 ✓ Regression estimate documented.
-✓ Expected regression count documented (Current: 463, Expected: 463).
+✓ Expected regression count documented (Current: 467, Expected: 467).
 
 ## Expected Files
 
@@ -93,32 +93,34 @@ tests/test_cli.py
 ### Documentation
 
 CHECKPOINT.md
-docs/history.md
+docs/phases.md
+docs/history.md (Story Signoff)
 
 ## RED Test Plan
 
 • tests/test_profile.py
-  • Add test_profile_defaults_to_no_organization()
-  • Add test_profile_stores_organization()
+  • Add test_profile_defaults_to_no_purpose()
+  • Add test_profile_stores_purpose()
 
 • tests/test_profile_persistence.py
-  • Add test_profile_persists_organization()
+  • Add test_profile_persists_purpose()
 
 • tests/test_cli.py
-  • Add test_profile_edit_updates_organization()
+  • Add test_profile_edit_updates_purpose()
 
 ## Documentation Updates
 
-□ Update CHECKPOINT.md
-□ Update docs/history.md
+✓ Update CHECKPOINT.md
+✓ Update docs/phases.md
+✓ Update docs/history.md (Story Signoff)
 
 ## Out of Scope
 
-• Organization validation
-• Organization lookup
-• Organization-based filtering
-• Multiple organizations
-• Organization hierarchy
+• Purpose validation
+• Purpose lookup
+• Purpose-based filtering
+• Multiple purposes
+• Purpose taxonomy
 
 ## Completed
 
@@ -156,7 +158,7 @@ docs/history.md
 
 Testing
 
-✓ 463 automated tests
+✓ 467 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -203,9 +205,11 @@ Completed
 ✓ Profile Category
 ✓ Profile Visibility
 ✓ Profile Owner
+✓ Profile Organization
+✓ Profile Purpose
 
 Current
-→ Story: G.2.5.24 – Profile Organization
+→ Story: G.2.5.26 – <new name>
 
 Remaining Work
 
@@ -214,13 +218,15 @@ Remaining Work
 
 ## Next Immediate Task
 
-Implement profile category support.
-Update profile workflow.
-Add automated CLI tests.
+Begin the next story with Review: Story Planning.
+
+Synchronize project documentation.
+Commit and tag the completed story.
+Begin the next story with Review: Story Planning.
 
 ## Test Status
 
-463 automated tests passing
+467 automated tests passing
 0 failures
 
 Latest verification:
@@ -304,7 +310,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  463 passed
+  467 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -335,7 +341,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-463 passing
+467 passing
 
 Quality
 100% passing
@@ -392,7 +398,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 463 automated tests
+✓ 467 automated tests
 
 ## Stable Milestones
 
@@ -436,7 +442,7 @@ Packages:
 • themes
 
 Tests:
-463 passing
+467 passing
 
 Architecture:
 Repository Pattern
@@ -501,7 +507,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 463 passed
+  - Overall suite: 467 passed
 
 ### Session Summary
 
@@ -520,13 +526,18 @@ Completed
 
 Test Status
 
-463 passing
+467 passing
 
 ## Story Completion Checklist
 
 ✓ Tests written
-✓ Tests passing
+✓ RED tests verified
+✓ GREEN implementation verified
+✓ 467 tests passing
 ✓ Code reviewed
-✓ Documentation updated
+✓ Documentation synchronized
 ✓ CHECKPOINT updated
+✓ History updated
+✓ Phases updated
+✓ Workflow improvements evaluated
 ✓ Ready for Commit

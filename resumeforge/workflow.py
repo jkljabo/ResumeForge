@@ -248,6 +248,9 @@ class CLIWorkflow:
         if getattr(args, "organization", None) is not None:
             updates["organization"] = args.organization
 
+        if getattr(args, "purpose", None) is not None:
+            updates["purpose"] = args.purpose
+
         self.profile_service.edit(
             args.name,
             updates,

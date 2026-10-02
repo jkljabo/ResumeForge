@@ -268,3 +268,24 @@ def test_profile_persists_organization(tmp_path):
     assert loaded["organization"] == "OpenAI"
 
 
+def test_profile_persists_purpose(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "purpose": "Federal Applications",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["purpose"] == "Federal Applications"
+
+

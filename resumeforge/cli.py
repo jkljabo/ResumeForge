@@ -138,6 +138,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--organization",
         help="Profile organization.",
     )
+
+    edit_parser.add_argument(
+        "--purpose",
+        help="Profile purpose.",
+    )
     
     remove.add_argument(
         "name",

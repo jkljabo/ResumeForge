@@ -283,6 +283,44 @@ Do not introduce:
 
 Unless explicitly requested by the developer.
 
+### Verify: Story Planning
+
+Purpose
+
+Verify that the approved story has been fully incorporated into the project documentation before implementation begins.
+
+Required Verification
+
+Review the current ResumeForge-WIP.zip project and verify that all planning documentation reflects the approved story.
+
+At a minimum review:
+
+• CHECKPOINT.md
+• docs/phases.md
+• Any active roadmap documentation
+
+For every required update provide:
+
+• Document
+• Location (Current)
+• Location (Suggested)
+• Suggested Update
+
+Verification Rules
+
+• The current ResumeForge-WIP project is the sole source of authority.
+• Do not rely on previous conversations or earlier project revisions.
+• Do not use conditional recommendations.
+• Do not assume document structure.
+• Every recommendation must reference the current project state.
+
+Exit Criteria
+
+✓ Planning documentation synchronized.
+✓ Story documentation verified.
+✓ Definition of Ready satisfied.
+✓ Ready to begin Implement: Implementation Package (RED).
+
 ## Phase 2 – Implementation Package (RED)
 
 ### Phase Evidence Chain
@@ -371,6 +409,22 @@ Placeholder tests or pseudocode are not acceptable.
 
 The RED package represents the complete implementation of the planned test
 suite.
+
+### RED Test Fidelity Standard
+
+RED tests shall be derived from the current ResumeForge-WIP project architecture.
+
+Before providing a RED test implementation, ChatGPT (Avery) shall verify that every class, method, constructor, fixture, persistence API, helper, and integration point referenced by the test exists in the current project.
+
+RED tests shall not introduce or assume APIs that do not exist in the current ResumeForge-WIP project.
+
+When an existing implementation pattern is available, the RED test shall follow that pattern rather than inventing a new abstraction.
+
+The RED implementation package shall identify the exact existing API used by each test.
+
+The developer shall never be required to determine whether a referenced API exists or translate a test to the project's actual architecture.
+
+If the required API cannot be verified from the current WIP, workflow execution shall stop and the missing project information shall be reported.
 
 ### RED Completion Confirmation
 
@@ -483,6 +537,34 @@ Verify: Implementation Package (GREEN)
 Next Phase
 
 Review: Story Signoff
+
+### GREEN Implementation Precision Standard
+
+The GREEN implementation package is an implementation work order, not a design review.
+
+Every implementation item shall contain:
+
+• File name
+• Current location (method/class/section)
+• Existing code to locate the insertion point
+• Exact insertion location
+• Exact code to add, replace, or remove
+• Statement of what must NOT be modified
+
+Implementation instructions shall never require the developer to search the project for similar code or determine where changes belong.
+
+Phrases such as:
+
+- Review...
+- Determine whether...
+- Anywhere that...
+- Locate all...
+- Evaluate...
+- Similar to...
+
+are prohibited in the GREEN implementation package.
+
+That analysis belongs in the Review phase. The Implement phase communicates completed analysis and exact implementation steps.
 
 ### Developer (Jason's) Input
 
@@ -642,6 +724,38 @@ Verify:
 □ docs/testing.md
 □ docs/development.md
 □ docs/development_workflow.md (if workflow improvements were discovered)
+
+### Documentation Verification Standard
+
+Story Signoff shall verify each required project document against the completed story and current repository state.
+
+For every document reviewed, ChatGPT (Avery) shall explicitly identify:
+
+• Document
+• Location (Current)
+• Location (Suggested)
+• Suggested Update
+
+Current-state values shall reflect the verified repository state.
+
+Historical values shall remain historically accurate and shall not be replaced merely because the current regression count has changed.
+
+No documentation item may be marked synchronized based on assumptions, previous versions, or prior conversations.
+
+### Historical Regression Count Verification
+
+Before Story Signoff is approved:
+
+1. docs/history.md shall be reviewed against the current story's verified regression result.
+2. The completed story's history entry shall record the exact full regression count verified at that story's signoff.
+3. Existing historical entries shall not be updated to the current regression count.
+4. Historical counts shall be preserved even when subsequent stories increase the total.
+5. A story that adds no tests may retain the same regression count as its predecessor.
+6. When historical counts are missing or suspect, ChatGPT (Avery) shall reconstruct them from available evidence before approving Story Signoff.
+7. Repository commit history shall be used as the primary reconstruction source when available.
+8. Explicit test results from the development conversation may be used as corroborating evidence.
+9. A historical count shall not be inferred merely from the current test total.
+10. If the historical count cannot be established with sufficient evidence, Story Signoff shall stop rather than inventing a value.
 
 ### Phase Evidence Chain
 

@@ -207,3 +207,22 @@ def test_profile_stores_organization():
     assert profile.organization == "OpenAI"
 
 
+def test_profile_defaults_to_no_purpose():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.purpose is None
+
+
+def test_profile_stores_purpose():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        purpose="Federal Applications",
+    )
+
+    assert profile.purpose == "Federal Applications"
+
+
