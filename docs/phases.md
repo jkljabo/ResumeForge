@@ -68,6 +68,7 @@ Phase G.2 — Profile Domain & Persistence Cleanup
 ✓ Story: G.2.5.21 – Profile Category
 ✓ Story: G.2.5.22 – Profile Visibility
 ✓ Story: G.2.5.23 – Profile Owner
+✓ Story: G.2.5.24 – Profile Organization
 
 Phase H
 

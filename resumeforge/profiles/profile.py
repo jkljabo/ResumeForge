@@ -21,6 +21,7 @@ class Profile:
     category: str | None = None
     visibility: str | None = None
     owner: str | None = None
+    organization: str | None = None
 
     @property
     def resume_path(self) -> Path:

@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.23 – Profile Owner
-Tests: 459 passing
+Current Story: G.2.5.24 – Profile Organization
+Tests: 463 passing
 Build Status: Passing
 
 ## Current Phase
@@ -41,26 +41,29 @@ Completed
 ✓ Story: G.2.5.20 – Profile Notes
 ✓ Story: G.2.5.21 – Profile Category
 ✓ Story: G.2.5.22 – Profile Visibility
+✓ Story: G.2.5.23 – Profile Owner
 
 Current
-→ Story: G.2.5.23 – Profile Owner
+→ Story: G.2.5.24 – Profile Organization
 
 ## Story Objective
 
-Add support for an optional profile owner that identifies the owner or
-maintainer of a profile.
+Add support for an optional profile organization that identifies the
+organization, company, client, or target environment associated with a
+profile.
 
-Owner is editable through the existing profile workflow, persisted with the
-profile, and remains fully backward compatible with existing profile files.
+Organization is editable through the existing profile workflow, persisted
+with the profile, and remains fully backward compatible with existing
+profile files.
 
 ## Acceptance Criteria
 
-□ Profile supports an optional `owner` property.
-□ `owner` defaults to None.
+□ Profile supports an optional `organization` property.
+□ `organization` defaults to None.
 □ Existing profiles continue loading correctly.
-□ `owner` is persisted.
-□ `owner` can be edited through `profile edit`.
-□ Serialization includes `owner` when present.
+□ `organization` is persisted.
+□ `organization` can be edited through `profile edit`.
+□ Serialization includes `organization` when present.
 □ Existing regression suite remains green.
 
 ## Definition of Ready
@@ -71,7 +74,7 @@ profile, and remains fully backward compatible with existing profile files.
 ✓ RED test plan defined.
 ✓ Documentation updates identified.
 ✓ Regression estimate documented.
-✓ Expected regression count documented (Current: 459, Expected: 459).
+✓ Expected regression count documented (Current: 463, Expected: 463).
 
 ## Expected Files
 
@@ -91,19 +94,18 @@ tests/test_cli.py
 
 CHECKPOINT.md
 docs/history.md
-Version history / release notes
 
 ## RED Test Plan
 
 • tests/test_profile.py
-  • Add test_profile_defaults_to_no_owner()
-  • Add test_profile_stores_owner()
+  • Add test_profile_defaults_to_no_organization()
+  • Add test_profile_stores_organization()
 
 • tests/test_profile_persistence.py
-  • Add test_profile_persists_owner()
+  • Add test_profile_persists_organization()
 
 • tests/test_cli.py
-  • Add test_profile_edit_updates_owner()
+  • Add test_profile_edit_updates_organization()
 
 ## Documentation Updates
 
@@ -112,11 +114,11 @@ Version history / release notes
 
 ## Out of Scope
 
-• Owner validation
-• Multiple owners
-• Owner lookup
-• Owner-based filtering
-• Ownership permissions
+• Organization validation
+• Organization lookup
+• Organization-based filtering
+• Multiple organizations
+• Organization hierarchy
 
 ## Completed
 
@@ -154,7 +156,7 @@ Version history / release notes
 
 Testing
 
-✓ 459 automated tests
+✓ 463 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -200,9 +202,10 @@ Completed
 ✓ Profile Notes
 ✓ Profile Category
 ✓ Profile Visibility
+✓ Profile Owner
 
 Current
-→ Story: G.2.5.23 – Profile Owner
+→ Story: G.2.5.24 – Profile Organization
 
 Remaining Work
 
@@ -217,7 +220,7 @@ Add automated CLI tests.
 
 ## Test Status
 
-459 automated tests passing
+463 automated tests passing
 0 failures
 
 Latest verification:
@@ -301,7 +304,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  459 passed
+  463 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -332,7 +335,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-459 passing
+463 passing
 
 Quality
 100% passing
@@ -389,7 +392,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 459 automated tests
+✓ 463 automated tests
 
 ## Stable Milestones
 
@@ -433,7 +436,7 @@ Packages:
 • themes
 
 Tests:
-459 passing
+463 passing
 
 Architecture:
 Repository Pattern
@@ -498,7 +501,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 459 passed
+  - Overall suite: 463 passed
 
 ### Session Summary
 
@@ -517,7 +520,7 @@ Completed
 
 Test Status
 
-459 passing
+463 passing
 
 ## Story Completion Checklist
 

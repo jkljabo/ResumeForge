@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document defines the standard development workflow for ResumeForge. It establishes a consistent process for planning, implementing, testing, reviewing, and signing off on every story.
+This document defines the standard development workflow for ResumeForge. It establishes a consistent process for planning, implementing, verifying, documenting, and signing off on every story.
 
 The goals of this workflow are to:
 
@@ -20,8 +20,10 @@ This document defines the required workflow for every ResumeForge story.
 It governs:
 
 • Story Planning
-• RED implementation
-• GREEN implementation
+• Implementation Package (RED)
+• RED Verification
+• Implementation Package (GREEN)
+• GREEN Verification
 • Story Signoff
 
 Project architecture, coding standards, and feature requirements are documented elsewhere.
@@ -30,13 +32,39 @@ Project architecture, coding standards, and feature requirements are documented 
 
 Story Planning
       ↓
-     RED
+Implementation Package (RED)
       ↓
- GREEN Review
+RED Verification
       ↓
-Full Regression
+Implementation Package (GREEN)
+      ↓
+GREEN Verification
       ↓
 Story Signoff
+
+Engineering Contract
+
+ResumeForge follows strict Test-Driven Development (TDD).
+
+Each workflow phase must produce a verifiable engineering artifact before the
+next phase may begin.
+
+Planning produces an approved story package.
+
+Implementation Package (RED) produces implemented failing tests.
+
+RED Verification confirms the implemented tests fail for the expected reasons.
+
+Implementation Package (GREEN) produces the production implementation required
+to satisfy the approved RED tests.
+
+GREEN Verification confirms the implementation satisfies the RED tests and
+passes regression.
+
+Story Signoff produces a fully documented, regression-tested, releasable
+repository.
+
+No phase may be approved based solely on planned work.
 
 ResumeForge follows an incremental development model.
 
@@ -51,24 +79,112 @@ Each story should:
 
 Whenever possible, stories should remain small enough to complete in a single Planning → RED → GREEN → Signoff cycle.
 
-## Source of Truth
+## Source Authority
 
-Every review is based on the uploaded ResumeForge-WIP.zip.
+When a workflow command includes a ResumeForge WIP archive attachment,
+that archive becomes the authoritative source for the current workflow phase.
 
-Recommendations must never rely solely on previous conversations or memory.
+Before executing any Review, Implement, or Verify command,
+ChatGPT (Avery) shall:
 
-Project verification always precedes recommendations.
+□ Locate the attached ResumeForge WIP archive.
+□ Review the project relevant to the requested workflow phase.
+□ Base all recommendations exclusively on the current uploaded project.
+□ Disregard previous repository revisions whenever they conflict with the current archive.
+
+If the archive cannot be opened or reviewed with confidence,
+workflow execution shall stop immediately.
+
+No recommendations shall be generated using assumptions or prior project state.
+
+When the current uploaded project differs from prior conversations,
+the uploaded project always takes precedence.
 
 ## Standard Story Workflow
 
-Every story progresses through four phases:
+Every story progresses through six workflow stages:
 
 - Story Planning
 - Implementation Package (RED)
-- Implementation Review (GREEN)
+- RED Verification
+- Implementation Package (GREEN)
+- GREEN Verification
 - Story Signoff
 
+## Workflow Command Signals
+
+Workflow commands consist of three required signals.
+
+Story
+
+Identifies the active development story.
+
+Action
+
+Review
+Implement
+Verify
+
+Phase
+
+Story Planning
+Implementation Package (RED)
+Implementation Package (GREEN)
+Story Signoff
+
+The Action signal determines the expected ChatGPT (Avery) response.
+
+Workflow commands are deterministic.
+
+Each combination of:
+
+Story
++
+Action
++
+Phase
+
+defines exactly one expected ChatGPT (Avery) behavior.
+
+ChatGPT (Avery) shall not infer alternate workflow phases or produce artifacts associated with any phase other than the one explicitly requested.
+
+Review
+
+Evaluate the current artifact.
+No implementation is produced.
+
+Implement
+
+Produce the complete implementation package for the requested phase.
+
+Verify
+
+Review evidence produced by the developer and determine whether the phase satisfies its exit criteria.
+
+Workflow commands containing ResumeForge-WIP.zip require review of the attached archive before execution.
+
 ## Phase 1 – Story Planning
+
+### Phase Evidence Chain
+
+Inputs
+
+• Approved story selection
+
+Outputs
+
+• Complete Story Planning package
+• Acceptance criteria
+• Planned RED implementation package
+• Planned documentation updates
+
+Approval Required
+
+Review: Story Planning
+
+Next Phase
+
+Implement: Implementation Package (RED)
 
 ### Developer (Jason's) Input
 
@@ -102,7 +218,7 @@ Then:
 
 ### Response Format
 
-When providing story planning feedback, ChatGPT should mirror the formatting used by
+When providing story planning feedback, ChatGPT (Avery's) should mirror the formatting used by
 the current project documentation (primarily CHECKPOINT.md).
 
 Responses should:
@@ -142,6 +258,18 @@ Planning is complete when:
 - Expected regression test count is recorded.
 - Documentation updates required by the story have been identified.
 
+### Planning Deliverable
+
+The approved Story Planning package becomes the source of truth for the
+remainder of the story.
+
+Implementation Package (RED) shall implement the RED Test Plan exactly as
+approved during Story Planning.
+
+No additional story requirements, acceptance criteria, or design decisions
+should be introduced after Story Planning unless the story is formally revised
+and reapproved.
+
 ### Story Scope Verification
 
 Recommendations should be limited to the approved story.
@@ -156,6 +284,25 @@ Do not introduce:
 Unless explicitly requested by the developer.
 
 ## Phase 2 – Implementation Package (RED)
+
+### Phase Evidence Chain
+
+Inputs
+
+• Approved Story Planning package
+
+Outputs
+
+• Implemented RED test suite
+• Expected failing test results
+
+Approval Required
+
+Verify: Implementation Package (RED)
+
+Next Phase
+
+Review: Implementation Package (GREEN)
 
 ### Developer (Jason's) Input
 
@@ -213,10 +360,35 @@ The RED package shall include:
 No production code or implementation recommendations shall be included during
 RED.
 
+RED Test Implementation
+
+The RED package shall implement every test identified during Story Planning.
+
+Tests shall be complete, executable, and ready to paste directly into the
+project.
+
+Placeholder tests or pseudocode are not acceptable.
+
+The RED package represents the complete implementation of the planned test
+suite.
+
 ### RED Completion Confirmation
 
-Once the developer has executed the RED tests and submitted the failing
-results, ChatGPT shall perform a RED Confirmation Review.
+RED Verification
+
+After implementing the RED tests, the developer shall execute the affected test
+suite(s) and submit the pytest results.
+
+ChatGPT (Avery's) shall verify:
+
+□ Every planned RED test has been implemented.
+□ Every new RED test fails for the expected reason.
+□ Existing tests continue to behave as expected.
+□ No production implementation has been introduced.
+□ The observed failures align with the Story Objective and Acceptance Criteria.
+
+Only after RED Verification has been approved may the workflow advance to
+Implementation Package (GREEN).
 
 The purpose of this review is to verify that:
 
@@ -225,7 +397,7 @@ The purpose of this review is to verify that:
 - no unrelated regressions have been introduced;
 - the failures correspond exactly to the approved story scope.
 
-Only after ChatGPT explicitly confirms the RED failures may the workflow
+Only after ChatGPT (Avery's) explicitly confirms the RED failures may the workflow
 advance to GREEN.
 
 GREEN implementation shall never begin automatically after RED test
@@ -247,16 +419,70 @@ RED is complete only when:
 - Only the newly added tests fail.
 - Existing regression tests continue to pass.
 - The developer has executed the RED tests.
-- ChatGPT has reviewed the failing results.
+- ChatGPT (Avery's) has reviewed the failing results.
 - The failures are confirmed to represent only the missing functionality.
 
 GREEN shall not begin until all RED Exit Criteria have been satisfied.
+
+RED Signoff
+
+Approval of RED confirms that the implemented test suite accurately represents
+the approved story and that the observed failures are expected.
+
+RED approval authorizes GREEN implementation.
 
 Implementation recommendations should explain how each failing test is expected to transition to passing.
 
 Recommendations should remain traceable to the RED failures.
 
-## Phase 3 – Implementation Review (GREEN)
+## Phase 3 – Implementation Package (GREEN)
+
+### Implementation Fidelity
+
+Implementation packages shall be derived directly from the current uploaded ResumeForge WIP project.
+
+The implementation package should be directly applicable to the current project without requiring architectural translation.
+
+Implementation Completeness
+
+Implementation packages are expected to be production-ready.
+
+They should provide sufficient detail that the developer can implement the approved story without inferring missing architecture, APIs, helper methods, persistence mechanisms, or integration points.
+
+Whenever practical, recommendations should reference the exact files, classes, methods, neighboring implementations, and insertion locations found in the current ResumeForge WIP archive.
+
+If sufficient project context cannot be obtained from the current uploaded archive, workflow execution shall stop rather than relying on assumptions.
+
+Generated production code shall:
+
+□ Follow the project's existing architecture.
+□ Mirror adjacent implementations whenever practical.
+□ Reuse existing constructors, helper methods, fixtures, persistence APIs, and coding conventions.
+□ Modify only the code necessary to satisfy the approved story.
+
+Implementation packages shall not introduce alternative architectural patterns that require developer interpretation.
+
+The implementation package should be directly applicable to the current project without requiring architectural translation.
+
+### Phase Evidence Chain
+
+Inputs
+
+• Approved RED Verification
+
+Outputs
+
+• Production implementation
+• Passing RED tests
+• Passing regression suite
+
+Approval Required
+
+Verify: Implementation Package (GREEN)
+
+Next Phase
+
+Review: Story Signoff
 
 ### Developer (Jason's) Input
 
@@ -277,6 +503,23 @@ ResumeForge-WIP.zip
 - Avoid introducing unnecessary abstractions or refactoring.
 - Base all recommendations on the uploaded ResumeForge-WIP.zip rather than prior implementation assumptions.
 
+- Recommendations shall be implementation-complete.
+
+  The developer should not be required to infer
+  missing architecture,
+  missing APIs,
+  helper methods,
+  integration points,
+  persistence mechanisms,
+  constructor signatures,
+  neighboring implementation patterns,
+  or insertion locations.
+
+  Whenever practical, identify the exact file,
+  class,
+  method,
+  and insertion location found in the current ResumeForge-WIP project.
+
 ### Developer (Jason's) Responsibilities
 
 - Implement the required functionality.
@@ -292,6 +535,20 @@ GREEN is complete when:
 - Acceptance criteria are satisfied.
 - No unnecessary code changes were introduced.
 - The implementation shall remain limited to the scope established by the approved RED tests.
+
+GREEN Verification
+
+After implementation, the developer shall execute the affected test suite(s)
+followed by the full regression suite.
+
+ChatGPT (Avery's) shall verify:
+
+□ Every RED test now passes.
+□ Regression passes.
+□ Production implementation is limited to the approved story scope.
+□ No unnecessary implementation has been introduced.
+
+GREEN approval authorizes Story Signoff.
 
 ### Required GREEN Deliverables
 
@@ -322,7 +579,7 @@ GREEN shall never introduce functionality beyond the approved story scope.
 
 ### GREEN Implementation Package
 
-When GREEN begins, ChatGPT shall provide a complete implementation package.
+When GREEN begins, ChatGPT (Avery's) shall provide a complete implementation package.
 
 The package shall include:
 
@@ -355,12 +612,25 @@ Specifically:
 - RED tests have been delivered.
 - RED tests have been executed.
 - Expected failures have been confirmed.
-- ChatGPT has reviewed the RED failures.
+- ChatGPT (Avery's) has reviewed the RED failures.
 - The implementation is traceable to those failures.
 
 If RED confirmation has not occurred, GREEN shall not begin.
 
 ## Phase 4 – Story Signoff
+
+Story Signoff is the final engineering review for the completed story.
+
+This review verifies that:
+
+- The approved Story Planning package was completed.
+- RED Verification was successfully completed.
+- GREEN Verification was successfully completed.
+- Documentation accurately reflects the completed implementation.
+- The repository is in a releasable state.
+
+Only after Story Signoff is approved may the story be committed, tagged,
+and closed.
 
 ### Documentation Synchronization
 
@@ -372,6 +642,31 @@ Verify:
 □ docs/testing.md
 □ docs/development.md
 □ docs/development_workflow.md (if workflow improvements were discovered)
+
+### Phase Evidence Chain
+
+Inputs
+
+• Approved GREEN Verification
+
+Outputs
+
+• Updated documentation
+• Approved story
+• Commit and tag instructions
+• Workflow improvements (when applicable)
+
+Approval Required
+
+Review: Story Signoff
+
+Next Phase
+
+Review: Story Planning
+
+Phase Objective
+
+Formally approve the completed story and ensure the repository, documentation, and engineering process are ready for the next development cycle.
 
 ### Developer (Jason's) Input
 
@@ -385,26 +680,81 @@ ResumeForge-WIP.zip
 
 Review:
 
-- Implementation
-- Architecture
-- Documentation
-- Test results
-- Acceptance Criteria
+• Implementation completeness
+• Story scope adherence
+• Architecture consistency
+• Documentation quality
+• Test results
+• Acceptance Criteria
+• Lessons learned
+
+Evaluate improvements discovered during the completed story and classify them as:
+
+□ Codebase improvements
+□ Documentation improvements
+□ Workflow improvements
 
 Confirm that Planning, RED, and GREEN phase deliverables were completed before approving final signoff.
 
 Verify:
 
-- Documentation updates
-- Regression test count
-- Backward compatibility
-- Project consistency
+□ Documentation synchronization
+□ Regression test count
+□ Backward compatibility
+□ Repository consistency
+□ Workflow documentation updates (when applicable)
+□ Story objectives fully satisfied
 
 Provide:
 
 - Final approval
 - Commit commands
 - Tag commands (when appropriate)
+
+### Engineering Methodology Review
+
+Story Signoff serves as the engineering retrospective for the completed story.
+
+Evaluate whether the story exposed recurring friction,
+ambiguity,
+process gaps,
+or unnecessary developer effort.
+
+When improvements are identified:
+
+• Distinguish between
+
+  □ Codebase improvements
+  □ Documentation improvements
+  □ Workflow improvements
+
+• Recommend updates only when they improve repeatability,
+  reduce ambiguity,
+  or strengthen the engineering process.
+
+Workflow changes should be based on demonstrated experience from the completed story,
+not theoretical improvements.
+
+Approved workflow improvements should be incorporated before story closure whenever practical.
+
+The ResumeForge engineering methodology evolves through demonstrated experience.
+
+Workflow improvements shall be evidence-driven.
+
+Adopt workflow changes only when completed stories expose recurring patterns that improve:
+
+□ Correctness
+□ Repeatability
+□ Developer efficiency
+□ Workflow clarity
+
+Avoid introducing workflow changes based solely on preference or theoretical improvements.
+
+Story Signoff is responsible for capturing those improvements before the next story begins.
+
+Story Signoff should not expand the completed story's implementation scope.
+
+Workflow improvements identified during Story Signoff shall improve the engineering methodology without introducing additional feature work into the completed story.
 
 ### Developer (Jason's) Responsibilities
 
@@ -426,10 +776,36 @@ A story is complete when:
 - Full regression suite passes.
 - Documentation is synchronized.
 - Repository is committed.
+- Repository is tagged.
 - Repository is pushed.
-- Version tag is created.
-- Version tag is pushed.
-- Story receives final signoff.
+- Workflow improvements have been incorporated when appropriate.
+- The repository is in a releasable state.
+
+Story Signoff Checklist
+
+□ Current ResumeForge-WIP archive reviewed
+□ Story implementation approved
+□ Targeted tests pass
+□ Regression passes
+□ Documentation synchronized
+□ History updated
+□ Workflow evaluated
+□ Ready for commit
+□ Ready for tag
+□ Ready for next story
+□ Story formally closed
+
+### Story Closure
+
+A story is considered closed only after:
+
+• Story Signoff has been approved.
+• The repository has been committed and pushed.
+• Version tags have been created and pushed (when applicable).
+• The working tree is clean.
+• The next story may begin with Review: Story Planning.
+
+Only then may the next story begin with Story Planning.
 
 ## Architecture Review Requirements
 
@@ -449,6 +825,25 @@ Before making recommendations, review the current implementation of:
 Recommendations should always follow the verified architecture rather than assumptions from previous stories.
 
 If the current project differs from previous stories, the current project always takes precedence.
+
+## Review Delta Principle
+
+Each review evaluates only the work introduced since the previous approved
+workflow stage.
+
+Story Planning reviews the complete story package.
+
+RED Verification reviews only the implemented RED tests and their observed
+failures.
+
+GREEN Verification reviews only the production implementation required to
+satisfy the approved RED tests.
+
+Story Signoff reviews the completed story, documentation synchronization,
+regression results, repository state, and workflow improvements.
+
+Previously approved work should not be re-reviewed unless a regression,
+inconsistency, or scope change is identified.
 
 ## Story Design Guidelines
 
@@ -476,15 +871,17 @@ ResumeForge follows strict Test-Driven Development.
 Every story progresses through:
 
 ```text
-Planning
-    ↓
-RED
-    ↓
-GREEN
-    ↓
-Regression
-    ↓
-Signoff
+Story Planning
+↓
+Implementation Package (RED)
+↓
+RED Verification
+↓
+Implementation Package (GREEN)
+↓
+GREEN Verification
+↓
+Story Signoff
 ```
 
 ## Regression
@@ -587,7 +984,7 @@ Rationale
 
 ### Complete Responses
 
-Whenever ChatGPT recommends source code or tests, the response shall be
+Whenever ChatGPT (Avery's) recommends source code or tests, the response shall be
 complete.
 
 Avoid responses such as:
@@ -634,7 +1031,7 @@ Signoff
 Advancing to the next phase without completing the current phase introduces
 avoidable review cycles.
 
-ChatGPT should never assume a phase has been completed unless the developer's
+ChatGPT (Avery's) should never assume a phase has been completed unless the developer's
 submitted results confirm completion.
 
 ### Extend Existing Patterns
@@ -681,7 +1078,7 @@ Each review should focus only on the current phase.
 
 To minimize development cycle time:
 
-- ChatGPT shall complete the Project Audit Checklist before making any recommendations.
+- ChatGPT (Avery's) shall complete the Project Audit Checklist before making any recommendations.
 - The uploaded ResumeForge-WIP.zip is the authoritative source for all
   documentation and implementation decisions. Review it immediately before
   every Planning, RED, GREEN, or Signoff review. Do not rely on previous
@@ -706,7 +1103,7 @@ uploaded ResumeForge-WIP.zip.
 
 Verification extends beyond class names.
 
-ChatGPT shall verify:
+ChatGPT (Avery's) shall verify:
 
 - constructor signatures;
 - helper methods;
@@ -741,7 +1138,7 @@ verified rather than making an assumption.
 - Implementation (RED/GREEN) reviews must never introduce new classes, services, repositories, or abstractions that are not present in the current WIP unless the story explicitly calls for them. All recommendations must be derived from the uploaded codebase.
 - Every review should begin with a brief Project Audit Summary confirming the
   documentation, source files, and tests that were reviewed.
-- ChatGPT shall never infer that a previous phase has been completed.
+- ChatGPT (Avery's) shall never infer that a previous phase has been completed.
 - Completion of a phase is confirmed only by the developer's submitted review results.
 - When uncertainty exists, remain in the current phase rather than advancing to the next one.
 - Recommendations must reference existing implementation patterns whenever
@@ -772,7 +1169,7 @@ to the next phase.
 
 Phase progression is developer-controlled.
 
-ChatGPT shall never infer that the next phase should begin.
+ChatGPT (Avery's) shall never infer that the next phase should begin.
 
 Progression occurs only after the developer explicitly requests the next
 review phase.

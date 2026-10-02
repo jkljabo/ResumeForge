@@ -1,5 +1,6 @@
 import json
 
+from resumeforge.constants import DEFAULT_PROFILE_FILE, DEFAULT_PROFILE_NAME
 from resumeforge.profiles.persistence import (
     ProfilePersistence,
 )
@@ -244,5 +245,26 @@ def test_profile_persistence_preserves_owner(tmp_path):
     loaded = persistence.load(resume)
 
     assert loaded["owner"] == "Jason Little"
+
+
+def test_profile_persists_organization(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "organization": "OpenAI",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["organization"] == "OpenAI"
 
 

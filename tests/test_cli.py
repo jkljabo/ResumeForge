@@ -16,6 +16,7 @@ from resumeforge.cli import (
 from resumeforge.bootstrap import create_generator
 from resumeforge.configuration.configuration import ApplicationConfiguration
 from resumeforge.configuration.configuration_service import ConfigurationService
+from resumeforge.constants import DEFAULT_PROFILE_NAME
 from resumeforge.generator import ResumeGenerator
 from resumeforge.profiles import Profile, repository
 from resumeforge.services.profile_service import ProfileService
@@ -2316,6 +2317,41 @@ def test_profile_edit_updates_owner():
         "government",
         {
             "owner": "Jason Little",
+        },
+    )
+
+
+def test_profile_edit_updates_organization():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="edit",
+        name="government",
+
+        headline=None,
+        full_name=None,
+        color_theme=None,
+        description=None,
+        tags=None,
+        notes=None,
+        category=None,
+        visibility=None,
+        owner=None,
+
+        organization="OpenAI",
+    )
+
+    workflow.run(args)
+
+    profile_service.edit.assert_called_once_with(
+        "government",
+        {
+            "organization": "OpenAI",
         },
     )
 

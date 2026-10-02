@@ -131,6 +131,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     edit_parser.add_argument(
         "--owner",
+        help="Profile owner.",
+    )
+
+    edit_parser.add_argument(
+        "--organization",
+        help="Profile organization.",
     )
     
     remove.add_argument(

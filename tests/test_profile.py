@@ -188,3 +188,22 @@ def test_profile_stores_owner():
     assert profile.owner == "Jason Little"
 
 
+def test_profile_defaults_to_no_organization():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.organization is None
+
+
+def test_profile_stores_organization():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        organization="OpenAI",
+    )
+
+    assert profile.organization == "OpenAI"
+
+

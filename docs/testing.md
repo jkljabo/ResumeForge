@@ -40,7 +40,7 @@ All tests pass before Story Signoff.
 
 ## Current Regression Count
 
-459 tests
+463 tests
 
 Update this value whenever new regression tests are merged.
 
