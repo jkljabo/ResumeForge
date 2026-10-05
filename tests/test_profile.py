@@ -245,5 +245,24 @@ def test_profile_stores_target_role():
     assert profile.target_role == "Senior Software Engineer"
 
 
+def test_profile_defaults_to_no_experience_level():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.experience_level is None
+
+
+def test_profile_stores_experience_level():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        experience_level="Senior",
+    )
+
+    assert profile.experience_level == "Senior"
+
+
 
     

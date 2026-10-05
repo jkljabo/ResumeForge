@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.26 – Profile Target Role
-Tests: 471 passing
+Current Story: G.2.5.27 – Profile Experience Level
+Tests: 475 passing
 Build Status: Passing
 
 ## Current Phase
@@ -44,33 +44,38 @@ Completed
 ✓ Story: G.2.5.23 – Profile Owner
 ✓ Story: G.2.5.24 – Profile Organization
 ✓ Story: G.2.5.25 – Profile Purpose
+✓ Story: G.2.5.26 – Profile Target Role
+✓ Story: G.2.5.27 – Profile Experience Level
 
 Current
-→ Story: G.2.5.26 – Profile Target Role
+→ Story: G.2.5.27 – Profile Experience Level
 
 ## Active Story
 
 Story:
-G.2.5.26 – Profile Target Role
+G.2.5.27 – Profile Experience Level
 
 Current Phase:
-Verify: Story Planning
+Review: Story Planning
 
 Status:
-Story Planning complete.
-Documentation verification in progress.
+Story Planning under review.
+
+Engineering scope, objectives, documentation updates and implementation
+strategy are being reviewed prior to RED implementation.
 
 Next Step:
-Review: Implementation Package (RED)
+Verify: Story Planning
 
 ## Story Objective
 
-Add support for an optional profile target role that identifies the job role
-a profile is intended to target.
+Add support for an optional Experience Level profile attribute.
 
-Target role is editable through the existing profile workflow, persisted with
-the profile, included in profile data when present, and remains fully backward
-compatible with existing profile files.
+Experience Level identifies the intended seniority associated with a Profile
+and is editable through the Profile CLI workflow.
+
+The value is persisted with profile metadata and remains optional to preserve
+backward compatibility with existing profiles.
 
 ## Acceptance Criteria
 
@@ -96,11 +101,11 @@ compatible with existing profile files.
 ✓ Story scope and out-of-scope behavior defined.
 ✓ Complete Story Planning package produced.
 
-Current Regression Count: 471
+Current Regression Count: 475
 
 Planned New Tests: 4
 
-Expected Regression Count: 471
+Expected Regression Count: 475
 
 ## Expected Files
 
@@ -199,7 +204,7 @@ README.md (Story Signoff)
 
 Testing
 
-✓ 471 automated tests
+✓ 475 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -248,9 +253,10 @@ Completed
 ✓ Profile Owner
 ✓ Profile Organization
 ✓ Profile Purpose
+✓ Profile Target Role
 
 Current
-→ Story: G.2.5.26 – Profile Target Role
+→ Story: G.2.5.27 – Profile Experience Level
 
 Remaining Work
 
@@ -267,7 +273,7 @@ Begin the next story with Review: Story Planning.
 
 ## Test Status
 
-471 automated tests passing
+475 automated tests passing
 0 failures
 
 Latest verification:
@@ -351,7 +357,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  471 passed
+  475 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -382,7 +388,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-471 passing
+475 passing
 
 Quality
 100% passing
@@ -439,7 +445,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 471 automated tests
+✓ 475 automated tests
 
 ## Stable Milestones
 
@@ -483,7 +489,7 @@ Packages:
 • themes
 
 Tests:
-471 passing
+475 passing
 
 Architecture:
 Repository Pattern
@@ -548,7 +554,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 471 passed
+  - Overall suite: 475 passed
 
 ### Session Summary
 
@@ -567,14 +573,14 @@ Completed
 
 Test Status
 
-471 passing
+475 passing
 
 ## Story Completion Checklist
 
 ✓ Tests written
 ✓ RED tests verified
 ✓ GREEN implementation verified
-✓ 471 tests passing
+✓ 475 tests passing
 ✓ Code reviewed
 ✓ Documentation synchronized
 ✓ CHECKPOINT updated

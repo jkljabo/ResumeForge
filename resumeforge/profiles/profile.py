@@ -24,6 +24,7 @@ class Profile:
     organization: str | None = None
     purpose: str | None = None
     target_role: str | None = None
+    experience_level: str | None = None
 
     @property
     def resume_path(self) -> Path:

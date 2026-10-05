@@ -40,53 +40,53 @@ All tests pass before Story Signoff.
 
 ## Current Regression Count
 
-471 tests
+475 tests
 
 Update this value whenever new regression tests are merged.
 
-## Current Planned RED Tests
+## Story Test Coverage
 
 Story
 
-G.2.5.26 – Profile Target Role
+G.2.5.27 – Profile Experience Level
 
 tests/test_profile.py
 
-• Profile defaults target_role to None
-• Profile stores target_role
+• Profile defaults experience_level to None
+• Profile stores experience_level
 
 tests/test_profile_persistence.py
 
-• Profile persists target_role
+• Profile persists experience_level
 
 tests/test_cli.py
 
-• profile edit updates target_role
+• profile edit updates experience_level
 
 Status
 
-Planned
+Completed
 
-Implementation begins during Implementation Package (RED).
+Implementation completed following the approved RED and GREEN workflow.
 
 ## Expected Result
 
 All tests pass
 
-Expected GREEN Results
+## Actual GREEN Results
 
 tests/test_profile.py
 
-22 passed
+26 passed
 
 tests/test_profile_persistence.py
 
-13 passed
+15 passed
 
 tests/test_cli.py
 
-106 passed
+108 passed
 
 Full Regression
 
-471 passed
+475 passed

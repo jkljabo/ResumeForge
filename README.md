@@ -5,16 +5,13 @@
 > 🚧 ResumeForge is under active development and is protected by a comprehensive automated test suite. New capabilities are introduced through incremental, test-first development while maintaining a stable architecture.
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-471%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
+[![Tests](https://img.shields.io/badge/tests-475%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)](docs/ROADMAP.md)
 
 ResumeForge helps professionals maintain a single reusable Career Profile
 containing structured metadata that is incrementally expanded through
 independently tested feature stories.
-
-Each story introduces one logical capability while preserving deterministic
-behavior, backward compatibility, and full regression coverage.
 
 Each story introduces one logical capability while preserving deterministic
 behavior, backward compatibility, and full regression coverage.
@@ -34,6 +31,29 @@ Current profile metadata includes:
 - Organization
 - Purpose
 - Target Role
+- Experience Level
+
+Experience Level identifies the intended career seniority represented by a
+Profile.
+
+Examples include:
+
+• Junior
+• Mid-Level
+• Senior
+• Lead
+• Principal
+• Architect
+
+Experience Level is independent of Target Role.
+
+Example:
+
+Target Role:
+Senior Software Engineer
+
+Experience Level:
+Lead
 
 Each metadata field is introduced through an independent feature story, allowing the Profile model to evolve incrementally while maintaining complete regression coverage.
 
@@ -395,7 +415,7 @@ Using the WIP checkpoint as the review artifact ensures that code, documentation
 - Modular workflow
 - Dependency injection
 - Installable CLI
-- 471+ automated tests
+- 475+ automated tests
 
 ---
 
@@ -644,7 +664,7 @@ python -m pytest tests/test_cli.py
 
 Current Quality Metrics
 
-- ✅ 471 automated unit and integration tests
+- ✅ 475 automated unit and integration tests
 - ✅ 100% passing
 - ✅ CLI workflow tests
 - ✅ Profile management tests
@@ -748,8 +768,8 @@ Architecture
 | ------------ | ---------------------------------------------------------- |
 | Version      | v0.1.2-alpha                                               |
 | Phase        | See CHECKPOINT.md for the current active development phase.|
-| Tests        | 471 Passing                                                |
-| Test Coverage| 471 automated tests                                        |
+| Tests        | 475 Passing                                                |
+| Test Coverage| 475 automated tests                                        |
 | Python       | 3.13                                                       |
 | Architecture | Modular CLI / Workflow / Generator                         |
 | Packaging    | Complete                                                   |
@@ -776,7 +796,7 @@ ResumeForge is currently in active alpha development. New features are added inc
 - ✅ Profile removal
 - ✅ Profile editing
 - ✅ Modern Python packaging
-- ✅ 471+ automated tests
+- ✅ 475+ automated tests
 
 ### Active Development
 

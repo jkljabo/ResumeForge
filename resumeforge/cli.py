@@ -149,6 +149,11 @@ def build_parser() -> argparse.ArgumentParser:
         dest="target_role",
         help="Profile target role.",
     )
+
+    edit_parser.add_argument(
+        "--experience-level",
+        help="Profile experience level.",
+    )
     
     remove.add_argument(
         "name",

@@ -70,22 +70,22 @@ Phase G.2 — Profile Domain & Persistence Cleanup
 ✓ Story: G.2.5.23 – Profile Owner
 ✓ Story: G.2.5.24 – Profile Organization
 ✓ Story: G.2.5.25 – Profile Purpose
+✓ Story: G.2.5.26 – Profile Target Role
+✓ Story: G.2.5.27 – Profile Experience Level
 
-→ Story: G.2.5.26 – Profile Target Role
-Status
-
-Story Planning (Verified)
+→ 
 
 Purpose
 
-Introduce a Target Role metadata field that identifies the intended employment role associated with a Profile.
+Introduce an Experience Level metadata field that identifies the intended
+career level associated with a Profile.
 
 Objectives
 
-• Add target_role to Profile
+• Add experience_level to Profile
 • Default to None
-• Persist target_role
-• Restore target_role
+• Persist experience_level
+• Restore experience_level
 • Support CLI editing
 • Maintain backward compatibility
 
@@ -95,10 +95,11 @@ This story intentionally follows the implementation pattern established by:
 
 • G.2.5.24 – Profile Organization
 • G.2.5.25 – Profile Purpose
+• G.2.5.26 – Profile Target Role
 
 Implementation Pattern
 
-Profile Target Role intentionally follows the architecture established by the previous metadata stories.
+Profile Experience Level intentionally follows the architecture established by the previous metadata stories.
 
 Implementation order:
 
@@ -110,7 +111,7 @@ Implementation order:
 
 This story introduces no architectural changes. It extends the existing Profile metadata model using the established implementation pattern.
 
-Target Role is another Profile metadata property and therefore follows the same implementation architecture:
+Experience Level is another Profile metadata property and therefore follows the same implementation architecture:
 
 • Profile model
 • Serialization
@@ -121,11 +122,11 @@ Target Role is another Profile metadata property and therefore follows the same 
 
 Acceptance Criteria
 
-✓ Constructor accepts target_role
+✓ Constructor accepts experience_level
 ✓ Defaults to None
-✓ Saves target_role
-✓ Loads target_role
-✓ CLI updates target_role
+✓ Saves experience_level
+✓ Loads experience_level
+✓ CLI updates experience_level
 ✓ Regression remains green
 
 Phase H

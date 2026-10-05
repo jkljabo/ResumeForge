@@ -254,6 +254,9 @@ class CLIWorkflow:
         if getattr(args, "target_role", None) is not None:
             updates["target_role"] = args.target_role
 
+        if getattr(args, "experience_level", None) is not None:
+            updates["experience_level"] = args.experience_level
+
         self.profile_service.edit(
             args.name,
             updates,
