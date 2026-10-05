@@ -49,7 +49,154 @@ ResumeForge follows strict Test-Driven Development (TDD).
 Each workflow phase must produce a verifiable engineering artifact before the
 next phase may begin.
 
-Planning produces an approved story package.
+Story Planning produces the complete Story Planning Package.
+
+The Story Planning Package is the engineering specification for the entire
+story.
+
+It shall contain every piece of information required to complete all remaining
+workflow phases without introducing assumptions.
+
+At a minimum, the Story Planning Package shall define:
+
+• Story objective
+• Business purpose
+• Scope
+• Acceptance criteria
+• Files expected to change
+• RED test suite
+• Expected RED failures
+• GREEN implementation plan
+• Regression expectations
+• Documentation updates
+• Story completion criteria
+
+No later workflow phase shall be required to determine missing story
+requirements.
+
+ChatGPT (Avery) is the development lead for the Story Planning phase and is
+responsible for producing the complete planning package from the current
+ResumeForge-WIP Source Authority.
+
+The developer (Jason) reviews, challenges, approves, and applies the planning
+package to the project documentation.
+
+During Story Planning, ChatGPT (Avery) is responsible for leading story
+definition.
+
+This responsibility includes producing:
+
+• Complete implementation strategy
+• Complete RED testing strategy
+• Complete GREEN implementation strategy
+• Complete documentation update package
+
+The developer shall never be required to infer missing implementation details
+during any later workflow phase.
+
+If a workflow phase identifies a missing functional requirement,
+documentation requirement, acceptance criterion, or implementation scope,
+the workflow shall pause.
+
+The missing requirement shall be incorporated into Story Planning and
+approved before subsequent workflow phases continue.
+
+Later workflow phases shall not independently expand the approved Story
+Planning Package.
+
+Story Planning is therefore not limited to reviewing a story that has already
+been fully defined elsewhere.
+
+When the story definition is incomplete, ChatGPT (Avery) shall complete the
+story definition during Story Planning using the current project architecture,
+existing implementation patterns, project roadmap, established story
+sequence, and documented scope.
+
+Documentation Contract
+
+Story Planning establishes the documentation authority for the active story.
+
+Every affected project document shall be reviewed before Story Planning may be
+approved.
+
+Documentation review shall be exhaustive.
+
+The reviewer shall inspect every project document that could reasonably be
+affected by the approved story, regardless of whether changes are ultimately
+required.
+
+A document shall never be omitted because changes appear unlikely or minor.
+
+If a document requires no modifications, that conclusion shall result from an
+explicit review of the current document rather than assumption.
+
+For each document, ChatGPT shall provide:
+
+Document
+
+Location
+
+Current
+
+Suggested
+
+Reason for change
+
+Location shall identify the exact heading, section, subsection, table,
+example, or command being reviewed.
+
+General locations such as:
+
+"README"
+
+"Later in the document"
+
+"Documentation examples"
+
+or similar descriptions are not acceptable.
+
+The developer shall be able to navigate directly to the affected location
+without searching the document.
+
+Story Planning cannot be approved until every required documentation update
+has been reviewed and approved.
+
+Documentation Review Completion
+
+Documentation review is considered complete only after the reviewer has
+completed an explicit review of every affected project document.
+
+The review shall distinguish between:
+
+• documents requiring modification
+
+• documents reviewed with no required changes
+
+This evidence demonstrates that the current story has been evaluated against
+the complete project documentation rather than a subset selected by
+assumption.
+
+Documentation approval confirms:
+
+• every affected document has been reviewed
+• every required update has been identified
+• every update has an approved Current and Suggested replacement
+• the documentation accurately describes the complete Story Planning Package
+
+Subsequent workflow phases shall implement and verify this approved
+documentation package rather than redefine story requirements.
+
+The approved Story Planning Package becomes the engineering contract for the
+remainder of the story.
+
+Once approved, the Story Planning Package is considered frozen.
+
+Review, Implement, and Verify phases shall execute against the approved Story
+Planning Package.
+
+No workflow phase shall introduce new functional requirements,
+implementation scope, documentation requirements, or acceptance criteria
+unless Story Planning is formally reopened and approved again.
 
 Implementation Package (RED) produces implemented failing tests.
 
@@ -58,8 +205,82 @@ RED Verification confirms the implemented tests fail for the expected reasons.
 Implementation Package (GREEN) produces the production implementation required
 to satisfy the approved RED tests.
 
-GREEN Verification confirms the implementation satisfies the RED tests and
-passes regression.
+Implementation guidance shall be explicit.
+
+Implementation instructions shall identify the specific file, class,
+function, method, or command requiring modification.
+
+Instructions shall describe:
+
+• what currently exists
+
+• what shall be added
+
+• where it shall be added
+
+• exact file
+
+• exact class
+
+• exact function or command
+
+• current implementation
+
+• exact insertion location
+
+• required implementation
+
+• why the modification satisfies the approved RED tests
+
+• implementation ordering when multiple files are involved
+
+Implementation guidance shall eliminate developer assumptions.
+
+GREEN implementation instructions shall be sufficiently explicit that the
+developer can implement the required changes without determining
+implementation locations independently.
+
+Every implementation recommendation shall identify:
+
+• exact file
+
+• exact class
+
+• exact function or method
+
+• exact insertion or modification point
+
+• current implementation
+
+• required implementation
+
+• reason for the modification
+
+Generalized guidance such as:
+
+"wherever..."
+"anywhere..."
+"review similar..."
+"follow the existing pattern..."
+
+shall not be used.
+
+The developer should never be required to infer missing implementation work.
+
+GREEN Verification confirms:
+
+• the implementation satisfies every approved RED test
+
+• the implementation follows the approved Story Planning Package
+
+• project documentation remains synchronized
+
+• all affected test suites pass
+
+• full project regression passes
+
+GREEN Verification shall identify any deviation from the approved Story
+Planning Package before Story Signoff.
 
 Story Signoff produces a fully documented, regression-tested, releasable
 repository.
@@ -67,6 +288,24 @@ repository.
 No phase may be approved based solely on planned work.
 
 ResumeForge follows an incremental development model.
+
+Implementation guidance shall always begin with the implementation currently
+present in the ResumeForge WIP Source Authority before describing the required
+modification.
+
+The reviewer shall describe how the existing implementation evolves to satisfy
+the approved Story Planning Package.
+
+Recommendations shall reference the current implementation before describing
+the required modification.
+
+The existing implementation shall always be identified first.
+
+The required modification shall then be described as an evolution of that
+implementation.
+
+The reviewer shall avoid presenting implementation as though the codebase were
+being designed from scratch.
 
 Each story should:
 
@@ -89,16 +328,79 @@ ChatGPT (Avery) shall:
 
 □ Locate the attached ResumeForge WIP archive.
 □ Review the project relevant to the requested workflow phase.
+□ Review the current implementation before producing recommendations.
 □ Base all recommendations exclusively on the current uploaded project.
+□ Verify every recommendation reflects the current implementation rather than
+  project memory or previous story discussions.
+□ Every recommendation shall reference the implementation that currently exists within the uploaded project.
+□ Recommendations shall extend the existing implementation rather than describe generic implementation approaches.
+□ The reviewer shall first identify the current implementation before proposing changes.
 □ Disregard previous repository revisions whenever they conflict with the current archive.
 
 If the archive cannot be opened or reviewed with confidence,
 workflow execution shall stop immediately.
 
+The reviewer shall explicitly report that Source Authority could not be
+established.
+
+The requested workflow phase shall not continue until a valid Source Authority
+has been successfully reviewed.
+
 No recommendations shall be generated using assumptions or prior project state.
 
 When the current uploaded project differs from prior conversations,
 the uploaded project always takes precedence.
+
+The current ResumeForge-WIP archive establishes the Source Authority for the
+entire story lifecycle.
+
+Story Planning establishes the approved Story Planning Package from that
+Source Authority.
+
+After Story Planning approval, the approved Story Planning Package becomes
+the story-specific source of truth for all subsequent workflow phases.
+
+The workflow therefore has two levels of authority:
+
+1. Project Source Authority
+   - The current ResumeForge-WIP archive.
+   - Establishes the actual project architecture, files, APIs, tests,
+     documentation, and current state.
+
+2. Story Source Authority
+   - The approved Story Planning Package.
+   - Establishes the exact objective, acceptance criteria, scope,
+     implementation files, RED tests, regression expectation, and required
+     documentation changes for the active story.
+
+No later phase may silently redefine an approved story requirement.
+
+If a later phase discovers that the approved Story Planning Package is
+incomplete, incorrect, or incompatible with the current project architecture,
+workflow execution shall stop and the story package shall be formally revised
+and reapproved before implementation continues.
+
+### Story Signoff shall verify:
+
+□ Story Planning Package completed
+□ Documentation synchronized
+□ RED implementation completed
+□ RED failures verified
+□ GREEN implementation completed
+□ GREEN verification completed
+□ Story-specific tests passing
+□ Full regression passing
+□ Regression totals updated
+□ History preserved
+□ CHECKPOINT updated
+□ README updated
+□ phases.md updated
+□ testing.md updated
+□ history.md updated
+□ development_workflow.md updated when workflow improvements were identified
+□ Current story lessons evaluated for future workflow improvements
+□ Source Authority requirements satisfied throughout every workflow phase
+□ repository ready for commit
 
 ## Standard Story Workflow
 
@@ -110,6 +412,14 @@ Every story progresses through six workflow stages:
 - Implementation Package (GREEN)
 - GREEN Verification
 - Story Signoff
+
+Each completed story shall conclude with a workflow improvement review.
+
+Lessons learned during the completed story shall be evaluated for inclusion
+within docs/development_workflow.md before the story is committed.
+
+Workflow improvements become part of the completed story and shall be verified
+during Story Signoff.
 
 ## Workflow Command Signals
 
@@ -124,6 +434,14 @@ Action
 Review
 Implement
 Verify
+
+Each Action produces only its defined engineering artifact.
+
+Responses shall not include deliverables belonging to another Action unless
+the workflow command explicitly requests them.
+
+If additional work is identified outside the requested Action, it shall be
+reported separately rather than incorporated into the requested deliverable.
 
 Phase
 
@@ -148,20 +466,41 @@ defines exactly one expected ChatGPT (Avery) behavior.
 
 ChatGPT (Avery) shall not infer alternate workflow phases or produce artifacts associated with any phase other than the one explicitly requested.
 
+Each workflow phase has a unique responsibility.
+The requested Action determines the expected output.
+
 Review
 
-Evaluate the current artifact.
-No implementation is produced.
+• Evaluate the current artifact.
+• No implementation is produced.
+• Analyze only.
 
 Implement
 
-Produce the complete implementation package for the requested phase.
+• Produce the complete implementation package for the requested phase.
+• Produce implementation guidance only.
 
 Verify
 
-Review evidence produced by the developer and determine whether the phase satisfies its exit criteria.
+• Review evidence produced by the developer and determine whether the phase satisfies its exit criteria.
+• Confirm completion using evidence from the current project.
 
-Workflow commands containing ResumeForge-WIP.zip require review of the attached archive before execution.
+Workflow commands containing ResumeForge-WIP.zip require review of the
+attached archive before execution.
+
+Before producing engineering recommendations, ChatGPT (Avery) shall confirm
+that the current ResumeForge-WIP Source Authority has been successfully
+reviewed.
+
+Recommendations shall not be produced prior to this confirmation.
+
+Completion of the archive review shall be confirmed before any engineering
+recommendations are produced.
+
+If the archive review cannot be completed, workflow execution shall terminate
+in accordance with the Source Authority requirements.
+
+Outputs from one Action shall not be substituted for another.
 
 ## Phase 1 – Story Planning
 
@@ -170,6 +509,17 @@ Workflow commands containing ResumeForge-WIP.zip require review of the attached 
 Inputs
 
 • Approved story selection
+
+Source Authority
+
+• Evidence shall originate from the current ResumeForge-WIP Source Authority.
+
+• Story Planning additionally establishes the approved Story Planning Package.
+
+• Subsequent workflow phases shall use both the current project implementation
+and the approved Story Planning Package as evidence.
+
+• Evidence shall not originate from project memory or previous conversations.
 
 Outputs
 
@@ -198,23 +548,119 @@ ResumeForge-WIP.zip
 
 ### ChatGPT (Avery's) Responsibilities
 
+ChatGPT (Avery) is the development lead for Story Planning.
+
 Before making recommendations:
 
 - Review the uploaded ResumeForge-WIP.zip project.
 - Establish the current architecture.
 - Verify the project's current implementation patterns.
-- Base all recommendations on the uploaded ResumeForge-WIP.zip rather than prior implementation assumptions.
+- Review the current story sequence and relevant project documentation.
+- Review the current tests and persistence patterns relevant to the story.
+- Base all recommendations on the uploaded ResumeForge-WIP.zip rather than
+  prior implementation assumptions.
 
-Then:
+Then ChatGPT (Avery) shall produce the complete Story Planning Package:
 
-- Propose the story title.
+- Define or confirm the story title.
 - Draft the Story Objective.
-- Draft the Acceptance Criteria.
-- Update the Definition of Ready.
-- Identify the expected implementation files.
-- Produce the RED Test Plan.
-- Estimate the expected regression test count.
-- Recommend documentation updates.
+- Define the complete Acceptance Criteria.
+- Define the Definition of Ready.
+- Identify the exact expected implementation files.
+- Identify the exact affected test files.
+- Produce the complete RED Test Plan.
+- Define what is explicitly Out of Scope.
+- Estimate the number of new regression tests.
+- Establish the expected post-story regression count.
+- Identify required documentation updates.
+- Identify any workflow/process documentation improvements discovered during
+  planning.
+- Identify dependencies, architectural constraints, or backward-compatibility
+  requirements relevant to the story.
+
+The Story Planning Package shall contain sufficient information for the next
+workflow phase to execute without requiring the developer to redefine the
+story, invent acceptance criteria, determine the intended test scope, or make
+architectural decisions that belong to Story Planning.
+
+If the requested story is not sufficiently defined when the workflow begins,
+ChatGPT (Avery) shall complete the definition during Story Planning rather
+than stopping solely because the story title or requirements are incomplete.
+
+ChatGPT (Avery) shall not invent requirements unsupported by the project.
+When selecting or refining a story, the decision shall be grounded in the
+current WIP, established project architecture, existing story progression,
+documented roadmap, and the project's stated goals.
+
+The developer retains approval authority over the completed Story Planning
+Package.
+
+### Complete Story Planning Package
+
+Every Story Planning response shall produce the complete planning package
+required to execute the story through all subsequent workflow phases.
+
+The package shall contain:
+
+1. Story Identity
+   - Story number
+   - Story title
+   - Current workflow phase
+
+2. Story Objective
+   - A complete statement of the behavior or capability being introduced.
+
+3. Acceptance Criteria
+   - Every externally verifiable requirement for the story.
+   - Each criterion shall be independently testable.
+
+4. Definition of Ready
+   - Planning completeness requirements.
+   - Current regression baseline.
+   - Expected regression count.
+   - Confirmation that the story is ready for RED.
+
+5. Current Architecture Assessment
+   - Relevant existing files.
+   - Existing classes, methods, APIs, persistence mechanisms, and tests.
+   - Existing implementation patterns the story must follow.
+
+6. Expected Implementation Files
+   - Exact application files expected to change.
+   - Exact test files expected to change.
+   - Documentation files expected to change.
+
+7. RED Test Plan
+   - Exact test files.
+   - Exact test names.
+   - Expected behavior of each test.
+   - Expected RED failure reason.
+
+8. Scope
+   - Explicitly included behavior.
+   - Explicitly excluded behavior.
+
+9. Regression Plan
+   - Current full-suite count.
+   - Number of planned new tests.
+   - Expected post-story full-suite count.
+
+10. Documentation Plan
+    - Documents that must change during implementation.
+    - Documents that must change at Story Signoff.
+    - Exact purpose of each documentation update.
+
+11. Workflow/Process Improvements
+    - Any improvement to docs/development_workflow.md discovered during the
+      story planning process.
+    - Exact location and proposed wording.
+
+12. Story Planning Approval State
+    - Items requiring developer approval.
+    - Conditions required before advancing to RED.
+
+The complete Story Planning Package becomes the approved Story Source Authority
+after the developer approves Story Planning.
 
 ### Response Format
 
@@ -247,28 +693,86 @@ The objective is for the resulting story package to be immediately usable with m
 
 ### Exit Criteria
 
-Planning is complete when:
+Planning is complete only when:
+
+Story Definition
 
 - Story title is finalized.
 - Story objective is approved.
-- Acceptance criteria are complete.
+- Story purpose is documented.
+- Story scope is defined.
+- Out of Scope behavior is defined.
+- Acceptance criteria are complete and testable.
 - Definition of Ready is satisfied.
-- Expected files are identified.
-- RED Test Plan is documented.
-- Expected regression test count is recorded.
-- Documentation updates required by the story have been identified.
+
+Technical Planning
+
+- Current architecture relevant to the story has been verified.
+- Expected implementation files are identified.
+- Expected test files are identified.
+- RED Test Plan is complete.
+- Expected RED failures are documented.
+- GREEN implementation strategy is documented.
+- Current regression baseline is recorded.
+- Expected regression count is recorded.
+
+Documentation Verification
+
+- Every affected project document has been reviewed.
+- Required documentation updates have been identified.
+- Every documentation update includes:
+  - Document
+  - Location
+  - Current
+  - Suggested
+- Workflow/process improvements discovered during planning are documented.
+
+Story Package Verification
+
+- Complete Story Planning Package has been produced.
+- Story Planning Package has been verified as the Source Authority for the story.
+- Developer has approved the Story Planning Package.
+
+Only after all Planning Exit Criteria are satisfied may the workflow advance
+to Review: Implementation Package (RED).
+
+Only after all Planning Exit Criteria have been verified and approved may the workflow advance to Review: Implementation Package (RED).
 
 ### Planning Deliverable
 
-The approved Story Planning package becomes the source of truth for the
-remainder of the story.
+The Story Planning Package is the primary engineering artifact produced during
+Story Planning.
+
+The package must be complete enough that the developer can approve it and then
+execute the subsequent RED, GREEN, and Signoff phases without redefining the
+story.
+
+After developer approval:
+
+- The Story Objective is fixed.
+- The Acceptance Criteria are fixed.
+- The story scope is fixed.
+- The Out of Scope definition is fixed.
+- The expected implementation files are established.
+- The RED Test Plan is fixed.
+- The regression expectation is established.
+- The documentation plan is established.
 
 Implementation Package (RED) shall implement the RED Test Plan exactly as
 approved during Story Planning.
 
+Implementation Package (GREEN) shall implement the production behavior
+required to satisfy the approved Acceptance Criteria and verified RED tests.
+
+Story Signoff shall verify the completed implementation against the approved
+Story Planning Package.
+
 No additional story requirements, acceptance criteria, or design decisions
 should be introduced after Story Planning unless the story is formally revised
 and reapproved.
+
+The Story Planning Package therefore becomes the story-specific Source
+Authority for the remainder of the development lifecycle.
 
 ### Story Scope Verification
 
@@ -287,19 +791,42 @@ Unless explicitly requested by the developer.
 
 Purpose
 
-Verify that the approved story has been fully incorporated into the project documentation before implementation begins.
+Verify that the complete Story Planning Package has been produced, approved,
+and incorporated into the project documentation before implementation begins.
 
 Required Verification
 
-Review the current ResumeForge-WIP.zip project and verify that all planning documentation reflects the approved story.
+Review the current ResumeForge-WIP.zip project and verify that:
+
+• The active story is correctly identified.
+• The Story Planning Package is complete.
+• The Story Objective is documented.
+• The Acceptance Criteria are complete.
+• The Definition of Ready is satisfied.
+• The current architecture relevant to the story has been verified.
+• Expected implementation files are identified.
+• Expected test files are identified.
+• The RED Test Plan is complete.
+• Story scope is defined.
+• Out of Scope behavior is defined.
+• The current regression baseline is documented.
+• The expected regression count is documented.
+• Required documentation updates are identified.
+• Required workflow/process improvements are documented.
+• The developer has approved the complete Story Planning Package.
+
+Documentation Review
 
 At a minimum review:
 
 • CHECKPOINT.md
 • docs/phases.md
-• Any active roadmap documentation
+• docs/history.md
+• docs/testing.md
+• README.md when current project metrics or roadmap information are affected
+• docs/development_workflow.md when workflow improvements were identified
 
-For every required update provide:
+For every required documentation update provide:
 
 • Document
 • Location (Current)
@@ -308,17 +835,68 @@ For every required update provide:
 
 Verification Rules
 
-• The current ResumeForge-WIP project is the sole source of authority.
-• Do not rely on previous conversations or earlier project revisions.
+• The current ResumeForge-WIP project is the sole project Source Authority.
+• The approved Story Planning Package is the story-specific Source Authority.
+• Do not rely on previous conversations or earlier project revisions when they
+  conflict with the current WIP.
 • Do not use conditional recommendations.
 • Do not assume document structure.
 • Every recommendation must reference the current project state.
+• Do not advance to RED with an incomplete Story Planning Package.
+• Do not allow later phases to redefine approved story requirements without
+  formal Story Planning revision and reapproval.
+
+Documentation Completeness Verification
+
+ChatGPT (Avery) shall explicitly review every project document affected by the active story.
+
+For each document Avery shall either:
+    • identify required updates using the Current / Suggested format
+or
+    • explicitly state that no updates are required.
+
+No project document may be omitted from Story Planning verification.
+
+This verification establishes that the approved Story Planning Package is complete and becomes the Source Authority for every remaining workflow phase.
+
+Documentation Verification Completion
+
+Documentation verification is complete only when:
+
+• Every project document affected by the story has been reviewed.
+
+• Every required documentation update has been identified.
+
+• Each update specifies:
+
+  - Document
+  - Section
+  - Exact location
+  - Current
+  - Suggested
+
+• Documents requiring no updates are explicitly marked "No updates required."
+
+The verified documentation becomes part of the approved Story Planning Package and serves as Source Authority for every remaining workflow phase.
 
 Exit Criteria
 
-✓ Planning documentation synchronized.
-✓ Story documentation verified.
+✓ Complete Story Planning Package produced.
+✓ Story title finalized.
+✓ Story objective approved.
+✓ Acceptance criteria approved.
 ✓ Definition of Ready satisfied.
+✓ Current architecture verified.
+✓ Expected implementation files identified.
+✓ Expected test files identified.
+✓ RED Test Plan approved.
+✓ Scope and Out of Scope approved.
+✓ Regression baseline documented.
+✓ Expected regression count documented.
+✓ Documentation updates identified.
+✓ Workflow improvements documented.
+✓ Planning documentation synchronized.
+✓ Developer approval recorded.
 ✓ Ready to begin Implement: Implementation Package (RED).
 
 ## Phase 2 – Implementation Package (RED)
@@ -328,6 +906,17 @@ Exit Criteria
 Inputs
 
 • Approved Story Planning package
+
+Source Authority
+
+• Evidence shall originate from the current ResumeForge-WIP Source Authority.
+
+• Story Planning additionally establishes the approved Story Planning Package.
+
+• Subsequent workflow phases shall use both the current project implementation
+and the approved Story Planning Package as evidence.
+
+• Evidence shall not originate from project memory or previous conversations.
 
 Outputs
 
@@ -524,6 +1113,17 @@ Inputs
 
 • Approved RED Verification
 
+Source Authority
+
+• Evidence shall originate from the current ResumeForge-WIP Source Authority.
+
+• Story Planning additionally establishes the approved Story Planning Package.
+
+• Subsequent workflow phases shall use both the current project implementation
+and the approved Story Planning Package as evidence.
+
+• Evidence shall not originate from project memory or previous conversations.
+
 Outputs
 
 • Production implementation
@@ -714,6 +1314,18 @@ This review verifies that:
 Only after Story Signoff is approved may the story be committed, tagged,
 and closed.
 
+Process Improvement Review
+
+• Every completed story shall conclude with a review of this workflow.
+
+• Lessons learned during the completed story shall be evaluated for inclusion
+within docs/development_workflow.md.
+
+• Workflow improvements shall be completed before the story is committed.
+
+The development workflow is considered a living engineering document and
+shall evolve together with the project.
+
 ### Documentation Synchronization
 
 Verify:
@@ -762,6 +1374,17 @@ Before Story Signoff is approved:
 Inputs
 
 • Approved GREEN Verification
+
+Source Authority
+
+• Evidence shall originate from the current ResumeForge-WIP Source Authority.
+
+• Story Planning additionally establishes the approved Story Planning Package.
+
+• Subsequent workflow phases shall use both the current project implementation
+and the approved Story Planning Package as evidence.
+
+• Evidence shall not originate from project memory or previous conversations.
 
 Outputs
 

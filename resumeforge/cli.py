@@ -143,6 +143,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--purpose",
         help="Profile purpose.",
     )
+
+    edit_parser.add_argument(
+        "--target-role",
+        dest="target_role",
+        help="Profile target role.",
+    )
     
     remove.add_argument(
         "name",

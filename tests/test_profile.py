@@ -226,3 +226,24 @@ def test_profile_stores_purpose():
     assert profile.purpose == "Federal Applications"
 
 
+def test_profile_defaults_to_no_target_role():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.target_role is None
+
+
+def test_profile_stores_target_role():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        target_role="Senior Software Engineer",
+    )
+
+    assert profile.target_role == "Senior Software Engineer"
+
+
+
+    

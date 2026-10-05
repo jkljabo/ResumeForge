@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.25 – Profile Purpose
-Tests: 467 passing
+Current Story: G.2.5.26 – Profile Target Role
+Tests: 471 passing
 Build Status: Passing
 
 ## Current Phase
@@ -43,46 +43,76 @@ Completed
 ✓ Story: G.2.5.22 – Profile Visibility
 ✓ Story: G.2.5.23 – Profile Owner
 ✓ Story: G.2.5.24 – Profile Organization
+✓ Story: G.2.5.25 – Profile Purpose
 
-Completed
-→ Story: G.2.5.25 – Profile Purpose
+Current
+→ Story: G.2.5.26 – Profile Target Role
+
+## Active Story
+
+Story:
+G.2.5.26 – Profile Target Role
+
+Current Phase:
+Verify: Story Planning
+
+Status:
+Story Planning complete.
+Documentation verification in progress.
+
+Next Step:
+Review: Implementation Package (RED)
 
 ## Story Objective
 
-Add support for an optional profile purpose that describes the intended
-use of a profile.
+Add support for an optional profile target role that identifies the job role
+a profile is intended to target.
 
-Purpose is editable through the existing profile workflow, persisted with
-the profile, and remains fully backward compatible with existing profile
-files.
+Target role is editable through the existing profile workflow, persisted with
+the profile, included in profile data when present, and remains fully backward
+compatible with existing profile files.
 
 ## Acceptance Criteria
 
-✓ Profile supports an optional `purpose` property.
-✓ `purpose` defaults to None.
-✓ Existing profiles continue loading correctly.
-✓ `purpose` is persisted.
-✓ `purpose` can be edited through `profile edit`.
-✓ Serialization includes `purpose` when present.
-✓ Existing regression suite remains green.
+□ Profile supports an optional `target_role` property.
+□ `target_role` defaults to None.
+□ Existing profiles continue loading correctly when `target_role` is absent.
+□ `target_role` is persisted.
+□ `target_role` can be edited through `profile edit`.
+□ Serialization includes `target_role` when present.
+□ Existing regression suite remains green.
 
 ## Definition of Ready
 
-✓ Story objective reviewed.
+✓ Story title defined.
+✓ Story objective defined.
 ✓ Acceptance criteria defined.
+✓ Existing implementation architecture verified.
 ✓ Expected implementation files identified.
 ✓ RED test plan defined.
 ✓ Documentation updates identified.
 ✓ Regression estimate documented.
-✓ Expected regression count documented (Current: 467, Expected: 467).
+✓ Expected regression count documented.
+✓ Story scope and out-of-scope behavior defined.
+✓ Complete Story Planning package produced.
+
+Current Regression Count: 471
+
+Planned New Tests: 4
+
+Expected Regression Count: 471
 
 ## Expected Files
 
 ### Application
 
 resumeforge/profiles/profile.py
-resumeforge/profile_service.py
+resumeforge/cli.py
 resumeforge/workflow.py
+
+### Persistence
+
+resumeforge/profiles/persistence.py
 
 ### Tests
 
@@ -94,33 +124,44 @@ tests/test_cli.py
 
 CHECKPOINT.md
 docs/phases.md
+docs/development_workflow.md
 docs/history.md (Story Signoff)
+docs/testing.md (Story Signoff)
+README.md (Story Signoff)
 
 ## RED Test Plan
 
 • tests/test_profile.py
-  • Add test_profile_defaults_to_no_purpose()
-  • Add test_profile_stores_purpose()
+  • Add test_profile_defaults_to_no_target_role()
+  • Add test_profile_stores_target_role()
 
 • tests/test_profile_persistence.py
-  • Add test_profile_persists_purpose()
+  • Add test_profile_persists_target_role()
 
 • tests/test_cli.py
-  • Add test_profile_edit_updates_purpose()
+  • Add test_profile_edit_updates_target_role()
 
 ## Documentation Updates
 
-✓ Update CHECKPOINT.md
-✓ Update docs/phases.md
-✓ Update docs/history.md (Story Signoff)
+✓ Update CHECKPOINT.md with approved G.2.5.26 planning package.
+✓ Update docs/phases.md with G.2.5.26 story title.
+✓ Update docs/development_workflow.md with Story Planning leadership and source-package requirements.
+□ Update docs/history.md at Story Signoff.
+□ Update docs/testing.md at Story Signoff if regression count changes.
+□ Update README.md at Story Signoff if current test metrics change.
 
 ## Out of Scope
 
-• Purpose validation
-• Purpose lookup
-• Purpose-based filtering
-• Multiple purposes
-• Purpose taxonomy
+• Target role validation
+• Target role lookup
+• Target role filtering
+• Multiple target roles
+• Target role taxonomy
+• Job description matching
+• Automatic target-role inference
+• Resume tailoring based on target_role
+• Changes to the matching engine
+• Changes to the tailoring engine
 
 ## Completed
 
@@ -158,7 +199,7 @@ docs/history.md (Story Signoff)
 
 Testing
 
-✓ 467 automated tests
+✓ 471 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -209,7 +250,7 @@ Completed
 ✓ Profile Purpose
 
 Current
-→ Story: G.2.5.26 – <new name>
+→ Story: G.2.5.26 – Profile Target Role
 
 Remaining Work
 
@@ -226,7 +267,7 @@ Begin the next story with Review: Story Planning.
 
 ## Test Status
 
-467 automated tests passing
+471 automated tests passing
 0 failures
 
 Latest verification:
@@ -310,7 +351,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  467 passed
+  471 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -341,7 +382,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-467 passing
+471 passing
 
 Quality
 100% passing
@@ -398,7 +439,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 467 automated tests
+✓ 471 automated tests
 
 ## Stable Milestones
 
@@ -442,7 +483,7 @@ Packages:
 • themes
 
 Tests:
-467 passing
+471 passing
 
 Architecture:
 Repository Pattern
@@ -507,7 +548,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 467 passed
+  - Overall suite: 471 passed
 
 ### Session Summary
 
@@ -526,14 +567,14 @@ Completed
 
 Test Status
 
-467 passing
+471 passing
 
 ## Story Completion Checklist
 
 ✓ Tests written
 ✓ RED tests verified
 ✓ GREEN implementation verified
-✓ 467 tests passing
+✓ 471 tests passing
 ✓ Code reviewed
 ✓ Documentation synchronized
 ✓ CHECKPOINT updated

@@ -306,3 +306,96 @@ Extended CLI profile edit workflow
 Maintained backward compatibility for existing profiles
 
 467 tests passing
+
+Story Planning
+
+Story
+
+G.2.5.26 – Profile Target Role
+
+Status
+
+Verified
+
+Summary
+
+Planning completed for introducing Target Role profile metadata.
+
+Purpose
+
+Introduce a reusable Target Role metadata field describing the intended employment role represented by a Profile.
+
+Examples
+
+Senior Software Engineer
+
+Senior .NET Developer
+
+Cloud Solutions Architect
+
+Technical Lead
+
+Implementation Pattern
+
+The implementation intentionally follows the established metadata architecture introduced by:
+
+• G.2.5.24 – Profile Organization
+
+• G.2.5.25 – Profile Purpose
+
+Planned Test Coverage
+
+tests/test_profile.py
+
+• default Target Role
+
+• constructor Target Role
+
+tests/test_profile_persistence.py
+
+• persistence of Target Role
+
+tests/test_cli.py
+
+• CLI edit forwards Target Role
+
+Regression Baseline
+
+467 passing
+
+Expected RED
+
+467 passing
+
+4 failing
+
+Expected GREEN
+
+471 passing
+
+Documentation Impact
+
+README.md
+CHECKPOINT.md
+docs/phases.md
+docs/testing.md
+docs/history.md
+docs/development_workflow.md
+
+These documents were verified during Story Planning and become part of the approved Story Planning Package.
+
+Implementation has not yet begun.
+
+2026-10-04
+
+Implemented Profile Target Role.
+
+Added target_role profile metadata.
+
+Added CLI support for --target-role.
+
+Extended profile persistence.
+
+Extended profile editing.
+
+471 tests passing.

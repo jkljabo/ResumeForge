@@ -71,6 +71,63 @@ Phase G.2 — Profile Domain & Persistence Cleanup
 ✓ Story: G.2.5.24 – Profile Organization
 ✓ Story: G.2.5.25 – Profile Purpose
 
+→ Story: G.2.5.26 – Profile Target Role
+Status
+
+Story Planning (Verified)
+
+Purpose
+
+Introduce a Target Role metadata field that identifies the intended employment role associated with a Profile.
+
+Objectives
+
+• Add target_role to Profile
+• Default to None
+• Persist target_role
+• Restore target_role
+• Support CLI editing
+• Maintain backward compatibility
+
+Engineering Pattern
+
+This story intentionally follows the implementation pattern established by:
+
+• G.2.5.24 – Profile Organization
+• G.2.5.25 – Profile Purpose
+
+Implementation Pattern
+
+Profile Target Role intentionally follows the architecture established by the previous metadata stories.
+
+Implementation order:
+
+1. Profile model
+2. Persistence
+3. CLI
+4. Documentation
+5. Regression verification
+
+This story introduces no architectural changes. It extends the existing Profile metadata model using the established implementation pattern.
+
+Target Role is another Profile metadata property and therefore follows the same implementation architecture:
+
+• Profile model
+• Serialization
+• Persistence
+• CLI
+• Documentation
+• Regression testing
+
+Acceptance Criteria
+
+✓ Constructor accepts target_role
+✓ Defaults to None
+✓ Saves target_role
+✓ Loads target_role
+✓ CLI updates target_role
+✓ Regression remains green
+
 Phase H
 
 Export Improvements

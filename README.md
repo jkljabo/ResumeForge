@@ -5,11 +5,37 @@
 > 🚧 ResumeForge is under active development and is protected by a comprehensive automated test suite. New capabilities are introduced through incremental, test-first development while maintaining a stable architecture.
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-467%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
+[![Tests](https://img.shields.io/badge/tests-471%2B%20passing-brightgreen)](https://github.com/jkljabo/ResumeForge/actions)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Status](https://img.shields.io/badge/status-alpha-orange)](docs/ROADMAP.md)
 
-ResumeForge helps professionals maintain a single reusable career profile and generate tailored application materials for specific opportunities.
+ResumeForge helps professionals maintain a single reusable Career Profile
+containing structured metadata that is incrementally expanded through
+independently tested feature stories.
+
+Each story introduces one logical capability while preserving deterministic
+behavior, backward compatibility, and full regression coverage.
+
+Each story introduces one logical capability while preserving deterministic
+behavior, backward compatibility, and full regression coverage.
+
+Current profile metadata includes:
+
+- Name
+- Headline
+- Full Name
+- Color Theme
+- Description
+- Tags
+- Notes
+- Category
+- Visibility
+- Owner
+- Organization
+- Purpose
+- Target Role
+
+Each metadata field is introduced through an independent feature story, allowing the Profile model to evolve incrementally while maintaining complete regression coverage.
 
 **Build once. Tailor everywhere.**
 
@@ -22,6 +48,68 @@ The platform is built around modular workflows and extensible generators, allowi
 ## Key Capabilities
 
 ResumeForge is built around a reusable **Career Profile**, the single source of truth for generating tailored career documents. Its modular architecture emphasizes deterministic behavior, transparency, and extensibility.
+
+Current Profile Metadata
+
+ResumeForge currently supports the following profile metadata:
+
+• Name
+• Headline
+• Full Name
+• Color Theme
+• Description
+• Tags
+• Notes
+• Category
+• Visibility
+• Owner
+• Organization
+• Purpose
+• Target Role
+
+Each metadata field is introduced through an independently planned, implemented, verified, and documented feature story to preserve deterministic behavior and full regression coverage.
+
+Example Profile Metadata
+
+Example:
+
+Name: government
+Owner: Jason Little
+Organization: Federal
+Purpose: Federal Applications
+Target Role: Senior .NET Developer
+
+This metadata describes the profile itself. It is independent of any individual resume or job description and serves as reusable input for ResumeForge workflows.
+
+### Profile Metadata Roadmap
+
+ResumeForge incrementally expands the reusable Career Profile through
+small, independently testable stories.
+
+Implemented
+
+✓ Profile Owner
+
+✓ Profile Organization
+
+✓ Profile Purpose
+
+In Progress
+
+▶ Profile Target Role
+
+Planned
+
+□ Profile Target Company
+
+□ Profile Industry
+
+□ Profile Seniority
+
+□ Profile Employment Type
+
+Each metadata story is introduced through strict Test-Driven Development
+(TDD), remains backward compatible, and preserves full regression coverage.
 
 ### 👤 Career Profiles
 
@@ -307,7 +395,7 @@ Using the WIP checkpoint as the review artifact ensures that code, documentation
 - Modular workflow
 - Dependency injection
 - Installable CLI
-- 467+ automated tests
+- 471+ automated tests
 
 ---
 
@@ -453,7 +541,10 @@ resumeforge profile list
 
 ```powershell
 resumeforge profile edit government \
-    --headline "Senior Software Engineer"
+    --headline "Senior Software Engineer" \
+    --organization "Federal" \
+    --purpose "Federal Applications" \
+    --target-role "Senior .NET Developer"
 ```
 
 ### Remove a profile
@@ -553,7 +644,7 @@ python -m pytest tests/test_cli.py
 
 Current Quality Metrics
 
-- ✅ 467 automated unit and integration tests
+- ✅ 471 automated unit and integration tests
 - ✅ 100% passing
 - ✅ CLI workflow tests
 - ✅ Profile management tests
@@ -657,8 +748,8 @@ Architecture
 | ------------ | ---------------------------------------------------------- |
 | Version      | v0.1.2-alpha                                               |
 | Phase        | See CHECKPOINT.md for the current active development phase.|
-| Tests        | 467 Passing                                                |
-| Test Coverage| 467 automated tests                                        |
+| Tests        | 471 Passing                                                |
+| Test Coverage| 471 automated tests                                        |
 | Python       | 3.13                                                       |
 | Architecture | Modular CLI / Workflow / Generator                         |
 | Packaging    | Complete                                                   |
@@ -685,7 +776,7 @@ ResumeForge is currently in active alpha development. New features are added inc
 - ✅ Profile removal
 - ✅ Profile editing
 - ✅ Modern Python packaging
-- ✅ 467+ automated tests
+- ✅ 471+ automated tests
 
 ### Active Development
 

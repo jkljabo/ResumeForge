@@ -289,3 +289,24 @@ def test_profile_persists_purpose(tmp_path):
     assert loaded["purpose"] == "Federal Applications"
 
 
+def test_profile_persists_target_role(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "target_role": "Senior Software Engineer",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["target_role"] == "Senior Software Engineer"
+
+
