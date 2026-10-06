@@ -72,6 +72,7 @@ Phase G.2 — Profile Domain & Persistence Cleanup
 ✓ Story: G.2.5.25 – Profile Purpose
 ✓ Story: G.2.5.26 – Profile Target Role
 ✓ Story: G.2.5.27 – Profile Experience Level
+✓ Story: G.2.5.28 – Profile Employment Type
 
 → 
 

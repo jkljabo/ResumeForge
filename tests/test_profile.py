@@ -264,5 +264,24 @@ def test_profile_stores_experience_level():
     assert profile.experience_level == "Senior"
 
 
+def test_profile_defaults_to_no_employment_type():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.employment_type is None
+
+
+def test_profile_stores_employment_type():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        employment_type="Full-time",
+    )
+
+    assert profile.employment_type == "Full-time"
+
+
 
     

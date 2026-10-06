@@ -154,6 +154,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--experience-level",
         help="Profile experience level.",
     )
+
+    edit_parser.add_argument(
+        "--employment-type",
+        help="Profile employment type.",
+    )
     
     remove.add_argument(
         "name",

@@ -331,3 +331,24 @@ def test_profile_persists_experience_level(tmp_path):
     assert loaded["experience_level"] == "Senior"
 
 
+def test_profile_persists_employment_type(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "employment_type": "Full-time",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["employment_type"] == "Full-time"
+
+

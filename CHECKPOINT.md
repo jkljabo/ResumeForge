@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.27 – Profile Experience Level
-Tests: 475 passing
+Current Story: G.2.5.28 – Profile Employment Type
+Tests: 479 passing
 Build Status: Passing
 
 ## Current Phase
@@ -46,14 +46,15 @@ Completed
 ✓ Story: G.2.5.25 – Profile Purpose
 ✓ Story: G.2.5.26 – Profile Target Role
 ✓ Story: G.2.5.27 – Profile Experience Level
+✓ Story: G.2.5.28 – Profile Employment Type
 
 Current
-→ Story: G.2.5.27 – Profile Experience Level
+→ Story: G.2.5.28 – Profile Employment Type
 
 ## Active Story
 
 Story:
-G.2.5.27 – Profile Experience Level
+G.2.5.28 – Profile Employment Type
 
 Current Phase:
 Review: Story Planning
@@ -69,23 +70,25 @@ Verify: Story Planning
 
 ## Story Objective
 
-Add support for an optional Experience Level profile attribute.
+Add support for an optional Employment Type profile attribute.
 
-Experience Level identifies the intended seniority associated with a Profile
-and is editable through the Profile CLI workflow.
+Employment Type identifies the intended employment classification associated
+with a Profile and is editable through the Profile CLI workflow.
 
 The value is persisted with profile metadata and remains optional to preserve
 backward compatibility with existing profiles.
 
+This story intentionally follows the established Profile metadata implementation pattern and introduces no architectural changes.
+
 ## Acceptance Criteria
 
-□ Profile supports an optional `target_role` property.
-□ `target_role` defaults to None.
-□ Existing profiles continue loading correctly when `target_role` is absent.
-□ `target_role` is persisted.
-□ `target_role` can be edited through `profile edit`.
-□ Serialization includes `target_role` when present.
-□ Existing regression suite remains green.
+□ Profile supports an optional `employment_type` property.
+□ `employment_type` defaults to None.
+□ Existing profiles continue loading correctly when `employment_type` is absent.
+□ `employment_type` is persisted when saving profiles.
+□ `employment_type` is restored when loading profiles.
+□ Profile CLI edit supports `employment_type`.
+□ Full regression suite passes.
 
 ## Definition of Ready
 
@@ -101,11 +104,11 @@ backward compatibility with existing profiles.
 ✓ Story scope and out-of-scope behavior defined.
 ✓ Complete Story Planning package produced.
 
-Current Regression Count: 475
+Current Regression Count: 479
 
 Planned New Tests: 4
 
-Expected Regression Count: 475
+Expected Regression Count: 479
 
 ## Expected Files
 
@@ -137,36 +140,31 @@ README.md (Story Signoff)
 ## RED Test Plan
 
 • tests/test_profile.py
-  • Add test_profile_defaults_to_no_target_role()
-  • Add test_profile_stores_target_role()
+  • Add test_profile_defaults_to_no_employment_type()
+  • Add test_profile_stores_employment_type()
 
 • tests/test_profile_persistence.py
-  • Add test_profile_persists_target_role()
+  • Add test_profile_persists_employment_type()
 
 • tests/test_cli.py
-  • Add test_profile_edit_updates_target_role()
+  • Add test_profile_edit_updates_employment_type()
 
 ## Documentation Updates
 
-✓ Update CHECKPOINT.md with approved G.2.5.26 planning package.
-✓ Update docs/phases.md with G.2.5.26 story title.
-✓ Update docs/development_workflow.md with Story Planning leadership and source-package requirements.
+✓ Update CHECKPOINT.md with approved G.2.5.28 planning package.
+✓ Update docs/phases.md with G.2.5.28 story planning.
 □ Update docs/history.md at Story Signoff.
 □ Update docs/testing.md at Story Signoff if regression count changes.
 □ Update README.md at Story Signoff if current test metrics change.
 
 ## Out of Scope
 
-• Target role validation
-• Target role lookup
-• Target role filtering
-• Multiple target roles
-• Target role taxonomy
-• Job description matching
-• Automatic target-role inference
-• Resume tailoring based on target_role
-• Changes to the matching engine
-• Changes to the tailoring engine
+• Employment type validation
+• Employment type lookup
+• Employment type filtering
+• Multiple employment types
+• Employment type taxonomy
+• Automatic employment-type inference
 
 ## Completed
 
@@ -204,7 +202,7 @@ README.md (Story Signoff)
 
 Testing
 
-✓ 475 automated tests
+✓ 479 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -254,9 +252,10 @@ Completed
 ✓ Profile Organization
 ✓ Profile Purpose
 ✓ Profile Target Role
+✓ Profile Experience Level
 
 Current
-→ Story: G.2.5.27 – Profile Experience Level
+→ Story: G.2.5.28 – Profile Employment Type
 
 Remaining Work
 
@@ -273,7 +272,7 @@ Begin the next story with Review: Story Planning.
 
 ## Test Status
 
-475 automated tests passing
+479 automated tests passing
 0 failures
 
 Latest verification:
@@ -357,7 +356,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  475 passed
+  479 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -388,7 +387,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-475 passing
+479 passing
 
 Quality
 100% passing
@@ -445,7 +444,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 475 automated tests
+✓ 479 automated tests
 
 ## Stable Milestones
 
@@ -489,7 +488,7 @@ Packages:
 • themes
 
 Tests:
-475 passing
+479 passing
 
 Architecture:
 Repository Pattern
@@ -554,7 +553,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 475 passed
+  - Overall suite: 479 passed
 
 ### Session Summary
 
@@ -573,14 +572,14 @@ Completed
 
 Test Status
 
-475 passing
+479 passing
 
 ## Story Completion Checklist
 
 ✓ Tests written
 ✓ RED tests verified
 ✓ GREEN implementation verified
-✓ 475 tests passing
+✓ 479 tests passing
 ✓ Code reviewed
 ✓ Documentation synchronized
 ✓ CHECKPOINT updated

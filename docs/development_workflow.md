@@ -54,6 +54,13 @@ Story Planning produces the complete Story Planning Package.
 The Story Planning Package is the engineering specification for the entire
 story.
 
+Story Planning shall establish the baseline against which every subsequent
+workflow phase is verified.
+
+Implementation Package (RED), Implementation Package (GREEN), GREEN
+Verification, and Story Signoff shall validate conformance to the approved
+Story Planning Package rather than redefining story requirements.
+
 It shall contain every piece of information required to complete all remaining
 workflow phases without introducing assumptions.
 
@@ -85,6 +92,22 @@ The testing plan shall include:
 • expected test count increase
 
 Each planned test shall be identified by name whenever practical.
+
+Each planned test shall identify the existing test family it extends.
+
+Story Planning shall verify that new tests follow the established testing
+pattern already present within the corresponding test file.
+
+If no established pattern exists, Story Planning shall explicitly document the
+reason a new testing pattern is being introduced.
+
+Testing shall distinguish between:
+
+• tests expected to fail because implementation is missing
+• tests expected to pass because existing architecture already satisfies the
+  requirement
+
+Both outcomes shall be documented during Story Planning.
 
 Implementation Package (RED) implements this approved testing plan.
 
@@ -130,7 +153,24 @@ Recommendations shall be based on the current ResumeForge-WIP Source Authority.
 Conversational memory shall never replace current project review.
 
 If the current ResumeForge-WIP Source Authority cannot support a recommendation,
-the reviewer shall explicitly report that verification could not be completed.
+ChatGPT (Avery's) shall explicitly report that verification could not be completed.
+
+Review Evidence Checklist
+
+Every workflow review shall explicitly identify the evidence reviewed before
+producing recommendations.
+
+At a minimum, ChatGPT (Avery's) shall confirm review of:
+
+• ResumeForge-WIP Source Authority
+• CHECKPOINT.md
+• current story documentation
+• relevant implementation files
+• relevant test files
+• affected project documentation
+
+If any required artifact was not reviewed, ChatGPT (Avery's) shall explicitly state
+that limitation before making recommendations.
 
 ChatGPT (Avery) is the development lead for the Story Planning phase and is
 responsible for producing the complete planning package from the current
@@ -179,7 +219,7 @@ approved.
 
 Documentation review shall be exhaustive.
 
-The reviewer shall inspect every project document that could reasonably be
+ChatGPT (Avery's) shall inspect every project document that could reasonably be
 affected by the approved story, regardless of whether changes are ultimately
 required.
 
@@ -189,6 +229,12 @@ If a document requires no modifications, that conclusion shall result from an
 explicit review of the current document rather than assumption.
 
 For each document, ChatGPT shall provide:
+
+For implementation-related documentation, recommendations shall also identify:
+
+• existing implementation pattern
+• related implementation pattern (if applicable)
+• justification for any deviation from existing patterns
 
 Document
 
@@ -221,7 +267,7 @@ has been reviewed and approved.
 
 Documentation Review Completion
 
-Documentation review is considered complete only after the reviewer has
+Documentation review is considered complete only after ChatGPT (Avery's) has
 completed an explicit review of every affected project document.
 
 The review shall distinguish between:
@@ -249,6 +295,15 @@ remainder of the story.
 
 Once approved, the Story Planning Package is considered frozen.
 
+Subsequent workflow phases shall execute the approved Story Planning Package.
+
+Workflow phases shall not rediscover requirements that should have been
+identified during Story Planning.
+
+If a workflow phase identifies missing functional scope, missing tests,
+missing documentation updates, or incomplete implementation planning,
+Story Planning shall be reopened before continuing.
+
 Review, Implement, and Verify phases shall execute against the approved Story
 Planning Package.
 
@@ -259,6 +314,18 @@ unless Story Planning is formally reopened and approved again.
 Implementation Package (RED) produces implemented failing tests.
 
 RED Verification confirms the implemented tests fail for the expected reasons.
+
+RED Verification shall distinguish between:
+
+• expected failing tests
+
+• expected passing tests
+
+A newly introduced test that passes immediately is acceptable when it verifies
+existing generic functionality already provided by the current architecture.
+
+Verification shall explain why each expected passing test requires no
+implementation changes.
 
 Implementation Package (GREEN) produces the production implementation required
 to satisfy the approved RED tests.
@@ -293,6 +360,16 @@ Instructions shall describe:
 • implementation ordering when multiple files are involved
 
 Implementation guidance shall eliminate developer assumptions.
+
+Before implementation recommendations are produced, ChatGPT (Avery's) shall prepare
+a Production Impact Summary.
+
+The summary shall identify:
+
+• files expected to change
+• files reviewed requiring no changes
+• reason each file is or is not expected to change
+• corresponding RED evidence supporting each conclusion
 
 GREEN implementation instructions shall be sufficiently explicit that the
 developer can implement the required changes without determining
@@ -340,8 +417,28 @@ GREEN Verification confirms:
 GREEN Verification shall identify any deviation from the approved Story
 Planning Package before Story Signoff.
 
+GREEN Verification shall also confirm that every implementation change can be
+traced directly to an approved Story Planning requirement and corresponding
+RED verification.
+
+No production implementation shall exist without traceability to the approved
+Story Planning Package.
+
 Story Signoff produces a fully documented, regression-tested, releasable
 repository.
+
+Story Signoff shall compare the completed implementation against the approved
+Story Planning Package.
+
+The review shall verify:
+
+• every planned RED test implemented
+• every planned GREEN implementation completed
+• every planned documentation update completed
+• every planned verification completed
+
+Any deviation from the approved Story Planning Package shall be documented
+before Story Signoff approval.
 
 No phase may be approved based solely on planned work.
 
@@ -351,7 +448,7 @@ Implementation guidance shall always begin with the implementation currently
 present in the ResumeForge WIP Source Authority before describing the required
 modification.
 
-The reviewer shall describe how the existing implementation evolves to satisfy
+ChatGPT (Avery's) shall describe how the existing implementation evolves to satisfy
 the approved Story Planning Package.
 
 Recommendations shall reference the current implementation before describing
@@ -362,8 +459,27 @@ The existing implementation shall always be identified first.
 The required modification shall then be described as an evolution of that
 implementation.
 
-The reviewer shall avoid presenting implementation as though the codebase were
+ChatGPT (Avery's) shall avoid presenting implementation as though the codebase were
 being designed from scratch.
+
+### Methodology Evolution
+
+Every completed story shall be reviewed to determine whether improvements to
+the ResumeForge Engineering Methodology were identified.
+
+The review shall evaluate:
+
+• workflow improvements
+• documentation improvements
+• testing improvements
+• implementation guidance improvements
+• verification improvements
+
+Approved methodology improvements shall be incorporated before the next story
+begins whenever practical.
+
+Methodology evolution is considered part of Story Signoff rather than an
+optional retrospective.
 
 Each story should:
 
@@ -409,13 +525,13 @@ ChatGPT (Avery) shall:
   project memory or previous story discussions.
 □ Every recommendation shall reference the implementation that currently exists within the uploaded project.
 □ Recommendations shall extend the existing implementation rather than describe generic implementation approaches.
-□ The reviewer shall first identify the current implementation before proposing changes.
+□ ChatGPT (Avery's) shall first identify the current implementation before proposing changes.
 □ Disregard previous repository revisions whenever they conflict with the current archive.
 
 If the archive cannot be opened or reviewed with confidence,
 workflow execution shall stop immediately.
 
-The reviewer shall explicitly report that Source Authority could not be
+ChatGPT (Avery's) shall explicitly report that Source Authority could not be
 established.
 
 The requested workflow phase shall not continue until a valid Source Authority
@@ -467,9 +583,28 @@ If the current Source Authority contradicts previous conversation history,
 the Source Authority shall govern.
 
 If verification cannot be performed from the current Source Authority,
-the reviewer shall explicitly state that verification could not be completed.
+ChatGPT (Avery's) shall explicitly state that verification could not be completed.
 
 ### Story Signoff shall verify:
+
+Story Signoff verifies that the completed implementation conforms to the
+approved Story Planning Package.
+
+Story Signoff does not redefine story scope.
+
+Any deviation from the approved Story Planning Package shall be documented and
+approved before Story Signoff is completed.
+
+Engineering Contract Verification
+
+Story Signoff shall verify that the completed implementation conforms to the
+approved Story Planning Package.
+
+Story Signoff verifies implementation against the approved engineering
+contract rather than redefining story scope.
+
+Any deviation from the approved Story Planning Package shall be documented
+before Story Signoff approval.
 
 □ Story Planning Package completed
 □ Documentation synchronized
@@ -488,6 +623,8 @@ the reviewer shall explicitly state that verification could not be completed.
 □ history.md updated
 □ development_workflow.md updated when workflow improvements were identified
 □ Current story lessons evaluated for future workflow improvements
+□ Story implementation verified against the approved Story Planning Package
+□ Any deviations from Story Planning documented
 □ Source Authority requirements satisfied throughout every workflow phase
 □ repository ready for commit
 
@@ -1224,20 +1361,6 @@ advance to GREEN.
 GREEN implementation shall never begin automatically after RED test
 creation alone.
 
-### RED Failure Validation
-
-RED Verification shall confirm that every failing test represents the
-intended story behavior.
-
-Unexpected failures shall be investigated before GREEN implementation begins.
-
-RED Verification shall distinguish:
-
-• expected failures
-• unexpected failures
-
-GREEN implementation shall only address expected failures.
-
 ### RED Verification Evidence
 
 RED Verification shall report:
@@ -1254,6 +1377,22 @@ RED Verification shall not simply report failing tests.
 
 It shall confirm that each failure corresponds to the intended story behavior.
 
+### RED Failure Validation
+
+RED Verification shall confirm that every observed failure is expected.
+
+Verification shall classify each newly added test as one of the following:
+
+• Expected RED failure
+• Expected pass due to existing architecture
+
+Expected passing tests shall include an explanation describing why the current
+implementation already satisfies the requirement.
+
+Unexpected failures shall be investigated and resolved before GREEN begins.
+
+GREEN shall not begin while unexplained RED failures remain.
+
 ### RED Coverage Verification
 
 RED verification shall confirm that the planned story behavior is completely
@@ -1266,6 +1405,22 @@ Verification shall identify:
 • duplicate coverage (if any)
 
 Missing planned behavior shall be corrected before GREEN begins.
+
+### RED Pattern Verification
+
+RED Verification shall confirm that newly introduced tests extend the existing
+testing pattern already established within the corresponding test file.
+
+Verification shall identify:
+
+• existing test family reviewed
+• pattern extended
+• deviations (if any)
+
+New testing patterns shall only be introduced when no existing pattern is
+appropriate.
+
+Any deviation shall be documented and justified before RED approval.
 
 ### Developer (Jason's) Responsibilities
 
@@ -1298,6 +1453,11 @@ RED approval authorizes GREEN implementation.
 Implementation recommendations should explain how each failing test is expected to transition to passing.
 
 Recommendations should remain traceable to the RED failures.
+
+RED approval shall also confirm that every planned RED test identified during
+Story Planning has been implemented.
+
+No approved Story Planning test shall remain unimplemented before GREEN begins.
 
 ## Phase 3 – Implementation Package (GREEN)
 
@@ -1474,6 +1634,23 @@ ChatGPT (Avery's) shall verify:
 
 GREEN approval authorizes Story Signoff.
 
+### GREEN Traceability Verification
+
+GREEN Verification shall confirm that every production modification is directly
+traceable to:
+
+• an approved Story Planning requirement
+• one or more RED test failures
+
+Production changes without traceability shall be identified before Story
+Signoff.
+
+Verification shall also identify any approved Story Planning requirements that
+required no production changes because the existing implementation already
+satisfied the requirement.
+
+ChatGPT (Avery's) shall explain why no implementation changes were necessary.
+
 ### Required GREEN Deliverables
 
 Every GREEN review shall begin with a Project Audit Summary.
@@ -1512,6 +1689,11 @@ GREEN implementation shall identify:
 Completion evidence shall demonstrate that the implementation satisfies the
 planned story scope.
 
+Completion evidence shall also identify files intentionally left unchanged.
+
+When an expected subsystem requires no implementation changes, ChatGPT (Avery's)
+shall explain why the existing architecture already satisfies the requirement.
+
 ### GREEN Pattern Verification
 
 GREEN verification shall confirm that existing ResumeForge implementation
@@ -1522,6 +1704,15 @@ When introducing a new implementation pattern, document:
 • why an existing pattern was insufficient
 • why the new pattern is appropriate
 • expected future reuse
+
+GREEN Pattern Verification shall also confirm that existing ResumeForge
+implementation patterns were preserved.
+
+Recommendations shall extend existing implementation patterns whenever
+practical.
+
+Replacement of established implementation patterns shall require documented
+engineering justification.
 
 ## GREEN Entry Criteria
 
@@ -1563,11 +1754,24 @@ Specifically:
 - ChatGPT (Avery's) has reviewed the RED failures.
 - The implementation is traceable to those failures.
 
+GREEN Entry Criteria shall also verify that the approved Story Planning Package
+contains sufficient implementation guidance.
+
+GREEN implementation shall execute the approved Story Planning Package rather
+than discovering new requirements.
+
+If implementation reveals missing requirements, conflicting requirements, or
+insufficient engineering guidance, Story Planning shall be reopened before
+GREEN implementation continues.
+
 If RED confirmation has not occurred, GREEN shall not begin.
 
 ## Review Quality Gate
 
-Before approving any workflow phase ChatGPT shall confirm:
+Before approving any workflow phase, ChatGPT (Avery's) shall confirm that all
+required project artifacts for that phase have been reviewed and that every
+recommendation is supported by evidence from the current ResumeForge-WIP
+Source Authority.
 
 ✓ Source Authority reviewed
 ✓ CHECKPOINT.md reviewed
@@ -1588,6 +1792,8 @@ Review Evidence Checklist
 □ Evidence collected
 □ Recommendations supported by evidence
 □ Verification completed
+□ Review conclusions traceable to reviewed project artifacts
+□ Review limitations documented (if any)
 
 If any item cannot be confirmed, the workflow phase shall remain incomplete.
 
@@ -1974,6 +2180,13 @@ Story Closure shall summarize:
 • documentation updated
 • methodology improvements
 • regression growth
+
+Story Summary shall also document:
+
+• architectural decisions confirmed
+• testing patterns extended
+• methodology improvements adopted
+• methodology improvements deferred (if any)
 
 The Story Summary becomes the permanent engineering summary for the completed
 story.
@@ -2434,7 +2647,7 @@ Recommendations shall not be presented as verified when verification has not occ
 
 Verification Limitation
 
-If verification cannot be completed, the reviewer shall explicitly identify:
+If verification cannot be completed, ChatGPT (Avery's) shall explicitly identify:
 
 • what could not be verified
 • why verification could not be completed
@@ -2608,6 +2821,10 @@ Review related source
     ↓
 Review related tests
     ↓
+Identify existing implementation patterns
+    ↓
+Identify existing testing patterns
+    ↓
 Verify architecture
     ↓
 Produce recommendations
@@ -2640,18 +2857,26 @@ Story Planning Checklist
 ☐ Existing tests reviewed
 ☐ Story scope confirmed
 ☐ Existing patterns identified
+☐ Existing implementation pattern documented
+☐ Existing testing pattern documented
+☐ Planned RED failures identified
+☐ Planned expected passing tests identified
 
 RED Checklist
 ☐ Audit complete
-☐ Existing tests reviewed
-☐ New failing tests complete
+☐ Existing test family reviewed
+☐ New tests extend existing pattern
+☐ Expected RED failures verified
+☐ Expected passing tests explained
 ☐ No implementation provided
 ☐ Await developer confirmation
 
 GREEN Checklist
 ☐ Audit complete
-☐ Minimal implementation
-☐ Existing patterns followed
+☐ Production impact reviewed
+☐ Only expected files modified
+☐ Existing implementation patterns followed
+☐ No unnecessary implementation introduced
 ☐ Passing story tests
 ☐ Full regression passes
 
@@ -2659,11 +2884,17 @@ Story Signoff Checklist
 ☐ Documentation reviewed
 ☐ Source reviewed
 ☐ Tests reviewed
+☐ Story Planning Package fully satisfied
+☐ Documentation contract satisfied
+☐ Methodology improvements identified
 ☐ Regression suite passed
 ☐ Git commit
 ☐ Git push
 ☐ Tag created
 ☐ Story complete
+☐ Review conclusions supported by verified evidence
+☐ Story lessons captured
+☐ Methodology updates completed or deferred
 
 A story is considered complete only when:
 ✓ Implementation is complete
@@ -2693,7 +2924,30 @@ Implementation Reviewed
 ✓ Related unit tests
 ✓ Existing implementation patterns
 
+Review Limitations
+
+If any expected artifact was unavailable or intentionally excluded from the
+review, ChatGPT (Avery's) shall identify:
+
+• artifact not reviewed
+• reason
+• impact on review confidence
+
 Verification Status
+
+Evidence Reviewed
+
+For each recommendation, identify the primary evidence source.
+
+Examples:
+
+✓ Existing implementation
+✓ Existing unit tests
+✓ Existing documentation
+✓ Existing workflow
+✓ Existing architecture
+
+Recommendations shall be traceable to one or more verified evidence sources.
 
 Recommendations below are based solely on the uploaded
 ResumeForge-WIP.zip.
@@ -2714,11 +2968,28 @@ has been verified before inclusion.
 If verification was not possible, the recommendation shall explicitly
 state that fact rather than making an assumption.
 
+Previous conversations, remembered project knowledge, or earlier workflow
+reviews shall never replace verification of the current uploaded project
+artifacts.
+
 Verification Confidence
 
 □ Complete
 
+All required documentation, implementation, and tests were reviewed.
+
 □ Partial
+
+One or more required artifacts could not be reviewed.
+
+□ Limited
+
+Recommendations are based on only a subset of available evidence and should not be treated as complete project guidance.
+
+Verification Confidence shall be based solely upon reviewed project evidence.
+
+Confidence shall not be increased through prior knowledge of the project or
+previous conversations.
 
 If Partial, recommendations shall be limited to only those areas that could be verified.
 
@@ -2731,7 +3002,17 @@ A review is considered successful when:
 - recommendations are traceable to the uploaded project;
 - responses are complete rather than partial;
 - the developer can paste the recommendations directly into the project;
+- Recommendations preserve existing project architecture and implementation patterns unless an approved methodology change explicitly requires otherwise.
+- Recommendations shall minimize developer interpretation by providing precise locations, surrounding landmarks, and expected outcomes.
 - no additional clarification is required before implementation.
+- recommendations are reproducible by another reviewer following this
+  methodology.
+- Independent reviewers following this methodology should produce substantially
+  equivalent engineering conclusions.
+- Recommendations shall be reproducible from the reviewed project artifacts
+  rather than dependent upon prior conversation history.
+- Engineering conclusions shall be reproducible from the reviewed
+  ResumeForge-WIP project rather than dependent upon previous conversations.
 
 The objective is to reduce development cycles by maximizing accuracy,
 verification, and completeness during every review.

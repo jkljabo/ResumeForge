@@ -48,45 +48,61 @@ Update this value whenever new regression tests are merged.
 
 Story
 
-G.2.5.27 – Profile Experience Level
+G.2.5.28 – Profile Employment Type
 
 tests/test_profile.py
 
-• Profile defaults experience_level to None
-• Profile stores experience_level
+• Profile defaults employment_type to None
+• Profile stores employment_type
 
 tests/test_profile_persistence.py
 
-• Profile persists experience_level
+• Profile persists employment_type
 
 tests/test_cli.py
 
-• profile edit updates experience_level
+• profile edit updates employment_type
 
 Status
 
 Completed
 
-Implementation completed following the approved RED and GREEN workflow.
+RED Outcome
+
+Existing regression remained green.
+
+New employment_type tests produced the expected RED failures.
+
+No unexpected regressions were introduced.
+
+Existing regression remains green.
+
+New employment_type tests fail for the expected reasons.
+
+No unexpected regressions occur.
 
 ## Expected Result
 
 All tests pass
 
+Verified during GREEN Verification.
+
+479 passing regression tests confirm successful implementation.
+
 ## Actual GREEN Results
 
 tests/test_profile.py
 
-26 passed
+28 passed
 
 tests/test_profile_persistence.py
 
-15 passed
+16 passed
 
 tests/test_cli.py
 
-108 passed
+109 passed
 
 Full Regression
 
-475 passed
+479 passed
