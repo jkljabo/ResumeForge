@@ -260,6 +260,9 @@ class CLIWorkflow:
         if getattr(args, "employment_type", None) is not None:
             updates["employment_type"] = args.employment_type
 
+        if getattr(args, "work_arrangement", None) is not None:
+            updates["work_arrangement"] = args.work_arrangement
+
         self.profile_service.edit(
             args.name,
             updates,

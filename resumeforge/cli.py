@@ -159,6 +159,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--employment-type",
         help="Profile employment type.",
     )
+
+    edit_parser.add_argument(
+        "--work-arrangement",
+        help="Profile work arrangement.",
+    )
     
     remove.add_argument(
         "name",

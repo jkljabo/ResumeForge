@@ -352,3 +352,24 @@ def test_profile_persists_employment_type(tmp_path):
     assert loaded["employment_type"] == "Full-time"
 
 
+def test_profile_persists_work_arrangement(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "work_arrangement": "Hybrid",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["work_arrangement"] == "Hybrid"
+
+

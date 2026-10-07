@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.28 – Profile Employment Type
-Tests: 479 passing
+Current Story: G.2.5.29 – Profile Work Arrangement
+Tests: 483 passing
 Build Status: Passing
 
 ## Current Phase
@@ -49,12 +49,12 @@ Completed
 ✓ Story: G.2.5.28 – Profile Employment Type
 
 Current
-→ Story: G.2.5.28 – Profile Employment Type
+→ Story: G.2.5.29 – Profile Work Arrangement
 
 ## Active Story
 
 Story:
-G.2.5.28 – Profile Employment Type
+G.2.5.29 – Profile Work Arrangement
 
 Current Phase:
 Review: Story Planning
@@ -68,26 +68,46 @@ strategy are being reviewed prior to RED implementation.
 Next Step:
 Verify: Story Planning
 
+## Engineering Readiness
+
+Status: PASS
+
+Verification completed:
+
+✓ Current ResumeForge-WIP.zip reviewed.
+✓ CHECKPOINT.md reviewed.
+✓ Current story verified as G.2.5.29 – Profile Work Arrangement.
+✓ Current engineering methodology reviewed.
+✓ Story planning context established.
+✓ Repository context synchronized with current story documentation.
+
+Result:
+
+Engineering environment verified.
+Ready to continue Story Planning.
+
 ## Story Objective
 
-Add support for an optional Employment Type profile attribute.
+Add support for an optional Work Arrangement profile attribute.
 
-Employment Type identifies the intended employment classification associated
-with a Profile and is editable through the Profile CLI workflow.
+Work Arrangement identifies the preferred working arrangement associated with
+a Profile (for example: Remote, Hybrid, or On-site) and is editable through
+the Profile CLI workflow.
 
 The value is persisted with profile metadata and remains optional to preserve
 backward compatibility with existing profiles.
 
-This story intentionally follows the established Profile metadata implementation pattern and introduces no architectural changes.
+This story intentionally follows the established Profile metadata implementation
+pattern and introduces no architectural changes.
 
 ## Acceptance Criteria
 
-□ Profile supports an optional `employment_type` property.
-□ `employment_type` defaults to None.
-□ Existing profiles continue loading correctly when `employment_type` is absent.
-□ `employment_type` is persisted when saving profiles.
-□ `employment_type` is restored when loading profiles.
-□ Profile CLI edit supports `employment_type`.
+□ Profile supports an optional `work_arrangement` property.
+□ `work_arrangement` defaults to None.
+□ Existing profiles continue loading correctly when `work_arrangement` is absent.
+□ `work_arrangement` is persisted when saving profiles.
+□ `work_arrangement` is restored when loading profiles.
+□ Profile CLI edit supports `work_arrangement`.
 □ Full regression suite passes.
 
 ## Definition of Ready
@@ -103,12 +123,14 @@ This story intentionally follows the established Profile metadata implementation
 ✓ Expected regression count documented.
 ✓ Story scope and out-of-scope behavior defined.
 ✓ Complete Story Planning package produced.
+✓ Engineering Readiness completed and documented.
+✓ Engineering Readiness completed and verified.
 
-Current Regression Count: 479
+Current Regression Count: 483
 
 Planned New Tests: 4
 
-Expected Regression Count: 479
+Expected Regression Count: 483
 
 ## Expected Files
 
@@ -140,31 +162,31 @@ README.md (Story Signoff)
 ## RED Test Plan
 
 • tests/test_profile.py
-  • Add test_profile_defaults_to_no_employment_type()
-  • Add test_profile_stores_employment_type()
+  • Add test_profile_defaults_to_no_work_arrangement()
+  • Add test_profile_stores_work_arrangement()
 
 • tests/test_profile_persistence.py
-  • Add test_profile_persists_employment_type()
+  • Add test_profile_persists_work_arrangement()
 
 • tests/test_cli.py
-  • Add test_profile_edit_updates_employment_type()
+  • Add test_profile_edit_updates_work_arrangement()
 
 ## Documentation Updates
 
-✓ Update CHECKPOINT.md with approved G.2.5.28 planning package.
-✓ Update docs/phases.md with G.2.5.28 story planning.
+✓ Update CHECKPOINT.md with approved G.2.5.29 planning package.
+✓ Update docs/phases.md with G.2.5.29 story planning.
 □ Update docs/history.md at Story Signoff.
 □ Update docs/testing.md at Story Signoff if regression count changes.
 □ Update README.md at Story Signoff if current test metrics change.
 
 ## Out of Scope
 
-• Employment type validation
-• Employment type lookup
-• Employment type filtering
-• Multiple employment types
-• Employment type taxonomy
-• Automatic employment-type inference
+• Work arrangement validation
+• Work arrangement lookup
+• Work arrangement filtering
+• Multiple work arrangements
+• Work arrangement taxonomy
+• Automatic work arrangement inference
 
 ## Completed
 
@@ -202,7 +224,7 @@ README.md (Story Signoff)
 
 Testing
 
-✓ 479 automated tests
+✓ 483 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -253,9 +275,10 @@ Completed
 ✓ Profile Purpose
 ✓ Profile Target Role
 ✓ Profile Experience Level
+✓ Profile Employment Type
 
 Current
-→ Story: G.2.5.28 – Profile Employment Type
+→ Story: G.2.5.29 – Profile Work Arrangement
 
 Remaining Work
 
@@ -264,15 +287,19 @@ Remaining Work
 
 ## Next Immediate Task
 
-Begin the next story with Review: Story Planning.
+Next Immediate Task
 
-Synchronize project documentation.
-Commit and tag the completed story.
-Begin the next story with Review: Story Planning.
+Begin Review: Implementation Package (RED).
+
+Develop the RED implementation package.
+
+Implement the RED test suite.
+
+Verify expected RED failures.
 
 ## Test Status
 
-479 automated tests passing
+483 automated tests passing
 0 failures
 
 Latest verification:
@@ -356,7 +383,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  479 passed
+  483 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -387,7 +414,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-479 passing
+483 passing
 
 Quality
 100% passing
@@ -444,7 +471,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 479 automated tests
+✓ 483 automated tests
 
 ## Stable Milestones
 
@@ -488,7 +515,7 @@ Packages:
 • themes
 
 Tests:
-479 passing
+483 passing
 
 Architecture:
 Repository Pattern
@@ -553,7 +580,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 479 passed
+  - Overall suite: 483 passed
 
 ### Session Summary
 
@@ -572,14 +599,14 @@ Completed
 
 Test Status
 
-479 passing
+483 passing
 
 ## Story Completion Checklist
 
 ✓ Tests written
 ✓ RED tests verified
 ✓ GREEN implementation verified
-✓ 479 tests passing
+✓ 483 tests passing
 ✓ Code reviewed
 ✓ Documentation synchronized
 ✓ CHECKPOINT updated

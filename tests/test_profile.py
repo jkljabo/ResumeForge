@@ -283,5 +283,24 @@ def test_profile_stores_employment_type():
     assert profile.employment_type == "Full-time"
 
 
+def test_profile_defaults_to_no_work_arrangement():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.work_arrangement is None
+
+
+def test_profile_stores_work_arrangement():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        work_arrangement="Hybrid",
+    )
+
+    assert profile.work_arrangement == "Hybrid"
+
+
 
     
