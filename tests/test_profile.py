@@ -302,5 +302,24 @@ def test_profile_stores_work_arrangement():
     assert profile.work_arrangement == "Hybrid"
 
 
+def test_profile_defaults_to_no_work_authorization():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.work_authorization is None
+
+
+def test_profile_stores_work_authorization():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        work_authorization="U.S. Citizen",
+    )
+
+    assert profile.work_authorization == "U.S. Citizen"
+
+
 
     

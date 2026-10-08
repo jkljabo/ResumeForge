@@ -164,6 +164,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--work-arrangement",
         help="Profile work arrangement.",
     )
+
+    edit_parser.add_argument(
+        "--work-authorization",
+        help="Profile work authorization.",
+    )
     
     remove.add_argument(
         "name",

@@ -63,6 +63,265 @@ The objective is to produce predictable, repeatable, and maintainable
 engineering outcomes while minimizing unnecessary complexity and regression
 risk.
 
+## Universal Engineering Phase Lifecycle
+
+Every ResumeForge engineering phase follows the same lifecycle.
+
+### Review
+
+The Review step is used to analyze the current artifact, discuss possible improvements, evaluate alternatives, justify proposed changes, and reach agreement on the implementation approach.
+
+No artifact modifications occur during Review.
+
+Review concludes only when:
+
+- Requirements are agreed upon.
+- Scope is agreed upon.
+- Questions are resolved.
+- Expected implementation is clearly defined.
+
+---
+
+### Implement
+
+The Implement step applies the approved changes identified during Review.
+
+Implement focuses solely on executing the agreed implementation.
+
+No new requirements, design decisions, or scope changes are introduced during Implement.
+
+Implement concludes only when:
+
+- All approved changes have been applied.
+- The artifact reflects the Review agreement.
+- No unintended modifications have been introduced.
+
+### Required Implementation Update Structure
+
+Every Implement response shall consist of one or more deterministic
+Implementation Updates.
+
+Each Implementation Update shall contain, at a minimum:
+
+• File
+• Purpose
+• Location (Current)
+• Implementation Update
+• Expected Result
+
+The term "Suggested Update" shall not be used during any Implement phase.
+All approved modifications shall be communicated as Implementation Updates.
+
+Implementation Updates shall describe the exact modification to be
+performed.
+
+Implementation Updates shall not contain recommendations, discussion,
+design alternatives, or review commentary.
+
+Each Implementation Update shall describe one logical modification.
+
+When multiple unrelated modifications are required, they shall be expressed as
+separate Implementation Updates.
+
+Implementation Updates shall remain atomic to simplify implementation,
+verification, review history, and corrective iterations.
+
+---
+
+### Verify
+
+Verify confirms that the implementation matches the approved Review.
+
+Verification includes reviewing the implementation, validating supporting evidence, identifying defects, and completing signoff.
+
+Verify concludes only when:
+
+- Implementation matches the approved design.
+- Supporting evidence has been reviewed.
+- Outstanding issues have been resolved.
+- Phase signoff is complete.
+
+---
+
+### Phase Boundaries
+
+Each engineering phase has exclusive responsibilities.
+
+Review shall:
+
+• Analyze the current artifact.
+• Discuss improvements.
+• Evaluate alternatives.
+• Reach engineering agreement.
+
+Review shall not:
+
+• Modify project artifacts.
+• Produce implementation instructions.
+• Perform verification.
+
+Implement shall:
+
+• Execute the approved engineering agreement.
+• Produce deterministic Implementation Updates.
+
+Implement shall not:
+
+• Introduce new requirements.
+• Introduce new design decisions.
+• Recommend alternative implementations.
+• Perform verification.
+• Reopen engineering discussions.
+
+Verify shall:
+
+• Validate completed implementation.
+• Identify implementation defects.
+• Confirm engineering evidence.
+• Approve or reject the phase.
+
+Verify shall not:
+
+• Redesign approved work.
+• Expand story scope.
+• Produce implementation changes except by returning the workflow to Implement.
+
+### Verification Failure Rules
+
+Verification determines where the workflow returns when defects are discovered.
+
+Implementation defect
+
+Return to:
+
+Implement
+
+Examples:
+
+- Missing implementation
+- Incorrect implementation
+- Typographical mistakes
+- Missing documentation updates
+- Missing tests
+- Incorrect code changes
+
+Design or planning defect
+
+Return to:
+
+Review
+
+Examples:
+
+- Scope changes
+- Incorrect requirements
+- Missing acceptance criteria
+- Design changes
+- New implementation decisions
+
+The workflow never skips phases.
+
+Every verification failure returns only to the earliest phase required to resolve the identified issue.
+
+### Corrective Workflow
+
+When Verify identifies one or more failures:
+
+1. Record all verification findings.
+2. Return only to the earliest required phase.
+3. Complete that phase.
+4. Repeat Verify for the same engineering phase.
+5. Continue this cycle until Verify passes.
+6. Advance to the next workflow phase only after successful signoff.
+
+No workflow phase may be skipped during corrective iterations.
+
+## Engineering Artifact Types
+
+ResumeForge manages two classes of artifacts.
+
+### Engineering Artifacts
+
+Engineering artifacts define and control the engineering process.
+
+Examples include:
+
+- Story Planning
+- Implementation Package (RED)
+- Implementation Package (GREEN)
+- ResumeForge Engineering Methodology
+- Story Signoff
+
+Engineering artifacts always follow the Universal Engineering Phase Lifecycle.
+
+---
+
+### Project Artifacts
+
+Project artifacts describe or support the ResumeForge project itself.
+
+Examples include:
+
+- README.md
+- CHECKPOINT.md
+- history.md
+- testing.md
+- phases.md
+
+Project artifacts are updated during engineering phases but are not engineering phases themselves.
+
+## Engineering Artifact Quality Standards
+
+Every engineering artifact shall satisfy the following standards.
+
+### Complete
+
+Contains all information required to perform the work.
+
+### Deterministic
+
+A qualified developer following the artifact should independently produce functionally equivalent results without requiring additional clarification.
+
+### Deterministic Location Identification
+
+Every Location (Current) shall identify the modification point using
+sufficient engineering landmarks.
+
+Examples include:
+
+• section heading
+• nearby text
+• surrounding paragraph
+• existing method
+• existing class
+• existing function
+• existing property
+• existing documentation heading
+
+A qualified developer unfamiliar with the project shall be able to
+navigate directly to the modification without searching or inferring the
+intended location.
+
+### Self-contained
+
+The artifact does not rely upon undocumented assumptions or previous conversations.
+
+### Traceable
+
+Every implementation can be traced back to an approved planning decision.
+
+### Pattern Consistent
+
+Existing implementation patterns are identified and followed unless Review explicitly approves a deviation.
+
+### Reproducible
+
+Independent reviewers should produce equivalent implementations.
+
+### Verifiable
+
+Evidence exists to demonstrate that the implementation satisfies the approved requirements.
+
 ## Engineering Contract
 
 ResumeForge follows strict Test-Driven Development (TDD).
@@ -78,14 +337,78 @@ story.
 Story Planning shall establish the baseline against which every subsequent
 workflow phase is verified.
 
+## Pattern Authority
+
+Pattern Authority identifies the existing implementation pattern that shall be
+followed for the current story.
+
+Review shall identify the Pattern Authority before implementation begins.
+
+Implement shall follow the approved Pattern Authority unless Review explicitly
+approves a deviation.
+
+Verify shall confirm that implementation conforms to the approved Pattern
+Authority.
+
+## Source Authority
+
+When a ResumeForge WIP artifact is supplied for an engineering phase,
+that artifact becomes the authoritative engineering source for the
+duration of that phase.
+
+Review, Implement, and Verify responses shall be based upon the current
+WIP artifact unless the user explicitly authorizes another source.
+
+Previous revisions, earlier conversations, or historical implementations
+shall not supersede the current WIP artifact.
+
 ## Story Planning
 
-Implementation Package (RED), Implementation Package (GREEN), GREEN
-Verification, and Story Signoff shall validate conformance to the approved
-Story Planning Package rather than redefining story requirements.
+### Story Planning Lifecycle
+
+Story Planning consists of three distinct activities:
+
+1. Review
+2. Implement
+3. Verify
+
+Review establishes the engineering agreement for the story.
+
+Implement updates the Story Planning artifacts so they accurately reflect the
+approved engineering agreement.
+
+Verify confirms that the completed Story Planning artifacts accurately reflect
+the approved engineering agreement and are ready for Story Planning Signoff.
+
+Story Planning Signoff authorizes entry into:
+
+Review: Implementation Package (RED)
+
+Once Story Planning has been approved, all remaining workflow phases shall
+validate conformance to the approved Story Planning Package rather than
+redefining story requirements.
+
+Following Story Planning Signoff, every remaining workflow phase shall validate
+conformance to the approved Story Planning Package rather than redefining story
+requirements.
 
 It shall contain every piece of information required to complete all remaining
 workflow phases without introducing assumptions.
+
+### Review Responsibilities
+
+Review: Story Planning establishes the engineering agreement.
+
+The review shall:
+
+• Define story scope.
+• Define business purpose.
+• Define engineering objectives.
+• Identify Pattern Authority.
+• Identify Source Authority.
+• Identify expected implementation pattern.
+• Identify expected RED deliverables.
+• Resolve planning questions before documentation is finalized.
 
 At a minimum, the Story Planning Package shall define:
 
@@ -101,6 +424,40 @@ At a minimum, the Story Planning Package shall define:
 • Documentation updates
 • Story completion criteria
 
+### Verification Responsibilities
+
+Verify: Story Planning confirms that the planning documentation accurately
+reflects the approved engineering agreement.
+
+Verification shall confirm:
+
+• Story name
+• Story objective
+• Business purpose
+• Scope
+• Acceptance criteria
+• Pattern Authority
+• Source Authority
+• Expected RED deliverables
+• Documentation consistency
+
+Verification shall not redefine story requirements unless Review is formally
+re-entered.
+
+### Story Planning Signoff
+
+Story Planning Signoff confirms that:
+
+• The engineering agreement has been reached.
+• The planning documentation reflects that agreement.
+• Pattern Authority has been identified.
+• Source Authority has been identified.
+• RED implementation may begin.
+
+Completion of Story Planning Signoff authorizes entry into:
+
+Review: Implementation Package (RED)
+
 Test Planning Package
 
 Story Planning shall define the complete testing strategy.
@@ -114,9 +471,31 @@ The testing plan shall include:
 • regression expectations
 • expected test count increase
 
-Each planned test shall be identified by name whenever practical.
+Each planned RED test shall be identified by its expected test function name
+whenever practical.
+
+These names become the approved engineering baseline for Review:
+Implementation Package (RED).
 
 Each planned test shall identify the existing test family it extends.
+
+### RED Test Plan Verification
+
+Verify: Story Planning shall confirm that the RED Test Plan has been fully
+transitioned from the previous story to the current story.
+
+Verification shall confirm:
+
+• Every planned test name reflects the current story.
+• Previous story test names have been removed unless retained as historical
+  references.
+• Planned test names match the approved story terminology.
+• Planned tests correspond to the documented acceptance criteria.
+• Planned tests follow the identified Pattern Authority.
+• Every planned RED test identifies the existing test family it extends.
+
+Story Planning Signoff shall not be approved until the RED Test Plan accurately
+represents the current story.
 
 Story Planning shall verify that every planned test follows the established
 implementation pattern already present within the corresponding test file.
@@ -1007,6 +1386,48 @@ in accordance with the Source Authority requirements.
 
 Outputs from one Action shall not be substituted for another.
 
+## Standard Implementation Package Format
+
+Every implementation package shall provide sufficient detail for a qualified developer unfamiliar with the current story to complete the implementation without additional clarification.
+
+### Documentation Implementation Template
+
+Every documentation update shall contain:
+
+- File
+- Purpose
+- Location (Current)
+- Implementation Update
+- Expected Result
+- Justification (when applicable)
+
+### Code Implementation Template
+
+Every code implementation shall contain:
+
+- File
+- Purpose
+- Location (Current)
+- Pattern Authority
+- Location (Current)
+- Implementation Update
+- Expected Result
+- Verification Target
+
+Implementation instructions shall identify precise locations and describe the complete update.
+
+Instructions shall not rely on assumptions that the developer already understands existing patterns.
+
+## Pattern Authority
+
+Pattern Authority identifies the existing implementation or documentation that serves as the approved consistency reference.
+
+Implementation updates shall reference an existing pattern whenever practical.
+
+When no existing pattern exists, the implementation package shall explicitly identify that the implementation establishes a new project pattern.
+
+Pattern deviations require approval during the Review step before implementation.
+
 ## Phase 1 – Story Planning
 
 ### Phase Evidence Chain
@@ -1044,6 +1465,53 @@ Story Planning shall explicitly identify:
 Each planning recommendation shall reference the evidence supporting it.
 
 Approval Required
+
+### Engineering Evidence Standards
+
+Engineering evidence provides the objective basis for every Verify step
+defined within this methodology.
+
+Engineering evidence establishes objective, verifiable proof that a workflow phase has satisfied its approved requirements.
+
+Engineering evidence shall be:
+
+- Objective
+- Reproducible
+- Traceable
+- Relevant to the current phase
+- Sufficient to support phase approval
+
+Engineering evidence may include, but is not limited to:
+
+- Targeted unit test execution
+- Targeted integration test execution
+- Full regression test execution
+- CLI verification
+- Persistence verification
+- Documentation review
+- Code review against the approved implementation package
+- Git status
+- Commit history
+- Version tags
+- Regression summaries
+
+Collected engineering evidence shall objectively demonstrate all of the following:
+
+- the approved implementation was completed;
+- the implementation satisfies the approved Review;
+- no unintended regressions have been introduced; and
+- the phase is ready for signoff.
+
+Unless explicitly documented otherwise, every subsequent Phase Evidence Chain defined within this methodology inherits these Engineering Evidence Standards.
+
+These standards define the minimum engineering evidence required for
+phase verification.
+
+Individual workflow phases may require additional evidence specific to that phase; however, they shall not reduce, replace, or contradict these minimum requirements.
+
+---
+
+The following sections apply the Engineering Evidence Standards defined above to each workflow phase.
 
 Review: Story Planning
 
@@ -1378,6 +1846,34 @@ Review the current ResumeForge-WIP.zip project and verify that:
 • Required workflow/process improvements are documented.
 • The developer has approved the complete Story Planning Package.
 
+#### Story Transition Verification
+
+Verify that all story-specific planning documentation has transitioned from the
+previous story to the current story.
+
+Review previous story references and classify each occurrence as one of the
+following:
+
+• Historical reference
+• Pattern Authority
+• Active story content
+
+Historical references and Pattern Authority references shall remain unchanged.
+
+Active story content shall be updated to reflect the current story before
+Story Planning Signoff.
+
+Verification shall include, at a minimum:
+
+• Story identifier
+• Story title
+• Story objective
+• Acceptance criteria
+• Definition of Ready
+• Documentation update references
+• Current phase
+• Next phase
+
 Documentation Review
 
 At a minimum review:
@@ -1394,7 +1890,7 @@ For every required documentation update provide:
 • Document
 • Location (Current)
 • Location (Suggested)
-• Suggested Update
+• Implementation Update
 
 Documentation Validation
 
@@ -1958,7 +2454,7 @@ The implementation package shall contain:
 
    Show the verified current implementation.
 
-2. Suggested Update
+2. Implementation Update
 
    Show the exact production code required.
 
@@ -2042,7 +2538,7 @@ The package shall include:
 
    Verified current implementation.
 
-2. Suggested Update
+2. Implementation Update
 
    Complete replacement or insertion code.
 
@@ -2178,7 +2674,7 @@ For every document reviewed, ChatGPT (Avery) shall explicitly identify:
 • Document
 • Location (Current)
 • Location (Suggested)
-• Suggested Update
+• Implementation Update
 
 Documentation Verification shall produce findings for every required document.
 
@@ -2730,7 +3226,7 @@ Preferred format:
 
 Verified Current
 Provide the verified implementation exactly as it exists in the uploaded WIP.
-Suggested Update
+Implementation Update
 Provide the complete replacement or insertion.
 Location
 Identify the file and approximate insertion point.

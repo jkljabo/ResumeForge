@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.29 – Profile Work Arrangement
-Tests: 483 passing
+Current Story: G.2.5.30 – Profile Work Authorization
+Tests: 487 passing
 Build Status: Passing
 
 ## Current Phase
@@ -47,26 +47,29 @@ Completed
 ✓ Story: G.2.5.26 – Profile Target Role
 ✓ Story: G.2.5.27 – Profile Experience Level
 ✓ Story: G.2.5.28 – Profile Employment Type
+✓ Story: G.2.5.29 – Profile Work Arrangement
+✓ Story: G.2.5.30 – Profile Work Authorization
 
 Current
-→ Story: G.2.5.29 – Profile Work Arrangement
+→ Story: G.2.5.30 – Profile Work Authorization
 
 ## Active Story
 
 Story:
-G.2.5.29 – Profile Work Arrangement
+G.2.5.30 – Profile Work Authorization
 
 Current Phase:
-Review: Story Planning
+Verify: Story Signoff
 
 Status:
-Story Planning under review.
+Story Signoff documentation under verification.
 
-Engineering scope, objectives, documentation updates and implementation
-strategy are being reviewed prior to RED implementation.
+The engineering agreement established during Story Planning Review has been
+incorporated into the project documentation and is being verified for
+accuracy, completeness, and consistency.
 
 Next Step:
-Verify: Story Planning
+Review: Implementation Package (RED)
 
 ## Engineering Readiness
 
@@ -76,7 +79,7 @@ Verification completed:
 
 ✓ Current ResumeForge-WIP.zip reviewed.
 ✓ CHECKPOINT.md reviewed.
-✓ Current story verified as G.2.5.29 – Profile Work Arrangement.
+✓ Current story verified as G.2.5.30 – Profile Work Authorization.
 ✓ Current engineering methodology reviewed.
 ✓ Story planning context established.
 ✓ Repository context synchronized with current story documentation.
@@ -84,30 +87,37 @@ Verification completed:
 Result:
 
 Engineering environment verified.
-Ready to continue Story Planning.
+Ready for Story Signoff approval.
+
+Pending approval, this story will be completed and the workflow will advance to the next scheduled story.
 
 ## Story Objective
 
-Add support for an optional Work Arrangement profile attribute.
+Add support for an optional Work Authorization profile attribute.
 
-Work Arrangement identifies the preferred working arrangement associated with
-a Profile (for example: Remote, Hybrid, or On-site) and is editable through
-the Profile CLI workflow.
+Work Authorization identifies the employment authorization associated with a
+Profile (for example: U.S. Citizen, Permanent Resident, H-1B, Requires
+Sponsorship) and is editable through the Profile workflow.
 
-The value is persisted with profile metadata and remains optional to preserve
-backward compatibility with existing profiles.
+Pattern Authority:
+G.2.5.29 – Profile Work Arrangement
 
-This story intentionally follows the established Profile metadata implementation
-pattern and introduces no architectural changes.
+Implementation shall extend the existing profile metadata pattern without
+introducing new architectural behavior.
+
+The implementation shall follow the established profile metadata pattern,
+maintain backward compatibility, and extend automated testing for the Profile
+model, persistence layer, and CLI workflow.
 
 ## Acceptance Criteria
 
-□ Profile supports an optional `work_arrangement` property.
-□ `work_arrangement` defaults to None.
-□ Existing profiles continue loading correctly when `work_arrangement` is absent.
-□ `work_arrangement` is persisted when saving profiles.
-□ `work_arrangement` is restored when loading profiles.
-□ Profile CLI edit supports `work_arrangement`.
+□ Profile supports an optional `work_authorization` property.
+□ `work_authorization` defaults to None.
+□ Existing profiles continue loading correctly when
+  `work_authorization` is absent.
+□ `work_authorization` is persisted when saving profiles.
+□ `work_authorization` is restored when loading profiles.
+□ Profile CLI edit supports `work_authorization`.
 □ Full regression suite passes.
 
 ## Definition of Ready
@@ -125,12 +135,15 @@ pattern and introduces no architectural changes.
 ✓ Complete Story Planning package produced.
 ✓ Engineering Readiness completed and documented.
 ✓ Engineering Readiness completed and verified.
+✓ Story Planning documentation verified against the approved engineering agreement.
+✓ Previous story references reviewed and updated where required.
+✓ Pattern Authority references verified.
 
-Current Regression Count: 483
+Current Regression Count: 487
 
 Planned New Tests: 4
 
-Expected Regression Count: 483
+Expected Regression Count: 487
 
 ## Expected Files
 
@@ -162,22 +175,22 @@ README.md (Story Signoff)
 ## RED Test Plan
 
 • tests/test_profile.py
-  • Add test_profile_defaults_to_no_work_arrangement()
-  • Add test_profile_stores_work_arrangement()
+  • Add test_profile_defaults_to_no_work_authorization()
+  • Add test_profile_stores_work_authorization()
 
 • tests/test_profile_persistence.py
-  • Add test_profile_persists_work_arrangement()
+  • Add test_profile_persists_work_authorization()
 
 • tests/test_cli.py
-  • Add test_profile_edit_updates_work_arrangement()
+  • Add test_profile_edit_updates_work_authorization()
 
 ## Documentation Updates
 
-✓ Update CHECKPOINT.md with approved G.2.5.29 planning package.
-✓ Update docs/phases.md with G.2.5.29 story planning.
-□ Update docs/history.md at Story Signoff.
-□ Update docs/testing.md at Story Signoff if regression count changes.
-□ Update README.md at Story Signoff if current test metrics change.
+✓ Update CHECKPOINT.md with approved G.2.5.30 planning package.
+✓ Update docs/phases.md with G.2.5.30 story planning.
+✓ Update docs/history.md at Story Signoff.
+✓ Update docs/testing.md at Story Signoff if regression count changes.
+✓ Update README.md at Story Signoff if current test metrics change.
 
 ## Out of Scope
 
@@ -224,7 +237,7 @@ README.md (Story Signoff)
 
 Testing
 
-✓ 483 automated tests
+✓ 487 automated tests
 ✓ 100% passing
 
 ## Repository
@@ -276,9 +289,11 @@ Completed
 ✓ Profile Target Role
 ✓ Profile Experience Level
 ✓ Profile Employment Type
+✓ Profile Work Arrangement
+✓ Profile Work Authorization
 
 Current
-→ Story: G.2.5.29 – Profile Work Arrangement
+→ Story: G.2.5.30 – Profile Work Authorization
 
 Remaining Work
 
@@ -289,17 +304,17 @@ Remaining Work
 
 Next Immediate Task
 
-Begin Review: Implementation Package (RED).
+Complete Verify: Story Signoff.
 
-Develop the RED implementation package.
+Upon approval:
 
-Implement the RED test suite.
-
-Verify expected RED failures.
+• Commit completed documentation updates.
+• Create the story tag.
+• Begin Story Planning for the next scheduled story.
 
 ## Test Status
 
-483 automated tests passing
+487 automated tests passing
 0 failures
 
 Latest verification:
@@ -383,7 +398,7 @@ Released
 ## Build Verification
 
 ✓ python -m pytest
-  483 passed
+  487 passed
 
 ✓ python -m build --no-isolation
   Wheel generated
@@ -414,7 +429,7 @@ v0.1.2-alpha
 ## Project Metrics
 
 Tests
-483 passing
+487 passing
 
 Quality
 100% passing
@@ -471,7 +486,7 @@ v0.1.2-alpha
 ✓ ConfigurationRepository
 ✓ ConfigurationService
 ✓ Immutable configuration workflow
-✓ 483 automated tests
+✓ 487 automated tests
 
 ## Stable Milestones
 
@@ -515,7 +530,7 @@ Packages:
 • themes
 
 Tests:
-483 passing
+487 passing
 
 Architecture:
 Repository Pattern
@@ -580,7 +595,7 @@ Implementation
 - ProfileService supports dependency injection of the profile root, enabling isolated filesystem tests.
 - Test status:
   - Feature tests: 26 passed
-  - Overall suite: 483 passed
+  - Overall suite: 487 passed
 
 ### Session Summary
 
@@ -599,14 +614,14 @@ Completed
 
 Test Status
 
-483 passing
+487 passing
 
 ## Story Completion Checklist
 
 ✓ Tests written
 ✓ RED tests verified
 ✓ GREEN implementation verified
-✓ 483 tests passing
+✓ 487 tests passing
 ✓ Code reviewed
 ✓ Documentation synchronized
 ✓ CHECKPOINT updated

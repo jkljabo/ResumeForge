@@ -263,6 +263,10 @@ class CLIWorkflow:
         if getattr(args, "work_arrangement", None) is not None:
             updates["work_arrangement"] = args.work_arrangement
 
+        if getattr(args, "work_authorization", None) is not None:
+            updates["work_authorization"] = args.work_authorization
+
+
         self.profile_service.edit(
             args.name,
             updates,
