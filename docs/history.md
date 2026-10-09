@@ -498,6 +498,76 @@ Strengthened deterministic implementation package requirements
 
 487 tests passing
 
+2026-10-08
 
+Story Planning – Profile Security Clearance
 
+Engineering planning completed.
 
+Story Objective
+
+Introduce a Security Clearance profile attribute that can be created,
+edited, persisted, and restored through the ResumeForge profile
+management system.
+
+Functional Scope
+
+• Extend the Profile model.
+• Extend profile persistence.
+• Extend CLI create support.
+• Extend CLI edit support.
+• Extend workflow mapping.
+• Update regression tests.
+• Update project documentation.
+
+Pattern Authority
+
+Implementation shall follow the engineering pattern established by:
+
+• G.2.5.29 – Profile Work Arrangement
+• G.2.5.30 – Profile Work Authorization
+
+No architectural deviation is approved during Story Planning.
+
+Acceptance Criteria
+
+• Profile supports a security_clearance property.
+• The property defaults to None when omitted.
+• The property can be specified during profile creation.
+• The property can be modified using profile edit.
+• The property is persisted and restored correctly.
+• Existing profile behavior remains unchanged.
+• All regression tests pass.
+• Project documentation is updated.
+
+RED Test Plan
+
+Profile
+
+• test_profile_defaults_to_no_security_clearance
+• test_profile_stores_security_clearance
+
+Persistence
+
+• test_profile_persists_security_clearance
+
+CLI
+
+• test_profile_create_stores_security_clearance
+• test_profile_edit_updates_security_clearance
+
+Ready for Verify: Story Planning
+
+2026-10-09
+
+Implemented Profile Security Clearance
+
+Added optional security_clearance metadata to Profile
+
+Extended profile persistence to store and restore security_clearance
+
+Extended CLI profile edit workflow to update security_clearance
+
+Preserved the existing minimal profile creation architecture
+
+491 tests passing

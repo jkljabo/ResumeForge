@@ -2587,4 +2587,47 @@ def test_profile_edit_updates_work_authorization():
     )
 
 
+def test_profile_edit_updates_security_clearance():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="edit",
+        name="government",
+
+        headline=None,
+        full_name=None,
+        color_theme=None,
+        description=None,
+        tags=None,
+        notes=None,
+        category=None,
+        visibility=None,
+        owner=None,
+        organization=None,
+        purpose=None,
+        target_role=None,
+        experience_level=None,
+        employment_type=None,
+        work_arrangement=None,
+        work_authorization=None,
+
+        security_clearance="Secret",
+    )
+
+    workflow.run(args)
+
+    profile_service.edit.assert_called_once_with(
+        "government",
+        {
+            "security_clearance": "Secret",
+        },
+    )
+
+
+
 

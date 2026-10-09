@@ -169,6 +169,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--work-authorization",
         help="Profile work authorization.",
     )
+
+    edit_parser.add_argument(
+        "--security-clearance",
+        help="Profile security clearance.",
+    )
     
     remove.add_argument(
         "name",

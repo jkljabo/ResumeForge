@@ -322,4 +322,22 @@ def test_profile_stores_work_authorization():
 
 
 
-    
+def test_profile_defaults_to_no_security_clearance():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.security_clearance is None
+
+
+def test_profile_stores_security_clearance():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        security_clearance="Secret",
+    )
+
+    assert profile.security_clearance == "Secret"
+
+

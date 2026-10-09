@@ -4,8 +4,8 @@
 
 Project Milestone: v0.5.0
 Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.30 – Profile Work Authorization
-Tests: 487 passing
+Current Story: G.2.5.31 – Profile Security Clearance
+Tests: 491 passing
 Build Status: Passing
 
 ## Current Phase
@@ -51,73 +51,71 @@ Completed
 ✓ Story: G.2.5.30 – Profile Work Authorization
 
 Current
-→ Story: G.2.5.30 – Profile Work Authorization
+→ Story: G.2.5.31 – Profile Security Clearance
 
 ## Active Story
 
 Story:
-G.2.5.30 – Profile Work Authorization
+G.2.5.31 – Profile Security Clearance
 
 Current Phase:
-Verify: Story Signoff
+Story Signoff
 
 Status:
-Story Signoff documentation under verification.
-
-The engineering agreement established during Story Planning Review has been
-incorporated into the project documentation and is being verified for
-accuracy, completeness, and consistency.
+All implementation, regression verification, and methodology updates are complete.
+Story is undergoing final signoff.
 
 Next Step:
-Review: Implementation Package (RED)
+Complete story signoff, commit, tag, and advance to G.2.5.32.
 
 ## Engineering Readiness
 
 Status: PASS
 
-Verification completed:
+Story verification completed:
 
-✓ Current ResumeForge-WIP.zip reviewed.
-✓ CHECKPOINT.md reviewed.
-✓ Current story verified as G.2.5.30 – Profile Work Authorization.
-✓ Current engineering methodology reviewed.
-✓ Story planning context established.
-✓ Repository context synchronized with current story documentation.
+✓ Production implementation complete.
+✓ ResumeForge Engineering Methodology updated.
+✓ Story documentation reviewed.
+✓ Full regression suite verified.
 
-Result:
+Regression Results
 
-Engineering environment verified.
-Ready for Story Signoff approval.
+✓ tests/test_profile.py — 34 passed
+✓ tests/test_profile_persistence.py — 19 passed
+✓ tests/test_cli.py — 112 passed
+✓ Full regression suite — 491 passed
 
-Pending approval, this story will be completed and the workflow will advance to the next scheduled story.
+Result
+
+Story implementation complete.
+
+Ready for Story Signoff.
 
 ## Story Objective
 
-Add support for an optional Work Authorization profile attribute.
+Introduce a Security Clearance profile attribute that can be created,
+edited, persisted, and restored through the ResumeForge profile
+management system.
 
-Work Authorization identifies the employment authorization associated with a
-Profile (for example: U.S. Citizen, Permanent Resident, H-1B, Requires
-Sponsorship) and is editable through the Profile workflow.
+The implementation shall follow the engineering pattern established by:
 
-Pattern Authority:
-G.2.5.29 – Profile Work Arrangement
+• G.2.5.29 – Profile Work Arrangement
+• G.2.5.30 – Profile Work Authorization.
 
-Implementation shall extend the existing profile metadata pattern without
-introducing new architectural behavior.
-
-The implementation shall follow the established profile metadata pattern,
-maintain backward compatibility, and extend automated testing for the Profile
-model, persistence layer, and CLI workflow.
+The story introduces profile metadata only and does not validate
+security clearance values.
 
 ## Acceptance Criteria
 
-□ Profile supports an optional `work_authorization` property.
-□ `work_authorization` defaults to None.
+□ Profile supports an optional `security_clearance` property.
+□ `security_clearance` defaults to None.
 □ Existing profiles continue loading correctly when
-  `work_authorization` is absent.
-□ `work_authorization` is persisted when saving profiles.
-□ `work_authorization` is restored when loading profiles.
-□ Profile CLI edit supports `work_authorization`.
+  `security_clearance` is absent.
+□ `security_clearance` is persisted when saving profiles.
+□ `security_clearance` is restored when loading profiles.
+□ Profile CLI create supports `security_clearance`.
+□ Profile CLI edit supports `security_clearance`.
 □ Full regression suite passes.
 
 ## Definition of Ready
@@ -141,9 +139,23 @@ model, persistence layer, and CLI workflow.
 
 Current Regression Count: 487
 
-Planned New Tests: 4
+Planned New Tests:
 
-Expected Regression Count: 487
+Profile
+
+✓ test_profile_defaults_to_no_security_clearance
+✓ test_profile_stores_security_clearance
+
+Persistence
+
+✓ test_profile_persists_security_clearance
+
+CLI
+
+✓ test_profile_create_stores_security_clearance
+✓ test_profile_edit_updates_security_clearance
+
+Expected Regression Count: 492
 
 ## Expected Files
 
@@ -175,31 +187,27 @@ README.md (Story Signoff)
 ## RED Test Plan
 
 • tests/test_profile.py
-  • Add test_profile_defaults_to_no_work_authorization()
-  • Add test_profile_stores_work_authorization()
+  • Add test_profile_defaults_to_no_security_clearance()
+  • Add test_profile_stores_security_clearance()
 
 • tests/test_profile_persistence.py
-  • Add test_profile_persists_work_authorization()
+  • Add test_profile_persists_security_clearance()
 
 • tests/test_cli.py
-  • Add test_profile_edit_updates_work_authorization()
+  • Add test_profile_create_stores_security_clearance()
+  • Add test_profile_edit_updates_security_clearance()
 
 ## Documentation Updates
 
-✓ Update CHECKPOINT.md with approved G.2.5.30 planning package.
-✓ Update docs/phases.md with G.2.5.30 story planning.
+✓ Update CHECKPOINT.md with approved G.2.5.31 planning package.
+✓ Update docs/phases.md with G.2.5.31 story planning.
 ✓ Update docs/history.md at Story Signoff.
 ✓ Update docs/testing.md at Story Signoff if regression count changes.
 ✓ Update README.md at Story Signoff if current test metrics change.
 
 ## Out of Scope
 
-• Work arrangement validation
-• Work arrangement lookup
-• Work arrangement filtering
-• Multiple work arrangements
-• Work arrangement taxonomy
-• Automatic work arrangement inference
+• Security clearance value validation
 
 ## Completed
 
@@ -293,7 +301,7 @@ Completed
 ✓ Profile Work Authorization
 
 Current
-→ Story: G.2.5.30 – Profile Work Authorization
+→ Story: G.2.5.31 – Profile Security Clearance
 
 Remaining Work
 
@@ -304,13 +312,11 @@ Remaining Work
 
 Next Immediate Task
 
-Complete Verify: Story Signoff.
+Complete Verify: Story Planning.
 
 Upon approval:
 
-• Commit completed documentation updates.
-• Create the story tag.
-• Begin Story Planning for the next scheduled story.
+• Advance to Review: Implementation Package (RED).
 
 ## Test Status
 

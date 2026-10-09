@@ -394,3 +394,24 @@ def test_profile_persists_work_authorization(tmp_path):
     assert loaded["work_authorization"] == "U.S. Citizen"
 
 
+def test_profile_persists_security_clearance(tmp_path):
+    resume = tmp_path / "resume.json"
+
+    persistence = ProfilePersistence()
+
+    original = {
+        "name": "Jason Little",
+        "headline": "Engineer",
+        "security_clearance": "Secret",
+    }
+
+    persistence.save(
+        resume,
+        original,
+    )
+
+    loaded = persistence.load(resume)
+
+    assert loaded["security_clearance"] == "Secret"
+
+

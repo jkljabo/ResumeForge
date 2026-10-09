@@ -63,6 +63,23 @@ The objective is to produce predictable, repeatable, and maintainable
 engineering outcomes while minimizing unnecessary complexity and regression
 risk.
 
+### Engineering Evidence Principle
+
+Engineering claims shall be supported by engineering evidence.
+
+Statements such as "reviewed", "verified", "implemented", "confirmed",
+or "inspected" shall be based upon the current Source Authority and
+supported by identifiable project artifacts.
+
+Responses shall distinguish between:
+
+- Verified observations from the current Source Authority.
+- Engineering conclusions derived from those observations.
+- Recommendations or design guidance.
+
+Engineering claims shall never be based upon historical memory when the
+current Source Authority is available.
+
 ## Universal Engineering Phase Lifecycle
 
 Every ResumeForge engineering phase follows the same lifecycle.
@@ -104,10 +121,21 @@ Implementation Updates.
 Each Implementation Update shall contain, at a minimum:
 
 • File
+• Section Reference
 • Purpose
-• Location (Current)
+• Location Anchor
+• Current Text (when replacing existing content)
 • Implementation Update
 • Expected Result
+
+Location Anchors shall reference text that currently exists within the
+Source Authority.
+
+Implementation Updates shall never reference inferred, historical, or
+assumed document locations.
+
+When replacing existing content, the Current Text shall be included so
+the modification can be applied deterministically.
 
 The term "Suggested Update" shall not be used during any Implement phase.
 All approved modifications shall be communicated as Implementation Updates.
@@ -172,6 +200,11 @@ Implement shall not:
 • Recommend alternative implementations.
 • Perform verification.
 • Reopen engineering discussions.
+• Provide implementation recommendations.
+• Suggest optional engineering changes.
+• Reevaluate previously approved architectural decisions.
+• Generate implementation updates that cannot be directly applied to the
+  current Source Authority.
 
 Verify shall:
 
@@ -235,6 +268,21 @@ When Verify identifies one or more failures:
 6. Advance to the next workflow phase only after successful signoff.
 
 No workflow phase may be skipped during corrective iterations.
+
+### Architectural Decision Finality
+
+When Review identifies multiple valid implementation approaches and one
+approach is approved, that decision becomes the authoritative
+implementation baseline for the remainder of the story.
+
+Implement and Verify shall evaluate work against the approved
+architecture.
+
+The workflow shall not return to Review unless:
+
+- Story requirements change.
+- Story scope changes.
+- New engineering evidence invalidates the approved architecture.
 
 ## Engineering Artifact Types
 
@@ -337,7 +385,32 @@ story.
 Story Planning shall establish the baseline against which every subsequent
 workflow phase is verified.
 
-## Pattern Authority
+### Reference Classification
+
+When reviewing project documentation, terminology, tests, or implementation
+references, each relevant reference shall be classified as:
+
+**Active**
+Current story, current workflow, current implementation, or current project
+state.
+
+**Historical**
+Evidence intentionally retained to describe a completed story or prior
+project state.
+
+**Pattern Authority**
+A prior implementation or documented pattern intentionally referenced as the
+approved consistency model for the current work.
+
+**Stale**
+A reference that describes superseded active behavior and is not intentionally
+retained as Historical or Pattern Authority.
+
+Only Active references are required to describe the current story or workflow.
+Historical and Pattern Authority references shall be preserved unless the
+current story explicitly requires their revision.
+
+### Pattern Authority
 
 Pattern Authority identifies the existing implementation pattern that shall be
 followed for the current story.
@@ -362,7 +435,34 @@ WIP artifact unless the user explicitly authorizes another source.
 Previous revisions, earlier conversations, or historical implementations
 shall not supersede the current WIP artifact.
 
+### Source Authority Verification
+
+Review, Implement, and Verify responses shall identify the primary
+Source Authority examined.
+
+When implementation guidance depends upon specific project artifacts,
+responses shall include sufficient source references (file names,
+sections, or code landmarks) to demonstrate that the guidance was
+derived from the current Source Authority.
+
+Claims of reviewing the current WIP shall not be made unless the current
+WIP artifact has actually been inspected.
+
 ## Story Planning
+
+### Pre-Phase Readiness Checklist
+
+Before beginning any Review, Implement, or Verify phase, confirm:
+
+□ Current ResumeForge-WIP is available (when referenced).
+□ Source Authority has been established.
+□ Required external connections (GitHub, repository access, etc.) have
+been verified when applicable.
+□ The engineering phase is using the current project state rather than
+historical context.
+
+If any prerequisite cannot be confirmed, the phase shall stop and report
+the blocking condition before engineering work begins.
 
 ### Story Planning Lifecycle
 
@@ -1149,7 +1249,19 @@ Each story should:
 - Avoid unrelated refactoring.
 - Leave the project in a fully releasable state.
 
-Whenever possible, stories should remain small enough to complete in a single Planning → RED → GREEN → Signoff cycle.
+Whenever possible, stories should remain small enough to complete in a single lifecycle:
+
+Story Planning
+Review → Implement → Verify
+↓
+Implementation Package (RED)
+Review → Implement → Verify
+↓
+Implementation Package (GREEN)
+Review → Implement → Verify
+↓
+Story Signoff
+Review → Verify
 
 ### Story Signoff Source Authority Verification
 
@@ -1288,14 +1400,24 @@ before Story Signoff approval.
 
 ## Standard Story Workflow
 
-Every story progresses through six workflow stages:
+Every story progresses through four workflow stages.
 
-- Story Planning
-- Implementation Package (RED)
-- RED Verification
-- Implementation Package (GREEN)
-- GREEN Verification
-- Story Signoff
+The canonical workflow is:
+
+Story Planning
+Review → Implement → Verify
+↓
+Implementation Package (RED)
+Review → Implement → Verify
+↓
+Implementation Package (GREEN)
+Review → Implement → Verify
+↓
+Story Signoff
+Review → Verify
+
+This is the canonical workflow definition for ResumeForge Engineering Methodology.
+Other methodology sections shall not define an alternate workflow lifecycle.
 
 Each completed story shall conclude with a workflow improvement review.
 
@@ -2604,8 +2726,21 @@ Source Authority.
 □ Verification completed
 □ Review conclusions traceable to reviewed project artifacts
 □ Review limitations documented (if any)
+□ Artifact Inventory completed
+□ Cross-Artifact Consistency Audit completed
+□ Stale Reference Audit completed
+□ Evidence Matrix completed
+□ Every finding classified
+□ Zero unresolved or unclassified findings remain
 
 If any item cannot be confirmed, the workflow phase shall remain incomplete.
+
+The Review Quality Gate shall also require completion of the Engineering
+Methodology Audit Gate before approval.
+
+A review shall not be approved solely because the primary story artifact is
+correct. Related authoritative artifacts shall be checked for contradictory
+active definitions and stale references.
 
 ### Review Separation
 
@@ -2892,6 +3027,29 @@ practical.
 
 If improvements are deferred, document the rationale.
 
+### Methodology Review Evidence Chain
+
+Engineering Methodology Review shall use the same evidence discipline required
+by implementation workflow phases.
+
+Each methodology finding shall record:
+
+- Observed Methodology Behavior
+- Evidence
+- Root Cause
+- Methodology Improvement
+- Expected Prevention
+- Verification Method
+- Disposition
+
+The Evidence shall identify the current ResumeForge-WIP artifact(s) supporting
+the finding. Methodology conclusions shall not rely on prior conversations or
+remembered project behavior.
+
+Methodology Review shall also complete the Engineering Methodology Audit Gate,
+including the Artifact Inventory, Cross-Artifact Consistency Audit, Stale
+Reference Audit, Evidence Matrix, and Finding Classification.
+
 ### Methodology Debt
 
 Methodology Debt is any weakness in the engineering methodology that results in:
@@ -3066,16 +3224,16 @@ Every story progresses through:
 
 ```text
 Story Planning
+Review → Implement → Verify
 ↓
 Implementation Package (RED)
-↓
-RED Verification
+Review → Implement → Verify
 ↓
 Implementation Package (GREEN)
-↓
-GREEN Verification
+Review → Implement → Verify
 ↓
 Story Signoff
+Review → Verify
 ```
 
 ## Regression
@@ -3203,6 +3361,68 @@ Completion of the checklist alone does not satisfy the audit requirement.
 
 The audit should be completed before producing recommendations.
 
+### Engineering Methodology Audit Gate
+
+The Project Audit Checklist establishes the minimum review inventory. The
+Engineering Methodology Audit Gate establishes the minimum proof that the
+inventory was actually evaluated for completeness and consistency.
+
+Every Planning, RED, GREEN, Story Signoff, and Engineering Methodology Review
+shall complete the following sequence before the review may be approved:
+
+1. Artifact Inventory
+   - Identify every artifact required by the current phase.
+   - Identify every artifact referenced by the approved Story Planning Package.
+   - Identify related implementation, test, and documentation artifacts.
+   - Record any unavailable or intentionally excluded artifact.
+
+2. Content Audit
+   - Review the required artifacts against the current phase requirements.
+   - Verify current story identifiers, feature terminology, acceptance criteria,
+     tests, expected regression counts, scope, and phase state where applicable.
+
+3. Cross-Artifact Consistency Audit
+   - Compare corresponding requirements and state across the reviewed artifacts.
+   - Confirm that active definitions agree across documentation, tests,
+     implementation evidence, and project-state artifacts.
+   - Contradictory active statements shall be recorded as findings even when
+     each statement is individually plausible.
+
+4. Stale Reference Audit
+   - Search for the current story identifier and feature terminology.
+   - Search for the immediately preceding story identifier and feature
+     terminology when they are relevant to the current pattern.
+   - Search for superseded terminology and prior lifecycle definitions.
+   - Classify each match as Active, Historical, Pattern Authority, or Stale.
+   - Historical and Pattern Authority references shall not be treated as stale
+     solely because they name a previous story.
+
+5. Evidence Matrix
+   - Map each phase requirement to its primary evidence source.
+   - Mark each requirement PASS, FAIL, or NOT APPLICABLE.
+   - A narrative review shall not substitute for an omitted evidence mapping.
+
+6. Finding Classification
+   Every finding shall be classified as exactly one of:
+   - Resolved
+   - Intentionally Deferred
+   - Superseded
+   - Unresolved
+
+   An Unresolved or Unclassified finding prevents phase approval.
+
+7. Gate Result
+   The review may advance only when:
+   - the required artifact inventory is complete;
+   - the cross-artifact consistency audit is complete;
+   - the stale reference audit is complete;
+   - every applicable requirement has evidence;
+   - every finding has a classification; and
+   - zero Unresolved or Unclassified findings remain.
+
+The Engineering Methodology Audit Gate supplements the Project Audit Checklist.
+It does not replace phase-specific evidence requirements.
+
 ### Audit Traceability
 
 Every audit finding shall reference the workflow phase in which it was
@@ -3312,6 +3532,22 @@ avoidable review cycles.
 ChatGPT (Avery's) should never assume a phase has been completed unless the developer's
 submitted results confirm completion.
 
+### Phase State Synchronization
+
+A phase transition is not complete until the authoritative project-state
+artifact reflects the approved transition.
+
+After Verify approval:
+
+1. The approved verification result establishes the phase outcome.
+2. The project-state documentation shall be updated to reflect the new
+   current phase and next step.
+3. The next workflow phase shall not be treated as active until that state
+   synchronization is complete.
+
+Conversational approval and repository/project-state approval shall not be
+treated as interchangeable evidence.
+
 ### Extend Existing Patterns
 
 Prefer extending existing code over introducing new patterns.
@@ -3416,7 +3652,7 @@ verified rather than making an assumption.
 - Planning should produce a nearly complete story package.
 - RED produces only failing tests.
 - GREEN produces only the minimum implementation required.
-- Signoff verifies implementation and documentation only.
+- Signoff verifies implementation, documentation, regression evidence, methodology obligations, and story completion.
 - Recommendations should follow existing project patterns unless the story explicitly changes them.
 - Planning, RED, GREEN, and Signoff responses should mirror the formatting
   used by CHECKPOINT.md whenever practical so content can be copied into
@@ -3637,6 +3873,14 @@ Identify existing testing patterns
     ↓
 Verify architecture
     ↓
+Complete Cross-Artifact Consistency Audit
+    ↓
+Complete Stale Reference Audit
+    ↓
+Complete Evidence Matrix
+    ↓
+Classify findings
+    ↓
 Produce recommendations
 
 RED
@@ -3705,6 +3949,8 @@ Story Signoff Checklist
 ☐ Review conclusions supported by verified evidence
 ☐ Story lessons captured
 ☐ Methodology updates completed or deferred
+☐ Engineering Methodology Audit Gate completed
+☐ Zero unresolved or unclassified findings remain
 
 A story is considered complete only when:
 ✓ Implementation is complete

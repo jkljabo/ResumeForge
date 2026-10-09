@@ -28,6 +28,7 @@ class Profile:
     employment_type: str | None = None
     work_arrangement: str | None = None
     work_authorization: str | None = None
+    security_clearance: str | None = None
 
     @property
     def resume_path(self) -> Path:

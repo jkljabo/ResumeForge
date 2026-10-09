@@ -5,11 +5,17 @@ ResumeForge follows strict TDD.
 
 Every story must include:
 
-Planning
-RED
-GREEN
-Regression
-Signoff
+Story Planning
+Review → Implement → Verify
+↓
+Implementation Package (RED)
+Review → Implement → Verify
+↓
+Implementation Package (GREEN)
+Review → Implement → Verify
+↓
+Story Signoff
+Review → Verify
 
 ## Testing Strategy
 
