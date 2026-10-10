@@ -3,14 +3,30 @@
 ## Current State
 
 Project Milestone: v0.5.0
-Current Phase: G.2 – Configuration Management
-Current Story: G.2.5.31 – Profile Security Clearance
-Tests: 491 passing
-Build Status: Passing
 
-## Current Phase
+Current Phase: Repository Closeout
+Current Story: Complete
 
-Current Major Milestone
+Latest completed story:
+E.1 – Story Completion Engineering
+
+Planning Status: Complete
+
+Latest recorded product regression baseline:
+491 passing tests
+
+Latest methodology verification:
+Engineering Methodology verified
+Engineering Context verified
+Story Signoff verified
+Repository Synchronization complete
+
+Build Status:
+Repository ready for commit, tag, and fresh-session recovery validation.
+
+## Historical Phase Record — G.2
+
+Historical Major Milestone
 
 Phase G.2 – Configuration Management
 Profile management, configuration management, and default profile workflows.
@@ -50,23 +66,35 @@ Completed
 ✓ Story: G.2.5.29 – Profile Work Arrangement
 ✓ Story: G.2.5.30 – Profile Work Authorization
 
-Current
+Last recorded story in Phase G.2
 → Story: G.2.5.31 – Profile Security Clearance
 
 ## Active Story
 
-Story:
-G.2.5.31 – Profile Security Clearance
+No active engineering story.
 
-Current Phase:
-Story Signoff
+Story E.1 – Story Completion Engineering has successfully completed:
 
-Status:
-All implementation, regression verification, and methodology updates are complete.
-Story is undergoing final signoff.
+✓ Story Planning
+✓ ResumeForge Engineering Methodology
+✓ Implementation Package (RED)
+✓ Implementation Package (GREEN)
+✓ Story Signoff
+✓ Repository Synchronization
+✓ Repository Closeout
 
-Next Step:
-Complete story signoff, commit, tag, and advance to G.2.5.32.
+Repository Status:
+
+Ready for:
+
+✓ Commit
+✓ Git tag
+✓ Push
+✓ Fresh Chat Validation
+
+Next Story:
+
+To be established during the next Story Planning session.
 
 ## Engineering Readiness
 
@@ -301,30 +329,31 @@ Completed
 ✓ Profile Work Authorization
 
 Current
-→ Story: G.2.5.31 – Profile Security Clearance
+→ Story: E.1 – Story Completion Engineering
 
-Remaining Work
+Historical Remaining Work at the time of the G.2 checkpoint
 
 • Remaining profile metadata enhancements
 • Remaining Configuration Management stories
 
+These entries describe the older G.2 checkpoint and do not supersede the active E.1 state above.
+
 ## Next Immediate Task
 
-Next Immediate Task
+Complete Verify: Story Planning against
+`docs/planning/E.1-story-completion-engineering.md`.
 
-Complete Verify: Story Planning.
-
-Upon approval:
+Upon approval and Story Planning Signoff:
 
 • Advance to Review: Implementation Package (RED).
 
-## Test Status
+## Historical Product Test Status — G.2.5.31
 
-487 automated tests passing
-0 failures
+491 automated tests passing
+0 failures (recorded for G.2.5.31 – Profile Security Clearance)
 
-Latest verification:
-python -m pytest
+This is historical product regression evidence, not verification of E.1.
+E.1 verification has not yet been run.
 
 ## Next Phase
 

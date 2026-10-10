@@ -149,6 +149,41 @@ Regression Status
 
 491 tests passing.
 
+
+Phase E.1 — Story Completion Engineering
+
+→ Story: E.1 – Story Completion Engineering
+
+Purpose
+
+Establish a repeatable, evidence-based process for completing engineering
+stories through Story Planning, Implementation Package (RED), Implementation
+Package (GREEN), Story Signoff, and Repository Closeout.
+
+Current Status
+
+Story Planning — Implement complete; Verify pending.
+
+Planning Package
+
+docs/planning/E.1-story-completion-engineering.md
+
+Scope
+
+• Engineering Charter and planning registers
+• Requirement-to-deliverable-to-verification traceability
+• RED verification planning before GREEN implementation
+• Story Signoff and Repository Closeout evidence
+• Durable engineering context and new-session bootstrap
+• Checkpoint and phase-roadmap consistency
+
+Next Authorized Action
+
+Verify: Story Planning.
+
+Do not advance to Review: Implementation Package (RED) until Story Planning
+verification and Story Planning Signoff are complete.
+
 Phase H
 
 Export Improvements

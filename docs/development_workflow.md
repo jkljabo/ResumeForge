@@ -450,6 +450,42 @@ WIP artifact has actually been inspected.
 
 ## Story Planning
 
+### Engineering Charter
+
+Engineering stories shall begin with an Engineering Charter.
+
+The Engineering Charter establishes the engineering problem being solved,
+defines the desired outcome, identifies the scope of the work, and
+documents the engineering constraints that govern implementation.
+
+The Engineering Charter shall be completed before Story Planning is
+considered complete.
+
+Minimum contents:
+
+• Current
+• Needed
+• Objective
+• Definition of Success
+• Scope
+• Constraints
+
+### Planning Philosophy
+
+Story Planning produces engineering artifacts rather than engineering
+ideas.
+
+Every implementation expected during later phases shall be planned during
+Story Planning.
+
+Review refines the design.
+
+Implement executes the approved plan.
+
+Verify confirms the implementation matches the approved plan.
+
+Planning should eliminate ambiguity rather than defer it.
+
 ### Pre-Phase Readiness Checklist
 
 Before beginning any Review, Implement, or Verify phase, confirm:
@@ -495,6 +531,23 @@ requirements.
 It shall contain every piece of information required to complete all remaining
 workflow phases without introducing assumptions.
 
+### Planning Deliverables Register
+
+Story Planning shall produce a Deliverables Register.
+
+The Deliverables Register defines every artifact that will be produced
+during the story.
+
+Each deliverable shall receive a unique identifier.
+
+Minimum fields:
+
+• Deliverable ID
+• Deliverable Name
+• Planned Phase
+• Description
+• Verification Method
+
 ### Review Responsibilities
 
 Review: Story Planning establishes the engineering agreement.
@@ -524,6 +577,25 @@ At a minimum, the Story Planning Package shall define:
 • Documentation updates
 • Story completion criteria
 
+Engineering stories shall additionally produce:
+
+• Engineering Charter
+• Deliverables Register
+• Requirements Register
+• Acceptance Criteria Matrix
+
+Requirements Register
+
+Every story shall maintain a Requirements Register.
+Each requirement shall receive a unique identifier.
+Each requirement shall later be traceable to:
+
+• its implementation,
+• its verification,
+• its acceptance status.
+
+This register becomes the basis for Story Signoff and Release Readiness.
+
 ### Verification Responsibilities
 
 Verify: Story Planning confirms that the planning documentation accurately
@@ -543,6 +615,19 @@ Verification shall confirm:
 
 Verification shall not redefine story requirements unless Review is formally
 re-entered.
+
+### Planning Completion Criteria
+
+Story Planning shall not advance until:
+
+✓ Engineering problem is defined.
+✓ Story objective is documented.
+✓ Scope is defined.
+✓ Constraints are documented.
+✓ Deliverables Register is complete.
+✓ Requirements Register is complete.
+✓ Acceptance Criteria Matrix is complete.
+✓ Every planned deliverable has a planned verification method.
 
 ### Story Planning Signoff
 
@@ -1376,6 +1461,24 @@ contract rather than redefining story scope.
 Any deviation from the approved Story Planning Package shall be documented
 before Story Signoff approval.
 
+Repository Synchronization
+
+Before Story Signoff verification begins, synchronize every engineering
+artifact affected by the completed story.
+
+Repository synchronization shall verify:
+
+□ Story implementation complete
+□ Story verification complete
+□ Repository documentation synchronized
+□ CHECKPOINT.md reflects the current workflow state
+□ docs/history.md reflects completed engineering work
+□ docs/development_workflow.md updated for approved methodology improvements
+□ docs/engineering_context.md updated when durable engineering context changed
+□ Repository artifacts are internally consistent
+
+Repository synchronization shall be completed before Story Signoff approval.
+
 □ Story Planning Package completed
 □ Documentation synchronized
 □ RED implementation completed
@@ -1396,7 +1499,14 @@ before Story Signoff approval.
 □ Story implementation verified against the approved Story Planning Package
 □ Any deviations from Story Planning documented
 □ Source Authority requirements satisfied throughout every workflow phase
+□ Repository Synchronization completed
 □ repository ready for commit
+
+Repository Synchronization is the final engineering activity performed before
+Story Signoff approval.
+
+Its purpose is to ensure every authoritative engineering artifact accurately
+reflects the completed implementation before the repository is committed.
 
 ## Standard Story Workflow
 
@@ -1511,6 +1621,19 @@ Outputs from one Action shall not be substituted for another.
 ## Standard Implementation Package Format
 
 Every implementation package shall provide sufficient detail for a qualified developer unfamiliar with the current story to complete the implementation without additional clarification.
+
+### Engineering Story RED Package Format
+
+Engineering Story RED packages shall include:
+
+1. Engineering Objective
+2. Verification Scenarios
+3. Planned Evidence
+4. Planned Traceability
+5. Planned Acceptance Criteria
+
+The RED package shall fully define engineering verification before any
+GREEN implementation begins.
 
 ### Documentation Implementation Template
 
@@ -2213,6 +2336,31 @@ Placeholder tests or pseudocode are not acceptable.
 The RED package represents the complete implementation of the planned test
 suite.
 
+### Engineering Story RED Deliverables
+
+Engineering stories define engineering verification artifacts rather than
+production feature tests.
+
+At a minimum, an Engineering Story RED package shall define:
+
+• Engineering verification scenarios
+• Methodology acceptance criteria
+• Documentation verification requirements
+• Repository verification requirements
+• Traceability verification requirements
+
+Engineering Story RED deliverables shall also identify:
+
+• the governing methodology section,
+• the planned GREEN implementation that will satisfy the verification artifact,
+• the Repository Closeout evidence that will certify completion.
+
+Engineering stories shall maintain complete traceability from planning through
+Repository Closeout.
+
+These artifacts intentionally fail until the corresponding methodology has
+been implemented.
+
 ### RED Test Intent
 
 Every newly introduced RED test shall document:
@@ -2249,6 +2397,12 @@ suite(s) and submit the pytest results.
 
 ChatGPT (Avery) shall verify:
 
+For Engineering Stories, RED Completion additionally confirms:
+
+• every planned engineering verification artifact has been implemented,
+• every planned methodology verification has been documented,
+• every planned Repository Closeout artifact has been prepared for GREEN.
+
 □ Every planned RED test has been implemented.
 □ Every new RED test fails for the expected reason.
 □ Existing tests continue to behave as expected.
@@ -2272,6 +2426,14 @@ GREEN implementation shall never begin automatically after RED test
 creation alone.
 
 ### RED Verification Evidence
+
+Engineering Story RED Verification shall additionally report:
+
+• Engineering verification artifacts produced
+• Deliverables Register coverage
+• Requirements Register coverage
+• Repository Closeout coverage
+• Outstanding engineering verification gaps
 
 RED Verification shall report:
 
@@ -2316,6 +2478,29 @@ Verification shall identify:
 
 Missing planned behavior shall be corrected before GREEN begins.
 
+### Engineering Coverage Verification
+
+Engineering stories shall verify that every planned engineering deliverable
+is represented by at least one RED verification artifact.
+
+Coverage shall include:
+
+• Engineering Charter
+• Requirements Register
+• Deliverables Register
+• Acceptance Criteria
+• Repository Closeout
+• Story Completion Report
+
+RED Coverage Verification shall also confirm that every Repository Closeout
+deliverable introduced during Story Planning is represented by a planned
+engineering verification artifact.
+
+Repository Closeout artifacts shall not first appear during GREEN or Story
+Signoff.
+
+No planned engineering deliverable may bypass RED verification.
+
 ### RED Pattern Verification
 
 RED Verification shall confirm that newly introduced tests extend the existing
@@ -2331,6 +2516,30 @@ New testing patterns shall only be introduced when no existing pattern is
 appropriate.
 
 Any deviation shall be documented and justified before RED approval.
+
+### Engineering Traceability Verification
+
+Every engineering requirement shall be traceable to:
+
+• a planned deliverable,
+
+• a RED verification artifact,
+
+• a GREEN implementation,
+
+• a Story Signoff verification,
+
+• Repository Closeout certification.
+
+Traceability shall remain continuous.
+
+Every engineering deliverable introduced during Story Planning shall appear
+without interruption throughout RED, GREEN, Story Signoff, and Repository
+Closeout.
+
+Broken traceability constitutes an engineering defect.
+
+Missing traceability constitutes a RED failure.
 
 ### Developer (Jason's) Responsibilities
 
@@ -2359,6 +2568,13 @@ Approval of RED confirms that the implemented test suite accurately represents
 the approved story and that the observed failures are expected.
 
 RED approval authorizes GREEN implementation.
+
+For Engineering Stories, RED Signoff additionally certifies that:
+
+• all planned engineering verification artifacts exist,
+• traceability remains complete,
+• GREEN implementation can proceed without redefining engineering objectives,
+• Repository Closeout requirements have been fully planned.
 
 Implementation recommendations should explain how each failing test is expected to transition to passing.
 
@@ -3127,6 +3343,105 @@ A story is complete when:
 □ Ready for next story
 □ Story formally closed
 
+## Repository Closeout
+
+Repository Closeout is the final engineering phase of every ResumeForge story.
+
+Story Signoff certifies that the engineering work is complete.
+
+Repository Closeout certifies that the completed engineering work has been
+properly recorded, documented, released, and archived.
+
+Repository Closeout verifies repository integrity rather than implementation.
+
+Repository Closeout shall not introduce engineering changes.
+
+Only release activities may occur during this phase.
+
+### Repository Closeout Gates
+
+Repository Closeout shall certify completion using engineering gates rather
+than engineering judgment.
+
+The following gates shall PASS before Repository Closeout is approved:
+
+• Requirements Complete
+• Engineering Complete
+• Verification Complete
+• Documentation Complete
+• Repository Complete
+
+Failure of any gate returns the workflow to the engineering phase responsible
+for correcting the deficiency.
+
+Repository Closeout certifies completion. It does not perform engineering
+work.
+
+### Repository Verification
+
+Repository verification shall confirm, at a minimum:
+
+✓ Full regression suite executed successfully
+✓ Working tree is clean
+✓ Commit created
+✓ Commit pushed to origin
+✓ Story tag created
+✓ Story tag pushed
+✓ Local and remote repositories synchronized
+
+Repository verification confirms repository integrity.
+
+Repository verification alone does not certify story completion.
+
+### Release Evidence
+
+Repository Closeout shall produce standardized release evidence.
+
+Minimum release evidence shall include:
+
+• Regression summary
+• Repository verification
+• Commit identifier
+• Story tag
+• Documentation verification
+• Story completion status
+
+Release evidence becomes part of the permanent engineering record.
+
+### Story Completion Report
+
+Repository Closeout concludes by producing a Story Completion Report.
+
+The report shall summarize:
+
+• Story identifier
+• Story objective
+• Requirements status
+• Regression results
+• Documentation status
+• Repository verification
+• Commit identifier
+• Story tag
+• Final completion status
+
+The Story Completion Report provides a concise engineering summary of the
+completed story.
+
+### Repository Closeout Philosophy
+
+Engineering completion and repository completion are separate engineering
+milestones.
+
+Story Signoff certifies that the engineering implementation is complete.
+
+Repository Closeout certifies that the completed implementation has been
+properly documented, synchronized, committed, tagged, and archived.
+
+A clean repository does not prove a completed story.
+
+A completed story requires both successful Story Signoff and successful
+Repository Closeout.
+
 ### Story Closure
 
 A story is considered closed only after:
@@ -3361,7 +3676,75 @@ Completion of the checklist alone does not satisfy the audit requirement.
 
 The audit should be completed before producing recommendations.
 
-### Engineering Methodology Audit Gate
+## Engineering Artifact Authority
+
+Engineering artifacts have distinct authoritative responsibilities. Each
+engineering concern shall have exactly one authoritative artifact.
+
+The purpose of this section is to prevent duplicated responsibility,
+conflicting project state, and uncertainty regarding where engineering
+information shall be maintained.
+
+### Artifact Authority Matrix
+
+| Artifact | Authoritative Responsibility | Mutable After Approval |
+|-----------|------------------------------|------------------------|
+| Story Planning Package | Approved engineering planning baseline | No |
+| CHECKPOINT.md | Current workflow state | Yes |
+| docs/phases.md | Workflow lifecycle reference | Rarely |
+| docs/development_workflow.md | Engineering methodology | Yes |
+| docs/testing.md | Testing methodology | Yes |
+| docs/history.md | Historical engineering record | Append only |
+| docs/engineering_context.md | Durable engineering context | Yes |
+
+### Artifact Lifecycle Rules
+
+Every engineering artifact has a defined lifecycle.
+
+#### Story Planning Package
+
+- Created during Story Planning.
+- Modified only during Story Planning.
+- Frozen immediately following Story Planning Signoff.
+- Represents the approved engineering planning baseline.
+
+#### CHECKPOINT.md
+
+- Updated throughout every workflow phase.
+- Represents the current workflow state.
+- Shall remain synchronized with repository progress.
+
+#### docs/history.md
+
+- Append-only.
+- Records completed engineering work.
+
+#### docs/engineering_context.md
+
+- Evolves as the engineering methodology evolves.
+- Preserves durable engineering context.
+- Shall not redefine engineering workflow methodology.
+
+### Single Authority Principle
+
+Every engineering concern shall have one authoritative artifact.
+
+Engineering artifacts shall not duplicate authoritative ownership of the same
+project information.
+
+Current workflow state is maintained exclusively in `CHECKPOINT.md`.
+
+Story Planning Packages preserve the approved planning baseline and shall not
+be used to track current workflow state.
+
+`docs/development_workflow.md` remains the authoritative engineering
+methodology.
+
+`docs/engineering_context.md` provides durable engineering context and
+repository bootstrap guidance but shall not supersede the engineering
+methodology.
+
+## Engineering Methodology Audit Gate
 
 The Project Audit Checklist establishes the minimum review inventory. The
 Engineering Methodology Audit Gate establishes the minimum proof that the
@@ -3402,7 +3785,17 @@ shall complete the following sequence before the review may be approved:
    - Mark each requirement PASS, FAIL, or NOT APPLICABLE.
    - A narrative review shall not substitute for an omitted evidence mapping.
 
-6. Finding Classification
+6. Artifact Authority Audit
+
+   - Verify every engineering concern has exactly one authoritative artifact.
+   - Verify current workflow state is maintained exclusively in
+     `CHECKPOINT.md`.
+   - Verify Story Planning Packages remain approved planning baselines and are
+     not used as workflow status trackers.
+   - Verify no active engineering state is duplicated across multiple
+     repository artifacts.
+
+7. Finding Classification
    Every finding shall be classified as exactly one of:
    - Resolved
    - Intentionally Deferred
@@ -3411,7 +3804,7 @@ shall complete the following sequence before the review may be approved:
 
    An Unresolved or Unclassified finding prevents phase approval.
 
-7. Gate Result
+8. Gate Result
    The review may advance only when:
    - the required artifact inventory is complete;
    - the cross-artifact consistency audit is complete;
