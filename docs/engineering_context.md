@@ -90,15 +90,30 @@ context before implementation work begins.
 
 Bootstrap sequence:
 
-1. Confirm the declared Source Authority.
-2. Identify the active story.
-3. Identify the active workflow phase.
-4. Review unresolved findings.
-5. Review approved engineering decisions.
-6. Identify the requested workflow action.
-7. Perform work only after repository context has been established.
+1. Perform the Environment State Audit.
+2. Establish the current Source Authority.
+3. Verify repository readiness.
+4. Verify engineering documentation readiness.
+5. Verify Story Continuity.
+6. Verify conditional engineering integrations when available.
+7. Identify the active story.
+8. Identify the active workflow phase.
+9. Review unresolved findings.
+10. Review approved engineering decisions.
+11. Identify the requested workflow action.
+12. Begin the requested engineering phase.
 
-Conversation history is supplemental and shall not override repository
+### Engineering Execution Principles
+
+Every engineering phase shall begin by:
+
+- Refreshing Source Authority.
+- Reviewing the governing engineering methodology.
+- Reconciling the repository state.
+- Identifying affected engineering artifacts.
+- Producing outputs from repository evidence.
+
+Conversation history may provide context but shall not supersede repository
 artifacts.
 
 ## Decision Preservation
@@ -113,6 +128,10 @@ Decision preservation follows these principles:
 - Record completed engineering work in `docs/history.md`.
 - Record current workflow state in `CHECKPOINT.md`.
 - Record durable engineering context in this document.
+- Record engineering session lifecycle changes in
+  `docs/development_workflow.md`.
+- Record Environment State Audit enhancements in the engineering methodology
+  rather than conversation history.
 
 No engineering decision shall rely exclusively on previous conversation
 history.

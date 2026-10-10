@@ -29,6 +29,7 @@ documented, and approved.
 
 It governs:
 
+• Environment State Audit
 • Story Planning
 • Implementation Package (RED)
 • RED Verification
@@ -84,9 +85,118 @@ current Source Authority is available.
 
 Every ResumeForge engineering phase follows the same lifecycle.
 
+### Phase Contracts
+
+Every engineering phase is governed by a Phase Contract.
+
+A Phase Contract defines:
+
+- Objective
+- Required Inputs
+- Required Deliverables
+- Exit Criteria
+
+No engineering phase shall begin until its Required Inputs have been satisfied.
+
+No engineering phase shall conclude until all Required Deliverables have been produced and its Exit Criteria have been met.
+
+Phase Contracts provide deterministic execution boundaries for all Engineering (`E.x`) and Development (`G.x`) stories.
+
+The Environment State Audit establishes the engineering baseline for every
+ResumeForge session and shall be completed before the Review phase begins.
+
+### Environment State Audit
+
+Purpose
+
+The Environment State Audit verifies that the engineering environment is
+prepared to begin work on the current story.
+
+Responsibilities
+
+• Verify repository availability.
+• Verify required engineering documentation.
+• Verify Story Continuity.
+• Verify engineering environment readiness.
+• Verify conditional engineering integrations.
+
+The audit shall conclude with one of the following outcomes:
+
+• Ready
+• Ready with Warnings
+• Blocked
+
+Environment State Audit shall not:
+
+• Modify project artifacts.
+• Perform story planning.
+• Produce implementation updates.
+• Perform verification.
+
+#### Engineer Responsibilities
+
+Before producing any engineering output, the engineer shall:
+
+1. Refresh Source Authority using the current ResumeForge-WIP repository.
+2. Review the governing engineering methodology applicable to the requested phase.
+3. Establish the current repository state.
+4. Identify repository changes since the previous engineering phase.
+5. Base all findings on the current repository rather than conversational memory.
+
+Repository artifacts always supersede conversational context whenever a
+difference exists.
+
 ### Review
 
-The Review step is used to analyze the current artifact, discuss possible improvements, evaluate alternatives, justify proposed changes, and reach agreement on the implementation approach.
+Review begins only after a successful Environment State Audit.
+
+#### Phase Contract
+
+**Objective**
+
+Evaluate the requested engineering work and establish an approved implementation direction.
+
+**Required Inputs**
+
+- Successful Environment State Audit
+- Current ResumeForge-WIP repository
+- Active Story
+- Current engineering methodology
+
+**Required Deliverables**
+
+- Repository Findings
+- Engineering Assessment
+- Artifact Inventory
+- Engineering Recommendations
+- Approved Implementation Direction
+
+**Exit Criteria**
+
+Review concludes only when:
+
+- Repository findings are complete.
+- Engineering recommendations have been approved.
+- Required implementation artifacts have been identified.
+- Implementation may begin.
+
+#### Repository Reconciliation
+
+Before beginning Review, compare the current repository against the approved
+engineering baseline.
+
+Review shall identify:
+
+- Completed work.
+- Remaining work.
+- Repository deviations.
+- Newly discovered engineering artifacts.
+
+Review findings shall always reflect the current repository state.
+
+The Review step is used to analyze the current artifact, discuss possible
+improvements, evaluate alternatives, justify proposed changes, and reach
+agreement on the implementation approach.
 
 No artifact modifications occur during Review.
 
@@ -113,6 +223,55 @@ Implement concludes only when:
 - The artifact reflects the Review agreement.
 - No unintended modifications have been introduced.
 
+#### Phase Contract
+
+**Objective**
+
+Execute the implementation approved during Review without introducing new engineering decisions.
+
+**Required Inputs**
+
+- Approved Review
+- Current ResumeForge-WIP repository
+- Repository reconciliation
+- Artifact Inventory
+
+**Required Deliverables**
+
+- Complete Artifact Inventory
+- Detailed Implementation Updates
+- Repository Anchors
+- Implementation Summary
+
+**Exit Criteria**
+
+Implement concludes only when:
+
+- Every required artifact has been updated.
+- Every implementation update contains repository-derived anchors.
+- No approved implementation work remains incomplete.
+
+#### Artifact Inventory
+
+Every implementation package shall begin with an Artifact Inventory.
+
+The inventory shall identify:
+
+### Artifacts Requiring Modification
+
+List every repository artifact requiring implementation.
+
+### Artifacts Reviewed
+
+List every repository artifact reviewed that requires no modification.
+
+### Deferred Artifacts
+
+List repository artifacts intentionally deferred to future engineering stories.
+
+Implementation Updates shall not begin until the Artifact Inventory has been
+completed.
+
 ### Required Implementation Update Structure
 
 Every Implement response shall consist of one or more deterministic
@@ -127,6 +286,15 @@ Each Implementation Update shall contain, at a minimum:
 • Current Text (when replacing existing content)
 • Implementation Update
 • Expected Result
+• Repository Verification
+• Repository Location Anchor
+• Current Repository State
+• Verification Target
+
+Repository anchors shall be derived from the current Source Authority.
+
+Previously generated implementation updates shall not be reused without first
+verifying that the repository state remains unchanged.
 
 Location Anchors shall reference text that currently exists within the
 Source Authority.
@@ -169,11 +337,72 @@ Verify concludes only when:
 - Outstanding issues have been resolved.
 - Phase signoff is complete.
 
+#### Phase Contract
+
+**Objective**
+
+Confirm implementation correctness, completeness, and repository synchronization.
+
+**Required Inputs**
+
+- Completed implementation
+- Current ResumeForge-WIP repository
+- Approved Review
+
+**Required Deliverables**
+
+- Verification Report
+- Repository Verification Results
+- Completeness Assessment
+- Correctness Assessment
+- Workflow Disposition
+
+**Exit Criteria**
+
+Verify concludes only when:
+
+- All implementation updates have been verified.
+- Artifact Inventory has been reconciled.
+- Repository synchronization has been confirmed.
+
+Otherwise the workflow returns to Implement.
+
+#### Completeness Verification
+
+Verify shall evaluate both implementation correctness and implementation
+completeness.
+
+Verification shall confirm:
+
+- Every approved implementation update has been completed.
+- Every artifact identified in the Artifact Inventory has been evaluated.
+- No approved engineering work remains unimplemented.
+- Repository documentation remains synchronized.
+
+If implementation is incomplete, the workflow shall return to Implement.
+
 ---
 
 ### Phase Boundaries
 
 Each engineering phase has exclusive responsibilities.
+
+Environment State Audit shall:
+
+• Verify repository availability.
+• Verify Source Authority.
+• Verify required engineering documentation.
+• Verify story continuity.
+• Verify engineering environment readiness.
+• Identify conditional engineering integrations.
+
+Environment State Audit shall not:
+
+• Modify project artifacts.
+• Perform engineering review.
+• Produce implementation updates.
+• Perform verification.
+• Introduce engineering decisions.
 
 Review shall:
 
@@ -268,6 +497,10 @@ When Verify identifies one or more failures:
 6. Advance to the next workflow phase only after successful signoff.
 
 No workflow phase may be skipped during corrective iterations.
+
+If the Environment State Audit concludes with a status of **Blocked**, the
+engineering workflow shall not advance to Review until the blocking condition
+has been resolved and the audit has been successfully repeated.
 
 ### Architectural Decision Finality
 
@@ -1347,6 +1580,36 @@ Review → Implement → Verify
 ↓
 Story Signoff
 Review → Verify
+
+#### Phase Contract
+
+**Objective**
+
+Approve completion of the current story and establish repository readiness for the next engineering phase.
+
+**Required Inputs**
+
+- Successful Verify
+- Current ResumeForge-WIP repository
+- Updated CHECKPOINT.md
+- Updated history
+
+**Required Deliverables**
+
+- Story Signoff Report
+- Evidence Chain Confirmation
+- Repository Readiness Assessment
+- Lessons Learned
+- Final Story Disposition
+
+**Exit Criteria**
+
+Story Signoff concludes only when:
+
+- Verification has passed.
+- Required repository artifacts have been updated.
+- Lessons Learned have been evaluated.
+- Repository is ready for the next story.
 
 ### Story Signoff Source Authority Verification
 
