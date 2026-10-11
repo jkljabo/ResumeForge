@@ -341,3 +341,37 @@ def test_profile_stores_security_clearance():
     assert profile.security_clearance == "Secret"
 
 
+def test_profile_defaults_citizenship():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    assert profile.citizenship is None
+
+
+def test_profile_stores_citizenship():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    profile.citizenship = "United States"
+
+    assert profile.citizenship == "United States"
+
+
+def test_profile_updates_citizenship():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    profile.citizenship = "Canada"
+
+    assert profile.citizenship == "Canada"
+
+

@@ -76,24 +76,64 @@ Phase G.2 — Profile Domain & Persistence Cleanup
 ✓ Story: G.2.5.29 – Profile Work Arrangement
 ✓ Story: G.2.5.30 – Profile Work Authorization
 ✓ Story: G.2.5.31 – Profile Security Clearance
+✓ Story: G.2.5.32 – Profile Citizenship
 
 → 
 
+Status
+
+Story Complete
+
+Current Phase
+
+Review – Implementation Package (RED)
+
 Purpose
 
-Introduce a Security Clearance profile attribute that can be created,
-edited, persisted, and restored through the ResumeForge profile
-management system.
+Introduce a Citizenship profile attribute that can be created,
+edited, persisted, and restored through the ResumeForge
+profile management system.
 
 Objectives
 
-• Add security_clearance to Profile
-• Default to None
-• Persist security_clearance
-• Restore security_clearance
-• Support CLI create
-• Support CLI editing
-• Maintain backward compatibility
+• Add citizenship to Profile.
+• Default citizenship for legacy profiles.
+• Persist citizenship during save operations.
+• Restore citizenship during profile loading.
+• Support citizenship during profile creation.
+• Support citizenship during profile editing.
+• Display citizenship within profile information.
+• Preserve backward compatibility.
+• Add comprehensive regression coverage.
+• Update project documentation.
+
+Primary Implementation Artifacts
+
+Source
+
+• resumeforge/profiles/profile.py
+• Profile persistence components
+• CLI profile workflows
+• Serialization components
+
+Tests
+
+• tests/test_profile.py
+• tests/test_profile_persistence.py
+• tests/test_cli.py
+
+Documentation
+
+• docs/planning/G.2.5.32-profile-citizenship.md
+• docs/history.md
+
+Story Authority
+
+docs/planning/G.2.5.32-profile-citizenship.md
+
+Next Phase
+
+Review – Implementation Package (RED)
 
 Engineering Pattern
 
@@ -135,6 +175,46 @@ Acceptance Criteria
 ✓ Property is persisted and restored correctly
 ✓ Existing profile behavior remains unchanged
 ✓ Regression remains green
+
+## Story Completion
+
+Acceptance Criteria
+
+✓ Complete
+
+Implementation Package (RED)
+
+✓ Complete
+
+Implementation Package (GREEN)
+
+✓ Complete
+
+ResumeForge Engineering Methodology
+
+✓ Complete
+
+Story Signoff
+
+✓ Complete
+
+Repository Status
+
+Ready for Repository Closeout.
+
+## Lessons Learned
+
+This story validated the updated ResumeForge Engineering Methodology and
+identified additional engineering improvements that have been deferred to
+the Engineering backlog for a future Engineering story.
+
+Primary improvements validated during this story include:
+
+- Deliverable Audits
+- Repository-first implementation
+- Repository-authoritative anchors
+- Complete implementation packages
+- Structured Story Signoff
 
 Status
 

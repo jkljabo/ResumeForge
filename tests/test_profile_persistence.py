@@ -415,3 +415,44 @@ def test_profile_persists_security_clearance(tmp_path):
     assert loaded["security_clearance"] == "Secret"
 
 
+def test_profile_persistence_serializes_citizenship(tmp_path):
+    persistence = ProfilePersistence()
+
+    profile_data = {
+        "name": DEFAULT_PROFILE_NAME,
+        "headline": "Engineer",
+        "citizenship": "United States",
+    }
+
+    profile_file = tmp_path / "resume.json"
+
+    persistence.save(
+        profile_file,
+        profile_data,
+    )
+
+    restored = persistence.load(profile_file)
+
+    assert restored["citizenship"] == "United States"
+
+
+def test_profile_persistence_defaults_missing_citizenship(tmp_path):
+    persistence = ProfilePersistence()
+
+    profile_data = {
+        "name": DEFAULT_PROFILE_NAME,
+        "headline": "Engineer",
+    }
+
+    profile_file = tmp_path / "resume.json"
+
+    persistence.save(
+        profile_file,
+        profile_data,
+    )
+
+    restored = persistence.load(profile_file)
+
+    assert restored.get("citizenship") is None
+
+

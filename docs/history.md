@@ -672,3 +672,92 @@ correctness.
 Established Repository Authority Review during Story Signoff.
 
 491 tests passing.
+
+## G.2.5.32 – Profile Citizenship
+
+### Story Planning
+
+- Approved story: Profile Citizenship.
+- Established the business objective and business value.
+- Defined the implementation scope and out-of-scope boundaries.
+- Established acceptance criteria.
+- Completed the initial technical design.
+- Identified implementation artifacts.
+- Established the testing strategy.
+- Identified implementation risks and dependencies.
+- Created the Story Authority document:
+  docs/planning/G.2.5.32-profile-citizenship.md
+- Approved the story to proceed to:
+  Review – Implementation Package (RED).
+
+### Implementation Package (RED)
+
+- Added RED test coverage for Profile Citizenship.
+- Verified intentional failing behavior.
+- Completed RED verification.
+
+### Implementation Package (GREEN)
+
+- Implemented Profile Citizenship.
+- Added persistence support.
+- Added CLI support.
+- Updated repository documentation.
+- GREEN verification completed.
+
+### ResumeForge Engineering Methodology
+
+- Added Deliverable Audit.
+- Added Repository-first Engineering guidance.
+- Added Repository-ready Deliverables.
+- Added RED/GREEN Definitions of Done.
+- Added deterministic repository anchors.
+- Added Story Signoff Deliverable Validation.
+- Captured engineering lessons learned.
+
+### Story Signoff
+
+Story completed successfully.
+
+Feature Summary
+
+- Profile model supports Citizenship.
+- Persistence supports Citizenship.
+- CLI supports Citizenship.
+- Regression suite verified.
+
+Engineering Summary
+
+Methodology refined to improve:
+
+- implementation completeness
+- repository traceability
+- workflow consistency
+- execution discipline
+
+Repository prepared for closeout.
+
+2026-10-11
+
+Implemented Profile Citizenship
+
+Added citizenship as a first-class Profile attribute.
+
+Extended profile persistence to serialize and restore citizenship.
+
+Added CLI create, edit and display support.
+
+Maintained backward compatibility with existing profile files.
+
+Expanded regression coverage for profile model, persistence and CLI workflows.
+
+497 tests passing
+
+Development workflow improvements completed during this story:
+
+• Deliverable Audit workflow
+• Repository-first implementation guidance
+• Repository anchor standard
+• Complete implementation package guidance
+• Story Completion Record workflow
+
+Repository prepared for Story Signoff and Repository Closeout.

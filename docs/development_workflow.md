@@ -81,9 +81,38 @@ Responses shall distinguish between:
 Engineering claims shall never be based upon historical memory when the
 current Source Authority is available.
 
+### Repository-first Engineering Principle
+
+Implementation shall always extend the current repository.
+
+Engineering responses shall not invent:
+
+- APIs
+- constructors
+- helper functions
+- fixtures
+- command patterns
+- repository architecture
+
+Repository implementation patterns shall be reviewed before implementation
+guidance is produced.
+
+Repository artifacts always take precedence over remembered conversation
+history or assumed implementation.
+
 ## Universal Engineering Phase Lifecycle
 
 Every ResumeForge engineering phase follows the same lifecycle.
+
+Every Implement response shall follow a consistent execution structure:
+
+1. Source Authority
+2. Deliverable Audit
+3. Implementation Updates
+4. Expected Verification Result
+
+This structure minimizes engineering ambiguity while reducing unnecessary
+workflow iterations.
 
 ### Phase Contracts
 
@@ -104,6 +133,24 @@ Phase Contracts provide deterministic execution boundaries for all Engineering (
 
 The Environment State Audit establishes the engineering baseline for every
 ResumeForge session and shall be completed before the Review phase begins.
+
+### Deliverable Audit
+
+Every Implement phase begins with a Deliverable Audit.
+
+Before implementation work begins, identify:
+
+- Required project artifacts.
+- Existing implementation.
+- Missing implementation.
+- Incomplete implementation.
+- Required synchronization updates.
+
+The resulting implementation package shall address every missing deliverable
+identified for the current workflow phase.
+
+Deliverable Audit precedes implementation work and establishes the scope of the
+implementation package.
 
 ### Environment State Audit
 
@@ -583,6 +630,16 @@ A qualified developer unfamiliar with the project shall be able to
 navigate directly to the modification without searching or inferring the
 intended location.
 
+Repository locations should identify:
+
+- file
+- heading
+- subsection
+- insertion point
+- neighboring heading
+
+The objective is to eliminate ambiguity during repository updates.
+
 ### Self-contained
 
 The artifact does not rely upon undocumented assumptions or previous conversations.
@@ -594,6 +651,14 @@ Every implementation can be traced back to an approved planning decision.
 ### Pattern Consistent
 
 Existing implementation patterns are identified and followed unless Review explicitly approves a deviation.
+
+### Incremental
+
+Engineering implementation should extend existing repository artifacts whenever
+possible.
+
+Existing implementation should be modified rather than recreated unless the
+story explicitly authorizes replacement.
 
 ### Reproducible
 
@@ -1028,6 +1093,19 @@ unless Story Planning is formally reopened.
 No later workflow phase shall be required to determine missing story
 requirements.
 
+### Repository Inspection Requirement
+
+Before producing implementation guidance, engineering shall inspect the
+existing repository implementation for:
+
+- constructor signatures
+- helper functions
+- fixtures
+- repository conventions
+
+Implementation shall be based upon verified repository patterns rather than
+assumed patterns.
+
 ### Pattern Verification
 
 Every RED review shall verify that each proposed test conforms to its
@@ -1373,6 +1451,22 @@ verification strategy that govern every subsequent workflow phase.
 
 Implementation Package (RED) produces implemented failing tests.
 
+### RED Definition of Done
+
+Implementation Package (RED) is complete only when:
+
+- Every planned RED test has been implemented.
+- Every RED documentation artifact has been updated.
+- Test discovery succeeds.
+- Test execution succeeds.
+- Infrastructure failures have been eliminated.
+- Only the intentional behavioral failures introduced by the current story remain.
+
+RED completion is determined by repository evidence rather than implementation discussion.
+
+The RED implementation package shall also confirm that every planned failing test
+can be traced directly to an approved Story Planning requirement.
+
 RED Verification confirms the implemented tests fail for the expected reasons.
 
 RED Verification shall distinguish between:
@@ -1400,25 +1494,15 @@ function, method, or command requiring modification.
 Instructions shall describe:
 
 • what currently exists
-
 • what shall be added
-
 • where it shall be added
-
 • exact file
-
 • exact class
-
 • exact function or command
-
 • current implementation
-
 • exact insertion location
-
 • required implementation
-
 • why the modification satisfies the approved RED tests
-
 • implementation ordering when multiple files are involved
 
 Implementation guidance shall eliminate developer assumptions.
@@ -1440,17 +1524,11 @@ implementation locations independently.
 Every implementation recommendation shall identify:
 
 • exact file
-
 • exact class
-
 • exact function or method
-
 • exact insertion or modification point
-
 • current implementation
-
 • required implementation
-
 • reason for the modification
 
 Generalized guidance such as:
@@ -1463,6 +1541,21 @@ Generalized guidance such as:
 shall not be used.
 
 The developer should never be required to infer missing implementation work.
+
+### GREEN Definition of Done
+
+Implementation Package (GREEN) is complete only when:
+
+- The minimum production implementation has been completed.
+- Every approved RED test now passes.
+- Existing regression tests continue to pass.
+- Documentation remains synchronized.
+- Repository architecture remains internally consistent.
+- No implementation exists without traceability to Story Planning.
+
+GREEN completion is determined by repository evidence rather than engineering discussion.
+
+Implementation should remain the minimum necessary to satisfy the approved RED package.
 
 ### Phase 4 – GREEN Verification
 
@@ -1884,6 +1977,14 @@ Outputs from one Action shall not be substituted for another.
 ## Standard Implementation Package Format
 
 Every implementation package shall provide sufficient detail for a qualified developer unfamiliar with the current story to complete the implementation without additional clarification.
+
+### Complete Implementation Package
+
+A complete implementation package delivers every repository artifact required
+for the current workflow phase.
+
+Implementation should not intentionally defer documentation that belongs to the
+current phase unless the deferral is explicitly identified.
 
 ### Engineering Story RED Package Format
 
@@ -3489,8 +3590,16 @@ or incomplete reviews.
 Each identified Methodology Debt item shall either:
 
 • be resolved before Story Signoff completes, or
-
 • be intentionally deferred with documented rationale.
+
+Engineering Methodology Review should evaluate lessons learned from the current
+story before Story Signoff completes.
+
+Durable process improvements should be incorporated into the engineering
+methodology while implementation details remain fresh.
+
+Methodology evolution is considered a normal engineering deliverable rather than
+an exceptional activity.
 
 ### Methodology Validation
 
@@ -3591,6 +3700,45 @@ A story is complete when:
 - Repository is pushed.
 - Workflow improvements have been incorporated when appropriate.
 - The repository is in a releasable state.
+
+### Phase Completion Criteria
+
+Every workflow phase shall define objective completion criteria.
+
+Verification confirms repository deliverables.
+
+Completion of discussion alone shall never satisfy a workflow phase.
+
+Every required repository artifact shall be synchronized before the workflow
+advances to the next phase.
+
+Completion shall always be evidence-based rather than conversation-based.
+
+Verification confirms implementation.
+
+Signoff confirms repository readiness.
+
+### Story Signoff Deliverable Validation
+
+Story Signoff shall validate that every planned deliverable has been completed.
+
+Validation includes:
+
+- Story Planning documentation.
+- RED implementation package.
+- RED verification.
+- GREEN implementation package.
+- GREEN verification.
+- Methodology updates.
+- History updates.
+- CHECKPOINT.md synchronization.
+
+Story Signoff shall identify any planned deliverable that was intentionally
+deferred.
+
+Deferred work shall be documented before Repository Closeout.
+
+No story shall enter Repository Closeout with undocumented implementation debt.
 
 ### Story Signoff Checklist
 
@@ -4239,6 +4387,17 @@ Each review should focus only on the current phase.
 - GREEN reviews shall produce production implementation only.
 - Signoff reviews shall verify implementation, documentation, regression results, and story completion only.
 - A review shall not skip phases or combine RED and GREEN deliverables unless explicitly requested by the developer.
+
+### Implement Means Deliver
+
+Once a workflow phase enters Implement, the response shall primarily consist of
+repository-ready deliverables.
+
+Previously completed review work shall not be repeated unless new repository
+evidence invalidates earlier conclusions.
+
+Implementation responses should maximize repository progress rather than repeat
+analysis.
 
 ## Guiding Principle
 

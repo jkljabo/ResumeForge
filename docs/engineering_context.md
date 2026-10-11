@@ -16,6 +16,54 @@ Current workflow state is maintained in `CHECKPOINT.md`.
 Engineering methodology is maintained in
 `docs/development_workflow.md`.
 
+## Engineering Execution Principles
+
+The following principles govern every ResumeForge workflow phase.
+
+### Review Discovers
+
+The Review command evaluates the current repository state and determines what
+work is required.
+
+Review activities include:
+
+- Repository audit.
+- Documentation audit.
+- Gap identification.
+- Scope validation.
+- Recommendation of implementation work.
+
+Review does not modify project artifacts.
+
+### Implement Delivers
+
+The Implement command produces repository-ready deliverables.
+
+Implement activities include:
+
+- Documentation updates.
+- Production code.
+- Test implementation.
+- Configuration changes.
+- Story artifact updates.
+
+Implement responses shall not contain review discussion, implementation
+planning, speculative recommendations, or placeholder implementations.
+
+### Deliverable Audit
+
+Every Implement phase begins by determining what repository work remains.
+
+Deliverable Audit identifies:
+
+- Missing documentation.
+- Missing implementation.
+- Missing tests.
+- Missing repository synchronization.
+
+Implementation begins only after the Deliverable Audit has established the
+complete scope of work.
+
 ## Source Authority
 
 Engineering decisions shall always be derived from the highest available Source
@@ -47,6 +95,49 @@ ResumeForge engineering follows these principles:
 - Repository artifacts take precedence over conversation history.
 - Workflow authority remains in `docs/development_workflow.md`.
 - Durable engineering context belongs in this document.
+
+## Engineering Lessons Learned
+
+The following engineering principles have been validated through project
+execution and should guide future ResumeForge development.
+
+### Deliverables over Discussion
+
+Workflow progress is determined by completed repository artifacts rather than
+completion of discussion.
+
+### Repository-first Development
+
+Engineering guidance shall always be derived from the repository before being
+derived from conversation history.
+
+### Complete Implementation Packages
+
+Implement responses should deliver complete repository-ready artifacts whenever
+practical rather than requiring multiple incremental implementation cycles.
+
+### Repository-ready Deliverables
+
+Implementation responses shall contain production-ready repository updates.
+
+They shall not contain:
+
+- pseudocode
+- placeholders
+- speculative APIs
+- invented helper functions
+- incomplete implementation examples
+
+### Minimize Workflow Iterations
+
+Engineering responses should maximize implementation completeness while
+minimizing unnecessary Review/Implement cycles.
+
+### Continuous Methodology Improvement
+
+Lessons learned from completed stories shall be evaluated before Story Signoff
+and incorporated into the engineering methodology when they provide durable
+process improvements.
 
 ## Repository Navigation
 
@@ -102,6 +193,13 @@ Bootstrap sequence:
 10. Review approved engineering decisions.
 11. Identify the requested workflow action.
 12. Begin the requested engineering phase.
+
+Bootstrap establishes engineering context.
+
+Deliverable Audit establishes implementation context.
+
+Both are required before implementation work begins and serve different
+purposes within the engineering workflow.
 
 ### Engineering Execution Principles
 
