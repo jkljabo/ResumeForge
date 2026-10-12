@@ -30,6 +30,7 @@ class Profile:
     work_authorization: str | None = None
     security_clearance: str | None = None
     citizenship: str | None = None
+    residency: str | None = None
 
     @property
     def resume_path(self) -> Path:

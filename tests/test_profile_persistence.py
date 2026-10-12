@@ -456,3 +456,80 @@ def test_profile_persistence_defaults_missing_citizenship(tmp_path):
     assert restored.get("citizenship") is None
 
 
+def test_profile_save_restores_residency(tmp_path):
+    profile_file = tmp_path / DEFAULT_PROFILE_FILE
+
+    profile_data = {
+        "headline": None,
+        "full_name": None,
+        "color_theme": None,
+        "description": None,
+        "tags": [],
+        "notes": None,
+        "category": None,
+        "visibility": None,
+        "owner": None,
+        "organization": None,
+        "purpose": None,
+        "target_role": None,
+        "experience_level": None,
+        "employment_type": None,
+        "work_arrangement": None,
+        "work_authorization": None,
+        "security_clearance": None,
+        "citizenship": None,
+        "residency": "Georgia",
+    }
+
+    profile_service = ProfilePersistence()
+
+    profile_service.save(
+        profile_file,
+        profile_data,
+    )
+
+    loaded = profile_service.load(
+        profile_file,
+    )
+
+    assert loaded["residency"] == "Georgia"
+
+
+def test_profile_load_without_residency_defaults_none(tmp_path):
+    profile_file = tmp_path / DEFAULT_PROFILE_FILE
+
+    profile_data = {
+        "headline": None,
+        "full_name": None,
+        "color_theme": None,
+        "description": None,
+        "tags": [],
+        "notes": None,
+        "category": None,
+        "visibility": None,
+        "owner": None,
+        "organization": None,
+        "purpose": None,
+        "target_role": None,
+        "experience_level": None,
+        "employment_type": None,
+        "work_arrangement": None,
+        "work_authorization": None,
+        "security_clearance": None,
+        "citizenship": None,
+    }
+
+    profile_service = ProfilePersistence()
+
+    profile_service.save(
+        profile_file,
+        profile_data,
+    )
+
+    loaded = profile_service.load(
+        profile_file,
+    )
+
+    assert "residency" not in loaded
+
+

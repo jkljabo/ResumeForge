@@ -4,18 +4,22 @@
 
 Project Milestone: v0.5.0
 
-Current Phase: Repository Closeout
+Current Phase:
+Repository Closeout
 
 Current Story:
-G.2.5.32 – Profile Citizenship
+G.2.5.33 – Profile Residency
 
 Latest completed story:
-G.2.5.32 – Profile Citizenship
+G.2.5.33 – Profile Residency
 
 Planning Status: Complete
 
+Planning Document:
+docs/planning/G.2.5.33-profile-residency.md
+
 Latest recorded product regression baseline:
-497 passing tests
+506 passing tests
 
 Latest methodology verification:
 Engineering Methodology verified
@@ -29,12 +33,12 @@ Repository Authority Review verified
 Repository Synchronization complete
 
 Build Status:
-Repository ready for commit, tag, and fresh-session recovery validation.
+Repository ready for Story Completion, commit, tag, and fresh-session recovery validation.
 
 ## Repository Recovery Baseline
 
 Development Story:
-G.2.5.32 – Profile Citizenship
+G.2.5.33 – Profile Residency
 
 Repository authority documents synchronized.
 
@@ -85,9 +89,11 @@ Completed
 ✓ Story: G.2.5.28 – Profile Employment Type
 ✓ Story: G.2.5.29 – Profile Work Arrangement
 ✓ Story: G.2.5.30 – Profile Work Authorization
+✓ Story: G.2.5.31 – Profile Security Clearance
+✓ Story: G.2.5.32 – Profile Citizenship
 
 Last recorded story in Phase G.2
-→ Story: G.2.5.31 – Profile Security Clearance
+→ Story: G.2.5.33 – Profile Residency
 
 ## Active Story
 
@@ -138,7 +144,7 @@ Result
 
 Story implementation complete.
 
-Ready for Story Signoff.
+Ready for Repository Closeout verification.
 
 ## Story Objective
 
@@ -310,6 +316,14 @@ Version: v0.1.2-alpha
 Git Tag: v0.1.2-alpha
 Branch: main
 
+Repository Cleanliness
+
+- Temporary debugging code removed.
+- Temporary scaffolding removed.
+- Commented code removed.
+- Story-specific TODO items resolved.
+- Repository synchronized.
+
 ## Current Work
 
 Implementing Phase G.2 — Configuration Commands
@@ -451,6 +465,12 @@ Released
 • Updated README and CHECKPOINT documentation.
 
 ## Build Verification
+
+Latest Verification
+
+tests/test_profile.py               40 passed
+tests/test_profile_persistence.py   23 passed
+tests/test_cli.py                   117 passed, 1 skipped
 
 ✓ python -m pytest
   487 passed
@@ -694,3 +714,8 @@ Test Status
 - Story Signoff Complete
 
 Repository ready for Repository Closeout.
+
+- Repository Closeout Verification Complete
+- Repository Ready for Commit
+- Repository Ready for Tag
+- Repository Ready for Push

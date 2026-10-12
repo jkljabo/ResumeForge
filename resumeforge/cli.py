@@ -174,7 +174,17 @@ def build_parser() -> argparse.ArgumentParser:
         "--security-clearance",
         help="Profile security clearance.",
     )
-    
+
+    edit_parser.add_argument(
+        "--citizenship",
+        help="Profile citizenship.",
+    )
+
+    edit_parser.add_argument(
+        "--residency",
+        help="Profile residency.",
+    )
+
     remove.add_argument(
         "name",
         help="Profile name",

@@ -78,7 +78,7 @@ Phase G.2 — Profile Domain & Persistence Cleanup
 ✓ Story: G.2.5.31 – Profile Security Clearance
 ✓ Story: G.2.5.32 – Profile Citizenship
 
-→ 
+→ Story: G.2.5.33 – Profile Residency
 
 Status
 

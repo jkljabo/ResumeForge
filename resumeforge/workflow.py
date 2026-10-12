@@ -271,6 +271,9 @@ class CLIWorkflow:
 
         if getattr(args, "citizenship", None) is not None:
             updates["citizenship"] = args.citizenship
+
+        if getattr(args, "residency", None) is not None:
+            updates["residency"] = args.residency
             
         self.profile_service.edit(
             args.name,

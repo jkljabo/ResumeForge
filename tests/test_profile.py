@@ -375,3 +375,36 @@ def test_profile_updates_citizenship():
     assert profile.citizenship == "Canada"
 
 
+def test_profile_defaults_residency():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    assert profile.residency is None
+
+
+def test_profile_accepts_residency():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+        residency="Georgia",
+    )
+
+    assert profile.residency == "Georgia"
+
+
+def test_profile_updates_residency():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    profile.residency = "Florida"
+
+    assert profile.residency == "Florida"
+
+

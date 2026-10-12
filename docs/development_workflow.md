@@ -152,6 +152,31 @@ identified for the current workflow phase.
 Deliverable Audit precedes implementation work and establishes the scope of the
 implementation package.
 
+### Phase Deliverable Requirements
+
+#### Review Deliverables
+
+- Findings
+- Deficiencies
+- Evidence
+- Required implementation work
+
+#### Implement Deliverables
+
+- Complete implementation updates
+- Exact replacement code
+- Exact replacement tests
+- Exact insertion locations
+- Documentation updates
+
+#### Verify Deliverables
+
+- Test audit
+- Repository audit
+- Evidence chain
+- Completion assessment
+- Signoff recommendation
+
 ### Environment State Audit
 
 Purpose
@@ -495,6 +520,59 @@ Verify shall not:
 • Expand story scope.
 • Produce implementation changes except by returning the workflow to Implement.
 
+### Phase Responsibilities
+
+#### Review
+
+Purpose
+
+Determine the current repository state.
+
+Deliverables
+
+- Findings.
+- Deficiencies.
+- Evidence.
+- Required implementation work.
+
+The Review phase shall not perform implementation.
+
+---
+
+#### Implement
+
+Purpose
+
+Produce all implementation work identified during Review.
+
+Deliverables
+
+- Complete implementation updates.
+- Complete replacement code.
+- Complete replacement tests.
+- Documentation updates.
+- Exact insertion locations.
+
+The Implement phase shall not continue the Review phase.
+
+---
+
+#### Verify
+
+Purpose
+
+Validate the completed implementation.
+
+Deliverables
+
+- Test execution audit.
+- Repository audit.
+- Evidence chain.
+- Signoff recommendation.
+
+The Verify phase shall not introduce additional implementation work unless the
+workflow returns to Review.
+
 ### Verification Failure Rules
 
 Verification determines where the workflow returns when defects are discovered.
@@ -720,6 +798,18 @@ approves a deviation.
 
 Verify shall confirm that implementation conforms to the approved Pattern
 Authority.
+
+### Source Authority
+
+Source Authority consists of:
+
+- Current WIP repository.
+- Production implementation.
+- Existing test suite.
+- Repository documentation.
+- Repository conventions.
+
+All implementation work shall conform to this Source Authority.
 
 ## Source Authority
 
@@ -1247,6 +1337,21 @@ ResumeForge-WIP Source Authority.
 
 If the current ResumeForge-WIP Source Authority cannot support a recommendation,
 ChatGPT (Avery) shall explicitly report that verification could not be completed.
+
+### Repository-derived Replacement Rule
+
+All implementation updates shall be derived directly from the current WIP
+repository.
+
+Implementation Updates shall never contain:
+
+- Example code.
+- Placeholder code.
+- Approximate implementations.
+- Alternative implementations.
+- Repository assumptions.
+
+Every replacement shall match the existing repository implementation pattern.
 
 ### Review Evidence Checklist
 
@@ -1985,6 +2090,38 @@ for the current workflow phase.
 
 Implementation should not intentionally defer documentation that belongs to the
 current phase unless the deferral is explicitly identified.
+
+### Mandatory Implementation Update Deliverables
+
+Every Implement phase shall produce complete implementation deliverables.
+
+Implementation Updates shall contain only implementation work and shall not
+continue the Review phase.
+
+Implementation Updates shall include:
+
+- Exact replacement code.
+- Exact replacement test methods.
+- Exact insertion locations.
+- Exact removal locations (when replacing existing code).
+- Required imports.
+- Required fixtures.
+- Required parser updates.
+- Required workflow updates.
+- Expected verification results.
+
+Implementation Updates shall not contain:
+
+- Review commentary.
+- Design discussion.
+- Example implementations.
+- Pseudocode.
+- "Equivalent" implementations.
+- "Adjust as needed" guidance.
+- Repository assumptions.
+
+All implementation updates shall be produced directly from the current WIP
+repository.
 
 ### Engineering Story RED Package Format
 
@@ -2789,6 +2926,25 @@ advance to GREEN.
 GREEN implementation shall never begin automatically after RED test
 creation alone.
 
+### RED Completion Criteria
+
+Implementation Package (RED) is complete only when all identified deficiencies
+have been corrected.
+
+Completion requires:
+
+- All failing tests corrected.
+- All obsolete tests corrected.
+- All missing tests created.
+- Parser coverage complete.
+- CLI coverage complete.
+- Workflow coverage complete.
+- Service coverage complete.
+- Persistence coverage complete.
+- Model coverage complete.
+
+Only then may the story advance to Verify: Implementation Package (RED).
+
 ### RED Verification Evidence
 
 Engineering Story RED Verification shall additionally report:
@@ -2842,6 +2998,24 @@ Verification shall identify:
 
 Missing planned behavior shall be corrected before GREEN begins.
 
+### Test Suite Completeness Audit
+
+Review shall classify every affected test as:
+
+- Passing
+- Failing
+- Missing
+- Obsolete
+
+Review shall also identify missing coverage including:
+
+- Parser
+- CLI
+- Workflow
+- Persistence
+- Service
+- Model
+
 ### Engineering Coverage Verification
 
 Engineering stories shall verify that every planned engineering deliverable
@@ -2864,6 +3038,22 @@ Repository Closeout artifacts shall not first appear during GREEN or Story
 Signoff.
 
 No planned engineering deliverable may bypass RED verification.
+
+### CLI Parser Coverage Checklist
+
+Every CLI story shall verify parser coverage for each new command-line option.
+
+Review shall confirm:
+
+- create parser
+- edit parser
+- parser argument registration
+- Namespace population
+- workflow dispatch
+- service invocation
+- CLI output
+
+Parser coverage shall be completed before RED Signoff.
 
 ### RED Pattern Verification
 
@@ -3740,6 +3930,31 @@ Deferred work shall be documented before Repository Closeout.
 
 No story shall enter Repository Closeout with undocumented implementation debt.
 
+### Documentation Verification
+
+Documentation is a required Story Signoff deliverable.
+
+Story Signoff shall determine whether documentation updates are required for the completed story.
+
+Documentation verification shall include, when applicable:
+
+- CHECKPOINT.md
+- docs/history.md
+- README.md
+- docs/development_workflow.md
+- Story documentation
+- User-facing documentation
+- Developer-facing documentation
+- Any repository documentation affected by the completed story
+
+Story Signoff shall explicitly record one of the following outcomes:
+
+- Documentation updated.
+- Documentation not required.
+- Documentation deferred (with justification).
+
+Documentation status shall never be implied.
+
 ### Story Signoff Checklist
 
 □ Current ResumeForge-WIP archive reviewed
@@ -3753,6 +3968,10 @@ No story shall enter Repository Closeout with undocumented implementation debt.
 □ Ready for tag
 □ Ready for next story
 □ Story formally closed
+□ Documentation requirements reviewed.
+□ Required documentation updated.
+□ Documentation exceptions recorded.
+□ Documentation verification completed.
 
 ## Repository Closeout
 
@@ -3838,6 +4057,19 @@ The report shall summarize:
 The Story Completion Report provides a concise engineering summary of the
 completed story.
 
+### Documentation Closeout Verification
+
+Repository Closeout shall verify that all documentation identified during Story Signoff has been completed.
+
+Verification shall confirm:
+
+- Story documentation is complete.
+- Repository history is current.
+- CHECKPOINT.md is synchronized.
+- Repository documentation accurately reflects the completed implementation.
+
+Outstanding documentation shall prevent Repository Closeout unless formally deferred during Story Signoff.
+
 ### Repository Closeout Philosophy
 
 Engineering completion and repository completion are separate engineering
@@ -3919,6 +4151,8 @@ satisfy the approved RED tests.
 
 Story Signoff reviews the completed story, documentation synchronization,
 regression results, repository state, and workflow improvements.
+
+Documentation synchronization shall be verified as a completion gate rather than assumed from implementation completion.
 
 Previously approved work should not be re-reviewed unless a regression,
 inconsistency, or scope change is identified.
@@ -4163,6 +4397,8 @@ inventory was actually evaluated for completeness and consistency.
 
 Every Planning, RED, GREEN, Story Signoff, and Engineering Methodology Review
 shall complete the following sequence before the review may be approved:
+
+Documentation verification shall be performed whenever a phase modifies repository documentation or project process documentation.
 
 1. Artifact Inventory
    - Identify every artifact required by the current phase.

@@ -761,3 +761,60 @@ Development workflow improvements completed during this story:
 • Story Completion Record workflow
 
 Repository prepared for Story Signoff and Repository Closeout.
+
+## G.2.5.33 – Profile Residency
+
+Repository verified for release.
+
+Final regression evidence:
+
+- test_profile.py
+- test_profile_persistence.py
+- test_cli.py
+
+Repository prepared for commit, tag, and push.
+
+### Story Planning
+
+Completed planning for Profile Residency.
+
+### Implementation Package (RED)
+
+Completed RED planning and residency test coverage.
+
+### Implementation Package (GREEN)
+
+Implemented Profile Residency across production code.
+
+### ResumeForge Engineering Methodology
+
+Enhanced Repository Closeout documentation synchronization.
+
+### Story Signoff
+
+Verified implementation, documentation, and methodology updates.
+
+### Repository Closeout
+
+Repository synchronized and prepared for release.
+
+2026-10-12
+
+Implemented Profile Residency
+
+Added residency as an optional profile attribute
+
+Persisted residency with profile serialization
+
+Restored residency during profile loading
+
+Maintained backward compatibility for profiles without residency
+
+Extended CLI profile edit support for residency
+
+Completed parser coverage for residency and citizenship profile options
+
+Updated profile, persistence, and CLI regression coverage
+
+506 passing tests
+
