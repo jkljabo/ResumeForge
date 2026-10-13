@@ -1,13 +1,58 @@
-Project History
+# ResumeForge Engineering History
 
-Each completed story records:
+## Purpose
 
-• Story implemented
-• Major architectural additions
-• Significant behavioral changes
-• Regression test count
+The Engineering History records the permanent evolution of the ResumeForge
+repository.
 
-History entries should describe what changed rather than implementation details.
+This document records engineering decisions, completed engineering stories,
+methodology evolution, repository milestones, and significant architectural
+changes.
+
+Transient engineering session information shall not be recorded here.
+
+## Navigation
+
+### Engineering Stories
+
+Permanent engineering methodology improvements.
+
+### Development Stories
+
+ResumeForge feature implementation history.
+
+### Repository Milestones
+
+Major repository-wide accomplishments.
+
+### Methodology Evolution
+
+Significant ResumeForge Engineering Methodology improvements.
+
+## Story Entry Standard
+
+Every story entry shall contain:
+
+- Story Identifier
+- Story Title
+- Completion Date
+- Engineering Summary
+- Significant Changes
+- Related Stories (optional)
+
+Existing story history begins immediately following this section.
+
+## Engineering Story History
+
+The following entries record the permanent engineering evolution of the
+ResumeForge repository.
+
+History entries are maintained in chronological order.
+
+Engineering stories and development stories shall continue to use the standard
+story entry format defined above.
+
+The historical record begins below.
 
 2026-09-07
 

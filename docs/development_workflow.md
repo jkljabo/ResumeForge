@@ -43,6 +43,60 @@ feature requirements, or implementation details.
 Those engineering artifacts are maintained in their respective project
 documentation.
 
+## ResumeForge Engineering Methodology Execution Model
+
+The ResumeForge Engineering Methodology (REM) governs every engineering
+response produced for the ResumeForge project.
+
+Before producing any engineering response, the engineer shall execute the
+following methodology sequence.
+
+1. Command Validation
+2. Story State Validation
+3. Workflow Transition Validation
+4. Source Authority Validation
+5. Methodology Validation
+6. Deliverable Audit
+7. Response Generation
+8. Self Verification
+9. Response Publication
+
+Each stage shall complete successfully before the next stage begins.
+
+Engineering responses shall be generated from the ResumeForge Engineering
+Methodology rather than engineering memory, personal preference, or previous
+response patterns.
+
+If any validation stage fails, engineering execution shall immediately stop.
+
+The engineer shall report the validation failure and request clarification
+before continuing.
+
+The ResumeForge Engineering Methodology governs both the engineering process
+and every engineering response produced during that process.
+
+### Methodology Architecture
+
+The ResumeForge Engineering Methodology is organized into the following
+governance domains:
+
+1. Engineering Principles
+2. Engineering Governance
+3. Engineering Workflow
+4. Story Lifecycle
+5. Engineering Standards
+6. Engineering Artifact Specifications
+7. Verification Standards
+8. Engineering Command Contracts
+9. Continuous Improvement
+
+Future methodology enhancements shall be incorporated into the appropriate
+governance domain rather than extending unrelated sections.
+
+When a governance domain becomes excessively large or contains multiple
+independent responsibilities, it shall be refactored into smaller,
+well-defined sections while preserving deterministic navigation.
+
 ## Development Philosophy
 
 ResumeForge follows a disciplined, incremental engineering methodology based
@@ -63,6 +117,40 @@ The workflow emphasizes:
 The objective is to produce predictable, repeatable, and maintainable
 engineering outcomes while minimizing unnecessary complexity and regression
 risk.
+
+## ResumeForge Engineering Methodology Execution Model
+
+The ResumeForge Engineering Methodology (REM) governs every engineering
+response generated for the project.
+
+Before producing any engineering response, the engineer shall execute the
+following methodology sequence.
+
+1. Command Validation
+2. Story State Validation
+3. Workflow Transition Validation
+4. Source Authority Validation
+5. Methodology Validation
+6. Deliverable Audit
+7. Response Generation
+8. Self Verification
+9. Response Publication
+
+The engineer shall complete each stage before advancing to the next.
+
+Engineering responses shall not be generated from engineering experience,
+historical memory, or personal preference.
+
+Engineering responses shall be generated from the ResumeForge Engineering
+Methodology.
+
+If any validation stage fails, engineering execution shall immediately stop.
+
+The engineer shall report the validation failure and request developer
+clarification before continuing.
+
+The ResumeForge Engineering Methodology governs the engineering process and
+the engineering responses produced during that process.
 
 ### Engineering Evidence Principle
 
@@ -169,6 +257,74 @@ implementation package.
 - Exact insertion locations
 - Documentation updates
 
+### Implementation Update Specification
+
+Every Implementation Update contained within an Implementation Package shall
+follow the standardized structure defined below.
+
+Each Implementation Update shall contain:
+
+1. Implementation Identifier
+
+A unique identifier that provides traceability throughout Story Planning,
+Verification, Repository Closeout, and Story Signoff.
+
+2. Primary Section
+
+The exact existing ## heading within the repository document.
+
+3. Secondary Section
+
+The exact existing ### or #### heading.
+
+If no subsection exists, the engineer shall explicitly state that a new
+subsection is to be inserted.
+
+4. Anchor Location
+
+The exact insertion point.
+
+Permitted anchor descriptions include:
+
+- Insert before
+- Insert after
+- Immediately preceding
+- Immediately following
+- Replace
+
+Paragraph anchors may also be used when required.
+
+5. Implementation Action
+
+Exactly one action shall be specified.
+
+Permitted actions include:
+
+- Insert
+- Replace
+- Remove
+- Rename
+- Move
+
+6. Exact Text
+
+The complete text to be inserted or used as the replacement.
+
+Summaries, recommendations, descriptions, and pseudocode are prohibited.
+
+7. Synchronization Updates
+
+Every repository artifact requiring corresponding modification shall be
+identified.
+
+8. Implementation Rationale
+
+A concise explanation describing why the update is required.
+
+Implementation Updates shall contain sufficient information for another
+engineer to complete the modification without requesting additional
+clarification.
+
 #### Verify Deliverables
 
 - Test audit
@@ -176,6 +332,27 @@ implementation package.
 - Evidence chain
 - Completion assessment
 - Signoff recommendation
+
+#### Repository Closeout Commands
+
+Verify: Repository Closeout shall produce the complete Repository Closeout
+command sequence required to complete repository closure.
+
+The generated commands shall:
+
+- be presented in execution order;
+- be ready for copy/paste execution;
+- reflect the current repository state;
+- include repository verification commands;
+- include staging commands;
+- include commit commands;
+- include push commands;
+- include tag commands;
+- include final repository verification commands.
+
+The Verify step prepares repository closure.
+
+It shall not assume that any repository commands have been executed.
 
 ### Environment State Audit
 
@@ -717,6 +894,68 @@ Repository locations should identify:
 - neighboring heading
 
 The objective is to eliminate ambiguity during repository updates.
+
+### Documentation Structure Standard
+
+The ResumeForge Engineering Methodology governs both engineering execution and
+the architecture of engineering documentation.
+
+Engineering documentation shall:
+
+- maintain a consistent heading hierarchy;
+- provide deterministic navigation;
+- provide stable implementation anchor locations;
+- minimize duplicate authoritative concepts;
+- preserve predictable section ordering;
+- support repository-first engineering.
+
+The following repository artifacts are governed by this standard:
+
+- docs/development_workflow.md
+- docs/history.md
+- CHECKPOINT.md
+
+Each governed document shall define and preserve a stable organizational
+structure.
+
+When documentation organization materially impacts engineering execution,
+documentation refactoring shall be completed before additional methodology
+expansion.
+
+Documentation architecture shall be periodically reviewed as part of the
+ResumeForge Engineering Methodology continuous improvement process.
+
+### Engineering Governance Documents
+
+The following repository artifacts collectively govern ResumeForge engineering
+execution.
+
+1. docs/development_workflow.md
+2. docs/history.md
+3. CHECKPOINT.md
+
+Each document has a distinct engineering responsibility.
+
+docs/development_workflow.md
+
+    Defines engineering methodology.
+
+docs/history.md
+
+    Records permanent engineering evolution.
+
+CHECKPOINT.md
+
+    Records current engineering session state and repository recovery
+    information.
+
+These artifacts shall evolve together.
+
+Engineering changes affecting one governance document shall evaluate whether
+corresponding updates are required within the remaining governance documents.
+
+Collectively these documents constitute the ResumeForge Engineering Governance
+System.
 
 ### Self-contained
 
@@ -3988,6 +4227,47 @@ Repository Closeout shall not introduce engineering changes.
 
 Only release activities may occur during this phase.
 
+### Commit: Repository Closeout
+
+Purpose
+
+Execute the Repository Closeout Commands produced during Verify: Repository
+Closeout and confirm that repository closure completed successfully.
+
+#### Commit Deliverables
+
+Commit: Repository Closeout shall include:
+
+- Commit Verification
+- Repository State Audit
+- Push Verification
+- Tag Verification
+- Working Tree Verification
+- Story Completion Confirmation
+
+The Commit response shall confirm the actual repository state after command
+execution.
+
+Repository closure is not complete until Commit: Repository Closeout has been
+successfully verified.
+
+### Repository Closeout State Model
+
+Repository Closeout shall progress through the following engineering states:
+
+1. Repository Ready for Closeout
+2. Repository Closeout Commands Generated
+3. Repository Commands Executed
+4. Repository Closed
+5. Story Archived
+6. Engineering Session Complete
+7. Ready for Next Story
+
+Each state shall be confirmed before progressing to the next state.
+
+Repository Closeout is complete only after the Repository Closed state has been
+verified.
+
 ### Repository Closeout Gates
 
 Repository Closeout shall certify completion using engineering gates rather
@@ -4389,6 +4669,28 @@ methodology.
 repository bootstrap guidance but shall not supersede the engineering
 methodology.
 
+### Methodology Single Authority Rule
+
+Every major ResumeForge Engineering Methodology concept shall have one
+authoritative definition.
+
+Examples include, but are not limited to:
+
+- Source Authority
+- Pattern Authority
+- ResumeForge Engineering Methodology Execution Model
+- Story Planning
+- Phase Contracts
+- Engineering Evidence
+
+The authoritative definition shall exist in exactly one location.
+
+Other sections may reference the authoritative definition but shall not
+duplicate or redefine the concept.
+
+When methodology growth introduces duplicate concepts, the methodology shall
+be refactored before additional duplicate definitions are introduced.
+
 ## Engineering Methodology Audit Gate
 
 The Project Audit Checklist establishes the minimum review inventory. The
@@ -4766,6 +5068,35 @@ Landmarks should include:
 • immediately after
 
 Recommendations shall not rely upon remembered document structure.
+
+### Repository Anchor Validation
+
+Every repository anchor referenced within an Implementation Package shall be
+validated against the current repository immediately before the engineering
+response is published.
+
+Validation shall confirm:
+
+- Repository artifact exists.
+- Primary heading exists exactly as referenced.
+- Secondary heading exists exactly as referenced.
+- Heading level matches the repository.
+- Anchor location uniquely identifies the modification.
+- Referenced preceding anchor exists.
+- Referenced following anchor exists.
+
+Engineers shall not approximate repository structure.
+
+Examples of prohibited behavior include:
+
+- Incorrect heading levels.
+- Referencing headings from memory.
+- Semantic references such as "current story entry."
+- Assuming repository organization.
+
+If repository validation fails, the engineer shall stop implementation package
+generation, reconcile the implementation package with the repository, and
+repeat Repository Anchor Validation before publication.
 
 ## Workflow Integrity
 

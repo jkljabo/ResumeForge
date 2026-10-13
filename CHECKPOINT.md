@@ -1,39 +1,105 @@
-# ResumeForge Checkpoint
+# ResumeForge Engineering Session
 
-## Current State
+## Purpose
 
-Project Milestone: v0.5.0
+The Engineering Session document records the current engineering execution
+state of the repository.
 
-Current Phase:
+Its primary purpose is deterministic engineering recovery.
+
+Historical engineering information belongs in docs/history.md.
+
+## Engineering Session
+
+### Active Story
+
+### Current Phase
+
+### Current Command
+
+### Repository Status
+
+### Engineering Status
+
+### Outstanding Work
+
+### Recently Completed
+
+### Repository Recovery
+
+This section shall always identify:
+
+- Current Story
+- Current Phase
+- Last Completed Command
+- Next Expected Command
+- Repository Readiness
+
+### Session Notes
+
+### Session Closeout Checklist
+
+Current repository session information begins immediately following this
+section.
+
+
+## Engineering Session State
+
+### Active Story
+
+G.2.5.33 – Profile Residency
+
+### Current Phase
+
 Repository Closeout
 
-Current Story:
-G.2.5.33 – Profile Residency
+### Current Command
 
-Latest completed story:
-G.2.5.33 – Profile Residency
+Repository Closeout
+
+### Repository Status
+
+Project Milestone: v0.5.0
 
 Planning Status: Complete
 
 Planning Document:
 docs/planning/G.2.5.33-profile-residency.md
 
+### Engineering Status
+
+Latest completed story:
+G.2.5.33 – Profile Residency
+
 Latest recorded product regression baseline:
 506 passing tests
 
 Latest methodology verification:
 Engineering Methodology verified
-Environment State Audit verified
-Engineer Responsibilities verified
-Repository Reconciliation verified
-Artifact Inventory verified
-Phase Contracts verified
-Story Signoff verified
-Repository Authority Review verified
-Repository Synchronization complete
 
-Build Status:
-Repository ready for Story Completion, commit, tag, and fresh-session recovery validation.
+Environment State Audit:
+Verified
+
+### Repository Recovery
+
+Repository Ready:
+Yes
+
+Next Expected Command:
+Repository Closeout
+
+### Outstanding Work
+
+None.
+
+### Recently Completed Stories
+
+G.2.5.33 – Profile Residency
+
+### Session Notes
+
+Continue using the remaining sections of this document for detailed
+repository state and engineering notes.
 
 ## Repository Recovery Baseline
 
