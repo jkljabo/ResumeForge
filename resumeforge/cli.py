@@ -185,6 +185,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Profile residency.",
     )
 
+    edit_parser.add_argument(
+        "--languages",
+        help="Profile languages.",
+    )
+    
     remove.add_argument(
         "name",
         help="Profile name",

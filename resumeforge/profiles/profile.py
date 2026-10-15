@@ -31,6 +31,7 @@ class Profile:
     security_clearance: str | None = None
     citizenship: str | None = None
     residency: str | None = None
+    languages: str | None = None
 
     @property
     def resume_path(self) -> Path:

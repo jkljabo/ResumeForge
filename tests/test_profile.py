@@ -408,3 +408,47 @@ def test_profile_updates_residency():
     assert profile.residency == "Florida"
 
 
+def test_profile_defaults_languages():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    assert profile.languages is None
+
+
+def test_profile_stores_languages():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    profile.languages = ["English", "Spanish"]
+
+    assert profile.languages == ["English", "Spanish"]
+
+
+def test_profile_updates_languages():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    profile.languages = ["English"]
+
+    profile.languages = [
+        "English",
+        "Spanish",
+        "French",
+    ]
+
+    assert profile.languages == [
+        "English",
+        "Spanish",
+        "French",
+    ]
+
+

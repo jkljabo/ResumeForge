@@ -13,19 +13,45 @@ Historical engineering information belongs in docs/history.md.
 
 ### Active Story
 
+Story: G.2.5.34 – Profile Languages
+
 ### Current Phase
+
+Story Planning
 
 ### Current Command
 
+Implement: Story Planning
+
 ### Repository Status
+
+Repository loaded successfully.
+Repository audit complete.
+Story Planning implementation in progress.
 
 ### Engineering Status
 
+Story approved during Review.
+Documentation Update Package in progress.
+Repository prepared for Story Planning verification.
+
 ### Outstanding Work
+
+- Verify: Story Planning
+- Implementation Package (RED)
 
 ### Recently Completed
 
+✓ Initiate: Story Planning
+✓ Review: Story Planning
+✓ Implement: Story Planning
+
 ### Repository Recovery
+
+Repository is synchronized through
+Story: G.2.5.34 – Profile Languages
+Phase: Story Planning
+Command: Implement: Story Planning
 
 This section shall always identify:
 
@@ -759,29 +785,27 @@ Test Status
 
 ## Story Completion Checklist
 
-✓ Tests written
-✓ RED tests verified
-✓ GREEN implementation verified
-✓ 487 tests passing
-✓ Code reviewed
-✓ Documentation synchronized
-✓ CHECKPOINT updated
-✓ History updated
-✓ Phases updated
-✓ Workflow improvements evaluated
-✓ Ready for Commit
+- [x] Story Planning complete
+- [x] Repository Test Specifications (RED) complete
+- [x] Repository Patch Specifications (GREEN) complete
+- [x] Repository Closeout Package complete
+- [x] Documentation synchronized
+- [x] Regression verified
+- [x] Repository ready for publication
 
 ### Story Completion Verification
 
-- Story Planning Complete
-- RED Complete
-- GREEN Complete
-- Engineering Methodology Complete
-- Story Signoff Complete
+Story: G.2.5.34 – Profile Languages
 
-Repository ready for Repository Closeout.
+Status: COMPLETE
 
-- Repository Closeout Verification Complete
-- Repository Ready for Commit
-- Repository Ready for Tag
-- Repository Ready for Push
+Regression
+
+- tests/test_profile.py — 43 passed
+- tests/test_profile_persistence.py — 25 passed
+- tests/test_cli.py — 119 passed, 1 skipped
+- Full regression — 513 passed, 1 skipped
+
+Repository Status
+
+Ready for Commit.

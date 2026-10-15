@@ -274,7 +274,10 @@ class CLIWorkflow:
 
         if getattr(args, "residency", None) is not None:
             updates["residency"] = args.residency
-            
+
+        if getattr(args, "languages", None) is not None:
+            updates["languages"] = args.languages
+
         self.profile_service.edit(
             args.name,
             updates,

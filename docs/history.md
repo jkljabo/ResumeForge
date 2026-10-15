@@ -843,6 +843,26 @@ Verified implementation, documentation, and methodology updates.
 
 Repository synchronized and prepared for release.
 
+2026-10-15
+
+Implemented Profile Languages
+
+Added languages as an optional profile attribute
+
+Persisted languages with profile serialization
+
+Restored languages during profile loading
+
+Maintained backward compatibility for existing profiles
+
+Extended CLI profile edit support for languages
+
+Completed parser coverage for languages
+
+Updated profile, persistence, and CLI regression coverage
+
+513 passing tests
+
 2026-10-12
 
 Implemented Profile Residency
