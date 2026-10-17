@@ -43,6 +43,125 @@ feature requirements, or implementation details.
 Those engineering artifacts are maintained in their respective project
 documentation.
 
+## Engineering Session Startup Validation
+
+### Purpose
+
+Engineering Session Startup Validation establishes the engineering baseline before Story Planning begins.
+
+Every Engineering (E.x) and Development (G.x) story shall begin with this phase.
+
+Its purpose is to verify that the engineering environment, repository, documentation, supporting evidence, and engineering readiness are in a validated state before planning begins.
+
+No Story Planning activities shall begin until this phase has completed successfully.
+
+### Objectives
+
+Engineering Session Startup Validation shall:
+
+- Establish communication readiness.
+- Validate repository accessibility.
+- Validate repository integrity.
+- Verify engineering environment readiness.
+- Establish the repository baseline.
+- Capture engineering evidence.
+- Declare engineering readiness.
+- Authorize the story to enter Story Planning.
+
+### Communication Status
+
+At the beginning of every engineering session, record:
+
+| Item | Status |
+|------|--------|
+| Engineering Session | Active |
+| Story | Story Identifier |
+| Workflow Command | Current Command |
+| Repository Archive | Validation Status |
+| Repository Inspection | Status |
+| Repository Readiness | Status |
+
+This establishes the communication baseline for the session.
+
+### Repository Validation
+
+Verify:
+
+- Repository archive accessibility.
+- Repository integrity.
+- Documentation availability.
+- Required engineering artifacts.
+- Supporting engineering assets.
+
+Engineering work shall not proceed until repository validation succeeds.
+
+### Repository Inspection
+
+Perform a high-level inspection of the repository to establish engineering awareness.
+
+Examples include:
+
+- Repository structure
+- Documentation structure
+- Story history
+- Engineering artifacts
+- Supporting assets
+
+The inspection establishes the engineering context for the current session.
+
+### Repository Baseline
+
+Record the repository baseline including:
+
+- Repository status
+- Documentation status
+- Story status
+- Engineering observations
+- Repository evidence
+
+The Repository Baseline becomes the engineering reference point for the remainder of the story.
+
+### Engineering Readiness
+
+Determine whether engineering work may begin.
+
+Engineering Readiness should consider:
+
+- Repository accessibility
+- Repository integrity
+- Documentation availability
+- Required engineering evidence
+- Known blockers
+
+If readiness cannot be established, Story Planning shall not begin until blockers have been resolved.
+
+### Session Authorization
+
+Engineering Session Startup Validation concludes with an explicit authorization.
+
+Example:
+
+> **Engineering Session Status:** APPROVED
+>
+> The repository has been validated.
+>
+> Engineering readiness has been established.
+>
+> The story is authorized to proceed to Story Planning.
+
+### Acceptance Criteria
+
+Engineering Session Startup Validation is complete when:
+
+- Communication readiness has been established.
+- Repository validation has completed successfully.
+- Repository inspection has completed.
+- Repository baseline has been recorded.
+- Engineering readiness has been declared.
+- Session authorization has been granted.
+
+Only after these conditions have been satisfied may Story Planning begin.
+
 ## ResumeForge Engineering Methodology Execution Model
 
 The ResumeForge Engineering Methodology (REM) governs every engineering
@@ -1074,6 +1193,1362 @@ derived from the current Source Authority.
 
 Claims of reviewing the current WIP shall not be made unless the current
 WIP artifact has actually been inspected.
+
+## Repository State Audit
+
+### Purpose
+
+The Repository State Audit establishes a verified understanding of the repository immediately before Story Planning begins.
+
+Where Engineering Session Startup Validation confirms that engineering work may begin, the Repository State Audit documents the current repository state from which engineering decisions will be made.
+
+The Repository State Audit becomes the authoritative repository baseline for the current engineering session.
+
+### Objectives
+
+The Repository State Audit shall:
+
+- Establish the current repository baseline.
+- Identify repository changes since the previous engineering session.
+- Verify repository documentation consistency.
+- Verify repository implementation status.
+- Identify incomplete engineering work.
+- Identify repository anomalies requiring engineering attention.
+- Record engineering observations used during Story Planning.
+
+### Repository Review
+
+Review the current repository at a high level.
+
+Examples include:
+
+- Repository structure.
+- Documentation organization.
+- Story implementation status.
+- Engineering artifacts.
+- Repository checkpoints.
+- Recent repository changes.
+
+The purpose of this review is to ensure that Story Planning is based upon the repository's actual state rather than assumptions carried forward from previous sessions.
+
+### Repository Baseline
+
+Record the repository baseline for the current engineering session.
+
+The baseline should summarize:
+
+- Current repository status.
+- Documentation status.
+- Active engineering story.
+- Repository observations.
+- Outstanding engineering work.
+
+This baseline becomes the engineering reference used throughout the remainder of the story.
+
+### Engineering Findings
+
+Record any Engineering Findings discovered during the Repository State Audit.
+
+Engineering Findings may include:
+
+- Documentation inconsistencies.
+- Workflow improvements.
+- Repository organization improvements.
+- Validation improvements.
+- Engineering methodology improvements.
+
+Engineering Findings requiring repository modifications shall be incorporated into Story Planning before implementation begins.
+
+### Acceptance Criteria
+
+The Repository State Audit is complete when:
+
+- The repository has been reviewed.
+- The repository baseline has been established.
+- Repository observations have been recorded.
+- Engineering Findings have been documented.
+- Repository readiness has been confirmed for Story Planning.
+
+## Deliverable Contracts
+
+### Engineering Deliverable Matrix
+
+### Development Deliverable Matrix
+
+### Repository Patch Unit Manifest
+
+### Repository Anchor Package
+
+### Workflow Continuation Contract
+
+### Repository Correction Package
+
+### Repository Patch Lifecycle
+
+### Engineering Standards
+
+### Documentation Standards
+
+### Validation Standards
+
+### Workflow Standards
+
+### Standards Precedence Model
+
+### Engineering Terminology Standard
+
+### Engineering Design Principles
+
+#### Purpose
+
+Engineering Design Principles establish the architectural philosophy that governs the evolution of the ResumeForge Engineering Methodology (REM).
+
+While Engineering Standards define **what** shall be followed, Engineering Design Principles define **why** the methodology is designed as it is and the principles that shall guide future engineering decisions.
+
+Engineering Design Principles provide the long-term architectural direction for the REM.
+
+#### Objectives
+
+Engineering Design Principles shall:
+
+- Promote long-term maintainability.
+- Encourage architectural consistency.
+- Minimize engineering complexity.
+- Eliminate unnecessary duplication.
+- Preserve deterministic engineering behavior.
+- Guide future methodology evolution.
+
+#### Core Design Principles
+
+##### Single Responsibility
+
+Each engineering concept shall have one primary responsibility.
+
+Repository sections shall represent one architectural concern and shall avoid combining unrelated concepts.
+
+##### Single Source of Truth
+
+Engineering concepts shall be defined exactly once.
+
+Workflow documentation shall reference authoritative definitions rather than duplicate them.
+
+##### Separation of Concerns
+
+Governance, execution, validation, documentation, and implementation shall remain independent architectural domains.
+
+Each domain shall evolve independently while remaining integrated through defined contracts.
+
+##### Deterministic Engineering
+
+Engineering outcomes shall not depend upon interpretation.
+
+Every workflow, repository modification, and validation activity shall produce predictable, repeatable results.
+
+##### Explicit Over Implicit
+
+Engineering intent shall be explicitly documented.
+
+Repository organization, workflow progression, and engineering expectations shall never rely upon inferred behavior.
+
+##### Progressive Refinement
+
+Higher-level guidance shall establish architectural intent.
+
+Lower-level workflow documentation shall progressively refine implementation details without redefining higher-level guidance.
+
+##### Repository-First Design
+
+Repository modifications shall always be designed around repository integrity before implementation convenience.
+
+Repository organization shall take precedence over workflow shortcuts.
+
+##### Continuous Improvement
+
+Engineering Findings produced during Engineering Stories shall be evaluated for incorporation into the REM.
+
+Accepted findings shall improve existing standards whenever possible before introducing new methodology concepts.
+
+#### Architectural Principles
+
+The ResumeForge Engineering Methodology shall strive to achieve:
+
+- High cohesion.
+- Low coupling.
+- Minimal duplication.
+- Maximum traceability.
+- Predictable workflow execution.
+- Clear architectural boundaries.
+
+#### Engineering Decision Framework
+
+When multiple engineering solutions are possible, preference shall be given to the solution that:
+
+1. Preserves repository integrity.
+2. Reduces methodology complexity.
+3. Eliminates duplication.
+4. Improves maintainability.
+5. Increases engineering determinism.
+6. Enhances traceability.
+
+#### Engineering Requirement
+
+All future Engineering (E.x) and Development (G.x) stories shall be evaluated against these Engineering Design Principles.
+
+Engineering Stories shall strengthen adherence to these principles rather than introduce unnecessary architectural complexity.
+
+#### Purpose
+
+The Engineering Terminology Standard establishes the authoritative vocabulary used throughout the ResumeForge Engineering Methodology (REM).
+
+It ensures that every engineering artifact, workflow, repository update, and engineering communication uses a consistent set of defined terms.
+
+Engineering terminology shall be defined once and referenced throughout the methodology.
+
+#### Objectives
+
+The Engineering Terminology Standard shall:
+
+- Establish a common engineering vocabulary.
+- Eliminate terminology drift.
+- Improve engineering communication.
+- Reduce ambiguity.
+- Support deterministic engineering execution.
+- Promote long-term maintainability.
+
+#### Terminology Principles
+
+Engineering terminology shall adhere to the following principles:
+
+- One authoritative definition per term.
+- One meaning per term.
+- Terms shall not be redefined by workflow-specific guidance.
+- Workflow documentation shall reference defined terminology.
+- New terminology shall be introduced only through approved Engineering Stories.
+
+#### Core Engineering Terms
+
+##### Engineering Story
+
+A methodology story whose primary objective is to improve the ResumeForge Engineering Methodology itself.
+
+Engineering Stories use the **E.x** numbering convention.
+
+##### Development Story
+
+A methodology story whose primary objective is to implement repository functionality.
+
+Development Stories use the **G.x** numbering convention.
+
+##### Repository Patch Unit (RPU)
+
+A single, self-contained repository modification performed during Repository Patch Specifications (GREEN).
+
+Each Repository Patch Unit performs exactly one logical repository change.
+
+##### Repository Update Package (RUP)
+
+The complete repository-ready modification generated for a Repository Patch Unit.
+
+A Repository Update Package contains all information necessary to apply the repository modification.
+
+##### Update Implementation Package (UIP)
+
+The implementation artifact delivered during an Implement phase.
+
+The UIP is repository-ready and requires no additional engineering analysis before application.
+
+##### Deliverable Contract
+
+The authoritative definition of the expected outputs for a workflow phase.
+
+Each workflow phase shall satisfy its Deliverable Contract before progression.
+
+##### Entry Contract
+
+The engineering activities required before implementation begins.
+
+The Entry Contract consists of:
+
+- Applied Repository Review
+- Repository Baseline Confirmation
+- Repository Authorization
+
+##### Exit Contract
+
+The engineering activities required before workflow progression.
+
+The Exit Contract is fulfilled by the Workflow Continuation Contract.
+
+##### Canonical Application Anchor
+
+The single authoritative instruction defining where a repository modification shall be applied.
+
+Each Repository Patch Unit shall define exactly one Canonical Application Anchor.
+
+##### Applied Repository Review
+
+A review of the repository after previously approved modifications have been applied.
+
+The purpose of the review is to establish the inherited engineering baseline.
+
+##### Repository Baseline
+
+The validated repository structure inherited by the current Repository Patch Unit.
+
+All implementation shall begin from the confirmed Repository Baseline.
+
+##### Repository Authorization
+
+Formal engineering approval allowing repository implementation to proceed.
+
+##### Repository Correction Package
+
+The engineering recovery mechanism used when the inherited repository state fails validation.
+
+##### Repository Patch Lifecycle
+
+The authoritative execution model governing all Repository Patch Units.
+
+#### Terminology Governance
+
+All engineering documentation shall use the terminology defined in this standard.
+
+Existing terms shall not be redefined.
+
+Workflow-specific terminology shall supplement—but never replace—the Engineering Terminology Standard.
+
+#### Engineering Requirement
+
+Every Engineering (E.x) and Development (G.x) story shall use the terminology defined by the Engineering Terminology Standard.
+
+Engineering responses shall remain consistent with these definitions throughout the ResumeForge Engineering Methodology.
+
+#### Purpose
+
+The Standards Precedence Model establishes the authoritative order used to resolve conflicts, overlaps, or ambiguity between ResumeForge Engineering Methodology (REM) standards.
+
+This model ensures that all engineering decisions are governed by a single deterministic precedence hierarchy.
+
+#### Objectives
+
+The Standards Precedence Model shall:
+
+- Eliminate conflicting guidance.
+- Provide deterministic engineering decision-making.
+- Define authoritative governance precedence.
+- Prevent duplication of engineering rules.
+- Promote long-term maintainability.
+- Establish a single conflict-resolution mechanism.
+
+#### Standards Hierarchy
+
+The ResumeForge Engineering Methodology shall apply standards in the following order of precedence:
+
+1. Engineering Standards
+2. Documentation Standards
+3. Validation Standards
+4. Workflow Standards
+5. Story-Specific Guidance
+
+Each lower level supplements—but shall never contradict—a higher level.
+
+#### Responsibilities
+
+##### Engineering Standards
+
+Define overarching engineering governance.
+
+Responsible for:
+
+- Engineering principles.
+- Repository governance.
+- Methodology governance.
+- Standards governance.
+
+##### Documentation Standards
+
+Define documentation behavior.
+
+Responsible for:
+
+- Repository organization.
+- Section architecture.
+- Documentation formatting.
+- Documentation maintenance.
+
+##### Validation Standards
+
+Define engineering verification.
+
+Responsible for:
+
+- Repository validation.
+- Workflow validation.
+- Story validation.
+- Engineering approval.
+
+##### Workflow Standards
+
+Define workflow execution.
+
+Responsible for:
+
+- Workflow progression.
+- Deliverable Contracts.
+- Entry and Exit Contracts.
+- Repository execution.
+
+##### Story-Specific Guidance
+
+Defines implementation details unique to an individual Engineering or Development story.
+
+Story guidance may specialize higher-level standards but shall never supersede them.
+
+#### Conflict Resolution
+
+When multiple standards appear applicable:
+
+1. Evaluate the highest applicable standard.
+2. Apply higher-level governance first.
+3. Apply lower-level guidance only when consistent with higher-level standards.
+4. Escalate unresolved conflicts through an Engineering Story.
+
+Conflicting lower-level guidance shall be considered non-authoritative.
+
+#### Standard Inheritance
+
+Lower-level standards inherit behavior from higher-level standards.
+
+Inheritance shall be cumulative.
+
+A lower-level standard may extend—but shall not redefine or invalidate—the behavior established by a higher-level standard.
+
+#### Engineering Requirement
+
+Every Engineering (E.x) and Development (G.x) story shall comply with the Standards Precedence Model.
+
+Engineering decisions shall always be traceable to the highest applicable governing standard.
+
+When uncertainty exists, engineers shall consult the Standards Precedence Model before introducing new workflow guidance.
+
+#### Purpose
+
+Workflow Standards establish the authoritative rules governing the execution, progression, and completion of engineering workflows within the ResumeForge Engineering Methodology (REM).
+
+These standards define how Engineering (E.x) and Development (G.x) stories progress through each workflow phase and ensure all engineering activities are deterministic, repeatable, and traceable.
+
+Workflow documentation shall reference these standards rather than redefining workflow behavior.
+
+#### Objectives
+
+Workflow Standards shall:
+
+- Establish deterministic workflow execution.
+- Standardize workflow progression.
+- Define workflow entry and exit criteria.
+- Govern engineering deliverables.
+- Eliminate workflow ambiguity.
+- Promote repeatable engineering execution.
+
+#### Workflow Standard Categories
+
+##### Workflow Execution Standards
+
+Govern execution of engineering workflows.
+
+Examples include:
+
+- Story Planning
+- Repository Test Specifications (RED)
+- Repository Patch Specifications (GREEN)
+- Story Signoff
+
+##### Deliverable Standards
+
+Govern workflow outputs.
+
+Examples include:
+
+- Deliverable Contracts
+- Engineering Deliverable Matrix
+- Development Deliverable Matrix
+- Repository Update Packages
+
+##### Workflow Transition Standards
+
+Govern movement between workflow phases.
+
+Examples include:
+
+- Entry Contract (Pre-Implementation Validation)
+- Exit Contract (Workflow Continuation Contract)
+- Repository Authorization
+- Repository Readiness Gates
+
+##### Workflow Recovery Standards
+
+Govern interruption and recovery.
+
+Examples include:
+
+- Repository Correction Package
+- Repository Revalidation
+- Engineering Findings
+- Repository Authorization Recovery
+
+##### Workflow Governance Standards
+
+Govern engineering behavior throughout execution.
+
+Examples include:
+
+- One logical objective per workflow step.
+- Repository-first implementation.
+- Evidence-based engineering decisions.
+- Repository-ready deliverables.
+- Complete implementation packages.
+
+#### Workflow Principles
+
+Every workflow shall follow these principles:
+
+- One authoritative workflow path.
+- One logical objective per workflow step.
+- Deterministic progression.
+- Validation before progression.
+- Repository-first engineering.
+- Explicit workflow transitions.
+- Complete engineering traceability.
+
+#### Workflow Progression
+
+Every Engineering and Development story shall progress through the following lifecycle:
+
+1. Story Planning
+2. Repository Test Specifications (RED)
+3. Repository Patch Specifications (GREEN)
+4. Story Signoff
+
+Each phase shall satisfy its Deliverable Contract before progression is authorized.
+
+No workflow phase shall begin until the preceding phase has successfully completed.
+
+#### Workflow Deliverables
+
+Each workflow phase shall produce repository-ready deliverables appropriate to that phase.
+
+Review phases shall produce engineering analysis and implementation planning.
+
+Implement phases shall produce complete repository-ready implementation artifacts.
+
+Verify phases shall confirm engineering correctness and readiness for progression.
+
+#### Engineering Requirement
+
+All Engineering (E.x) and Development (G.x) stories shall conform to the Workflow Standards.
+
+Workflow-specific guidance shall supplement these standards but shall not conflict with or redefine them.
+
+Where workflow guidance conflicts with Engineering, Documentation, or Validation Standards, the established standards precedence hierarchy shall apply.
+
+#### Purpose
+
+Validation Standards establish the authoritative rules governing verification activities performed throughout the ResumeForge Engineering Methodology.
+
+These standards define how engineering work is validated, how repository integrity is confirmed, and how workflow completion is objectively determined.
+
+All validation performed during Engineering (E.x) and Development (G.x) stories shall conform to these standards.
+
+#### Objectives
+
+Validation Standards shall:
+
+- Ensure engineering correctness.
+- Verify repository integrity.
+- Confirm documentation quality.
+- Establish deterministic completion criteria.
+- Provide objective engineering approval.
+- Support repeatable engineering execution.
+
+#### Validation Standard Categories
+
+##### Repository Validation Standards
+
+Govern validation of repository modifications.
+
+Examples include:
+
+- Applied Repository Review.
+- Repository Baseline Confirmation.
+- Repository Authorization.
+- Repository Correction Package.
+
+##### Workflow Validation Standards
+
+Govern workflow completion.
+
+Examples include:
+
+- Deliverable Contract verification.
+- Workflow phase completion.
+- Workflow Continuation Contract validation.
+- Story completion validation.
+
+##### Documentation Validation Standards
+
+Govern engineering documentation quality.
+
+Examples include:
+
+- Repository Copy/Paste Test.
+- Heading hierarchy verification.
+- Canonical Application Anchor validation.
+- Resulting Hierarchy verification.
+- Cross-reference validation.
+
+##### Engineering Validation Standards
+
+Govern engineering artifacts.
+
+Examples include:
+
+- Engineering Traceability.
+- Engineering Findings.
+- Engineering Decision Records.
+- Evidence Chain validation.
+- Deliverable Matrix compliance.
+
+##### Story Validation Standards
+
+Govern Engineering and Development story completion.
+
+Examples include:
+
+- Story Planning validation.
+- RED validation.
+- GREEN validation.
+- Story Signoff validation.
+
+#### Validation Principles
+
+Validation shall always be:
+
+- Deterministic.
+- Repeatable.
+- Evidence-based.
+- Repository-first.
+- Independent of implementation assumptions.
+
+Engineering approval shall always be supported by objective validation evidence.
+
+#### Validation Lifecycle
+
+Validation occurs throughout repository implementation:
+
+1. Entry Validation (Pre-Implementation Validation)
+2. Implementation Validation (Post-Application Validation)
+3. Completion Validation (RPU Readiness Gate)
+4. Workflow Validation (Workflow Continuation Contract)
+5. Story Validation (Story Signoff)
+
+Each validation stage establishes the baseline for the next stage.
+
+#### Engineering Requirement
+
+Every workflow response shall satisfy the applicable Validation Standards before progression to the next workflow activity.
+
+Workflow completion shall never be declared without successful validation.
+
+Where multiple validation mechanisms apply, all applicable validations shall succeed before engineering approval is granted.
+
+#### Purpose
+
+Documentation Standards establish the authoritative rules governing the structure, organization, formatting, and maintenance of ResumeForge engineering documentation.
+
+These standards ensure that all methodology documentation is consistent, deterministic, maintainable, and easy to navigate.
+
+Workflow sections shall reference these standards rather than redefining documentation conventions.
+
+#### Objectives
+
+Documentation Standards shall:
+
+- Establish a consistent document architecture.
+- Promote deterministic document organization.
+- Eliminate documentation ambiguity.
+- Improve long-term maintainability.
+- Standardize engineering communication.
+- Reduce documentation duplication.
+
+#### Documentation Standard Categories
+
+##### Document Structure Standards
+
+Govern the organization of engineering documentation.
+
+Examples include:
+
+- Heading hierarchy.
+- Parent/child section relationships.
+- Section ordering.
+- Major section sequencing.
+
+##### Repository Update Standards
+
+Govern repository modifications.
+
+Examples include:
+
+- Canonical Application Anchors.
+- Single authoritative insertion point.
+- Resulting Hierarchy.
+- Repository-ready Markdown.
+- Repository Patch Units.
+
+##### Engineering Communication Standards
+
+Govern engineering responses.
+
+Examples include:
+
+- Engineering Findings.
+- Engineering Rationale.
+- Engineering Observations.
+- Validation Packages.
+- Workflow Continuation Contracts.
+
+##### Traceability Standards
+
+Govern engineering traceability.
+
+Examples include:
+
+- Engineering Traceability tables.
+- Engineering Decision Records.
+- Repository Update Packages.
+- Evidence Chains.
+- Deliverable Matrices.
+
+##### Validation Standards
+
+Govern documentation verification.
+
+Examples include:
+
+- Repository Copy/Paste Tests.
+- Post-Application Validation.
+- Repository Readiness Gates.
+- Repository Baseline Confirmation.
+
+#### Documentation Organization Principles
+
+ResumeForge documentation shall adhere to the following principles:
+
+- One authoritative definition per concept.
+- References instead of duplication.
+- Deterministic section placement.
+- Consistent heading hierarchy.
+- Explicit architectural justification.
+- Repository-first organization.
+
+#### Documentation Maintenance
+
+Documentation Standards shall evolve only through approved Engineering Stories.
+
+When an Engineering Finding affects documentation practices, the corresponding Documentation Standard shall be updated instead of duplicating guidance elsewhere.
+
+Workflow documentation shall inherit documentation behavior from these standards.
+
+#### Engineering Requirement
+
+All ResumeForge engineering documentation shall conform to the Documentation Standards.
+
+Where documentation guidance conflicts with workflow-specific instructions, the precedence hierarchy defined by the Engineering Standards shall apply.
+
+#### Purpose
+
+Engineering Standards establish the authoritative rules governing the creation, validation, maintenance, and evolution of the ResumeForge Engineering Methodology.
+
+Rather than repeating common engineering requirements throughout workflow documentation, the ResumeForge Engineering Methodology shall reference these Engineering Standards as the single source of truth.
+
+#### Objectives
+
+Engineering Standards shall:
+
+- Promote consistency throughout the methodology.
+- Reduce duplication across workflow documentation.
+- Improve maintainability.
+- Increase engineering traceability.
+- Establish deterministic engineering behavior.
+- Define repository engineering best practices.
+
+#### Engineering Standard Categories
+
+The ResumeForge Engineering Methodology recognizes the following Engineering Standards:
+
+##### Repository Standards
+
+Govern repository organization and repository modifications.
+
+Examples include:
+
+- Repository Patch Lifecycle
+- Repository Anchor Package
+- Repository Patch Unit Manifest
+
+##### Workflow Standards
+
+Govern workflow execution.
+
+Examples include:
+
+- Workflow Continuation Contract
+- Deliverable Contracts
+- Deliverable Matrices
+
+##### Validation Standards
+
+Govern engineering validation.
+
+Examples include:
+
+- Pre-Implementation Validation (PIV)
+- Repository Baseline Confirmation
+- Repository Readiness Gates
+- Validation Packages
+
+##### Documentation Standards
+
+Govern methodology documentation.
+
+Examples include:
+
+- Canonical Application Anchors
+- Resulting Hierarchies
+- Architectural Placement Justification
+- Engineering Traceability
+
+##### Story Standards
+
+Govern Engineering (E.x) and Development (G.x) stories.
+
+Examples include:
+
+- Story Planning
+- Repository Test Specifications
+- Repository Patch Specifications
+- Story Signoff
+
+#### Standard Hierarchy
+
+Engineering Standards are hierarchical.
+
+Lower-level workflow guidance shall reference Engineering Standards rather than redefining them.
+
+Engineering Standards shall remain the authoritative source.
+
+#### Standard Evolution
+
+Engineering Standards may be introduced or modified only through approved Engineering Stories.
+
+Engineering Findings accepted during an Engineering Story shall be incorporated into the applicable Engineering Standard rather than duplicated elsewhere in the methodology.
+
+#### Engineering Requirement
+
+All ResumeForge Engineering Methodology documentation shall conform to the Engineering Standards defined herein.
+
+Conflicting workflow guidance shall be resolved in favor of the applicable Engineering Standard.
+
+#### Purpose
+
+The Repository Patch Lifecycle defines the complete engineering lifecycle followed by every Repository Patch Unit (RPU).
+
+It establishes the authoritative execution model governing repository modification, validation, recovery, and workflow progression.
+
+Every Repository Patch Unit shall follow this lifecycle without exception.
+
+#### Lifecycle Overview
+
+The Repository Patch Lifecycle consists of three primary phases:
+
+1. Pre-Implementation Validation (Entry Contract)
+2. Repository Patch Unit Execution
+3. Workflow Continuation (Exit Contract)
+
+If repository validation fails, execution transitions into the Repository Correction Package before implementation may resume.
+
+#### Phase I — Pre-Implementation Validation (Entry Contract)
+
+The Entry Contract establishes the engineering baseline before repository modification begins.
+
+This phase shall perform:
+
+- Applied Repository Review
+- Applied Repository Validation
+- Repository Baseline Confirmation
+- Repository Authorization
+
+The Entry Contract shall conclude with one of the following outcomes:
+
+- Repository Authorized
+- Repository Correction Required
+
+No repository modification shall begin until Repository Authorization has been granted.
+
+#### Phase II — Repository Patch Unit Execution
+
+Repository Patch Unit Execution performs one deterministic repository modification.
+
+Every Repository Patch Unit shall contain:
+
+- Repository Target
+- Primary Section
+- Update Type
+- Canonical Application Anchor
+- Repository-Ready Markdown
+- Resulting Hierarchy
+- Post-Application Validation
+- Architectural Placement Justification
+- Cross-Reference Impact
+- Engineering Traceability
+- Validation Package
+- RPU Readiness Gate
+- RPU Status
+
+Only one logical repository modification shall be performed per Repository Patch Unit.
+
+#### Repository Recovery Path
+
+If the Entry Contract fails, implementation shall immediately transition into the Repository Correction Package.
+
+Recovery shall:
+
+- Document repository findings.
+- Define required corrections.
+- Restore repository integrity.
+- Repeat Pre-Implementation Validation.
+
+Implementation shall not continue until Repository Authorization has been restored.
+
+#### Phase III — Workflow Continuation (Exit Contract)
+
+The Exit Contract formally concludes the Repository Patch Unit.
+
+Every Exit Contract shall contain:
+
+- Current Step Status
+- Repository Status
+- Next Workflow Step
+- Next Repository Patch Unit (or equivalent activity)
+- Exact Next Command
+
+The Exit Contract establishes the engineering baseline inherited by the next Repository Patch Unit.
+
+#### Lifecycle Diagram
+
+```text
+                Repository Patch Lifecycle
+
+        ┌─────────────────────────────────────┐
+        │ Phase I                             │
+        │ Pre-Implementation Validation       │
+        │ (Entry Contract)                    │
+        └─────────────────────────────────────┘
+                      │
+                      ▼
+        Repository Authorized?
+             │                 │
+            YES               NO
+             │                 │
+             ▼                 ▼
+┌─────────────────────┐   ┌──────────────────────┐
+│ Phase II            │   │ Repository           │
+│ Repository Patch    │   │ Correction Package   │
+│ Unit Execution      │   └──────────────────────┘
+└─────────────────────┘             │
+             │                      │
+             └──────────────┬───────┘
+                            ▼
+              Repeat Entry Contract
+                            │
+                            ▼
+        ┌─────────────────────────────────────┐
+        │ Phase III                           │
+        │ Workflow Continuation               │
+        │ (Exit Contract)                     │
+        └─────────────────────────────────────┘
+                            │
+                            ▼
+           Next Repository Patch Unit
+```
+
+#### Engineering Requirements
+
+Every Repository Patch Unit shall comply with the Repository Patch Lifecycle.
+
+Deviation from this lifecycle shall constitute an incomplete Repository Patch Unit.
+
+The Repository Patch Lifecycle is the authoritative execution model governing all Repository Patch Specifications (GREEN).
+
+#### Purpose
+
+The Repository Correction Package defines the standard procedure followed when a Repository Patch Unit cannot proceed because the inherited repository state fails validation during Pre-Implementation Validation (PIV).
+
+The Repository Correction Package ensures repository integrity is restored before additional repository modifications are introduced.
+
+#### Trigger Conditions
+
+A Repository Correction Package shall be generated whenever:
+
+- Applied Repository Review identifies repository inconsistencies.
+- Repository Baseline Confirmation fails.
+- Canonical Application Anchor cannot be resolved.
+- Repository hierarchy differs from the expected Resulting Hierarchy.
+- Post-Application Validation from the previous Repository Patch Unit fails.
+- Repository modifications have been applied incorrectly.
+
+No subsequent Repository Patch Unit shall begin until all identified issues have been corrected and revalidated.
+
+#### Repository Correction Package Components
+
+Every Repository Correction Package shall contain:
+
+- Repository Review Findings.
+- Validation Failure Summary.
+- Repository Impact Assessment.
+- Required Repository Corrections.
+- Repository Revalidation Procedure.
+- Repository Readiness Criteria.
+
+These components provide a complete engineering recovery path.
+
+#### Repository Revalidation
+
+After corrections have been applied:
+
+1. Perform a new Applied Repository Review.
+2. Repeat Applied Repository Validation.
+3. Reconfirm the Repository Baseline.
+4. Reauthorize repository implementation.
+
+Only after successful revalidation may implementation resume.
+
+#### Engineering Requirement
+
+The Repository Correction Package is the authoritative recovery mechanism for Repository Patch Specifications (GREEN).
+
+Repository implementation shall remain suspended until the Repository Correction Package has been successfully completed and repository authorization has been restored.
+
+#### Purpose
+
+The Workflow Continuation Contract formally closes the current engineering workflow step and provides the deterministic transition to the next workflow step.
+
+Every Engineering (E.x) and Development (G.x) workflow response shall conclude with a Workflow Continuation Contract.
+
+The Workflow Continuation Contract eliminates workflow ambiguity by explicitly identifying the next engineering action.
+
+#### Objectives
+
+The Workflow Continuation Contract shall:
+
+- Declare completion status of the current workflow step.
+- Record the current repository state.
+- Identify the next workflow step.
+- Identify the next Repository Patch Unit or implementation activity.
+- Provide the exact command required to continue the workflow.
+
+#### Workflow Continuation Components
+
+Every Workflow Continuation Contract shall contain:
+
+- Current Step Status.
+- Repository Status.
+- Next Workflow Step.
+- Next Repository Patch Unit or equivalent implementation activity.
+- Exact Next Command.
+
+These components collectively provide a deterministic workflow handoff.
+
+#### Engineering Requirements
+
+The Exact Next Command shall:
+
+- Be complete.
+- Be copy-and-paste ready.
+- Match the current engineering story.
+- Identify the correct workflow phase.
+- Identify the correct implementation section.
+- Reference the current ResumeForge-WIP.zip repository.
+
+If the engineering workflow is complete, the Workflow Continuation Contract shall instead identify the next workflow phase (for example, Story Signoff) or explicitly state that the story has reached completion.
+
+#### Workflow Responsibility
+
+The Workflow Continuation Contract is the authoritative workflow transition mechanism.
+
+Engineers shall use the Exact Next Command as the sole entry point into the next engineering activity.
+
+Workflow progression shall not rely upon operator memory or interpretation.
+
+#### Engineering Requirement
+
+Every engineering workflow response shall terminate with a Workflow Continuation Contract.
+
+Responses shall not conclude without either:
+
+- Providing the Exact Next Command; or
+- Declaring successful completion of the current story.
+
+#### Purpose
+
+The Repository Anchor Package defines the standard used to locate, apply, and validate repository modifications.
+
+Every Repository Patch Unit shall include a Repository Anchor Package to ensure repository updates are deterministic, reproducible, and independently verifiable.
+
+The Repository Anchor Package separates repository modification from repository validation.
+
+#### Repository Anchor Components
+
+Every Repository Anchor Package shall contain:
+
+- Repository Target
+- Primary Section
+- Update Type
+- Canonical Application Anchor
+- Resulting Hierarchy
+- Post-Application Validation
+- Architectural Placement Justification
+
+These components collectively define where a repository modification belongs and how its successful application shall be verified.
+
+#### Canonical Application Anchor
+
+The Canonical Application Anchor is the single authoritative instruction describing where a repository modification shall be applied.
+
+A Repository Patch Unit shall define exactly one Canonical Application Anchor.
+
+Insertion ranges shall not be used.
+
+Examples include:
+
+- Immediately before an existing heading.
+- Immediately after an existing subsection.
+- Replace an existing named section.
+
+The Canonical Application Anchor shall always reference the highest available structural element within the repository.
+
+#### Resulting Hierarchy
+
+Resulting Hierarchy illustrates the repository structure expected after the modification has been applied.
+
+Its purpose is to communicate the intended architectural outcome rather than provide implementation instructions.
+
+#### Post-Application Validation
+
+Post-Application Validation verifies that the repository modification has been applied successfully.
+
+Validation shall confirm:
+
+- Correct repository hierarchy.
+- Correct heading relationships.
+- Correct placement of the repository modification.
+- Preservation of surrounding repository structure.
+
+Validation shall not introduce new repository modifications.
+
+#### Architectural Placement Justification
+
+Every Repository Patch Unit shall explain why the modification belongs at its specified location.
+
+Architectural placement shall be justified using repository organization, workflow sequence, engineering dependencies, or documentation architecture.
+
+#### Engineering Requirement
+
+Repository modifications shall be governed by the Repository Anchor Package.
+
+No Repository Patch Unit shall be considered complete until the Repository Anchor Package has been fully satisfied and validated.
+
+#### Purpose
+
+The Repository Patch Unit (RPU) Manifest defines the complete set of Repository Patch Units required to implement a Repository Patch Specifications (GREEN) phase.
+
+The manifest serves as the engineering implementation roadmap by identifying every Repository Patch Unit, its implementation sequence, and its completion status.
+
+A Repository Patch Specifications (GREEN) implementation shall begin with creation of the Repository Patch Unit Manifest before implementation of the first Repository Patch Unit.
+
+#### Objectives
+
+The Repository Patch Unit Manifest shall:
+
+- Enumerate every Repository Patch Unit required for the story.
+- Define the implementation order.
+- Establish implementation dependencies.
+- Track Repository Patch Unit completion.
+- Provide implementation progress visibility.
+- Serve as the authoritative implementation plan for the GREEN phase.
+
+#### Repository Patch Unit Entry
+
+Each Repository Patch Unit entry shall contain:
+
+- Repository Patch Unit identifier.
+- Repository Patch Unit title.
+- Repository target.
+- Implementation purpose.
+- Dependency information.
+- Current implementation status.
+
+#### Manifest Maintenance
+
+The Repository Patch Unit Manifest shall be updated throughout implementation.
+
+Repository Patch Units shall transition through the following states:
+
+- Planned
+- In Progress
+- Complete
+- Verified
+
+The manifest shall always reflect the current implementation status of the repository.
+
+#### Engineering Requirement
+
+The Repository Patch Unit Manifest is the authoritative implementation tracker for Repository Patch Specifications (GREEN).
+
+All Repository Patch Units shall originate from the manifest.
+
+Repository Patch Units not defined within the manifest shall not be implemented unless the manifest is formally updated through Story Planning or an approved Engineering Finding.
+
+#### Purpose
+
+The Development Deliverable Matrix defines the required deliverables for each workflow command used during Development (G.x) stories.
+
+The matrix establishes the authoritative completion contract for feature development by defining the minimum repository-ready artifacts required before each workflow step may be considered complete.
+
+#### Matrix
+
+| Workflow Command | Required Deliverables |
+|------------------|-----------------------|
+| Initiate: Story Planning | Story Identification, Capability Recommendation, Story Naming Options, Engineering Decision Record |
+| Review: Story Planning | Functional Analysis, Repository Assessment, Documentation Audit, Story Scope Validation, Engineering Findings |
+| Implement: Story Planning | Complete Story Planning Package, Documentation Update Package (DUP), Story Deliverable Matrix, Engineering Traceability |
+| Verify: Story Planning | Story Planning Validation, Documentation Validation, Repository Readiness Confirmation |
+| Review: Implementation Package (RED) | Production Code Analysis, Test Strategy, RED Test Mapping, Repository Test Analysis |
+| Implement: Implementation Package (RED) | Repository Test Suite, Expected Failure Documentation, Repository Update Manifest, Engineering Traceability |
+| Verify: Implementation Package (RED) | Expected Failure Validation, RED Completion Confirmation, Repository Readiness |
+| Review: Implementation Package (GREEN) | Repository Patch Analysis, Repository Patch Manifest, GREEN Implementation Strategy |
+| Implement: Implementation Package (GREEN) | Pre-Implementation Validation (PIV), Repository Patch Unit(s), Repository-Ready Markdown, Workflow Continuation Contract |
+| Verify: Implementation Package (GREEN) | Repository Validation, Functional Validation, Repository Readiness Confirmation |
+| Review: Story Signoff | Repository Audit, Documentation Audit, Feature Completion Review, Engineering Findings |
+| Implement: Story Signoff | Story Completion Package, Repository Synchronization Package, Documentation Synchronization, Engineering Summary |
+| Verify: Story Signoff | Final Repository Validation, Story Acceptance Confirmation, Story Closure Authorization |
+
+#### Development Requirements
+
+Development workflow responses shall satisfy the deliverables defined within this matrix.
+
+Completion of a workflow step shall not be declared until every required deliverable for that workflow command has been produced.
+
+The Development Deliverable Matrix is the authoritative contract governing Development (G.x) stories.
+
+Engineering (E.x) stories are governed independently by the Engineering Deliverable Matrix.
+
+#### Purpose
+
+The Engineering Deliverable Matrix defines the expected deliverables for each workflow command used during Engineering (E.x) stories.
+
+The matrix establishes the minimum engineering artifacts that shall be produced for every workflow phase and serves as the engineering completion contract for methodology development.
+
+#### Matrix
+
+| Workflow Command | Required Deliverables |
+|------------------|-----------------------|
+| Initiate: Story Planning | Story Identification, Engineering Decision Record, Story Naming Options, Initial Story Recommendation |
+| Review: Story Planning | Engineering Analysis, Repository Assessment, Documentation Audit, Engineering Findings, Story Planning Recommendations |
+| Implement: Story Planning | Complete Story Planning Package, Documentation Update Package, Repository Update Manifest, Engineering Traceability |
+| Verify: Story Planning | Story Planning Validation, Repository Validation, Engineering Approval |
+| Review: Repository Test Specifications (RED) | Repository Test Analysis, Test Strategy, Expected Repository Failures |
+| Implement: Repository Test Specifications (RED) | Repository Test Specifications, Repository Test Suite, Expected Failure Documentation |
+| Verify: Repository Test Specifications (RED) | Repository Test Validation, Expected Failure Confirmation |
+| Review: Repository Patch Specifications (GREEN) | Repository Patch Analysis, Repository Patch Manifest, Repository Strategy |
+| Implement: Repository Patch Specifications (GREEN) | Pre-Implementation Validation, Repository Patch Unit(s), Workflow Continuation Contract |
+| Verify: Repository Patch Specifications (GREEN) | Repository Validation, Repository Readiness Confirmation, Engineering Approval |
+| Review: Story Signoff | Repository Audit, Documentation Audit, Engineering Review |
+| Implement: Story Signoff | Story Completion Package, Repository Synchronization Package, Engineering Summary |
+| Verify: Story Signoff | Final Repository Validation, Engineering Approval, Story Closure |
+
+#### Engineering Requirement
+
+Every workflow command shall satisfy the deliverables defined within this matrix.
+
+Workflow completion shall not be declared until all required deliverables have been produced.
+
+The Engineering Deliverable Matrix is authoritative for Engineering (E.x) stories.
+
+Development (G.x) stories shall define an independent Development Deliverable Matrix.
+
+### Purpose
+
+Deliverable Contracts define the required outputs for each Engineering Methodology workflow command.
+
+A Deliverable Contract specifies the minimum repository-ready artifacts that shall be produced before a workflow step may be considered complete.
+
+Every Engineering (E.x) and Development (G.x) workflow command shall satisfy its corresponding Deliverable Contract.
+
+### Principles
+
+Deliverable Contracts ensure that:
+
+- Workflow expectations are explicit.
+- Required engineering artifacts are consistently produced.
+- Workflow completion is objectively verifiable.
+- Engineering sessions remain reproducible.
+- Repository-ready deliverables are generated for every implementation step.
+
+### Contract Structure
+
+Each Deliverable Contract shall define:
+
+- Required engineering artifacts.
+- Required validation activities.
+- Required repository-ready outputs.
+- Completion criteria.
+- Workflow transition requirements.
+
+### Engineering Story Deliverables
+
+Engineering stories produce methodology and repository documentation.
+
+Typical deliverables include:
+
+- Engineering Findings.
+- Repository Patch Specifications.
+- Repository Patch Units.
+- Repository-ready documentation.
+- Engineering workflow improvements.
+
+### Development Story Deliverables
+
+Development stories produce software implementation artifacts.
+
+Typical deliverables include:
+
+- Story Planning Package.
+- Repository Test Specifications (RED).
+- Repository Patch Specifications (GREEN).
+- Story Signoff Package.
+- Repository synchronization updates.
+
+### Completion Rule
+
+A workflow step is complete only when:
+
+- All required Deliverable Contract artifacts have been produced.
+- Required validation has passed.
+- Repository-ready outputs have been generated where applicable.
+- The Workflow Continuation Contract has been provided.
+
+Failure to satisfy the Deliverable Contract shall prevent progression to the next workflow step.
 
 ## Story Planning
 
