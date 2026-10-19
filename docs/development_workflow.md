@@ -45,122 +45,173 @@ documentation.
 
 ## Engineering Session Startup Validation
 
+## Engineering Workflow Governance
+
 ### Purpose
 
-Engineering Session Startup Validation establishes the engineering baseline before Story Planning begins.
+Engineering Workflow Governance defines the authoritative engineering workflow for ResumeForge Engineering Methodology (REM).
 
-Every Engineering (E.x) and Development (G.x) story shall begin with this phase.
+This section is the single authoritative source governing engineering workflow execution, repository evolution, repository patch management, implementation sequencing, and engineering verification.
 
-Its purpose is to verify that the engineering environment, repository, documentation, supporting evidence, and engineering readiness are in a validated state before planning begins.
+No duplicate top-level Engineering Workflow Governance sections shall exist within the repository.
 
-No Story Planning activities shall begin until this phase has completed successfully.
+### Workflow Lifecycle
 
-### Objectives
+Every engineering story progresses through:
 
-Engineering Session Startup Validation shall:
+- Initiate
+- Review
+- Implement
+- Verify
+- Story Signoff
+- Repository Closeout
 
-- Establish communication readiness.
-- Validate repository accessibility.
-- Validate repository integrity.
-- Verify engineering environment readiness.
-- Establish the repository baseline.
-- Capture engineering evidence.
-- Declare engineering readiness.
-- Authorize the story to enter Story Planning.
+Each phase establishes the approved engineering baseline for the next phase.
 
-### Communication Status
+### Repository State First
 
-At the beginning of every engineering session, record:
+Every repository modification begins with Repository State Validation.
 
-| Item | Status |
-|------|--------|
-| Engineering Session | Active |
-| Story | Story Identifier |
-| Workflow Command | Current Command |
-| Repository Archive | Validation Status |
-| Repository Inspection | Status |
-| Repository Readiness | Status |
+Repository state—not implementation intent—determines the required repository operation.
 
-This establishes the communication baseline for the session.
+### Repository Boundary First
 
-### Repository Validation
+Before any Replace or Consolidate operation, repository boundaries shall be identified and verified.
 
-Verify:
+Boundary Specification shall include:
 
-- Repository archive accessibility.
-- Repository integrity.
-- Documentation availability.
-- Required engineering artifacts.
-- Supporting engineering assets.
+- Beginning Boundary
+- Ending Boundary
+- Repository Scope
+- Removal Targets
+- Expected Repository Outcome
 
-Engineering work shall not proceed until repository validation succeeds.
+Repository boundaries shall never rely upon developer interpretation.
 
-### Repository Inspection
+### Repository Artifact Completeness
 
-Perform a high-level inspection of the repository to establish engineering awareness.
+Every repository-modifying Repository Patch Update shall contain one complete Repository-ready Replacement Text.
 
-Examples include:
+Implementation descriptions, summaries, placeholders, or deferred work do not satisfy this requirement.
 
-- Repository structure
-- Documentation structure
-- Story history
-- Engineering artifacts
-- Supporting assets
+### Repository Advancement
 
-The inspection establishes the engineering context for the current session.
+Implementation State advances only after:
 
-### Repository Baseline
+- Repository State Validation
+- Repository Boundary Verification
+- Repository Artifact Verification
+- Repository Outcome Verification
 
-Record the repository baseline including:
+Intent alone shall never advance repository state.
 
-- Repository status
-- Documentation status
-- Story status
-- Engineering observations
-- Repository evidence
+### Repository Verification
 
-The Repository Baseline becomes the engineering reference point for the remainder of the story.
+Repository Patch Verification shall validate:
 
-### Engineering Readiness
+- repository state;
+- repository boundaries;
+- repository artifact completeness;
+- repository delta;
+- repository outcome.
 
-Determine whether engineering work may begin.
+### Repository Consolidation
 
-Engineering Readiness should consider:
+When duplicate authoritative sections exist:
 
-- Repository accessibility
-- Repository integrity
-- Documentation availability
-- Required engineering evidence
-- Known blockers
+1. designate the canonical section;
+2. consolidate all unique guidance;
+3. remove duplicate sections;
+4. verify that exactly one authoritative section remains.
 
-If readiness cannot be established, Story Planning shall not begin until blockers have been resolved.
+### Engineering Traceability
 
-### Session Authorization
+Every Repository Patch Update shall maintain complete traceability between:
 
-Engineering Session Startup Validation concludes with an explicit authorization.
+- Repository State
+- Repository Operation
+- Repository Boundary
+- Repository Artifact
+- Repository Verification
+- Repository Outcome
 
-Example:
+Engineering decisions shall be reproducible from repository evidence.
 
-> **Engineering Session Status:** APPROVED
->
-> The repository has been validated.
->
-> Engineering readiness has been established.
->
-> The story is authorized to proceed to Story Planning.
+The ResumeForge Engineering Methodology (REM) follows a deterministic engineering workflow.
 
-### Acceptance Criteria
+Every engineering story progresses through explicit workflow states.
 
-Engineering Session Startup Validation is complete when:
+```text
+Initiate
+    ↓
+Review
+    ↓
+Implement
+    ↓
+Verify
+```
 
-- Communication readiness has been established.
-- Repository validation has completed successfully.
-- Repository inspection has completed.
-- Repository baseline has been recorded.
-- Engineering readiness has been declared.
-- Session authorization has been granted.
+Workflow progression shall never skip a workflow state.
 
-Only after these conditions have been satisfied may Story Planning begin.
+Each workflow state has one primary engineering responsibility.
+
+Progression to the next workflow state is authorized only after successful completion of the current workflow state.
+
+### Workflow Responsibilities
+
+#### Initiate
+
+Produces the initial engineering definition and Story Planning foundation.
+
+#### Review
+
+Produces engineering specifications describing **what** will be implemented.
+
+#### Implement
+
+Produces repository-ready engineering artifacts describing **how** approved specifications are realized.
+
+#### Verify
+
+Validates implementation correctness, completeness, traceability, and repository readiness.
+
+Only Verify authorizes progression to the next workflow state.
+
+## Nested Workflow Governance
+
+### Purpose
+
+Nested Workflows provide a structured mechanism for temporarily suspending a parent engineering workflow in order to complete a dependent engineering activity before returning to the parent workflow.
+
+Nested Workflows shall be used only when completion of the parent workflow is blocked by work that is logically subordinate to the current engineering activity.
+
+### Workflow Preservation
+
+When entering a Nested Workflow, the parent workflow shall be preserved.
+
+The Nested Workflow shall:
+
+- identify the parent workflow;
+- identify the blocking condition;
+- define its own acceptance criteria;
+- complete its own Review, Implement, Verify, Signoff, and Repository Closeout activities as applicable.
+
+### Parent Workflow Restoration
+
+Upon successful completion of a Nested Workflow:
+
+1. the parent workflow shall be restored;
+2. repository state shall be revalidated;
+3. Remaining Work Validation shall be performed;
+4. engineering execution shall resume at the next unfinished parent workflow step.
+
+Nested Workflows shall not alter completed parent workflow decisions unless a repository validation identifies a defect requiring correction.
+
+### Repository Authority
+
+Nested Workflows remain subject to Repository Authority.
+
+Both parent and nested workflows shall recover engineering artifacts from the repository rather than conversational history or engineering memory.
 
 ## ResumeForge Engineering Methodology Execution Model
 
@@ -1275,7 +1326,71 @@ The Repository State Audit is complete when:
 
 ### Development Deliverable Matrix
 
-### Repository Patch Unit Manifest
+## Repository Patch Unit Manifest
+
+### Repository Patch Manifest
+
+#### Purpose
+
+The Repository Patch Manifest is the authoritative engineering register for every Repository Patch Unit (RPU) defined for the current engineering story.
+
+The Repository Patch Manifest is the authoritative source for:
+
+- Repository Patch Unit identifiers
+- Repository Patch Unit titles
+- implementation order
+- implementation status
+- engineering disposition
+- implementation dependencies
+
+The Repository Patch Manifest shall always reflect the current engineering baseline.
+
+Historical conversations, engineering memory, and inferred implementation plans shall never supersede the Repository Patch Manifest.
+
+---
+
+#### Repository Patch Manifest Requirements
+
+Each Repository Patch Unit shall contain:
+
+| Field | Description |
+|--------|-------------|
+| Identifier | Canonical Repository Patch Unit identifier |
+| Title | Canonical Repository Patch Unit title |
+| Status | Pending, In Progress, Complete, Retired, Merged, Split |
+| Classification | Proceed, Revise, Merge, Split, Complete, Retire |
+| Dependencies | Required predecessor Repository Patch Units |
+| Notes | Engineering remarks |
+
+---
+
+#### Repository Authority
+
+Whenever Review or Implement phases require Repository Patch information, Avery shall recover the Repository Patch Manifest from the repository.
+
+Repository Patch Units shall never be:
+
+- reconstructed;
+- inferred;
+- renamed;
+- abbreviated;
+- recreated from memory.
+
+The repository is the authoritative source.
+
+---
+
+#### Repository Manifest Lifecycle
+
+The Repository Patch Manifest shall be updated whenever:
+
+- a Repository Patch Unit is completed;
+- a Repository Patch Unit is retired;
+- Repository Patch Units are merged;
+- Repository Patch Units are split;
+- Remaining Work Validation changes the engineering plan.
+
+The Repository Patch Manifest shall always represent the current engineering plan.
 
 ### Repository Anchor Package
 
