@@ -908,3 +908,39 @@ Engineering improvements include:
 - Deterministic engineering progression
 
 The REM now establishes the repository as the authoritative engineering record and provides a governed engineering lifecycle for future ResumeForge development.
+
+### Story: G.2.5.35 – Profile Skills
+
+**Status**
+
+Completed
+
+**Engineering Summary**
+
+Added Profile Skills metadata to ResumeForge profiles, extending the profile model, CLI parser, and CLI workflow while preserving existing repository architecture and implementation patterns.
+
+**Significant Changes**
+
+- Added `skills` metadata to the Profile model.
+- Added CLI support for `--skills`.
+- Extended the CLI workflow to update profile skills.
+- Added RED and GREEN test coverage for the new capability.
+- Verified full repository regression with **520 passed, 1 skipped**.
+
+**Engineering Notes**
+
+This story validated several emerging ResumeForge Engineering Methodology concepts, including:
+
+- Repository Coverage Gate
+- Repository Context Extraction
+- Repository Artifact Sizing
+- Repository Identifier Fidelity
+- Repository Code Fidelity
+- Repository Patch Fidelity
+
+Formal adoption of these methodology enhancements is deferred to the next Engineering methodology story.
+
+**Related Stories**
+
+- G.2.5.34 – Profile Languages
+- E.5 – ResumeForge Engineering Methodology Consolidation

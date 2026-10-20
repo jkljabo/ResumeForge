@@ -2828,6 +2828,25 @@ def test_profile_edit_parser_accepts_languages():
     assert args.languages == "English,Spanish"
 
 
+def test_profile_edit_parser_accepts_skills():
+    parser = build_parser()
+
+    args = parser.parse_args(
+        [
+            "profile",
+            "edit",
+            "government",
+            "--skills",
+            "C#,.NET,Azure",
+        ]
+    )
+
+    assert args.command == "profile"
+    assert args.profile_command == "edit"
+    assert args.name == "government"
+    assert args.skills == "C#,.NET,Azure"
+
+
 def test_profile_edit_updates_languages():
     profile_service = Mock(spec=ProfileService)
 
@@ -2872,4 +2891,47 @@ def test_profile_edit_updates_languages():
     )
 
 
+def test_profile_edit_updates_skills():
+    profile_service = Mock(spec=ProfileService)
+
+    workflow = CLIWorkflow(
+        profile_service=profile_service,
+    )
+
+    args = Namespace(
+        command="profile",
+        profile_command="edit",
+        name="government",
+
+        headline=None,
+        full_name=None,
+        color_theme=None,
+        description=None,
+        tags=None,
+        notes=None,
+        category=None,
+        visibility=None,
+        owner=None,
+        organization=None,
+        purpose=None,
+        target_role=None,
+        experience_level=None,
+        employment_type=None,
+        work_arrangement=None,
+        work_authorization=None,
+        security_clearance=None,
+        citizenship=None,
+
+        languages=None,
+        skills="C#,.NET,Azure",
+    )
+
+    workflow.run(args)
+
+    profile_service.edit.assert_called_once_with(
+        "government",
+        {
+            "skills": "C#,.NET,Azure",
+        },
+    )
 

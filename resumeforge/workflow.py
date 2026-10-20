@@ -278,6 +278,9 @@ class CLIWorkflow:
         if getattr(args, "languages", None) is not None:
             updates["languages"] = args.languages
 
+        if getattr(args, "skills", None) is not None:
+            updates["skills"] = args.skills
+
         self.profile_service.edit(
             args.name,
             updates,

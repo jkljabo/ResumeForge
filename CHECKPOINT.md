@@ -13,60 +13,54 @@ Historical engineering information belongs in docs/history.md.
 
 ### Active Story
 
-Story: G.2.5.34 – Profile Languages
+Story: G.2.5.35 – Profile Skills
 
 ### Current Phase
 
-Story Planning
+Story Signoff
 
 ### Current Command
 
-Implement: Story Planning
+Implement: Story Signoff
 
 ### Repository Status
 
-Repository loaded successfully.
-Repository audit complete.
-Story Planning implementation in progress.
+Repository implementation complete.
+Repository verification complete.
+Story Signoff documentation in progress.
 
 ### Engineering Status
 
-Story approved during Review.
-Documentation Update Package in progress.
-Repository prepared for Story Planning verification.
+Story implementation approved.
+GREEN verification complete.
+Repository preparing for closeout.
 
 ### Outstanding Work
 
-- Verify: Story Planning
-- Implementation Package (RED)
+- Verify: Story Signoff
+- Repository Closeout
 
 ### Recently Completed
 
-✓ Initiate: Story Planning
-✓ Review: Story Planning
-✓ Implement: Story Planning
+✓ Review: Story Signoff
+✓ Repository Patch Specifications (GREEN)
+✓ Verify: Repository Patch Specifications (GREEN)
 
 ### Repository Recovery
 
 Repository is synchronized through
-Story: G.2.5.34 – Profile Languages
-Phase: Story Planning
-Command: Implement: Story Planning
 
-This section shall always identify:
+Story: G.2.5.35 – Profile Skills
+Phase: Story Signoff
+Command: Implement: Story Signoff
 
-- Current Story
-- Current Phase
-- Last Completed Command
-- Next Expected Command
-- Repository Readiness
+Next Expected Command
 
-### Session Notes
+Verify: Story Signoff
 
-### Session Closeout Checklist
+Repository Readiness
 
-Current repository session information begins immediately following this
-section.
+Ready for Story Signoff verification.
 
 
 ## Engineering Session State

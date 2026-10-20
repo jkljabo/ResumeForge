@@ -176,6 +176,105 @@ Acceptance Criteria
 ✓ Existing profile behavior remains unchanged
 ✓ Regression remains green
 
+## Story: G.2.5.35 – Profile Skills
+
+### Objective
+
+Introduce **Skills** as a first-class Profile attribute that can be created, edited, persisted, validated, and consumed throughout ResumeForge.
+
+### Scope
+
+This story extends the Profile subsystem by introducing a reusable collection of skills. The implementation follows the existing architecture used for Profile metadata while establishing the foundation for future resume generation and job matching capabilities.
+
+### Functional Requirements
+
+- Add a `skills` collection to the Profile model.
+- Default to an empty collection.
+- Persist skills through serialization and deserialization.
+- Preserve backward compatibility with existing profile files.
+- Support CLI editing using `--skills`.
+- Accept comma-delimited input.
+- Normalize surrounding whitespace during parsing.
+- Propagate updates through the workflow and persistence layers.
+
+### Testing Strategy (RED)
+
+Create failing tests covering:
+
+#### Profile
+
+- Default skills collection
+- Construction with skills
+- Updating skills
+- Collection persistence within the model
+
+Expected initial failure:
+
+```
+AttributeError:
+'Profile' object has no attribute 'skills'
+```
+
+#### Persistence
+
+- Serialize populated skills
+- Deserialize populated skills
+- Empty collection handling
+- Backward compatibility
+
+Expected initial failure:
+
+```
+skills missing from persisted profile
+```
+
+#### CLI
+
+Verify:
+
+- Parser accepts `--skills`
+- Parsed collection reaches the workflow layer
+- Profile edit updates skills correctly
+
+Expected initial failures:
+
+```
+unrecognized arguments:
+--skills
+```
+
+or
+
+```
+workflow.edit(...) not invoked with skills
+```
+
+### Production Components
+
+Implementation is expected to modify:
+
+- Profile model
+- Profile persistence
+- CLI parser
+- CLI edit command
+- Workflow/Profile service
+- Automated tests
+
+### Documentation
+
+Update upon completion:
+
+- docs/history.md
+- CHECKPOINT.md
+
+### Success Criteria
+
+- Skills exist as a first-class Profile property.
+- Skills persist correctly.
+- Skills are editable from the CLI.
+- Existing profiles remain compatible.
+- All automated tests pass following GREEN implementation.
+
 ## Story Completion
 
 Acceptance Criteria

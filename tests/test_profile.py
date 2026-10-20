@@ -452,3 +452,59 @@ def test_profile_updates_languages():
     ]
 
 
+def test_profile_defaults_skills():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    assert profile.skills is None
+
+
+def test_profile_stores_skills():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    profile.skills = [
+        "C#",
+        ".NET",
+        "Azure",
+    ]
+
+    assert profile.skills == [
+        "C#",
+        ".NET",
+        "Azure",
+    ]
+
+
+def test_profile_updates_skills():
+    profile = Profile(
+        name=DEFAULT_PROFILE_NAME,
+        directory=Path("profiles"),
+        is_default=True,
+    )
+
+    profile.skills = [
+        "C#",
+    ]
+
+    profile.skills = [
+        "C#",
+        ".NET",
+        "Azure",
+        "SQL Server",
+    ]
+
+    assert profile.skills == [
+        "C#",
+        ".NET",
+        "Azure",
+        "SQL Server",
+    ]
+
+

@@ -32,6 +32,7 @@ class Profile:
     citizenship: str | None = None
     residency: str | None = None
     languages: str | None = None
+    skills: str | None = None
 
     @property
     def resume_path(self) -> Path:

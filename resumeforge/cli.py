@@ -189,6 +189,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--languages",
         help="Profile languages.",
     )
+
+    edit_parser.add_argument(
+        "--skills",
+        help="Profile skills.",
+    )
     
     remove.add_argument(
         "name",
