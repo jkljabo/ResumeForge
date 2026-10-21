@@ -13,15 +13,15 @@ Historical engineering information belongs in docs/history.md.
 
 ### Active Story
 
-Story: G.2.5.35 – Profile Skills
+Story: G.2.5.36 – Profile Certifications
 
 ### Current Phase
 
-Story Signoff
+Story Planning
 
 ### Current Command
 
-Implement: Story Signoff
+Review: Implementation Package (RED)
 
 ### Repository Status
 

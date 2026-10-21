@@ -944,3 +944,71 @@ Formal adoption of these methodology enhancements is deferred to the next Engine
 
 - G.2.5.34 – Profile Languages
 - E.5 – ResumeForge Engineering Methodology Consolidation
+
+### Story: G.2.5.36 – Profile Certifications
+
+**Status**
+
+Planning Approved
+
+**Engineering Summary**
+
+Introduced planning for Profile Certifications, extending the Profile aggregate with persistent certification metadata following the established collection-based implementation pattern.
+
+**Planned Repository Impact**
+
+- Profile model
+- Profile persistence
+- Serialization
+- CLI parser
+- CLI workflow
+- Unit testing
+- Regression verification
+
+### Story: E.7 – RED/GREEN Evidence Integrity
+
+**Status**
+
+Methodology Enhancement Complete
+
+**Engineering Summary**
+
+Expanded the ResumeForge Engineering Methodology (REM) to formalize evidence-driven Repository Patch execution and strengthen deterministic repository modification practices. This story transformed Repository Patch Specifications from a document editing activity into a governed engineering execution process.
+
+**Methodology Enhancements**
+
+Introduced and refined engineering governance for:
+
+- RED Evidence Integrity
+- GREEN Evidence Integrity
+- Repository Patch Execution Planning
+- Repository Patch Execution Matrix (RPEM)
+- Sequential Repository Patch Execution
+- Recursive Repository Patch Execution
+- Repository Location Integrity
+- Methodology Continuity Law
+- Story Execution Planning Law
+- Execution Hierarchy Law
+- GREEN Phase Completion Governance
+
+**Engineering Decisions**
+
+This story established several engineering principles that will be incorporated into the official ResumeForge Engineering Methodology, including:
+
+- Repository modifications shall be deterministic and repository-verified.
+- Repository Update Packages shall include a Repository Location Specification (RLS).
+- Execution planning shall produce an authoritative Repository Patch Execution Matrix before repository modifications begin.
+- Repository Patch implementation shall execute the approved execution hierarchy rather than redefining it during implementation.
+- Repository continuity shall be validated before every Repository Patch implementation.
+- GREEN phase completion shall be determined by successful execution of the approved Repository Patch Execution Matrix.
+
+**Engineering Notes**
+
+Additional methodology improvements identified during implementation—including Repository Location inheritance, duplicate anchor handling, execution hierarchy governance, execution contract semantics, and other engineering refinements—were intentionally accumulated for incorporation during the official ResumeForge Engineering Methodology consolidation rather than altering the baseline methodology during active story execution.
+
+**Related Stories**
+
+- E.5 – ResumeForge Engineering Methodology Consolidation
+- E.6 – Engineering Lifecycle Governance
+- G.2.5.35 – Profile Skills
+- G.2.5.36 – Profile Certifications

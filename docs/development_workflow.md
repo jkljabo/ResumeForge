@@ -5753,6 +5753,37 @@ Story Planning has been implemented.
 
 No approved Story Planning test shall remain unimplemented before GREEN begins.
 
+### RED Evidence Integrity
+
+The RED phase establishes the engineering evidence required before implementation begins. Its purpose is to ensure that implementation is driven by engineering analysis rather than assumptions, producing an implementation package that fully defines the work to be completed during the GREEN phase.
+
+#### Required Engineering Evidence
+
+Before the RED phase may be considered complete, the implementation package shall include:
+
+- Functional requirements affected by the proposed change.
+- Analysis of the impacted production code.
+- Analysis of existing implementation patterns within the repository.
+- Analysis of existing testing patterns applicable to the proposed change.
+- Planned production code modifications.
+- Planned additions or modifications to automated tests.
+- Expected failing test cases demonstrating the required behavior.
+- Traceability between requirements, implementation, and testing.
+- Identification of unresolved engineering questions or blockers.
+
+#### RED Completion Criteria
+
+The RED phase is complete only when:
+
+- All required engineering evidence has been documented.
+- Existing implementation patterns have been analyzed.
+- Existing testing patterns have been analyzed.
+- Expected failing tests have been identified.
+- The implementation package provides sufficient engineering guidance to perform GREEN implementation without requiring additional engineering analysis.
+- Outstanding engineering questions have been resolved or explicitly documented as blockers.
+
+Completion of the RED phase authorizes progression to the GREEN phase. It does not authorize production code modification until GREEN implementation begins.
+
 ## Phase 3 – Implementation Package (GREEN)
 
 ### Phase Evidence Chain
@@ -6032,6 +6063,325 @@ If implementation reveals missing requirements, conflicting requirements, or
 insufficient engineering guidance, Story Planning shall be reopened before
 GREEN implementation continues.
 
+### Repository Patch Execution Planning
+
+Repository Patch implementation begins with execution planning rather than repository modification. The purpose of execution planning is to determine the complete implementation strategy required to satisfy the approved engineering story before any Repository Patch Units (RPUs) are executed.
+
+#### Repository Patch Execution Matrix (RPEM)
+
+The Repository Patch Execution Matrix (RPEM) is the authoritative execution plan for the Repository Patch phase.
+
+The RPEM shall:
+
+- Identify every Repository Patch Unit (RPU) required to complete the story.
+- Define the execution order of each RPU.
+- Identify any RPUs that require subdivision into child sections (`RPU-0x.x`).
+- Establish the parent-child relationships between RPUs and their subdivisions.
+- Remain fixed for the duration of the story unless the approved story scope changes.
+
+Execution planning is performed exactly once for each engineering story.
+
+#### Implementation Decision
+
+The initial **Implement: Repository Patch Specifications (GREEN)** command shall determine whether the approved engineering story requires:
+
+- a single Repository Patch Unit, or
+- multiple Repository Patch Units.
+
+If multiple RPUs are required, the implementation shall generate the complete Repository Patch Execution Matrix before any repository modifications are produced.
+
+Repository updates begin only after the Repository Patch Execution Matrix has been established.
+
+#### Execution Authority
+
+Once approved, the Repository Patch Execution Matrix becomes the authoritative execution plan for the Repository Patch phase.
+
+Subsequent implementation commands shall execute the approved matrix sequentially without re-planning the story unless the approved story scope changes.
+
+### Sequential Repository Patch Execution
+
+After the Repository Patch Execution Matrix (RPEM) has been established, implementation proceeds by executing one Repository Patch Unit (RPU) at a time in the approved sequence.
+
+#### Sequential Execution
+
+Each implementation command shall perform the following activities in order:
+
+1. Review the previously completed Repository Patch Unit (or subdivision).
+2. Verify that the previous implementation was correctly incorporated into the repository.
+3. Correct the previous implementation if necessary.
+4. Generate exactly one new repository-ready implementation deliverable.
+5. Identify the next implementation command.
+6. End execution.
+
+No implementation command shall generate more than one Repository Patch Unit or subdivision.
+
+#### Continuity Validation
+
+Repository Patch execution is continuous.
+
+Each implementation command begins by validating the immediately preceding implementation before producing additional repository modifications.
+
+If the previous implementation is incomplete or incorrect:
+
+- Execution shall stop.
+- The previous implementation shall be corrected.
+- No subsequent Repository Patch Unit shall be generated until continuity has been restored.
+
+#### Execution Progression
+
+Execution shall follow the approved Repository Patch Execution Matrix without skipping approved Repository Patch Units.
+
+Implementation shall not return to Repository Patch review until every Repository Patch Unit and approved subdivision defined by the execution matrix has been completed.
+
+### Recursive Execution and Completion Governance
+
+Repository Patch execution is hierarchical. Repository Patch Units (RPUs) may be implemented as either a single repository update or as a parent RPU containing one or more subordinate implementation sections (`RPU-0x.x`).
+
+#### Recursive Execution
+
+When the approved Repository Patch Execution Matrix identifies an RPU requiring subdivision:
+
+- The parent RPU establishes the subdivision plan.
+- No repository update is generated by the parent RPU beyond the approved subdivision matrix.
+- Each subordinate section (`RPU-0x.x`) is implemented sequentially.
+- Each subordinate implementation begins by validating the immediately preceding completed implementation.
+- After the final subordinate section has been completed, execution returns to the parent execution sequence.
+
+This recursive execution model allows complex engineering changes to be implemented incrementally while maintaining continuous engineering validation.
+
+#### Completion Governance
+
+Execution continues until every Repository Patch Unit and every approved subdivision defined by the Repository Patch Execution Matrix has been completed.
+
+A parent Repository Patch Unit shall not be considered complete until all of its subordinate implementation sections have been successfully implemented.
+
+The Repository Patch phase shall not transition to the next engineering workflow phase until:
+
+- Every Repository Patch Unit has been implemented.
+- Every approved subdivision has been completed.
+- Repository continuity has been verified throughout execution.
+- All repository updates have been successfully incorporated into the repository.
+
+Completion of the Repository Patch Execution Matrix authorizes progression to the subsequent workflow phase.
+
+### Repository Location Integrity
+
+Repository Update Packages shall identify a single, deterministic repository location for every repository modification.
+
+#### Repository Location Specification (RLS)
+
+Every Repository Update Package shall include a Repository Location Specification consisting of:
+
+- Target repository document.
+- Verified Primary Anchor.
+- Verified Secondary Anchor.
+- Explicit insertion rule.
+- Repository verification summary.
+
+The Repository Location Specification becomes part of the engineering evidence supporting the repository modification.
+
+#### Anchor Verification
+
+Primary and Secondary Anchors shall be copied verbatim from the current repository.
+
+Anchors shall:
+
+- Match the repository heading exactly.
+- Preserve the repository heading level.
+- Be verified against the current repository state.
+- Never be inferred or reconstructed from memory.
+
+#### Location Determination
+
+The insertion rule shall uniquely identify where the repository update is to be applied.
+
+Acceptable insertion rules include:
+
+- Immediately before a verified heading.
+- Immediately after a verified heading.
+- Append as the final subsection within a verified parent section.
+
+Positional instructions that require interpretation are prohibited.
+
+#### Repository Location Continuity
+
+When a parent Repository Patch Unit establishes a verified Repository Location Specification, child Repository Patch Units may inherit that location.
+
+Each child implementation shall verify that the inherited Repository Location Specification remains valid before generating repository updates.
+
+If repository structure changes invalidate the inherited location, execution shall stop until a new Repository Location Specification has been established.
+
+### Methodology Continuity Law
+
+The ResumeForge Engineering Methodology (REM) shall evolve incrementally while preserving established engineering practices that have been validated through implementation experience.
+
+#### Purpose
+
+Methodology improvements shall extend or refine existing engineering processes rather than replacing them unnecessarily. The objective is to preserve engineering consistency across development stories while allowing the methodology to mature through practical application.
+
+#### Continuity Principles
+
+When introducing methodology changes:
+
+- Existing approved methodology shall remain authoritative unless explicitly superseded.
+- New engineering guidance shall integrate with existing workflow rather than duplicate or conflict with established practices.
+- Methodology enhancements shall preserve compatibility with prior engineering stories whenever practical.
+- Engineering terminology shall remain consistent throughout the repository.
+
+#### Methodology Evolution
+
+Engineering observations, lessons learned, and validated workflow improvements identified during implementation shall be accumulated throughout the engineering story.
+
+These improvements shall be incorporated into the official ResumeForge Engineering Methodology during the designated methodology update phase rather than immediately modifying the baseline methodology during active implementation.
+
+#### Regression Prevention
+
+Methodology changes shall not introduce unnecessary workflow cycles, duplicate engineering responsibilities, or invalidate previously approved engineering practices without documented engineering justification.
+
+Any methodology change that supersedes an existing process shall explicitly identify:
+
+- The process being superseded.
+- The engineering rationale.
+- The replacement process.
+- The expected engineering benefit.
+
+This continuity model ensures that the ResumeForge Engineering Methodology evolves as a coherent engineering system rather than a collection of isolated process changes.
+
+### Story Execution Planning Law
+
+Repository Patch implementation shall separate execution planning from execution. The complete execution strategy for an engineering story shall be established before repository modifications begin.
+
+#### Execution Planning
+
+Execution planning is performed exactly once during the initial **Implement: Repository Patch Specifications (GREEN)** command.
+
+Execution planning shall:
+
+- Analyze the approved engineering story as a whole.
+- Determine the complete set of Repository Patch Units (RPUs) required to satisfy the story.
+- Identify any RPUs requiring subdivision into implementation sections (`RPU-0x.x`).
+- Establish the execution order for all RPUs and subdivisions.
+- Produce the Repository Patch Execution Matrix (RPEM).
+
+No repository modifications shall be generated during execution planning.
+
+#### Repository Patch Execution Matrix
+
+The Repository Patch Execution Matrix (RPEM) is the authoritative implementation plan for the Repository Patch phase.
+
+Once established, the RPEM shall:
+
+- Define the complete execution tree for the engineering story.
+- Remain fixed throughout execution unless the approved story scope changes.
+- Serve as the authoritative sequence for all subsequent Repository Patch implementations.
+
+#### Execution Model
+
+Implementation shall execute the Repository Patch Execution Matrix sequentially.
+
+Each implementation command shall:
+
+1. Validate the immediately preceding implementation.
+2. Generate exactly one approved Repository Patch Unit or subdivision.
+3. Identify the next implementation command.
+4. End execution.
+
+When an RPU contains subordinate implementation sections, execution shall complete every subordinate section before returning to the parent execution sequence.
+
+#### Story Completion
+
+Execution planning is complete when the Repository Patch Execution Matrix has been established.
+
+Repository Patch implementation is complete only after every Repository Patch Unit and every approved subdivision defined by the Repository Patch Execution Matrix has been successfully implemented.
+
+### Repository Patch Numbering and Execution Hierarchy
+
+Repository Patch implementation shall use a hierarchical numbering model that accurately represents the engineering execution structure for the approved Repository Patch Execution Matrix (RPEM).
+
+#### Repository Patch Unit Numbering
+
+Each top-level Repository Patch Unit shall use the format:
+
+- `RPU-01`
+- `RPU-02`
+- `RPU-03`
+
+Each Repository Patch Unit represents one logical engineering capability within the Repository Patch phase.
+
+#### Subdivision Numbering
+
+When a Repository Patch Unit cannot reasonably be completed within a single implementation response, it shall be subdivided.
+
+Subdivisions shall use the format:
+
+- `RPU-03.1`
+- `RPU-03.2`
+- `RPU-03.3`
+
+Subdivisions remain part of their parent Repository Patch Unit and shall not be treated as independent RPUs.
+
+#### Execution Hierarchy
+
+Repository Patch implementation follows a hierarchical execution model.
+
+A parent Repository Patch Unit may either:
+
+- Produce a repository update directly, or
+- Establish a subdivision plan for subordinate implementation sections.
+
+When subordinate sections exist:
+
+- Parent execution pauses.
+- Child sections execute sequentially.
+- Upon completion of the final child section, execution returns to the parent sequence defined by the Repository Patch Execution Matrix.
+
+This recursive execution model preserves engineering continuity while supporting complex methodology updates.
+
+#### Numbering Integrity
+
+Repository Patch numbering shall remain stable throughout implementation.
+
+Repository Patch Units and subdivisions shall not be renumbered after execution planning unless the approved engineering story scope changes and the Repository Patch Execution Matrix is formally regenerated.
+
+Stable numbering ensures:
+
+- deterministic execution,
+- reproducible engineering history,
+- consistent implementation references,
+- accurate methodology traceability.
+
+### GREEN Phase Completion Governance
+
+Completion of the GREEN Repository Patch phase is governed by successful execution of the approved Repository Patch Execution Matrix (RPEM). Completion is determined by execution of the approved engineering work, not by completion of individual Repository Patch Units in isolation.
+
+#### Completion Requirements
+
+The GREEN Repository Patch phase shall not be considered complete until:
+
+- Every Repository Patch Unit (RPU) defined by the approved Repository Patch Execution Matrix has been implemented.
+- Every approved child implementation section (`RPU-0x.x`) has been completed.
+- Repository continuity has been maintained throughout execution.
+- All required repository modifications have been incorporated into the repository.
+- No approved Repository Patch work remains outstanding.
+
+#### GREEN Phase Completeness Review
+
+After the final Repository Patch Unit has been implemented, a GREEN Phase Completeness Review shall be performed.
+
+The review shall verify:
+
+- The approved Repository Patch Execution Matrix has been fully traversed.
+- Every execution node has been completed.
+- Parent Repository Patch Units containing child implementation sections are complete.
+- The repository reflects every approved repository modification.
+- Repository execution history remains internally consistent.
+
+#### Workflow Progression
+
+The engineering workflow shall not transition to the next lifecycle phase until the GREEN Phase Completeness Review has successfully completed.
+
+The GREEN Phase Completeness Review is the sole authorization for exiting the Repository Patch implementation loop and resuming the standard ResumeForge Engineering Methodology workflow.
+
 ### GREEN Implementation Package
 
 When GREEN begins, ChatGPT (Avery) shall provide a complete implementation package.
@@ -6081,6 +6431,35 @@ insufficient engineering guidance, Story Planning shall be reopened before
 GREEN implementation continues.
 
 If RED confirmation has not occurred, GREEN shall not begin.
+
+### GREEN Evidence Integrity
+
+The GREEN phase transforms the approved RED engineering analysis into repository-ready implementation. Every implementation activity shall be directly traceable to the engineering evidence established during the RED phase.
+
+#### Required Implementation Evidence
+
+Before the GREEN phase may be considered complete, the implementation package shall include:
+
+- Production code implementing the approved design.
+- Automated tests validating the implemented behavior.
+- Resolution of all expected failing tests identified during RED.
+- Documentation updates required by the implemented change.
+- Verification that implementation follows established repository patterns.
+- Verification that testing follows established repository testing patterns.
+- Traceability between RED engineering evidence, implementation, and automated tests.
+
+#### GREEN Completion Criteria
+
+The GREEN phase is complete only when:
+
+- All planned production code modifications have been implemented.
+- All planned automated tests have been implemented.
+- Previously expected failing tests now pass.
+- Existing automated test suites continue to pass unless an approved exception exists.
+- Documentation required by the implementation has been completed.
+- Every implemented change is traceable to engineering evidence established during the RED phase.
+
+Completion of the GREEN phase authorizes progression to the next engineering workflow phase in accordance with the ResumeForge Engineering Methodology.
 
 ## Review Quality Gate
 
