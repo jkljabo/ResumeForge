@@ -213,6 +213,791 @@ Nested Workflows remain subject to Repository Authority.
 
 Both parent and nested workflows shall recover engineering artifacts from the repository rather than conversational history or engineering memory.
 
+## Engineering Lifecycle Governance
+
+### Purpose
+
+Engineering Lifecycle Governance establishes the architectural governance model for the ResumeForge Engineering Methodology (REM). It defines how engineering stories progress, how engineering work is organized, how implementation baselines evolve, and how repository modifications are governed. The objective is to provide deterministic engineering outcomes while minimizing unnecessary engineering cycles.
+
+### Guiding Principle
+
+The ResumeForge Engineering Methodology shall optimize for deterministic engineering outcomes with the fewest practical engineering cycles while preserving repository integrity, traceability, implementation quality, and engineering consistency.
+
+### Layered REM Architecture
+
+The REM is organized into three architectural layers.
+
+#### Engineering Story Lifecycle
+
+The Engineering Story Lifecycle defines the progression of an engineering story.
+
+Current lifecycle:
+
+1. Engineering Session Startup
+2. Story Planning
+3. Repository Implementation
+4. Repository Closeout
+5. Repository Commit
+6. Story Complete
+
+The lifecycle defines **where** a story is within its progression.
+
+#### Engineering Phases
+
+Engineering work is organized into Engineering Phases.
+
+Current phases:
+
+- Story Planning
+- Repository Patch Specifications
+- Repository Closeout
+- Repository Commit
+
+Engineering Phases define **what engineering work** is being performed.
+
+#### Engineering Execution Cycle
+
+Every Engineering Phase follows the same execution model:
+
+- Review
+- Implement
+- Verify
+
+The Engineering Execution Cycle defines **how engineering work** is performed.
+
+### Architectural Relationships
+
+```text
+Engineering Story
+        │
+        ▼
+Engineering Story Lifecycle
+        │
+        ▼
+Engineering Phase
+        │
+        ▼
+Engineering Execution Cycle
+```
+
+### Governance Principles
+
+The REM shall adhere to the following principles:
+
+- Engineering Story Lifecycle governs story progression.
+- Engineering Phases govern engineering work.
+- Engineering Execution Cycle governs engineering execution.
+- Engineering Decision Records govern methodology changes.
+- Repository modifications shall be deterministic.
+- Repository-ready updates shall reference verified repository structure.
+- Repository-ready updates shall identify the correct implementation operation.
+- Only one approved Implementation Baseline may exist at any time.
+
+### Repository Patch Continuity Verification
+
+Beginning with RPU-02, every Repository Patch Unit implementation shall begin by verifying the successful application of the immediately preceding Repository Patch Unit.
+
+Repository Patch Continuity Verification confirms:
+
+- previous RPU successfully applied,
+- repository continuity maintained,
+- repository ready for current implementation.
+
+RPU-01 is exempt.
+
+### Repository Structure Verification
+
+Repository Structure Verification shall verify:
+
+- target document,
+- verified repository anchor,
+- anchor hierarchy,
+- implementation operation (Insert, Replace, Append, or Delete),
+- repository readiness.
+
+Repository-ready updates shall never be generated from assumed repository structure.
+
+### Re-entry Governance
+
+Engineering phase re-entry shall be classified before repeating a phase.
+
+#### Corrective Re-entry
+
+Corrective Re-entry repairs incomplete or failed engineering work.
+
+#### Evolutionary Re-entry
+
+Evolutionary Re-entry incorporates approved methodology improvements that do not materially change scope, dependencies, or sequencing.
+
+### Engineering Freeze Governance
+
+Material methodology changes affecting the approved Implementation Baseline shall initiate an Engineering Freeze.
+
+During an Engineering Freeze:
+
+- RPU implementation pauses.
+- The active baseline is frozen.
+- The Nested REM Update Process is completed.
+- A Baseline Revision or Baseline Replacement decision is made before implementation resumes.
+
+### Engineering Phase Transition Governance
+
+Every engineering response shall conclude with:
+
+- Evidence Chain
+- Completion Verification
+- Engineering Phase Status
+- Authoritative Next Command
+
+The Next Command constitutes the formal transition between engineering phases.
+
+## Engineering Decision Record Governance
+
+### Purpose
+
+Engineering Decision Records (EDRs) provide the authoritative record of architectural and methodology decisions made during the evolution of the ResumeForge Engineering Methodology (REM). They preserve the rationale behind engineering decisions, support future maintenance, and provide traceability between engineering discussions and repository implementation.
+
+### Governance Principles
+
+Engineering Decision Records shall be used whenever an engineering decision:
+
+- changes the REM architecture,
+- introduces or modifies governance,
+- changes repository implementation strategy,
+- affects engineering workflow,
+- establishes new terminology,
+- changes engineering quality requirements.
+
+Routine implementation details that do not affect methodology or architecture do not require an Engineering Decision Record.
+
+### Engineering Decision Record Structure
+
+Every Engineering Decision Record shall contain:
+
+- Decision
+- Context
+- Analysis
+- Recommendation
+- Repository Impact
+- Evidence
+- Verification
+
+This structure provides consistent documentation and supports future engineering review.
+
+### Decision Authority
+
+Approved Engineering Decision Records become part of the current Implementation Baseline.
+
+Implementation guidance derived from approved Engineering Decision Records shall be reflected in:
+
+- Story Planning,
+- Repository Patch Specifications,
+- Engineering Quality Gates,
+- Repository implementation.
+
+Superseded Engineering Decision Records shall remain part of the engineering history to preserve architectural traceability.
+
+### Relationship to Engineering Freeze Governance
+
+When a methodology change triggers an Engineering Freeze, the resulting methodology update shall be documented by one or more Engineering Decision Records before implementation resumes.
+
+The approved Engineering Decision Record(s) become the authoritative basis for either:
+
+- Implementation Baseline Revision, or
+- Implementation Baseline Replacement.
+
+### Traceability
+
+Engineering Decision Records shall maintain traceability between:
+
+- Engineering discussions,
+- Engineering recommendations,
+- Repository-ready updates,
+- Final repository implementation.
+
+This traceability ensures that future engineering work can understand not only *what* changed, but *why* it changed.
+
+## Repository Governance
+
+### Purpose
+
+Repository Governance establishes the standards that ensure all modifications to the ResumeForge repository are deterministic, traceable, verifiable, and maintainable. It defines how repository updates are planned, validated, implemented, and documented throughout the ResumeForge Engineering Methodology (REM).
+
+### Governance Principles
+
+Repository modifications shall adhere to the following principles:
+
+- All repository updates shall be based on verified repository structure.
+- Every repository modification shall be deterministic and reproducible.
+- Repository-ready updates shall identify the implementation operation before implementation.
+- Only one approved Implementation Baseline may exist at any time.
+- Repository history shall preserve engineering traceability.
+
+### Repository Modification Operations
+
+Repository modifications shall explicitly identify one of the following operations:
+
+- Insert Before
+- Insert After
+- Replace Section
+- Append
+- Delete (future capability)
+
+The required operation shall be determined through Repository Structure Verification and shall never be assumed.
+
+### Repository Integrity
+
+Repository integrity shall be preserved by ensuring:
+
+- existing engineering work is not unintentionally overwritten,
+- section hierarchy remains consistent,
+- verified anchors are used for all repository-ready updates,
+- implementation boundaries are explicitly identified.
+
+### Repository Traceability
+
+Every repository modification shall maintain traceability between:
+
+- Engineering Decision Records,
+- Repository Patch Units,
+- repository-ready updates,
+- implemented repository changes.
+
+This traceability provides an auditable engineering history and supports future maintenance and methodology evolution.
+
+### Relationship to Repository Patch Units
+
+Repository Patch Units are the authorized mechanism for modifying repository documentation within the REM.
+
+Each Repository Patch Unit shall:
+
+- verify repository continuity (when applicable),
+- verify repository structure,
+- identify the implementation operation,
+- produce a repository-ready update,
+- include an Evidence Chain,
+- conclude with Engineering Phase Status and the Authoritative Next Command.
+
+This governance ensures consistent repository evolution throughout every engineering story.
+
+## Repository Structure Verification
+
+### Purpose
+
+Repository Structure Verification establishes the mandatory validation process that shall be completed before generating every Repository Patch Unit. Its purpose is to ensure that repository-ready updates are based on the actual repository state rather than assumptions, preventing incorrect insertions, duplicate sections, and invalid implementation operations.
+
+### Verification Objectives
+
+Repository Structure Verification shall verify:
+
+- Target document.
+- Verified repository anchor.
+- Anchor hierarchy.
+- Section existence.
+- Implementation operation.
+- Repository readiness.
+
+Implementation shall not proceed until all verification objectives have been satisfied.
+
+### Repository Verification Process
+
+Repository Structure Verification shall be performed in the following order:
+
+1. Review the current repository.
+2. Verify the target document.
+3. Verify the requested section or anchor.
+4. Determine whether the requested section already exists.
+5. Select the appropriate implementation operation.
+6. Verify the implementation boundary.
+7. Confirm repository readiness.
+
+### Implementation Operations
+
+The implementation operation shall always be explicitly identified.
+
+Supported operations include:
+
+- Insert Before
+- Insert After
+- Replace Section
+- Append
+- Delete (future capability)
+
+The operation shall be determined from the verified repository state and shall never be assumed.
+
+### Repository Anchor Governance
+
+Verified repository anchors shall:
+
+- uniquely identify the implementation location,
+- remain stable throughout implementation,
+- preserve document hierarchy,
+- support deterministic repository updates.
+
+If the requested anchor is not found, Repository Structure Verification shall identify the nearest valid implementation point and document the rationale before implementation continues.
+
+### Repository Structure Changes
+
+Repository Structure Verification shall determine whether the repository state requires:
+
+- insertion of a new section,
+- replacement of an existing section,
+- extension of an existing section,
+- postponement of implementation due to repository inconsistency.
+
+Repository changes shall never be inferred from previous engineering sessions.
+
+### Relationship to Repository Patch Continuity Verification
+
+Repository Patch Continuity Verification confirms that previous engineering work remains intact.
+
+Repository Structure Verification determines how the current engineering work shall be applied.
+
+These verification activities are complementary and shall always be performed in this order:
+
+1. Repository Patch Continuity Verification (when applicable).
+2. Repository Structure Verification.
+3. Repository implementation.
+
+## Engineering Quality Gates
+
+### Purpose
+
+Engineering Quality Gates establish the mandatory verification criteria that must be satisfied before an engineering phase is considered complete. Their purpose is to ensure consistent engineering quality, deterministic repository evolution, and implementation readiness throughout the ResumeForge Engineering Methodology (REM).
+
+### Quality Gate Sequence
+
+Every Repository Patch Unit shall satisfy the following quality gates in order:
+
+1. Repository Patch Continuity Verification (RPU-02 and later).
+2. Repository Structure Verification.
+3. Repository-ready implementation.
+4. Evidence Chain completion.
+5. Completion Verification.
+6. Engineering Phase Status.
+7. Authoritative Next Command.
+
+Implementation shall not advance until each applicable quality gate has passed.
+
+### Repository Patch Continuity Gate
+
+Beginning with RPU-02, verify:
+
+- the previous Repository Patch Unit has been successfully applied,
+- repository continuity has been preserved,
+- the repository is ready for the current implementation.
+
+### Repository Structure Gate
+
+Verify:
+
+- target document,
+- verified repository anchor,
+- section existence,
+- implementation operation,
+- implementation boundary,
+- repository readiness.
+
+### Implementation Baseline Stability Gate
+
+Before generating repository-ready updates, verify:
+
+- no active Engineering Freeze exists,
+- the current Implementation Baseline is approved,
+- no unresolved Nested REM Update Process is in progress.
+
+If any of these conditions fail, implementation shall stop until the methodology has been stabilized.
+
+### Evidence Gate
+
+Every Repository Patch Unit shall include an Evidence Chain consisting of:
+
+- Evidence
+- Analysis
+- Recommendation
+- Verification
+
+### Completion Gate
+
+Every Repository Patch Unit shall conclude with:
+
+- RPU Completion Verification,
+- Engineering Phase Status,
+- Authoritative Next Command.
+
+A Repository Patch Unit is not complete until all required quality gates have passed.
+
+## Engineering Execution Governance
+
+### Purpose
+
+Engineering Execution Governance defines the standard execution model used throughout the ResumeForge Engineering Methodology (REM). It establishes a consistent, repeatable process for performing engineering work while ensuring repository integrity, implementation quality, and engineering traceability.
+
+### Engineering Execution Cycle
+
+Every Engineering Phase shall be executed using the following sequence:
+
+1. Review
+2. Implement
+3. Verify
+
+This execution cycle applies uniformly to all engineering phases unless an approved Engineering Decision Record explicitly defines an exception.
+
+### Review
+
+The Review activity establishes the engineering baseline before implementation.
+
+Review shall:
+
+- inspect the current repository state,
+- evaluate the active Implementation Baseline,
+- identify repository impacts,
+- determine required Repository Patch Units,
+- identify blockers,
+- determine whether an Engineering Freeze is required.
+
+Review activities shall not modify the repository.
+
+### Implement
+
+The Implement activity produces repository-ready engineering artifacts.
+
+Implement shall:
+
+- perform Repository Patch Continuity Verification (when applicable),
+- perform Repository Structure Verification,
+- identify the implementation operation,
+- generate repository-ready updates,
+- preserve engineering traceability.
+
+Implementation shall follow the approved Implementation Baseline.
+
+### Verify
+
+The Verify activity confirms that implementation has been successfully completed.
+
+Verification shall confirm:
+
+- repository modifications were correctly applied,
+- repository continuity has been preserved,
+- implementation objectives have been satisfied,
+- engineering quality gates have passed,
+- the repository is ready for the next engineering activity.
+
+### Engineering Execution Principles
+
+Engineering execution shall adhere to the following principles:
+
+- Execute one Engineering Phase at a time.
+- Maintain a single approved Implementation Baseline.
+- Perform required verification before implementation.
+- Preserve repository integrity.
+- Record engineering evidence.
+- Produce deterministic engineering outcomes.
+
+### Relationship to Engineering Quality Gates
+
+Engineering Execution Governance defines **how** engineering work is performed.
+
+Engineering Quality Gates define **when** engineering work is considered complete.
+
+Together they provide the operational framework for consistent execution throughout the REM.
+
+## Repository Patch Unit Governance
+
+### Purpose
+
+Repository Patch Unit (RPU) Governance defines the standard for planning, generating, reviewing, implementing, and verifying repository modifications within the ResumeForge Engineering Methodology (REM). Each Repository Patch Unit represents a single, repository-ready unit of engineering work.
+
+### Repository Patch Unit Principles
+
+Every Repository Patch Unit shall:
+
+- represent one logical repository modification,
+- be independently reviewable,
+- be independently implementable,
+- be independently verifiable,
+- preserve repository integrity,
+- maintain engineering traceability.
+
+Repository Patch Units shall be ordered to minimize implementation risk and support deterministic repository evolution.
+
+### Standard Repository Patch Unit Workflow
+
+Beginning with RPU-02, every Repository Patch Unit implementation shall execute the following sequence:
+
+1. Repository Patch Continuity Verification
+2. Repository Structure Verification
+3. Repository Patch Unit Metadata
+4. Repository-ready Update
+5. Evidence Chain
+6. Repository Patch Unit Completion Verification
+7. Engineering Phase Status
+8. Authoritative Next Command
+
+RPU-01 begins with Repository Structure Verification because no previous Repository Patch Unit exists.
+
+### Repository Patch Unit Completion Verification
+
+A Repository Patch Unit shall not be considered complete until all of the following have been confirmed:
+
+- Repository Patch Continuity Verification completed (when applicable).
+- Repository Structure Verification completed.
+- Repository-ready update produced.
+- Evidence Chain completed.
+- Engineering Phase Status recorded.
+- Authoritative Next Command issued.
+
+### Repository Patch Unit Independence
+
+Each Repository Patch Unit shall be self-contained and shall not rely on unpublished engineering work.
+
+Repository Patch Units shall reference only:
+
+- verified repository state,
+- approved Implementation Baseline,
+- completed Repository Patch Units.
+
+### Relationship to Engineering Quality Gates
+
+Repository Patch Units implement engineering work.
+
+Engineering Quality Gates determine whether each Repository Patch Unit satisfies the required engineering standards before implementation proceeds.
+
+### Governance Objective
+
+Repository Patch Unit Governance ensures that repository modifications remain deterministic, traceable, reproducible, and maintainable throughout the engineering lifecycle.
+
+## Continuous Improvement Governance
+
+### Purpose
+
+Continuous Improvement Governance defines how the ResumeForge Engineering Methodology (REM) evolves while preserving engineering stability, implementation quality, and repository integrity. It establishes a controlled process for incorporating lessons learned without disrupting active engineering work.
+
+### Guiding Principle
+
+The REM shall continuously improve through disciplined, evidence-based engineering. Improvements shall enhance determinism, reduce unnecessary engineering cycles, and maintain a single authoritative Implementation Baseline.
+
+### Improvement Classification
+
+Methodology improvements shall be classified before implementation.
+
+#### Minor Improvement
+
+A Minor Improvement:
+
+- clarifies existing guidance,
+- improves documentation,
+- refines terminology,
+- does not materially change architecture, scope, sequencing, or implementation strategy.
+
+Minor Improvements may be incorporated through **Evolutionary Re-entry**.
+
+#### Material Improvement
+
+A Material Improvement:
+
+- changes governance,
+- changes engineering workflow,
+- changes the Implementation Baseline,
+- affects Repository Patch Specifications,
+- changes engineering lifecycle behavior.
+
+Material Improvements shall initiate **Engineering Freeze Governance**.
+
+### Engineering Freeze
+
+When a Material Improvement is identified:
+
+1. Freeze the active Implementation Baseline.
+2. Suspend Repository Patch Unit generation.
+3. Initiate the Nested REM Update Process.
+4. Complete and approve the methodology update.
+5. Determine whether the result requires:
+   - **Implementation Baseline Revision**, or
+   - **Implementation Baseline Replacement**.
+6. Resume the parent engineering story using the approved baseline.
+
+### Nested REM Update Process
+
+The Nested REM Update Process shall:
+
+- isolate methodology work from story implementation,
+- complete its own engineering lifecycle,
+- preserve engineering traceability,
+- return control to the parent story only after methodology approval.
+
+Upon completion, the parent Review phase shall regenerate or revise the Repository Patch Specification package as required by the approved methodology.
+
+### Evolutionary Re-entry
+
+Evolutionary Re-entry may be used only for approved Minor Improvements that do not materially affect:
+
+- story scope,
+- dependencies,
+- sequencing,
+- repository implementation strategy,
+- approved Implementation Baseline.
+
+### Continuous Improvement Backlog
+
+Approved methodology improvements that are not blockers shall be recorded for future engineering stories rather than introduced during active implementation.
+
+This preserves Implementation Baseline stability while ensuring valuable improvements are not lost.
+
+### Governance Objective
+
+Continuous Improvement Governance ensures that the REM evolves in a controlled, traceable, and deterministic manner while maintaining engineering throughput and repository integrity.
+
+## Engineering Documentation Governance
+
+### Purpose
+
+Engineering Documentation Governance establishes the standards for creating, maintaining, and evolving engineering documentation within the ResumeForge Engineering Methodology (REM). Its purpose is to ensure that engineering documentation remains authoritative, consistent, deterministic, and maintainable throughout the engineering lifecycle.
+
+### Documentation Principles
+
+Engineering documentation shall:
+
+- maintain a single authoritative source for each engineering concept,
+- preserve engineering traceability,
+- use consistent terminology throughout the repository,
+- remain deterministic and reproducible,
+- distinguish governance from implementation guidance,
+- evolve through approved engineering processes.
+
+Documentation shall not duplicate authoritative content without explicit justification.
+
+### Documentation Hierarchy
+
+Engineering documentation shall be organized according to the following hierarchy:
+
+1. Engineering Governance
+2. Engineering Process
+3. Engineering Standards
+4. Engineering Procedures
+5. Engineering Examples
+
+Each level shall reference higher-level guidance rather than redefine it.
+
+### Documentation Update Governance
+
+Every documentation update shall identify:
+
+- target document,
+- verified repository anchor,
+- implementation operation,
+- implementation boundary,
+- affected engineering concepts.
+
+Documentation updates shall always be based on the verified repository state.
+
+### Documentation Consistency
+
+When modifying documentation, engineering work shall:
+
+- preserve heading hierarchy,
+- maintain terminology consistency,
+- avoid duplicate authoritative sections,
+- update cross-references where required,
+- preserve repository readability.
+
+### Documentation Evolution
+
+Engineering documentation shall evolve through the governance mechanisms defined by the REM.
+
+Minor documentation improvements may be incorporated through Evolutionary Re-entry.
+
+Material documentation changes that alter engineering governance, implementation baselines, or methodology architecture shall follow Engineering Freeze Governance and the Nested REM Update Process.
+
+### Documentation Traceability
+
+Engineering documentation shall maintain traceability between:
+
+- Engineering Decision Records,
+- Story Planning,
+- Repository Patch Specifications,
+- implemented repository changes,
+- engineering history.
+
+This traceability ensures that future engineering work can understand the purpose, rationale, and evolution of repository documentation.
+
+### Governance Objective
+
+Engineering Documentation Governance ensures that the ResumeForge repository remains a coherent engineering knowledge base whose documentation evolves with the same rigor applied to repository implementation.
+
+## Engineering Session Governance
+
+### Purpose
+
+Engineering Session Governance establishes the standard operating model for every ResumeForge engineering session. Its purpose is to ensure that engineering work begins from a verified repository state, proceeds from an approved Implementation Baseline, and concludes with a deterministic transition to the next engineering activity.
+
+### Engineering Session Lifecycle
+
+Every engineering session shall follow the same lifecycle:
+
+1. Engineering Session Startup
+2. Engineering Activity Execution
+3. Engineering Session Closeout
+
+Each session shall begin by establishing repository state and shall conclude by documenting engineering status and the next authoritative engineering command.
+
+### Engineering Session Startup
+
+Engineering Session Startup shall establish the engineering baseline before any implementation begins.
+
+Startup activities shall include:
+
+- Repository State Audit.
+- Repository connectivity verification.
+- Engineering environment verification.
+- Review of the current engineering story.
+- Review of the active engineering phase.
+- Verification of the approved Implementation Baseline.
+- Identification of blockers requiring Engineering Freeze Governance.
+- Confirmation of the next engineering objective.
+
+No repository modifications shall occur during Engineering Session Startup.
+
+### Engineering Activity Execution
+
+Engineering work shall be performed in accordance with:
+
+- the approved Engineering Story,
+- the current Engineering Phase,
+- the Engineering Execution Cycle,
+- the approved Implementation Baseline.
+
+Repository modifications shall only be performed through approved Repository Patch Units.
+
+### Engineering Session Closeout
+
+Every engineering session shall conclude by documenting:
+
+- work completed,
+- repository status,
+- Engineering Phase Status,
+- outstanding blockers,
+- Evolutionary Re-entry items (if any),
+- authoritative Next Command.
+
+The Engineering Session Closeout establishes the transition point for the next engineering session.
+
+### Session Continuity
+
+Engineering sessions shall maintain continuity by:
+
+- verifying repository continuity before implementation,
+- preserving the approved Implementation Baseline,
+- recording Engineering Decision Records for methodology changes,
+- maintaining traceability between engineering sessions.
+
+Engineering work shall never resume from assumptions about repository state.
+
+### Governance Objective
+
+Engineering Session Governance provides a repeatable operational framework that allows engineering work to pause and resume across sessions without sacrificing determinism, repository integrity, or engineering traceability.
+
 ## ResumeForge Engineering Methodology Execution Model
 
 The ResumeForge Engineering Methodology (REM) governs every engineering

@@ -687,3 +687,5 @@ def test_profile_load_without_skills_defaults_none(tmp_path):
     )
 
     assert loaded.get("skills") is None
+
+
