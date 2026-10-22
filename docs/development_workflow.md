@@ -43,6 +43,509 @@ feature requirements, or implementation details.
 Those engineering artifacts are maintained in their respective project
 documentation.
 
+## Engineering Session Bootstrap
+
+Engineering Session Bootstrap is the mandatory initialization procedure
+performed once at the beginning of every ResumeForge Engineering Story.
+
+Its purpose is to establish a verified engineering baseline before Story
+Planning and repository implementation begin.
+
+Engineering Session Bootstrap shall:
+
+- establish Engineering Communication Status;
+- verify repository synchronization;
+- verify the active ResumeForge-WIP repository state;
+- synchronize the active Engineering Backlog;
+- confirm Engineering Roadmap status;
+- establish Story execution context;
+- confirm repository readiness for implementation.
+
+Engineering Session Bootstrap initializes engineering execution.
+
+It establishes the engineering baseline for the remainder of the Story and is
+not repeated during Repository Patch execution.
+
+## Engineering Communication Status
+
+Engineering Communication Status provides a standardized engineering status
+report throughout the execution of every ResumeForge Engineering Story.
+
+Its purpose is to establish a consistent understanding of the current engineering
+state before planning, implementation, verification, or repository updates.
+
+Engineering Communication Status reports, as applicable:
+
+- Story identification.
+- Current engineering phase.
+- Active execution context.
+- Repository synchronization status.
+- ResumeForge-WIP repository status.
+- Engineering Roadmap status.
+- Engineering Backlog status.
+- Repository continuity status.
+- Engineering readiness.
+
+Engineering Communication Status shall appear at the beginning of each
+engineering response where it contributes to engineering execution or repository
+traceability.
+
+The reported information shall accurately reflect the current engineering state
+at the time the response is produced.
+
+## Engineering Roadmap
+
+The Engineering Roadmap is the long-term planning artifact governing the
+evolution of the ResumeForge Engineering Methodology (REM).
+
+Unlike Engineering Stories, which execute individual engineering improvements,
+the Engineering Roadmap provides strategic direction for methodology growth over
+multiple development cycles.
+
+The Engineering Roadmap defines:
+
+- major engineering initiatives;
+- methodology enhancements;
+- engineering architecture improvements;
+- engineering technical debt;
+- future engineering capabilities;
+- engineering priorities and sequencing.
+
+Engineering Stories implement individual roadmap objectives.
+
+Completion of Engineering Stories advances the Engineering Roadmap.
+
+The Engineering Roadmap serves as the engineering counterpart to the
+Development Roadmap.
+
+Together, the ResumeForge Engineering Methodology (REM), Engineering Roadmap,
+and Development Roadmap establish the complete planning hierarchy for the
+ResumeForge project.
+
+Engineering Roadmap entries should be periodically reviewed, reprioritized, and
+updated as the methodology matures.
+
+### Development Roadmap
+
+The Development Roadmap governs the functional evolution of the ResumeForge
+application.
+
+Where the Engineering Roadmap focuses on the ResumeForge Engineering
+Methodology (REM), the Development Roadmap focuses on the product itself.
+
+The Development Roadmap defines:
+
+- functional capabilities;
+- product milestones;
+- feature sequencing;
+- architectural evolution of the application;
+- user experience improvements;
+- long-term product priorities.
+
+Development Stories implement individual Development Roadmap objectives.
+
+Completion of Development Stories advances the Development Roadmap.
+
+Engineering Stories improve the engineering system used to build the product.
+
+Development Stories improve the product delivered to the user.
+
+Together, the Engineering Roadmap and Development Roadmap provide coordinated
+planning for both methodology evolution and product evolution while remaining
+independently managed.
+
+Both roadmaps should be reviewed periodically to ensure that engineering
+investment continues to support product priorities and that product priorities
+remain achievable within the capabilities of the engineering methodology.
+
+### Engineering Backlog Management
+
+The Engineering Backlog is the temporary working collection of approved
+engineering improvements identified during execution of an Engineering Story.
+
+Its purpose is to preserve methodology improvements discovered during
+engineering work without interrupting the active Story.
+
+Engineering Backlog entries may originate from:
+
+- engineering observations;
+- implementation discoveries;
+- repository reviews;
+- retrospective findings;
+- developer-approved methodology improvements.
+
+Each Engineering Backlog entry shall include:
+
+- a unique Engineering Backlog identifier;
+- a concise title;
+- implementation status;
+- target repository artifact;
+- implementation category;
+- implementation summary.
+
+The assistant is responsible for maintaining the active Engineering Backlog
+throughout the Story.
+
+Engineering Backlog responsibilities include:
+
+- recording approved entries;
+- maintaining entry status;
+- integrating approved entries into Repository Patch Units;
+- tracking implementation progress;
+- reconciling implemented entries;
+- ensuring all remaining entries are resolved before Story Commit.
+
+Engineering Backlog entries remain active until they are:
+
+- implemented and verified;
+- intentionally deferred to a future Engineering Story;
+- withdrawn by engineering decision.
+
+The Engineering Backlog provides continuity between engineering discovery,
+repository implementation, and long-term methodology evolution.
+
+### Story Lifecycle Ownership
+
+The Story owns the engineering lifecycle.
+
+Repository Patch Units (RPUs) do not own lifecycle phases. They are execution
+artifacts that exist entirely within the Story Implement phase.
+
+The Story lifecycle consists of:
+
+- Review
+- Implement
+- Verify
+- Commit
+
+These phases are entered and exited only by Story-level commands.
+
+Repository Patch execution is entered through the Story Implement phase and
+returns control to the Story lifecycle only after all executable Repository
+Patch Units have been completed.
+
+Repository Patch Units shall never transition between Story lifecycle phases.
+
+Instead, Repository Patch Units transition only to the next executable
+Repository Patch Unit within the Repository Patch Work Breakdown Structure.
+
+Story lifecycle ownership provides a clear separation between engineering
+orchestration and repository implementation.
+
+This separation ensures that:
+
+- Story phases remain stable and predictable.
+- Repository Patch execution remains recursive.
+- Repository modifications remain isolated to executable leaf nodes.
+- Engineering verification occurs at both the Repository Patch and Story
+  levels without duplicating lifecycle responsibilities.
+
+The Story is therefore the sole owner of lifecycle progression, while the
+Repository Patch execution engine owns traversal of the Repository Patch Work
+Breakdown Structure.
+
+### Repository Patch Continuity
+
+Repository Patch Continuity ensures that every executable Repository Patch Unit
+begins from a verified repository state established by the previously completed
+Repository Patch Unit.
+
+Before implementing a Repository Patch Unit, the engineering process shall
+review the immediately preceding executable Repository Patch Unit to confirm:
+
+- the approved repository modifications were completed;
+- repository ordering has been preserved;
+- repository integrity has not been compromised;
+- the implementation scope remained isolated to the approved Repository Patch
+  Unit.
+
+Repository continuity verification is performed once at the beginning of each
+executable Repository Patch Unit.
+
+Structural Repository Patch Units do not require continuity reviews because they
+perform no repository modifications.
+
+Repository continuity establishes confidence that each repository modification
+builds upon a verified engineering baseline, preventing implementation drift
+throughout Repository Patch execution.
+
+### Repository Patch Navigation
+
+Repository Patch Navigation governs movement through the Repository Patch Work
+Breakdown Structure during Story implementation.
+
+Navigation is driven exclusively by the Repository Patch Work Breakdown
+Structure and the execution context identified by the active `Section:` command.
+
+Repository Patch Navigation shall:
+
+- identify the current execution context;
+- present the appropriate Repository Patch Work Breakdown Matrix;
+- indicate completed Repository Patch Units;
+- identify the active Repository Patch Unit;
+- expose remaining Repository Patch Units within the current branch;
+- guide execution to the next executable Repository Patch Unit.
+
+When recursive decomposition occurs, Repository Patch Navigation shall present
+the Work Breakdown Matrix for the active branch while preserving visibility into
+the parent Story structure.
+
+Navigation is informational.
+
+It does not determine engineering lifecycle progression or repository
+modification scope.
+
+Its purpose is to maintain engineering orientation and execution traceability
+throughout Repository Patch implementation.
+
+### Execution Context (Section)
+
+The Execution Context identifies the active Repository Patch Unit currently
+being executed within the Repository Patch Work Breakdown Structure.
+
+Execution Context is communicated through the `Section:` command parameter.
+
+The `Section:` parameter is the authoritative execution context for Repository
+Patch implementation.
+
+Execution Context shall:
+
+- identify the current executable Repository Patch Unit;
+- establish the implementation scope for the current engineering response;
+- determine the Repository Patch Work Breakdown Matrix presented to the
+  engineer;
+- define the Repository Location Specification associated with the current
+  implementation;
+- determine the next executable Repository Patch Unit.
+
+The Execution Context does not determine Story lifecycle progression.
+
+Story lifecycle transitions are controlled exclusively by Story-level commands.
+
+Execution Context changes only during Repository Patch execution and advances
+one executable Repository Patch Unit at a time.
+
+Every executable Repository Patch response shall conclude by issuing the next
+`Section:` command until all executable Repository Patch Units have been
+completed, at which point execution returns to the Story lifecycle through the
+appropriate Story Verify command.
+
+### Repository Patch Response Structure
+
+Every executable Repository Patch Unit shall produce a standardized engineering
+response.
+
+The Repository Patch Response Structure provides a consistent engineering
+experience throughout Repository Patch execution and ensures that every
+implementation response contains the information required for repository
+modification, verification, and navigation.
+
+Unless specifically omitted by engineering design, Repository Patch responses
+shall be presented in the following order:
+
+1. Engineering Communication Status
+2. Repository Patch Work Breakdown Matrix
+3. Repository Continuity Review
+4. Repository Location Specification (RLS)
+5. Repository Update Package
+6. Engineering Backlog Synchronization
+7. Repository Verification
+8. Repository Patch Result
+9. Next Developer Command
+
+Each section has a single responsibility and shall appear no more than once
+within a Repository Patch response.
+
+Repository Patch responses shall:
+
+- remain focused on the current executable Repository Patch Unit;
+- limit repository modifications to the approved implementation scope;
+- preserve repository continuity;
+- conclude with the next executable developer command.
+
+This standardized response structure provides consistency, traceability, and
+predictability throughout Repository Patch execution while allowing individual
+Repository Update Packages to remain independent of one another.
+
+### Next Developer Command
+
+Every executable Repository Patch Unit shall conclude by issuing a Next
+Developer Command.
+
+The Next Developer Command advances execution through the Repository Patch Work
+Breakdown Structure and provides the engineer with the exact command required
+to continue execution.
+
+The Next Developer Command shall:
+
+- be the final artifact produced by every executable Repository Patch Unit;
+- be immediately executable without modification;
+- contain no explanatory text;
+- contain no blank lines;
+- use the canonical command format;
+- identify the next execution context.
+
+The canonical command format is:
+
+Story: <Story Identifier>
+<Story Lifecycle Command>
+Section: <Next Repository Patch Unit>
+ResumeForge-WIP.zip
+
+When Repository Patch execution reaches the final executable Repository Patch
+Unit, the Next Developer Command shall transition execution back to the Story
+lifecycle by issuing the appropriate Story Verify command rather than another
+Section command.
+
+The Next Developer Command is the exclusive mechanism used to advance execution
+through Repository Patch implementation and to return control to the Story
+lifecycle.
+
+No alternative navigation mechanism shall be used.
+
+### Recursive Decomposition
+
+Repository Patch execution follows a recursive decomposition model.
+
+Repository Patch Units may represent either:
+
+- structural engineering organization; or
+- executable repository implementation.
+
+When a Repository Patch Unit contains child Repository Patch Units, it is
+considered a structural node within the Repository Patch Work Breakdown
+Structure.
+
+Structural Repository Patch Units shall:
+
+- review the previous executable Repository Patch Unit;
+- verify repository continuity;
+- determine whether the current node is executable;
+- descend to the first executable child Repository Patch Unit.
+
+Structural Repository Patch Units shall not:
+
+- generate Repository Update Packages;
+- modify repository content;
+- alter Story lifecycle progression.
+
+Recursive decomposition continues until an executable leaf Repository Patch
+Unit is reached.
+
+After completion of a leaf Repository Patch Unit, execution returns to the
+parent Repository Patch Work Breakdown Structure to determine the next
+executable Repository Patch Unit.
+
+Recursive decomposition continues until every executable Repository Patch Unit
+within the Repository Patch Work Breakdown Structure has been completed, after
+which control returns to the Story lifecycle.
+
+### Cohesion Rule
+
+Every Repository Patch Unit shall exhibit strong functional cohesion.
+
+A Repository Patch Unit is cohesive when all repository modifications performed
+within that unit contribute to a single engineering objective.
+
+Repository Patch Units shall:
+
+- implement one engineering responsibility;
+- produce one logical repository outcome;
+- remain independently understandable;
+- minimize dependencies on unrelated Repository Patch Units;
+- support independent verification.
+
+When a Repository Patch Unit grows beyond a single cohesive responsibility, it
+shall be recursively decomposed into child Repository Patch Units.
+
+Recursive decomposition shall continue until each executable Repository Patch
+Unit represents one cohesive engineering objective.
+
+Cohesion improves:
+
+- repository readability;
+- engineering traceability;
+- implementation maintainability;
+- verification accuracy;
+- long-term methodology evolution.
+
+The Cohesion Rule governs the organization of the Repository Patch Work
+Breakdown Structure and complements the Recursive Decomposition and Leaf Node
+rules.
+
+### Leaf Node Rule
+
+A Repository Patch Unit is executable only when it is a leaf node within the
+Repository Patch Work Breakdown Structure.
+
+A leaf node is a Repository Patch Unit that contains no child Repository Patch
+Units.
+
+Only executable leaf Repository Patch Units shall:
+
+- generate Repository Update Packages;
+- modify repository artifacts;
+- produce Repository Location Specifications;
+- update Engineering Backlog implementation status;
+- conclude with the next executable Repository Patch command.
+
+Structural Repository Patch Units shall never perform repository
+implementation.
+
+Instead, structural Repository Patch Units recursively descend to the first
+executable child Repository Patch Unit.
+
+Execution returns to the parent Repository Patch Unit after completion of each
+leaf node until all executable Repository Patch Units have been completed.
+
+The Leaf Node Rule establishes a single implementation boundary throughout the
+Repository Patch Work Breakdown Structure, ensuring that every repository
+modification is isolated to one cohesive engineering responsibility.
+
+Together, Recursive Decomposition, the Cohesion Rule, and the Leaf Node Rule
+form the governing principles of the Repository Patch Work Breakdown
+Structure.
+
+### Engineering Philosophy
+
+The ResumeForge Engineering Methodology is founded on the principle that
+engineering processes should evolve through disciplined application rather than
+ad hoc refinement.
+
+Engineering improvements are expected to emerge through execution, observation,
+verification, and continuous refinement.
+
+The methodology is guided by the following principles:
+
+- engineer once and reuse everywhere;
+- extend proven patterns before introducing new ones;
+- prefer evolutionary improvement over reinvention;
+- preserve repository continuity at every implementation step;
+- maintain clear ownership boundaries throughout the engineering lifecycle;
+- decompose complexity into cohesive engineering responsibilities;
+- implement only at executable leaf nodes;
+- verify every repository modification before building upon it;
+- document engineering decisions where they become repeatable methodology.
+
+The Engineering Methodology shall favor consistency over novelty.
+
+When multiple engineering solutions are possible, preference should be given to
+the solution that best aligns with established methodology unless a measurable
+engineering benefit justifies change.
+
+Engineering discoveries shall be captured through the Engineering Backlog and
+incorporated into the official methodology through future Engineering Stories.
+
+The Engineering Methodology is intended to be self-improving.
+
+Each completed Engineering Story should strengthen the methodology for all
+future Stories by reducing ambiguity, increasing repeatability, and improving
+engineering efficiency.
+
+The objective of the ResumeForge Engineering Methodology is not merely to
+produce software, but to continuously improve the engineering system that
+produces the software.
+
 ## Engineering Session Startup Validation
 
 ## Engineering Workflow Governance
@@ -67,6 +570,140 @@ Every engineering story progresses through:
 - Repository Closeout
 
 Each phase establishes the approved engineering baseline for the next phase.
+
+### Engineering Continuity
+
+Engineering Continuity is the architectural foundation of the ResumeForge Engineering Methodology (REM).
+
+The ResumeForge Engineering Methodology is founded on the principle that every engineering session should leave the repository in a more understandable, more maintainable, more reproducible, more executable, and more valuable state than it was at the beginning of the session.
+
+Engineering Continuity defines **why** the engineering lifecycle exists, while the Workflow Lifecycle defines **how** engineering progresses.
+
+Engineering Continuity is achieved by:
+
+- preserving engineering intent;
+- synchronizing repository state;
+- converting engineering discoveries into durable repository knowledge;
+- reducing future engineering startup effort;
+- continuously improving the engineering methodology.
+
+Every lifecycle phase contributes to Engineering Continuity through its own responsibilities, collectively ensuring that engineering knowledge becomes progressively more complete, more consistent, and easier to execute over time.
+
+### Repository Closeout Purpose
+
+Repository Closeout is the lifecycle phase responsible for Engineering Continuity.
+
+Its purpose is to transform completed engineering work into durable repository knowledge while preparing the repository for efficient continuation regardless of engineer, ChatGPT session, elapsed time, or project growth.
+
+Repository Closeout is not the end of a Story.
+
+Repository Closeout is the engineering bridge to the next Story.
+
+### Repository Closeout Objectives
+
+Repository Closeout shall:
+
+1. Synchronize Repository State.
+2. Capture Engineering Knowledge.
+3. Capture Engineering Discoveries.
+4. Improve the ResumeForge Engineering Methodology.
+5. Synchronize Engineering and Development Roadmaps.
+6. Reconcile the Engineering Backlog.
+7. Preserve Engineering Context.
+8. Optimize Future Engineering Session Startup.
+
+The success of Repository Closeout is measured by the ability of a new engineering session to resume productive work with minimal reconstruction effort.
+
+### Repository Closeout Execution Model
+
+Repository Closeout executes as a structured engineering workflow that converts engineering discoveries into durable repository improvements.
+
+Repository Closeout progresses through a sequence of engineering activities, with each activity producing the evidence required by the next.
+
+The execution flow is:
+
+1. Assess the current repository state.
+2. Validate repository objectives.
+3. Identify repository improvements.
+4. Produce deterministic Repository Patch Units.
+5. Verify engineering evidence, completion standards, and transition standards.
+6. Prepare the repository for Commit by confirming Engineering Continuity and Repository Readiness.
+
+The execution principles that follow define how each activity is performed. Together they provide a deterministic, auditable, and repeatable Repository Closeout process.
+
+### Engineering Backlog Consolidation
+
+Engineering stories frequently identify methodology improvements that are intentionally deferred to a future REM consolidation effort.
+
+Repository Closeout is responsible for ensuring that these discoveries are preserved in an Engineering Backlog until they are formally evaluated and incorporated into the ResumeForge Engineering Methodology.
+
+Every Engineering Backlog entry shall:
+
+- identify the engineering problem discovered;
+- describe the proposed methodology improvement;
+- record the engineering rationale;
+- identify the originating story;
+- remain traceable until formally implemented, superseded, or rejected.
+
+Engineering Backlog Consolidation transforms individual lessons learned into managed engineering work, ensuring that methodology improvements remain visible, actionable, and recoverable across future engineering sessions.
+
+The Engineering Backlog is reviewed during Repository Closeout to verify that newly discovered methodology improvements have been captured before the story transitions to Commit.
+
+### Engineering Roadmap Synchronization
+
+The Engineering Roadmap defines the planned evolution of the ResumeForge Engineering Methodology.
+
+While the Engineering Backlog preserves newly discovered improvements, the Engineering Roadmap establishes their implementation priority, sequencing, and long-term integration strategy.
+
+Engineering Roadmap Synchronization ensures that approved methodology improvements progress through a deliberate engineering planning process rather than being incorporated opportunistically.
+
+Engineering Roadmap Synchronization is responsible for:
+
+- aligning Engineering Backlog entries with long-term engineering objectives;
+- identifying implementation dependencies between methodology improvements;
+- prioritizing future engineering work;
+- maintaining a coherent evolution strategy for the ResumeForge Engineering Methodology;
+- ensuring that approved improvements remain visible until implementation is complete.
+
+Repository Closeout verifies that newly approved methodology improvements have been synchronized with the Engineering Roadmap before the repository transitions to Commit.
+
+### Repository Status Documentation
+
+Repository Closeout is responsible for ensuring that the repository accurately reflects its engineering state before transitioning to Commit.
+
+Repository Status Documentation provides future engineering sessions with sufficient information to understand the repository's current condition without reconstructing prior engineering activity.
+
+Repository Status Documentation verifies that repository status information is current, consistent, and traceable across repository artifacts.
+
+Repository Status Documentation is responsible for confirming:
+
+- repository documentation reflects the implemented engineering work;
+- repository history accurately records completed engineering activities;
+- repository checkpoints accurately represent the current repository state;
+- engineering evidence remains traceable to the originating story;
+- repository artifacts remain internally consistent.
+
+The successful completion of Repository Status Documentation confirms that future engineering sessions can begin from the documented repository state rather than rebuilding context from repository history.
+
+### Repository Closeout Verification
+
+Repository Closeout concludes with a formal verification that all Repository Closeout responsibilities have been completed before transitioning to the Commit lifecycle.
+
+Repository Closeout Verification confirms that the repository has been left in a coherent, maintainable, and recoverable state for future engineering sessions.
+
+Repository Closeout Verification shall confirm that:
+
+- Engineering Continuity has been preserved;
+- Repository documentation accurately reflects approved engineering work;
+- Engineering Backlog entries have been captured where required;
+- Engineering Roadmap synchronization has been completed for approved methodology improvements;
+- Repository status documentation accurately represents the repository state;
+- Repository artifacts remain internally consistent;
+- all Repository Update Packages have reached Repository-Ready Certification.
+
+Repository Closeout transitions to Commit only after every Repository Closeout verification objective has been satisfied.
+
+Successful Repository Closeout Verification certifies that the repository is prepared for both repository commit activities and future engineering session bootstrap.
 
 ### Repository State First
 
@@ -6968,25 +7605,240 @@ Documentation status shall never be implied.
 
 ## Repository Closeout
 
-Repository Closeout is the final engineering phase of every ResumeForge story.
+Repository Closeout is the final engineering lifecycle phase before Commit.
 
-Story Signoff certifies that the engineering work is complete.
+Its purpose is to leave the repository in a more coherent, more maintainable, and more executable state than when the engineering session began.
 
-Repository Closeout certifies that the completed engineering work has been
-properly recorded, documented, released, and archived.
+Repository Closeout transforms engineering discoveries made during the current story into durable repository knowledge that benefits every future engineering session.
 
-Repository Closeout verifies repository integrity rather than implementation.
+Repository Closeout is responsible for:
 
-Repository Closeout shall not introduce engineering changes.
+- reconciling repository architecture;
+- consolidating approved engineering methodology improvements;
+- preserving engineering continuity;
+- synchronizing repository documentation;
+- preparing the repository for efficient future session startup.
 
-Only release activities may occur during this phase.
+Repository Closeout concludes only when:
+
+- repository architecture is internally consistent;
+- approved methodology improvements have been incorporated or formally queued;
+- repository documentation accurately reflects repository behavior;
+- engineering continuity has been preserved;
+- the repository is ready to transition to Commit.
 
 ### Commit: Repository Closeout
 
-Purpose
+**Commit Lifecycle**
 
-Execute the Repository Closeout Commands produced during Verify: Repository
-Closeout and confirm that repository closure completed successfully.
+Commit is executed as a sequence of Commit Processing Units (CPUs).
+
+Each CPU has:
+
+- one engineering responsibility;
+- one or more defined engineering artifacts;
+- objective completion criteria;
+- explicit ownership transfer to the next CPU.
+
+The Commit lifecycle consists of:
+
+- CPU-00 – Commit Lifecycle Architecture
+- CPU-01 – Story Retrospective
+- CPU-02 – Repository Synchronization
+- CPU-03 – Repository History
+- CPU-04 – Repository Checkpoint
+- CPU-05 – Commit Package
+- CPU-06 – Commit Verification
+
+The existing Commit guidance below represents the implementation details that will be reconciled into this lifecycle during the remaining Commit Processing Units.
+
+#### CPU-00 – Commit Lifecycle Architecture
+
+**Purpose**
+
+Establish the architectural framework for the Commit lifecycle and define the Commit Processing Unit (CPU) execution model.
+
+**Primary Engineering Artifact**
+
+- Commit Lifecycle Architecture
+
+**Completion Criteria**
+
+CPU-00 is complete when:
+
+- the Commit lifecycle has been established;
+- Commit Processing Units have been defined;
+- execution order has been documented;
+- ownership transitions have been established.
+
+**Ownership Transfer**
+
+Upon successful completion of CPU-00, ownership transfers to:
+
+**CPU-01 – Story Retrospective**
+
+#### CPU-01 – Story Retrospective
+
+**Purpose**
+
+Capture the permanent engineering value produced by the completed story.
+
+The Story Retrospective preserves engineering decisions, repository improvements, methodology improvements, lessons learned, and future engineering considerations so they become part of the repository's long-term engineering knowledge.
+
+**Primary Engineering Artifact**
+
+- Story Retrospective
+
+**Completion Criteria**
+
+CPU-01 is complete when:
+
+- the Story Retrospective has been recorded in the repository history;
+- engineering improvements have been documented;
+- methodology improvements have been added to the Engineering Backlog;
+- future engineering considerations have been captured.
+
+**Ownership Transfer**
+
+Upon successful completion of CPU-01, ownership transfers to:
+
+**CPU-02 – Repository Synchronization**
+
+#### CPU-02 – Repository Synchronization
+
+**Purpose**
+
+Verify that all permanent repository artifacts communicate the same completed engineering state before permanent repository records are finalized.
+
+Repository Synchronization confirms repository consistency; it does not create new engineering work.
+
+**Primary Engineering Artifact**
+
+- Repository Synchronization Verification
+
+**Completion Criteria**
+
+CPU-02 is complete when:
+
+- permanent repository documents have been reviewed for consistency;
+- required repository updates have been completed;
+- repository documentation reflects a single engineering state;
+- synchronization has been verified.
+
+**Ownership Transfer**
+
+Upon successful completion of CPU-02, ownership transfers to:
+
+**CPU-03 – Repository History**
+
+#### CPU-03 – Repository History
+
+**Purpose**
+
+Record the completed engineering work within the repository's permanent historical record.
+
+Repository History ensures that completed stories, engineering decisions, and significant repository improvements are preserved in the appropriate history documentation before repository checkpoints and Git commit activities occur.
+
+**Primary Engineering Artifact**
+
+- Repository History Update
+
+**Completion Criteria**
+
+CPU-03 is complete when:
+
+- required repository history documentation has been updated;
+- the completed story has been permanently recorded;
+- engineering improvements have been captured in the appropriate historical record;
+- history updates have been verified for completeness and accuracy.
+
+**Ownership Transfer**
+
+Upon successful completion of CPU-03, ownership transfers to:
+
+**CPU-04 – Repository Checkpoint**
+
+#### CPU-04 – Repository Checkpoint
+
+**Purpose**
+
+Establish the repository's next engineering baseline following completion of the current story.
+
+Repository Checkpoint captures the repository's current engineering state so the next engineering session begins from a verified and reproducible baseline.
+
+**Primary Engineering Artifact**
+
+- Repository Checkpoint Update
+
+**Completion Criteria**
+
+CPU-04 is complete when:
+
+- repository checkpoint documentation has been updated;
+- the next engineering starting point has been recorded;
+- repository status reflects the completed engineering work;
+- checkpoint information has been verified for accuracy and completeness.
+
+**Ownership Transfer**
+
+Upon successful completion of CPU-04, ownership transfers to:
+
+**CPU-05 – Commit Package**
+
+#### CPU-05 – Commit Package
+
+**Purpose**
+
+Assemble and validate the complete engineering deliverable that is ready to become the repository's next permanent commit.
+
+The Commit Package represents the complete set of engineering artifacts produced by the completed story and confirms that the repository is ready to enter final commit verification.
+
+**Primary Engineering Artifact**
+
+- Commit Package
+
+**Completion Criteria**
+
+CPU-05 is complete when:
+
+- all required engineering artifacts have been produced;
+- repository updates have been synchronized and verified;
+- repository history and checkpoint updates are complete;
+- the commit package has been reviewed for completeness and is ready for final verification.
+
+**Ownership Transfer**
+
+Upon successful completion of CPU-05, ownership transfers to:
+
+**CPU-06 – Commit Verification**
+
+#### CPU-06 – Commit Verification
+
+**Purpose**
+
+Perform the final verification that the Commit Package is complete, internally consistent, and ready to become the repository's permanent engineering baseline.
+
+Commit Verification confirms that all required engineering activities have been completed before any Git commit, tag creation, or repository publication activities are performed.
+
+**Primary Engineering Artifact**
+
+- Commit Verification Report
+
+**Completion Criteria**
+
+CPU-06 is complete when:
+
+- all previous Commit Processing Units have been successfully completed;
+- required engineering artifacts have been verified;
+- repository history, checkpoint, and synchronization activities have been confirmed;
+- repository status is clean and ready for commit;
+- final commit verification has been successfully completed.
+
+**Ownership Transfer**
+
+CPU-06 completes the Commit lifecycle.
+
+Ownership transfers to the Repository Commit execution.
 
 #### Commit Deliverables
 
