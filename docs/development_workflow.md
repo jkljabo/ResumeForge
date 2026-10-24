@@ -879,6 +879,308 @@ Current lifecycle:
 
 The lifecycle defines **where** a story is within its progression.
 
+#### Development Story Lifecycle
+
+The Development Story Lifecycle defines the authoritative execution model for all ResumeForge Development Stories.
+
+Development Stories implement functional capabilities within the ResumeForge application while adhering to the engineering standards established by the Engineering Story Lifecycle.
+
+##### Purpose
+
+The Development Story Lifecycle ensures that application features are developed using a consistent, test-driven, evidence-based process that maintains repository quality and traceability.
+
+##### Objectives
+
+The Development Story Lifecycle shall:
+
+- Deliver one cohesive functional capability per story.
+- Maintain complete requirements traceability.
+- Produce repository-ready implementation artifacts.
+- Validate functionality through RED/GREEN verification.
+- Preserve repository integrity throughout implementation.
+
+##### Lifecycle
+
+Development Stories progress through the following lifecycle phases.
+
+| Phase | Primary Deliverable |
+|--------|---------------------|
+| Initiate | Engineering Decision Record |
+| Review | Story Planning / Review Artifact |
+| Implement | Package Artifact or Section Artifact |
+| Verify | Verification Artifact |
+| Commit | Repository Baseline |
+
+Progression between lifecycle phases is permitted only after successful completion of the current phase.
+
+##### Relationship to Engineering Stories
+
+Engineering Stories improve the ResumeForge Engineering Methodology.
+
+Development Stories apply that methodology to implement ResumeForge functionality.
+
+Development Stories shall conform to the standards, quality gates, and execution principles established by the Engineering Story Lifecycle.
+
+##### Lifecycle Principles
+
+Development Stories inherit the following engineering principles:
+
+- Single Functional Capability
+- One Command, One Deliverable
+- Package Before Sections
+- Repository-Ready Implementation
+- Evidence-Based Engineering
+- Controlled Replanning
+
+Where Development Story requirements conflict with implementation convenience, the Engineering Story Lifecycle governs.
+
+##### Lifecycle Completion
+
+A Development Story is complete when:
+
+- all planned functionality has been implemented;
+- all acceptance criteria have been satisfied;
+- repository verification has completed successfully;
+- repository documentation has been updated;
+- repository history has been recorded;
+- the repository baseline has been committed and tagged.
+
+Completion establishes the new functional baseline for ResumeForge.
+
+#### Active Engineering State
+
+The Active Engineering State defines the minimum execution context that shall be maintained throughout every Engineering Story and Development Story lifecycle.
+
+Its purpose is to preserve deterministic execution, provide an authoritative view of the current engineering activity, and establish an explicit re-entry point whenever execution is interrupted.
+
+##### Purpose
+
+The Active Engineering State provides a single source of truth describing where a story is within its lifecycle and what action is authorized next.
+
+It enables engineering work to pause and resume without ambiguity.
+
+##### Required State
+
+The Active Engineering State shall identify:
+
+- Active Story
+- Story Classification
+- Current Lifecycle
+- Current Phase
+- Current Step
+- Current Section (when applicable)
+- Current Status
+- Previous Completed Step
+- Next Authorized Step
+- Repository Communication Status
+
+##### State Management
+
+The Active Engineering State shall be established at the beginning of every lifecycle response.
+
+The state shall be updated only upon successful completion of the active lifecycle command.
+
+Engineering discussions occurring outside the lifecycle shall preserve the current state and shall not advance the lifecycle.
+
+##### Lifecycle Re-entry
+
+Whenever execution temporarily departs from the lifecycle for engineering discussion, methodology refinement, or clarification, the Active Engineering State shall remain unchanged.
+
+The response shall conclude with a **Lifecycle Re-entry** section containing:
+
+- Current Story
+- Current Phase
+- Current Active Step
+- Ready to Re-enter status
+- Copy/paste-ready next valid command
+
+This establishes the authoritative checkpoint for resuming execution.
+
+##### Engineering Principles
+
+The Active Engineering State shall ensure:
+
+- deterministic lifecycle execution;
+- explicit command authorization;
+- one command produces one deliverable;
+- interruption without loss of execution context;
+- complete lifecycle traceability.
+
+##### Lifecycle Responsibility
+
+Maintaining the Active Engineering State is the responsibility of every lifecycle response.
+
+Each response shall accurately reflect the repository's current execution state before authorizing the next lifecycle command.
+
+#### Lifecycle Phase Contract
+
+The Lifecycle Phase Contract defines the common execution contract shared by every phase of every ResumeForge lifecycle.
+
+Its purpose is to ensure that each lifecycle phase has a clearly defined responsibility, produces one authoritative deliverable, satisfies explicit completion criteria, and authorizes the next valid phase without ambiguity.
+
+##### Purpose
+
+The Lifecycle Phase Contract standardizes lifecycle execution by establishing a consistent structure for every phase regardless of lifecycle type.
+
+This contract applies equally to Engineering Stories and Development Stories.
+
+##### Phase Responsibilities
+
+Every lifecycle phase shall perform one primary responsibility.
+
+| Phase | Primary Responsibility | Primary Deliverable |
+|--------|------------------------|---------------------|
+| Initiate | Select and authorize the next engineering capability | Engineering Decision Record |
+| Review | Analyze, evaluate, and define the work to be performed | Review Artifact |
+| Implement | Produce installation-ready implementation artifacts | Package Artifact or Section Artifact |
+| Verify | Validate that implementation satisfies approved requirements | Verification Artifact |
+| Commit | Establish the verified repository baseline | Repository Baseline |
+
+A lifecycle phase shall not perform the responsibilities assigned to another phase.
+
+##### One Command, One Deliverable
+
+Every lifecycle command shall produce exactly one authoritative deliverable.
+
+Commands shall not implicitly perform subordinate commands.
+
+When subordinate implementation units exist, the parent command authorizes those units but does not execute them.
+
+##### Package and Section Execution
+
+When a lifecycle phase requires multiple implementation units, execution shall occur in two levels:
+
+1. Package
+2. Section
+
+The package defines:
+
+- implementation scope;
+- execution order;
+- dependencies;
+- implementation units.
+
+Each section performs exactly one implementation unit defined by the package.
+
+##### Phase Completion Criteria
+
+A lifecycle phase is complete only when:
+
+- its primary responsibility has been fulfilled;
+- its authoritative deliverable has been produced;
+- required quality gates have been satisfied;
+- the Active Engineering State has been updated;
+- the next lifecycle command has been explicitly authorized.
+
+##### Phase Boundaries
+
+Each lifecycle phase shall remain within its defined responsibility.
+
+Review phases shall not implement repository changes.
+
+Implement phases shall not perform verification.
+
+Verify phases shall not introduce new implementation.
+
+Commit phases shall not reopen completed implementation work except through controlled replanning.
+
+##### Controlled Lifecycle Advancement
+
+Progression through the lifecycle shall occur only through explicit developer commands.
+
+Lifecycle advancement shall never be implied by completion of a previous response.
+
+Each completed response authorizes the next valid lifecycle command while preserving complete execution traceability.
+
+#### Lifecycle Transition Model
+
+The Lifecycle Transition Model defines the authoritative rules governing movement between lifecycle phases.
+
+Its purpose is to ensure that lifecycle progression is deterministic, explicitly authorized, evidence-based, and completely traceable.
+
+##### Purpose
+
+The Lifecycle Transition Model establishes the legal execution paths through every ResumeForge Engineering Story and Development Story.
+
+A lifecycle transition occurs only after the current phase has successfully completed its defined responsibilities and all required quality gates have been satisfied.
+
+##### Standard Lifecycle Flow
+
+Every ResumeForge story shall progress through the following lifecycle.
+
+```text
+Initiate
+    ↓
+Review
+    ↓
+Implement
+    ↓
+Verify
+    ↓
+Commit
+```
+
+A transition to the next phase shall occur only through an explicit developer command.
+
+##### Transition Requirements
+
+Before a lifecycle transition is authorized, the following conditions shall be satisfied:
+
+- the current phase has completed successfully;
+- the authoritative deliverable has been produced;
+- all applicable quality gates have passed;
+- the Active Engineering State has been updated;
+- the next valid lifecycle command has been identified.
+
+If any condition is not satisfied, the lifecycle shall remain in its current phase.
+
+##### Controlled Re-entry
+
+Engineering discussions, retrospectives, methodology refinement, and design exploration may temporarily interrupt lifecycle execution.
+
+These discussions do not advance the lifecycle.
+
+At the conclusion of every out-of-band engineering discussion, the response shall include a **Lifecycle Re-entry** section that identifies:
+
+- Current Story
+- Current Phase
+- Current Active Step
+- Ready to Re-enter status
+- Copy/paste-ready next valid command
+
+This establishes the authoritative checkpoint for resuming execution.
+
+##### Controlled Replanning
+
+When review, verification, or implementation identifies a planning deficiency, execution shall return to the earliest affected lifecycle phase.
+
+Replanning replaces incremental correction whenever the approved implementation strategy is no longer valid.
+
+All completed work that remains valid shall be preserved.
+
+##### Illegal Transitions
+
+The following transitions are prohibited:
+
+- skipping lifecycle phases;
+- implicitly advancing to another phase;
+- executing multiple lifecycle commands within a single command response;
+- reopening completed phases without controlled replanning;
+- performing repository modifications outside an Implement phase;
+- introducing new implementation during Verify.
+
+##### Lifecycle Completion
+
+A story reaches lifecycle completion when:
+
+- Commit has successfully completed;
+- the repository baseline has been established;
+- repository history has been updated;
+- checkpoint information has been recorded;
+- the repository has been verified clean.
+
+Completion establishes the new authoritative repository baseline and concludes the lifecycle.
+
 #### Engineering Phases
 
 Engineering work is organized into Engineering Phases.
@@ -4170,6 +4472,172 @@ requirements.
 It shall contain every piece of information required to complete all remaining
 workflow phases without introducing assumptions.
 
+### Phase Exit Gate (PEG)
+
+Every Story Planning transition shall conclude with a Phase Exit Gate.
+
+The Phase Exit Gate determines whether the next lifecycle phase is
+authorized to begin.
+
+A lifecycle phase is not considered complete until its Phase Exit Gate has
+been evaluated.
+
+The purpose of the Phase Exit Gate is to prevent engineering from entering
+a lifecycle phase that cannot execute deterministically.
+
+---
+
+
+### Canonical Execution Contract
+
+Every executable lifecycle phase shall inherit a Canonical Execution
+Contract.
+
+The Canonical Execution Contract defines the minimum engineering
+specification required before execution of that lifecycle phase may begin.
+
+The contract is owned by the parent lifecycle phase.
+
+Child lifecycle phases inherit the contract and specialize only the
+behavior unique to their responsibilities.
+
+Execution responsibilities shall never be redefined by child lifecycle
+phases.
+
+---
+
+#### Canonical Contract Components
+
+Every executable lifecycle phase shall define, at minimum:
+
+- Purpose
+- Inputs
+- Outputs
+- Repository Operations
+- Verification Requirements
+- Completion Criteria
+- Ownership Transfer
+
+These components constitute the minimum executable engineering contract.
+
+Lifecycle phases may extend this contract but shall not omit any required
+component.
+
+---
+
+#### Parent / Child Lifecycle Responsibilities
+
+Parent lifecycle phases define engineering architecture.
+
+Child lifecycle phases inherit that architecture and provide only the
+specialization necessary to fulfill their assigned responsibilities.
+
+Engineering architecture shall exist in one authoritative location.
+
+---
+
+#### Contract Inheritance
+
+Child lifecycle phases shall reference inherited engineering contracts
+rather than duplicate them.
+
+Where additional responsibilities are required, they shall be documented
+as explicit extensions to the inherited contract.
+
+This preserves architectural consistency while minimizing repository
+duplication.
+
+---
+
+#### Deterministic Execution
+
+A Canonical Execution Contract shall enable independent engineers to
+execute a lifecycle phase without interpreting engineering intent.
+
+Execution behavior shall originate from the approved engineering
+specification rather than engineering discussion.
+
+If execution requires interpretation, the contract is incomplete and the
+lifecycle shall not transition through the Phase Exit Gate.
+
+### Engineering Readiness Assessment (ERA)
+
+The Phase Exit Gate is evaluated by performing an Engineering Readiness
+Assessment (ERA).
+
+The ERA validates that the proposed next lifecycle phase is ready to
+execute without engineering interpretation.
+
+The ERA shall evaluate, at minimum:
+
+• Ownership Readiness
+• Specification Readiness
+• Repository Readiness
+• Execution Readiness
+• Lifecycle Readiness
+
+The ERA produces one of two outcomes:
+
+PASS
+    Transition Authorized
+
+FAIL
+    Transition Denied
+
+If the ERA fails, the lifecycle shall not advance.
+
+---
+
+### Lifecycle Escalation
+
+When the Engineering Readiness Assessment determines that unresolved work
+belongs to another lifecycle phase:
+
+1. Suspend the current lifecycle phase.
+2. Record the engineering reason for suspension.
+3. Return ownership to the authoritative lifecycle phase.
+4. Resolve the engineering deficiency.
+5. Verify the updated engineering specification.
+6. Resume the suspended lifecycle phase.
+
+Lifecycle Escalation is an engineering control mechanism.
+
+It is not a restart of the story.
+
+---
+
+### Phase Responsibility Integrity
+
+Each lifecycle phase owns a distinct engineering responsibility.
+
+Review
+    Produces complete engineering specifications.
+
+Implement
+    Executes approved engineering specifications.
+
+Verify
+    Confirms implemented work matches the approved engineering
+    specification.
+
+A lifecycle phase shall not assume the responsibilities of another phase.
+
+---
+
+### Implementation Readiness
+
+Implement shall begin only after the Engineering Readiness Assessment has
+authorized lifecycle transition.
+
+Implement shall never:
+
+• complete engineering design;
+• infer repository architecture;
+• interpret incomplete engineering specifications;
+• compensate for planning deficiencies.
+
+Implementation executes approved engineering specifications.
+
 ### Planning Deliverables Register
 
 Story Planning shall produce a Deliverables Register.
@@ -7098,6 +7566,105 @@ The GREEN phase is complete only when:
 
 Completion of the GREEN phase authorizes progression to the next engineering workflow phase in accordance with the ResumeForge Engineering Methodology.
 
+## Engineering Story Lifecycle
+
+### Purpose
+
+The Engineering Story Lifecycle defines the authoritative execution model for all ResumeForge Engineering Stories.
+
+Engineering Stories evolve the ResumeForge Engineering Methodology itself. Their purpose is to improve engineering practices while maintaining deterministic execution, complete traceability, and repository integrity.
+
+### Objectives
+
+The Engineering Story Lifecycle shall:
+
+- Define a deterministic engineering workflow.
+- Maintain a single active engineering state throughout execution.
+- Produce repository-ready implementation artifacts.
+- Preserve complete evidence from planning through repository closeout.
+- Ensure every engineering improvement remains fully traceable.
+
+### Lifecycle
+
+Engineering Stories progress through the following lifecycle phases:
+
+| Phase | Primary Deliverable |
+|--------|---------------------|
+| Initiate | Engineering Decision Record |
+| Review | Review Artifact |
+| Implement | Package Artifact or Section Artifact |
+| Verify | Verification Artifact |
+| Commit | Repository Baseline |
+
+Progression to the next phase is authorized only after successful completion of the current phase.
+
+### Engineering Principles
+
+#### Single Architectural Capability
+
+Each Engineering Story shall implement one cohesive architectural capability.
+
+If additional independent capabilities are discovered, the story shall return to Story Planning for controlled replanning.
+
+#### One Command, One Deliverable
+
+Every lifecycle command produces exactly one authoritative deliverable.
+
+A lifecycle command shall never implicitly execute another lifecycle command.
+
+Each completed command authorizes, but does not perform, the next command.
+
+#### Package Before Sections
+
+Whenever an implementation phase contains multiple implementation units, execution shall follow this pattern:
+
+```text
+Review
+    ↓
+Implement (Package)
+    ↓
+Implement (Section)
+    ↓
+...
+    ↓
+Verify
+```
+
+The package defines the implementation contract.
+
+Section-level implementation fulfills that contract one unit at a time.
+
+#### Repository-Ready Implementation
+
+Implement phases produce repository-ready installation artifacts requiring no additional interpretation.
+
+#### Evidence-Based Engineering
+
+Every engineering decision shall remain traceable through:
+
+- Story Deliverables
+- Repository Test Specifications
+- Repository Patch Units
+- Verification Evidence
+- Commit Evidence
+
+#### Controlled Replanning
+
+When a quality gate identifies a planning deficiency, engineering work shall return to the earliest affected lifecycle phase.
+
+### Lifecycle Completion
+
+An Engineering Story is complete when:
+
+- all lifecycle phases have successfully completed;
+- verification has passed;
+- repository documentation has been updated;
+- repository history has been recorded;
+- checkpoint information has been updated;
+- the repository baseline has been committed and tagged.
+
+Completion establishes the new authoritative engineering baseline.
+
 ## Review Quality Gate
 
 Before approving any workflow phase, ChatGPT (Avery) shall confirm that all
@@ -7681,28 +8248,79 @@ Upon successful completion of CPU-00, ownership transfers to:
 
 **Purpose**
 
-Capture the permanent engineering value produced by the completed story.
+Capture the enduring engineering value produced by the completed story.
 
-The Story Retrospective preserves engineering decisions, repository improvements, methodology improvements, lessons learned, and future engineering considerations so they become part of the repository's long-term engineering knowledge.
+The Story Retrospective records engineering knowledge that remains valuable
+after story completion. It preserves methodology improvements, engineering
+decisions, repository improvements, lifecycle observations, and future
+engineering opportunities.
 
-**Primary Engineering Artifact**
+The Story Retrospective is an engineering artifact rather than a narrative
+history of the implementation session.
 
-- Story Retrospective
+---
+
+**Inputs**
+
+- Completed story objectives.
+- Repository modifications.
+- Verified engineering artifacts.
+- Engineering observations accumulated during the lifecycle.
+- Approved methodology improvements.
+
+---
+
+**Outputs**
+
+- Completed Story Retrospective.
+- Permanent engineering lessons learned.
+- Methodology improvements for future REM evolution.
+- Clearly identified follow-on engineering opportunities.
+
+---
+
+**Repository Operations**
+
+Review the completed story against its original objectives.
+
+Identify engineering improvements that extend beyond the current story.
+
+Separate:
+
+- story accomplishments;
+- repository improvements;
+- methodology improvements;
+- future engineering opportunities.
+
+Record only durable engineering knowledge suitable for long-term repository
+maintenance.
+
+---
+
+**Verification Requirements**
+
+Verify that:
+
+- the retrospective accurately reflects the completed story;
+- methodology improvements are clearly distinguished from story-specific work;
+- future engineering work is identified separately from completed work;
+- the retrospective is understandable without requiring access to the original engineering conversation.
+
+---
 
 **Completion Criteria**
 
-CPU-01 is complete when:
+CPU-01 is complete when the Story Retrospective captures the enduring
+engineering value of the story and provides sufficient guidance to improve
+future engineering work.
 
-- the Story Retrospective has been recorded in the repository history;
-- engineering improvements have been documented;
-- methodology improvements have been added to the Engineering Backlog;
-- future engineering considerations have been captured.
+---
 
 **Ownership Transfer**
 
-Upon successful completion of CPU-01, ownership transfers to:
+Upon successful verification, ownership transfers to:
 
-**CPU-02 – Repository Synchronization**
+`CPU-02 – Repository History`
 
 #### CPU-02 – Repository Synchronization
 
@@ -7777,7 +8395,10 @@ CPU-04 is complete when:
 - repository checkpoint documentation has been updated;
 - the next engineering starting point has been recorded;
 - repository status reflects the completed engineering work;
-- checkpoint information has been verified for accuracy and completeness.
+- checkpoint information has been verified for accuracy and completeness;
+- repository recovery information has been synchronized with the current engineering state;
+- repository checkpoint reflects the verified completion of all prior Commit Processing Units;
+- repository checkpoint establishes a deterministic engineering baseline for the next engineering session.
 
 **Ownership Transfer**
 
@@ -7802,9 +8423,12 @@ The Commit Package represents the complete set of engineering artifacts produced
 CPU-05 is complete when:
 
 - all required engineering artifacts have been produced;
-- repository updates have been synchronized and verified;
-- repository history and checkpoint updates are complete;
-- the commit package has been reviewed for completeness and is ready for final verification.
+- all Repository Patch Specifications have been implemented and verified;
+- repository updates have been synchronized across all affected documents;
+- repository history and repository checkpoint updates are complete;
+- engineering lifecycle ownership transfers have been completed and verified;
+- the Commit Package represents a complete, internally consistent repository state;
+- the Commit Package has been reviewed for completeness and is ready for final Commit Verification.
 
 **Ownership Transfer**
 
@@ -7828,10 +8452,13 @@ Commit Verification confirms that all required engineering activities have been 
 
 CPU-06 is complete when:
 
-- all previous Commit Processing Units have been successfully completed;
+- all previous Commit Processing Units have been successfully completed and verified;
 - required engineering artifacts have been verified;
-- repository history, checkpoint, and synchronization activities have been confirmed;
+- Repository Context Audits have been completed for all repository modifications;
+- repository history, repository checkpoint, and synchronization activities have been confirmed;
+- repository identity, structure, terminology, and implementation contracts remain internally consistent;
 - repository status is clean and ready for commit;
+- the Commit Package has been verified as complete and internally consistent;
 - final commit verification has been successfully completed.
 
 **Ownership Transfer**

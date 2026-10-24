@@ -13,40 +13,59 @@ Historical engineering information belongs in docs/history.md.
 
 ### Active Story
 
-Story: G.2.5.36 – Profile Certifications
+Story: E.9 – Engineering Lifecycle Architecture
 
 ### Current Phase
 
-Story Planning
+Commit
 
 ### Current Command
 
-Review: Implementation Package (RED)
+Implement: Commit
 
 ### Repository Status
 
-Repository implementation complete.
-Repository verification complete.
-Story Signoff documentation in progress.
+Story Planning complete.
+Repository Test Specifications (RED) complete.
+Repository Patch Specifications (GREEN) complete.
+Commit implementation in progress.
 
 ### Engineering Status
 
-Story implementation approved.
-GREEN verification complete.
-Repository preparing for closeout.
+CPU-01 – Story Retrospective: Verified.
+CPU-02 – Repository History: Verified.
+CPU-03 – Checkpoint: Active.
 
 ### Outstanding Work
 
-- Verify: Story Signoff
-- Repository Closeout
+- CPU-03 – Checkpoint
+- CPU-04 – Repository Validation
+- CPU-05 – Git Repository Closeout
+- CPU-06 – Story Closeout
+- Verify: Commit
 
 ### Recently Completed
 
-✓ Review: Story Signoff
-✓ Repository Patch Specifications (GREEN)
-✓ Verify: Repository Patch Specifications (GREEN)
+✓ CPU-01 – Story Retrospective
+✓ CPU-02 – Repository History
 
 ### Repository Recovery
+
+Repository is synchronized through:
+
+Story: E.9 – Engineering Lifecycle Architecture
+Phase: Commit
+Command: Implement: Commit
+Section: CPU-03 – Checkpoint
+
+### Next Expected Command
+
+Implement: Commit
+Section: CPU-04 – Repository Validation
+
+### Repository Readiness
+
+Repository ready to continue Commit implementation.
 
 Repository is synchronized through
 
