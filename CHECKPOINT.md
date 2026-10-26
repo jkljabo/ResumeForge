@@ -13,74 +13,65 @@ Historical engineering information belongs in docs/history.md.
 
 ### Active Story
 
-Story: E.9 – Engineering Lifecycle Architecture
+Story: E.10 – Git Repository Closeout Architecture
 
 ### Current Phase
 
-Commit
+Repository Closeout
 
 ### Current Command
 
-Implement: Commit
+Implement: Repository Closeout
 
 ### Repository Status
 
 Story Planning complete.
+
 Repository Test Specifications (RED) complete.
+
 Repository Patch Specifications (GREEN) complete.
-Commit implementation in progress.
+
+Repository Closeout implementation in progress.
 
 ### Engineering Status
 
-CPU-01 – Story Retrospective: Verified.
-CPU-02 – Repository History: Verified.
-CPU-03 – Checkpoint: Active.
+RCU-01 – CHECKPOINT.md: Active.
+
+RCU-02 – docs/history.md: Pending.
 
 ### Outstanding Work
 
-- CPU-03 – Checkpoint
-- CPU-04 – Repository Validation
-- CPU-05 – Git Repository Closeout
-- CPU-06 – Story Closeout
+- RCU-01 – CHECKPOINT.md
+- RCU-02 – docs/history.md
+- Verify: Repository Closeout
+- Review: Commit
+- Implement: Commit
 - Verify: Commit
+- Retrospective
 
 ### Recently Completed
 
-✓ CPU-01 – Story Retrospective
-✓ CPU-02 – Repository History
+✓ Repository Patch Specifications (GREEN)
 
 ### Repository Recovery
 
 Repository is synchronized through:
 
-Story: E.9 – Engineering Lifecycle Architecture
-Phase: Commit
-Command: Implement: Commit
-Section: CPU-03 – Checkpoint
+Story: E.10 – Git Repository Closeout Architecture
+
+Phase: Repository Closeout
+
+Command: Implement: Repository Closeout
+
+Section: RCU-01 – CHECKPOINT.md
 
 ### Next Expected Command
 
-Implement: Commit
-Section: CPU-04 – Repository Validation
+Verify: Repository Closeout
 
 ### Repository Readiness
 
-Repository ready to continue Commit implementation.
-
-Repository is synchronized through
-
-Story: G.2.5.35 – Profile Skills
-Phase: Story Signoff
-Command: Implement: Story Signoff
-
-Next Expected Command
-
-Verify: Story Signoff
-
-Repository Readiness
-
-Ready for Story Signoff verification.
-
+Repository Closeout implementation in progress.
 
 ## Engineering Session State
 

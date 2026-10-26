@@ -8194,6 +8194,63 @@ Repository Closeout concludes only when:
 - engineering continuity has been preserved;
 - the repository is ready to transition to Commit.
 
+### Git Repository Closeout Purpose
+
+Git Repository Closeout is the engineering lifecycle responsible for governing the Git operations that permanently record and publish a completed engineering story.
+
+This lifecycle begins immediately after Repository Closeout has successfully completed and concludes before Story Closeout begins.
+
+Git Repository Closeout transforms repository publication from an operational activity into a governed engineering lifecycle with defined entry criteria, execution requirements, verification, and engineering evidence.
+
+### Git Repository Closeout Objectives
+
+Git Repository Closeout shall:
+
+- govern all Git repository publication activities;
+- establish deterministic Git execution;
+- preserve repository integrity;
+- produce verifiable engineering evidence;
+- support deterministic interruption recovery;
+- prepare the repository for Story Closeout.
+
+Successful completion of Git Repository Closeout certifies that the engineering work has been correctly recorded within the repository and is ready to transition to Story Closeout.
+
+### Git Repository Closeout Lifecycle Contracts
+
+Git Repository Closeout shall execute under the following engineering contracts.
+
+#### Entry Contract
+
+Git Repository Closeout may begin only when:
+
+- Repository Closeout has successfully completed;
+- repository validation has passed;
+- the repository is ready for publication.
+
+#### Execution Contract
+
+Git Repository Closeout shall:
+
+- execute using the defined Git Repository Closeout lifecycle;
+- perform each lifecycle phase sequentially;
+- preserve repository integrity throughout execution;
+- produce repository-ready engineering artifacts.
+
+#### Verification Contract
+
+Each lifecycle phase shall complete its required verification before the lifecycle advances.
+
+Verification evidence shall become part of the engineering record for the completed story.
+
+#### Completion Contract
+
+Git Repository Closeout completes only after:
+
+- all lifecycle phases have successfully completed;
+- required Git operations have been verified;
+- repository publication has been confirmed;
+- the repository is certified ready for Story Closeout.
+
 ### Commit: Repository Closeout
 
 **Commit Lifecycle**
