@@ -610,6 +610,85 @@ def test_profile_load_without_languages_defaults_none(tmp_path):
     assert loaded.get("languages") is None
 
 
+def test_profile_save_restores_certifications(tmp_path):
+    profile_file = tmp_path / DEFAULT_PROFILE_FILE
+
+    profile_data = {
+        "headline": None,
+        "full_name": None,
+        "color_theme": None,
+        "description": None,
+        "tags": [],
+        "notes": None,
+        "category": None,
+        "visibility": None,
+        "owner": None,
+        "organization": None,
+        "purpose": None,
+        "target_role": None,
+        "experience_level": None,
+        "employment_type": None,
+        "work_arrangement": None,
+        "work_authorization": None,
+        "security_clearance": None,
+        "citizenship": None,
+        "languages": None,
+        "certifications": "AZ-204,AZ-305",
+    }
+
+    profile_service = ProfilePersistence()
+
+    profile_service.save(
+        profile_file,
+        profile_data,
+    )
+
+    loaded = profile_service.load(
+        profile_file,
+    )
+
+    assert loaded["certifications"] == "AZ-204,AZ-305"
+
+
+def test_profile_load_without_certifications_defaults_none(tmp_path):
+    profile_file = tmp_path / DEFAULT_PROFILE_FILE
+
+    profile_data = {
+        "headline": None,
+        "full_name": None,
+        "color_theme": None,
+        "description": None,
+        "tags": [],
+        "notes": None,
+        "category": None,
+        "visibility": None,
+        "owner": None,
+        "organization": None,
+        "purpose": None,
+        "target_role": None,
+        "experience_level": None,
+        "employment_type": None,
+        "work_arrangement": None,
+        "work_authorization": None,
+        "security_clearance": None,
+        "citizenship": None,
+        "languages": None,
+    }
+
+    profile_service = ProfilePersistence()
+
+    profile_service.save(
+        profile_file,
+        profile_data,
+    )
+
+    loaded = profile_service.load(
+        profile_file,
+    )
+
+    assert loaded.get("certifications") is None
+
+
 def test_profile_save_restores_skills(tmp_path):
     profile_file = tmp_path / DEFAULT_PROFILE_FILE
 

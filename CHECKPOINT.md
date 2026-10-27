@@ -13,7 +13,7 @@ Historical engineering information belongs in docs/history.md.
 
 ### Active Story
 
-Story: E.10 – Git Repository Closeout Architecture
+Story: E.11 – Repository Architecture & Documentation Governance
 
 ### Current Phase
 
@@ -23,15 +23,17 @@ Repository Closeout
 
 Implement: Repository Closeout
 
+Section: RCU-01 – CHECKPOINT.md
+
 ### Repository Status
 
 Story Planning complete.
 
-Repository Test Specifications (RED) complete.
-
 Repository Patch Specifications (GREEN) complete.
 
-Repository Closeout implementation in progress.
+Story Signoff complete.
+
+Repository Closeout in progress.
 
 ### Engineering Status
 
@@ -39,10 +41,19 @@ RCU-01 – CHECKPOINT.md: Active.
 
 RCU-02 – docs/history.md: Pending.
 
+RCU-03 – docs/testing.md: Pending Pattern Review.
+
+RCU-04 – docs/phases.md: Pending Pattern Review.
+
+RCU-05 – Repository Documentation Review: Pending.
+
 ### Outstanding Work
 
 - RCU-01 – CHECKPOINT.md
 - RCU-02 – docs/history.md
+- RCU-03 – docs/testing.md
+- RCU-04 – docs/phases.md
+- RCU-05 – Repository Documentation Review
 - Verify: Repository Closeout
 - Review: Commit
 - Implement: Commit
@@ -53,21 +64,27 @@ RCU-02 – docs/history.md: Pending.
 
 ✓ Repository Patch Specifications (GREEN)
 
+✓ Story Signoff
+
 ### Repository Recovery
 
 Repository is synchronized through:
 
-Story: E.10 – Git Repository Closeout Architecture
+Story: E.11 – Repository Architecture & Documentation Governance
 
 Phase: Repository Closeout
 
-Command: Implement: Repository Closeout
+Command:
+
+Implement: Repository Closeout
 
 Section: RCU-01 – CHECKPOINT.md
 
 ### Next Expected Command
 
-Verify: Repository Closeout
+Implement: Repository Closeout
+
+Section: RCU-02 – docs/history.md
 
 ### Repository Readiness
 

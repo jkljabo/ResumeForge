@@ -949,21 +949,45 @@ Formal adoption of these methodology enhancements is deferred to the next Engine
 
 **Status**
 
-Planning Approved
+Engineering Complete
 
 **Engineering Summary**
 
-Introduced planning for Profile Certifications, extending the Profile aggregate with persistent certification metadata following the established collection-based implementation pattern.
+Implemented complete Profile Certifications support throughout the ResumeForge profile management system following the established collection-based repository pattern.
 
-**Planned Repository Impact**
+Completed engineering work included:
 
-- Profile model
-- Profile persistence
-- Serialization
-- CLI parser
-- CLI workflow
-- Unit testing
-- Regression verification
+- Added certification support to the Profile model.
+- Added certification persistence.
+- Added serialization support.
+- Added CLI parser support for `--certifications`.
+- Added CLI workflow support for certification updates.
+- Implemented comprehensive RED and GREEN verification.
+- Preserved established repository implementation patterns.
+
+**Completed Repository Impact**
+
+- Profile model updated.
+- Profile persistence updated.
+- Serialization updated.
+- CLI parser updated.
+- CLI workflow updated.
+- Unit test suite expanded.
+- Regression suite verified.
+
+**Verification**
+
+- tests/test_profile.py: 48 passed
+- tests/test_profile_persistence.py: 29 passed
+- tests/test_cli.py: 123 passed, 1 skipped
+- Full regression suite: 526 passed, 1 skipped
+
+**Engineering Methodology Highlights**
+
+- Engineering Acceptance Domain completed through Story Signoff.
+- Repository Acceptance Domain introduced prior to source control activities.
+- Repository Closeout Units (RCUs) used to decompose repository updates.
+- Repository State Audit performed before Repository Pattern Review to determine the correct update strategy.
 
 ### Story: E.7 – RED/GREEN Evidence Integrity
 
@@ -1143,3 +1167,30 @@ Completed the architectural definition of the Repository Closeout lifecycle, cla
 
 - E.9 – Engineering Lifecycle Architecture
 - G.2.5.36 – Profile Certifications (resume after E.10)
+
+## Story: E.11 – Repository Architecture & Documentation Governance
+
+### Engineering Summary
+
+Established the architectural governance framework for the ResumeForge repository and Engineering Methodology by defining repository architecture, engineering artifact governance, lifecycle governance, documentation governance, repository evidence architecture, and engineering authorization principles. This story transitions the REM from a procedural workflow into a governed engineering methodology with clearly defined architectural layers and engineering responsibilities.
+
+### Significant Changes
+
+- Established the Repository Architecture foundation.
+- Defined Repository Artifact Governance and artifact ownership principles.
+- Introduced the Repository Discovery Package (RDP) as the authoritative repository discovery artifact.
+- Formalized Documentation Governance and documentation ownership responsibilities.
+- Defined Repository Closeout Governance and repository synchronization principles.
+- Established the Repository Anchor Specification (RAS) for deterministic repository modifications.
+- Introduced Engineering Artifact Lifecycle Governance, including persistent and transient artifact classification.
+- Established Lifecycle Classification and Engineering Gates, distinguishing Production and Assurance lifecycles.
+- Formalized progressive verification and the Implementation Expansion Gate.
+- Established the Repository Evidence Architecture, including Evidence Chains, traceability, auditability, and Engineering Decision Records (EDRs).
+- Clarified that lifecycle-level Implement phases authorize deterministic execution while execution units perform repository modifications.
+- Standardized Repository Closeout to mirror the GREEN implementation architecture through Repository Closeout Units (RCUs).
+
+### Related Stories
+
+- E.9 – Engineering Lifecycle Architecture
+- E.10 – Git Repository Closeout Architecture
+- G.2.5.36 – Profile Certifications

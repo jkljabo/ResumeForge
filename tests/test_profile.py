@@ -430,6 +430,31 @@ def test_profile_stores_languages():
     assert profile.languages == ["English", "Spanish"]
 
 
+def test_profile_defaults_to_no_certifications():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+    )
+
+    assert profile.certifications is None
+
+
+def test_profile_stores_certifications():
+    profile = Profile(
+        name="government",
+        directory=Path("profiles") / "government",
+        certifications=[
+            "AZ-204",
+            "AZ-305",
+        ],
+    )
+
+    assert profile.certifications == [
+        "AZ-204",
+        "AZ-305",
+    ]
+    
+
 def test_profile_updates_languages():
     profile = Profile(
         name=DEFAULT_PROFILE_NAME,

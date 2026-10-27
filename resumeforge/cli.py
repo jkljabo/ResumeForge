@@ -191,6 +191,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     edit_parser.add_argument(
+        "--certifications",
+        help="Profile certifications.",
+    )
+
+    edit_parser.add_argument(
         "--skills",
         help="Profile skills.",
     )

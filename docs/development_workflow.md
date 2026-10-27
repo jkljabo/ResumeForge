@@ -19,6 +19,928 @@ The goals of this workflow are to:
 - Ensure documentation remains synchronized with the codebase.
 - Produce small, incremental, high-quality changes.
 
+## Repository Architecture
+
+### Purpose
+
+The ResumeForge repository is governed by an explicit engineering architecture.
+The ResumeForge Engineering Methodology (REM) defines not only the engineering
+process but also the architectural principles that govern repository evolution.
+
+Engineering activities shall be derived from repository architecture rather than
+implemented as isolated procedural steps.
+
+### Architectural Principles
+
+The repository is governed by the following architectural principles:
+
+1. Architecture before Process.
+2. Governance before Implementation.
+3. Evidence before Decision.
+4. Review before Implementation.
+5. Deterministic Repository Operations.
+6. Continuous Repository Integrity.
+
+These principles apply to every engineering story unless an approved
+Engineering Decision Record (EDR) explicitly authorizes a deviation.
+
+### Architectural Dependency Model
+
+Engineering activities shall follow the dependency hierarchy below.
+
+```text
+Repository Architecture
+        ↓
+Repository Governance
+        ↓
+Repository Lifecycle
+        ↓
+Repository Evidence
+        ↓
+Repository Implementation
+        ↓
+Repository Verification
+```
+
+Procedural workflow shall always be derived from this dependency model.
+
+### Repository Architecture Objectives
+
+Repository Architecture exists to:
+
+- define repository structure;
+- establish governance responsibilities;
+- provide deterministic engineering guidance;
+- minimize repository ambiguity;
+- support long-term maintainability;
+- preserve engineering consistency across stories.
+
+Subsequent sections of this methodology build upon these architectural
+principles.
+
+## Repository Artifact Governance
+
+### Purpose
+
+Repository artifacts are governed engineering assets.
+
+Each artifact exists to fulfill a specific architectural responsibility within
+the ResumeForge repository and shall be maintained according to its defined
+purpose rather than individual engineering preference.
+
+### Repository Artifact Definition
+
+A repository artifact is any file, document, directory, or engineering asset
+whose content contributes to the implementation, governance, operation, or
+maintenance of the ResumeForge repository.
+
+Repository artifacts shall be governed independently of the engineering stories
+that modify them.
+
+### Artifact Governance Model
+
+Every governed repository artifact shall define:
+
+- Purpose
+- Audience
+- Classification
+- Ownership
+- Responsibilities
+- Authorized Update Triggers
+- Prohibited Content
+- Expected Maintenance Frequency
+
+These characteristics collectively define the artifact's governance contract.
+
+### Repository Artifact Classification
+
+Repository artifacts generally belong to one of the following architectural
+categories:
+
+- Engineering Methodology
+- Repository Governance
+- Repository Documentation
+- Development Documentation
+- Engineering History
+- Engineering Checkpoints
+- Testing Documentation
+- Production Source Code
+- Test Source Code
+- Configuration
+
+Additional classifications may be introduced through approved Engineering
+Decision Records (EDRs).
+
+### Artifact Responsibility Principle
+
+Every repository artifact shall answer a single primary engineering question.
+
+Examples include:
+
+- Engineering methodology defines how engineering is performed.
+- Repository governance defines how repository assets are governed.
+- Testing documentation defines how repository verification is performed.
+- Engineering history records completed engineering work.
+
+Artifacts should not duplicate responsibilities assigned to other repository
+artifacts.
+
+### Authorized Repository Updates
+
+Repository artifacts shall only be modified when authorized by an engineering
+lifecycle phase.
+
+Examples include:
+
+- Story implementation
+- Repository closeout
+- Engineering methodology updates
+- Approved architectural improvements
+
+Repository modifications outside an authorized lifecycle are prohibited.
+
+### Repository Integrity
+
+Repository governance exists to:
+
+- preserve architectural consistency;
+- minimize documentation overlap;
+- reduce engineering ambiguity;
+- support deterministic maintenance;
+- ensure long-term repository integrity.
+
+## Repository Discovery Package (RDP)
+
+### Purpose
+
+Repository implementation shall never begin until repository discovery has been
+completed.
+
+The Repository Discovery Package (RDP) is the authoritative engineering artifact
+produced during Review. It documents the evidence required to produce
+deterministic repository patches.
+
+Implement phases shall consume the Repository Discovery Package and shall not
+repeat repository discovery activities.
+
+### Repository Discovery Objectives
+
+Repository Discovery exists to:
+
+- understand the current repository state;
+- identify the correct implementation target;
+- determine repository operations;
+- verify repository patterns;
+- establish deterministic implementation.
+
+### Required Repository Discovery Activities
+
+Every Repository Discovery Package shall include, at minimum:
+
+- Repository State Audit
+- Artifact Responsibility Review
+- Repository Pattern Review
+- Repository Operation Selection
+- Repository Impact Assessment
+- Repository Discovery Summary
+
+Additional discovery activities may be introduced when authorized by an
+Engineering Decision Record (EDR).
+
+### Repository State Audit
+
+The Repository State Audit establishes the current condition of the repository.
+
+It identifies:
+
+- affected repository artifacts;
+- existing implementation state;
+- architectural dependencies;
+- relevant engineering history.
+
+### Artifact Responsibility Review
+
+Every affected repository artifact shall be reviewed to determine its
+architectural responsibility before implementation begins.
+
+Repository modifications shall support the artifact's defined responsibility and
+shall not introduce conflicting purposes.
+
+### Repository Pattern Review
+
+Repository Discovery shall identify and document the implementation pattern
+already established within the repository.
+
+Repository patches shall extend existing architectural patterns whenever
+practical rather than introducing unnecessary variation.
+
+### Repository Operation Selection
+
+Repository Discovery shall determine the authorized repository operation for
+each affected artifact.
+
+Typical repository operations include:
+
+- Insert
+- Extend
+- Update
+- Replace
+- Delete
+- No Change Required
+
+Repository operations shall be explicitly documented before implementation.
+
+### Repository Impact Assessment
+
+Repository Discovery shall evaluate the expected impact of the proposed
+repository changes.
+
+This assessment includes:
+
+- affected artifacts;
+- architectural dependencies;
+- downstream implementation effects;
+- documentation impacts.
+
+### Repository Discovery Complete
+
+Repository Discovery concludes when:
+
+- repository analysis is complete;
+- repository operations are uniquely determined;
+- implementation targets are verified;
+- deterministic Repository Patch Units can be produced.
+
+Completion of the Repository Discovery Package constitutes the Review exit gate
+for Repository Patch Specifications (GREEN).
+
+## Documentation Governance
+
+### Purpose
+
+Repository documentation is a governed engineering asset.
+
+Every documentation artifact exists to fulfill a defined architectural
+responsibility and shall be maintained according to that responsibility.
+Documentation shall not become a collection of general notes or duplicate
+information maintained elsewhere in the repository.
+
+### Documentation Responsibilities
+
+Each documentation artifact shall define:
+
+- Purpose
+- Scope
+- Intended Audience
+- Repository Classification
+- Owning Process
+- Authorized Update Triggers
+- Relationships to Other Repository Artifacts
+
+Documentation shall answer one primary engineering question.
+
+### Documentation Classification
+
+Repository documentation generally belongs to one of the following categories:
+
+- Engineering Methodology
+- Repository Governance
+- Development Workflow
+- Repository History
+- Repository Testing
+- Repository Planning
+- Repository Reference
+- User Documentation
+
+Each document shall belong to a single primary classification.
+
+### Documentation Ownership
+
+Every documentation artifact shall have a clearly defined owner.
+
+Ownership defines responsibility for:
+
+- architectural consistency;
+- technical accuracy;
+- lifecycle maintenance;
+- repository integration.
+
+Ownership does not imply exclusive authorship.
+
+### Documentation Update Authorization
+
+Documentation may only be modified when authorized by an engineering lifecycle.
+
+Authorized update sources include:
+
+- approved engineering stories;
+- repository closeout;
+- engineering methodology improvements;
+- approved Engineering Decision Records (EDRs).
+
+Unplanned documentation changes are prohibited.
+
+### Documentation Quality Principles
+
+Repository documentation shall be:
+
+- architecturally consistent;
+- deterministic;
+- evidence-driven;
+- non-duplicative;
+- maintainable;
+- discoverable.
+
+Documentation should extend existing repository patterns rather than introduce
+new organizational models without architectural justification.
+
+### Documentation Lifecycle
+
+Every documentation artifact shall define:
+
+- Creation Gate
+- Maintenance Gate
+- Consumer(s)
+- Retirement Gate
+- Persistence
+
+Documentation lifecycle expectations shall be reviewed whenever repository
+governance evolves.
+
+### Documentation Relationships
+
+Repository documentation shall reference and support related engineering
+artifacts without duplicating their responsibilities.
+
+Examples include:
+
+- Repository Discovery Package (RDP)
+- Repository Anchor Specification (RAS)
+- Repository Patch Unit (RPU)
+- Engineering Decision Record (EDR)
+- Evidence Chain
+
+Each artifact remains responsible for its own engineering purpose.
+
+## Repository Closeout Governance
+
+### Purpose
+
+Repository Closeout is the engineering lifecycle responsible for transitioning a
+completed implementation into a verified repository state.
+
+Its purpose is to ensure that repository documentation, engineering evidence,
+and repository metadata accurately reflect the completed engineering work before
+the repository advances to Commit.
+
+Repository Closeout is a governance activity rather than an implementation
+activity.
+
+### Repository Closeout Objectives
+
+Repository Closeout exists to:
+
+- complete repository documentation;
+- synchronize engineering artifacts;
+- verify engineering evidence;
+- prepare the repository for commit;
+- establish repository consistency.
+
+### Repository Closeout Responsibilities
+
+Repository Closeout is responsible for coordinating updates to repository
+artifacts that record completed engineering work.
+
+Typical repository artifacts include:
+
+- CHECKPOINT.md
+- docs/history.md
+- docs/testing.md
+- other governed operational documentation
+
+Repository Closeout shall not introduce new functional behavior.
+
+### Repository Closeout Entry Gate
+
+Repository Closeout may begin only when:
+
+- Story Signoff has been successfully completed;
+- all Repository Patch Units have been verified;
+- engineering evidence is complete;
+- the repository is in a stable implementation state.
+
+### Repository Closeout Activities
+
+Repository Closeout includes:
+
+- reviewing operational repository artifacts;
+- updating repository history;
+- updating testing documentation;
+- updating checkpoint information;
+- validating repository consistency.
+
+Repository Closeout activities shall follow established repository patterns for
+each governed artifact.
+
+### Repository Closeout Exit Gate
+
+Repository Closeout is complete when:
+
+- operational documentation is synchronized;
+- repository evidence is complete;
+- engineering history reflects the completed story;
+- repository metadata is current;
+- the repository is ready for Commit.
+
+Completion of Repository Closeout authorizes entry into the Commit lifecycle.
+
+### Repository Closeout Principles
+
+Repository Closeout shall:
+
+- preserve repository integrity;
+- maintain documentation consistency;
+- avoid functional implementation changes;
+- provide complete engineering traceability;
+- produce a repository ready for deterministic commit.
+
+## Repository Anchor Specification (RAS)
+
+### Purpose
+
+The Repository Anchor Specification (RAS) is the authoritative engineering
+artifact that identifies and authorizes the exact repository location for a
+single Repository Patch Unit (RPU).
+
+No Repository Patch Unit shall begin implementation until its Repository Anchor
+Specification has been successfully verified.
+
+The RAS answers one engineering question:
+
+> **Where is this repository change authorized?**
+
+### Engineering Responsibility
+
+The Repository Anchor Specification exists to:
+
+- eliminate ambiguous repository locations;
+- authorize deterministic repository modifications;
+- separate repository discovery from repository implementation;
+- support repeatable engineering execution.
+
+The RAS defines repository location only.
+
+It does not define repository content.
+
+### Repository Anchor Specification Contents
+
+Every Repository Anchor Specification shall include:
+
+- Repository File
+- Repository Hierarchy
+- Verified Target Anchor
+- Repository Operation
+- Insertion or Modification Rule
+- Anchor Verification Criteria
+- Failure Behavior
+
+Each element is mandatory.
+
+### Repository Operations
+
+The Repository Operation identifies the type of repository modification being
+authorized.
+
+Typical operations include:
+
+- Insert
+- Extend
+- Replace
+- Update
+- Delete
+- No Change Required
+
+Repository operations shall be explicitly declared before implementation begins.
+
+### Anchor Verification
+
+Before every Repository Patch Unit the implementer shall verify:
+
+- the correct repository artifact;
+- the correct repository hierarchy;
+- the verified target anchor;
+- the authorized repository operation.
+
+Implementation shall not proceed until all verification succeeds.
+
+### Failure Handling
+
+If a Repository Anchor Specification cannot be uniquely verified:
+
+- implementation shall stop;
+- no repository modifications shall be performed;
+- the engineering lifecycle shall return to the appropriate Review phase.
+
+Repository locations shall never be inferred.
+
+### Relationship to Repository Discovery
+
+The Repository Discovery Package (RDP) identifies what repository work is
+required.
+
+The Repository Anchor Specification (RAS) identifies where that work is
+authorized.
+
+The Repository Patch Unit (RPU) specifies how the repository modification shall
+be performed.
+
+These three engineering artifacts operate together but remain independently
+governed.
+
+### Repository Anchor Lifecycle
+
+A Repository Anchor Specification:
+
+- is created during Implement;
+- authorizes exactly one Repository Patch Unit;
+- is consumed during implementation;
+- is retired after successful verification of that Repository Patch Unit.
+
+Repository Anchor Specifications are transient engineering artifacts.
+
+## Engineering Artifact Lifecycle Governance
+
+### Purpose
+
+Every engineering artifact maintained within the ResumeForge repository shall
+have an explicitly defined lifecycle.
+
+Lifecycle governance establishes when an artifact is created, who is
+responsible for maintaining it, how it is consumed by later engineering
+activities, and when it is retired.
+
+Engineering artifacts shall not exist without defined lifecycle governance.
+
+### Engineering Artifact Principles
+
+Every engineering artifact shall define exactly one primary engineering
+responsibility.
+
+Artifacts shall cooperate to complete an engineering workflow while remaining
+independently governed.
+
+Lifecycle governance exists to ensure that engineering artifacts remain:
+
+- deterministic;
+- maintainable;
+- auditable;
+- non-duplicative;
+- architecturally consistent.
+
+### Required Lifecycle Definition
+
+Every governed engineering artifact shall explicitly define:
+
+- Purpose
+- Owner
+- Creation Gate
+- Consumer(s)
+- Maintenance Gate
+- Retirement Gate
+- Persistence
+- Governing Authority
+
+These lifecycle elements are mandatory.
+
+### Artifact Ownership
+
+Ownership identifies the engineering role responsible for maintaining the
+artifact's architectural integrity.
+
+Ownership does not imply exclusive authorship.
+
+Ownership includes responsibility for:
+
+- architectural consistency;
+- engineering accuracy;
+- lifecycle compliance;
+- repository integration.
+
+### Artifact Persistence
+
+Engineering artifacts shall be classified as either:
+
+#### Persistent Artifacts
+
+Persistent artifacts remain part of the repository after completion of the
+current engineering story.
+
+Examples include:
+
+- Engineering Decision Records (EDRs)
+- Repository documentation
+- Repository history
+- Engineering methodology
+- Repository Discovery Packages (RDPs)
+
+#### Transient Artifacts
+
+Transient artifacts exist only to authorize or support a specific engineering
+activity.
+
+Examples include:
+
+- Repository Anchor Specifications (RAS)
+- Repository Patch Unit implementation packages
+- temporary engineering analyses
+
+Transient artifacts are retired after fulfilling their engineering purpose.
+
+### Lifecycle Gates
+
+Each engineering artifact shall define:
+
+- Entry Gate
+- Active Lifecycle
+- Exit Gate
+
+No artifact may advance beyond its defined lifecycle gates without satisfying
+the required engineering evidence.
+
+### Artifact Relationships
+
+Engineering artifacts shall reference one another through defined engineering
+relationships rather than duplicated content.
+
+Examples include:
+
+- RDP identifies required repository work.
+- RAS authorizes repository location.
+- RPU specifies repository modification.
+- Evidence Chain validates engineering completion.
+- EDR records architectural decisions.
+
+Each artifact shall remain responsible for exactly one engineering question.
+
+### Lifecycle Governance
+
+Lifecycle governance shall be reviewed whenever:
+
+- new engineering artifacts are introduced;
+- engineering lifecycles change;
+- repository architecture evolves;
+- repository governance is modified.
+
+Lifecycle governance exists to preserve long-term engineering consistency.
+
+## Lifecycle Classification & Engineering Gates
+
+### Purpose
+
+Engineering lifecycles are classified according to their architectural
+responsibility rather than their chronological position within an engineering
+story.
+
+Lifecycle classification establishes what each lifecycle is authorized to
+produce, validate, or govern.
+
+Engineering lifecycles shall not perform responsibilities assigned to another
+lifecycle.
+
+### Lifecycle Categories
+
+ResumeForge engineering defines two primary lifecycle categories:
+
+- Production Lifecycles
+- Assurance Lifecycles
+
+Each lifecycle belongs to exactly one primary category.
+
+### Production Lifecycles
+
+Production Lifecycles create, modify, or authorize repository artifacts.
+
+Production Lifecycles include:
+
+- Story Planning
+- Repository Test Specifications (RED)
+- Repository Patch Specifications (GREEN)
+- Repository Closeout
+- Commit
+
+Production Lifecycles produce repository assets.
+
+### Assurance Lifecycles
+
+Assurance Lifecycles validate engineering work without producing primary
+repository artifacts.
+
+Assurance Lifecycles include:
+
+- Story Signoff
+- Repository Pattern Specifications
+- Repository Verification
+- Retrospective
+- Architecture Reviews
+
+Assurance Lifecycles provide engineering confidence and authorization for
+subsequent Production Lifecycles.
+
+### Engineering Gates
+
+Every lifecycle shall define:
+
+- Entry Gate
+- Active Responsibilities
+- Exit Gate
+- Success Criteria
+- Failure Behavior
+
+Engineering gates determine when a lifecycle is authorized to begin and when it
+is authorized to transition to the next lifecycle.
+
+### Entry Gates
+
+Entry Gates verify that prerequisite engineering work has been completed.
+
+Typical Entry Gate activities include:
+
+- environment verification;
+- repository state verification;
+- previous lifecycle verification;
+- engineering evidence review.
+
+Implementation shall not begin until all Entry Gate requirements are satisfied.
+
+### Exit Gates
+
+Exit Gates verify that the lifecycle has completed all required engineering
+activities.
+
+Exit Gates authorize transition to the next lifecycle.
+
+A lifecycle shall not advance while unresolved engineering work remains.
+
+### Progressive Verification
+
+Production implementation shall use progressive verification.
+
+Each Repository Patch Unit shall begin by verifying:
+
+1. the successful implementation of the previous Repository Patch Unit;
+2. the current Repository Anchor Specification.
+
+Progressive verification preserves repository integrity throughout
+implementation.
+
+### Implementation Expansion Gate
+
+Implementation may discover architectural requirements that were not identified
+during Story Planning or Repository Discovery.
+
+When implementation evidence demonstrates that additional repository work is
+required:
+
+- implementation shall pause;
+- the engineering lifecycle shall return to the appropriate Review phase;
+- newly discovered work shall be reviewed and approved before implementation
+  resumes.
+
+Implementation shall never extend its own scope without Review authorization.
+
+### Lifecycle Independence
+
+Each engineering lifecycle exists to answer one primary engineering question.
+
+Engineering lifecycles shall cooperate through defined gates rather than by
+sharing responsibilities.
+
+This separation preserves deterministic engineering execution and supports
+long-term methodology evolution.
+
+## Repository Evidence Architecture
+
+### Purpose
+
+Repository evidence provides the objective engineering record that demonstrates
+how engineering decisions were reached, how repository modifications were
+authorized, and how implementation was verified.
+
+Engineering evidence exists to support traceability, auditability, repeatability,
+and long-term repository maintainability.
+
+Repository evidence shall describe engineering work rather than replace it.
+
+### Engineering Evidence Principles
+
+Repository evidence shall be:
+
+- objective;
+- verifiable;
+- deterministic;
+- reproducible;
+- traceable;
+- non-duplicative.
+
+Engineering conclusions shall always be supported by engineering evidence.
+
+### Engineering Evidence Categories
+
+Repository evidence generally consists of:
+
+- Repository Discovery Packages (RDPs)
+- Repository Anchor Specifications (RAS)
+- Repository Patch Units (RPUs)
+- Evidence Chains
+- Engineering Decision Records (EDRs)
+- Repository verification results
+- Repository closeout records
+
+Each category contributes a distinct form of engineering evidence.
+
+### Evidence Chain
+
+Every engineering story shall maintain an Evidence Chain.
+
+The Evidence Chain demonstrates:
+
+- engineering decisions;
+- lifecycle transitions;
+- repository authorizations;
+- verification results;
+- engineering completion.
+
+The Evidence Chain connects engineering activities into a single traceable
+record.
+
+### Evidence Traceability
+
+Every significant repository modification shall be traceable back to:
+
+- an approved engineering story;
+- an authorized engineering lifecycle;
+- an approved engineering decision;
+- repository verification evidence.
+
+Repository modifications without traceable engineering evidence are not
+authorized.
+
+### Engineering Decision Records
+
+Engineering Decision Records (EDRs) capture architectural decisions whose value
+extends beyond a single engineering story.
+
+An EDR shall document:
+
+- the engineering problem;
+- considered alternatives;
+- the selected decision;
+- engineering rationale;
+- expected repository impact.
+
+EDRs become persistent repository artifacts.
+
+### Verification Evidence
+
+Verification evidence demonstrates that repository modifications satisfy their
+defined engineering objectives.
+
+Verification evidence may include:
+
+- automated test results;
+- repository verification activities;
+- engineering reviews;
+- implementation verification;
+- lifecycle completion criteria.
+
+Verification evidence shall be recorded before lifecycle completion.
+
+### Repository Auditability
+
+The repository shall remain auditable throughout its lifecycle.
+
+An independent engineering reviewer should be able to determine:
+
+- what changed;
+- why it changed;
+- where it changed;
+- who authorized the change;
+- how the change was verified.
+
+Repository evidence exists to support that audit.
+
+### Repository Evidence Governance
+
+Repository evidence shall be reviewed whenever:
+
+- engineering methodology evolves;
+- repository architecture changes;
+- new engineering artifacts are introduced;
+- repository governance is modified.
+
+Repository evidence is governed engineering data and shall be maintained with
+the same rigor as production engineering artifacts.
+
 ## Scope
 
 This document defines the required engineering workflow for every ResumeForge
